@@ -12,7 +12,7 @@ struct RelationDoc
 Graph relation. Certainty is exact, inferred, dynamic, or unresolved.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L132)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L147)
 
 ## Members
 
@@ -24,7 +24,7 @@ certainty
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L136)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L151)
 
 <a id="field-field-minidoc-model-relationdoc-from-id-from-id-src-minidoc-model-ml-15732410"></a>
 ### from_id
@@ -34,7 +34,7 @@ from_id
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L133)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L148)
 
 <a id="field-field-minidoc-model-relationdoc-kind-kind-src-minidoc-model-ml-1134090382"></a>
 ### kind
@@ -44,7 +44,7 @@ kind
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L135)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L150)
 
 <a id="field-field-minidoc-model-relationdoc-label-label-src-minidoc-model-ml-1655706498"></a>
 ### label
@@ -54,7 +54,7 @@ label
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L137)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L152)
 
 <a id="field-field-minidoc-model-relationdoc-to-id-to-id-src-minidoc-model-ml-964869922"></a>
 ### to_id
@@ -64,4 +64,4 @@ to_id
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L134)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L149)

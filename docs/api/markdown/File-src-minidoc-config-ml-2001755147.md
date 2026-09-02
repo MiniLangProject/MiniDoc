@@ -12,8 +12,8 @@ Reachable from entry: **yes**
 
 - `minidoc/model.ml` as `model` → [src/minidoc/model.ml](File-src-minidoc-model-ml-438170230.md)
 - `minidoc/util.ml` as `util` → [src/minidoc/util.ml](File-src-minidoc-util-ml-1632979029.md)
-- `std/fs.ml` as `fs` → [../MiniLangCompilerML/std/fs.ml](File-minilangcompilerml-std-fs-ml-1549776322.md)
-- `std/string.ml` as `strings` → [../MiniLangCompilerML/std/string.ml](File-minilangcompilerml-std-string-ml-1722707944.md)
+- `std/fs.ml` as `fs` → `../MiniLangCompilerML/std/fs.ml` — external dependency
+- `std/string.ml` as `strings` → `../MiniLangCompilerML/std/string.ml` — external dependency
 
 ## Declarations
 
@@ -49,7 +49,7 @@ Performs the '_applyCli' step in MiniDoc's configuration pipeline.
 | `args` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L340)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L347)
 
 <a id="function-function-minidoc-config-applyformats-function-applyformats-cfg-raw-src-minidoc-config-ml-1993873735"></a>
 ### _applyFormats
@@ -66,7 +66,7 @@ Performs the '_applyFormats' step in MiniDoc's configuration pipeline.
 | `raw` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L305)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L312)
 
 <a id="function-function-minidoc-config-applygraphselection-function-applygraphselection-cfg-raw-src-minidoc-config-ml-1585515829"></a>
 ### _applyGraphSelection
@@ -83,7 +83,7 @@ Performs the '_applyGraphSelection' step in MiniDoc's configuration pipeline.
 | `raw` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L322)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L329)
 
 <a id="function-function-minidoc-config-applyminidoc-function-applyminidoc-cfg-path-src-minidoc-config-ml-2010845010"></a>
 ### _applyMiniDoc
@@ -134,7 +134,7 @@ Performs the '_argValue' step in MiniDoc's configuration pipeline.
 | `names` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L295)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L302)
 
 <a id="function-function-minidoc-config-boolean-function-boolean-value-src-minidoc-config-ml-1445243942"></a>
 ### _boolean
@@ -316,6 +316,6 @@ Loads and validates the effective MiniDoc configuration.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L406)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L419)
 
 - [minidoc.config.TomlRow](Type-minidoc-config-tomlrow-1332474570.md) — struct

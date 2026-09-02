@@ -12,7 +12,7 @@ struct ParameterDoc
 One function parameter in display order.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L67)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L78)
 
 ## Members
 
@@ -24,7 +24,7 @@ default_value
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L71)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L82)
 
 <a id="field-field-minidoc-model-parameterdoc-description-description-src-minidoc-model-ml-1220513803"></a>
 ### description
@@ -34,7 +34,7 @@ description
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L73)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L84)
 
 <a id="field-field-minidoc-model-parameterdoc-name-name-src-minidoc-model-ml-1092945497"></a>
 ### name
@@ -44,7 +44,7 @@ name
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L68)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L79)
 
 <a id="field-field-minidoc-model-parameterdoc-optional-optional-src-minidoc-model-ml-1206856939"></a>
 ### optional
@@ -54,7 +54,7 @@ optional
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L70)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L81)
 
 <a id="field-field-minidoc-model-parameterdoc-type-name-type-name-src-minidoc-model-ml-854191315"></a>
 ### type_name
@@ -64,7 +64,7 @@ type_name
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L69)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L80)
 
 <a id="field-field-minidoc-model-parameterdoc-variadic-variadic-src-minidoc-model-ml-1593485881"></a>
 ### variadic
@@ -74,4 +74,4 @@ variadic
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L72)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L83)

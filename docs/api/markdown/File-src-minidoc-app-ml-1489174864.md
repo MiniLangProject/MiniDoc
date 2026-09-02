@@ -18,7 +18,7 @@ Reachable from entry: **yes**
 - `minidoc/render_html.ml` as `html` → [src/minidoc/render_html.ml](File-src-minidoc-render-html-ml-1870373141.md)
 - `minidoc/render_markdown.ml` as `markdown` → [src/minidoc/render_markdown.ml](File-src-minidoc-render-markdown-ml-212465045.md)
 - `minidoc/util.ml` as `util` → [src/minidoc/util.ml](File-src-minidoc-util-ml-1632979029.md)
-- `std/time.ml` as `time` → [../MiniLangCompilerML/std/time.ml](File-minilangcompilerml-std-time-ml-1701187624.md)
+- `std/time.ml` as `time` → `../MiniLangCompilerML/std/time.ml` — external dependency
 
 ## Declarations
 
@@ -37,7 +37,7 @@ Performs the '_countSeverity' step in MiniDoc's application workflow.
 | `severity` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L92)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L98)
 
 <a id="function-function-minidoc-app-hasarg-function-hasarg-args-value-src-minidoc-app-ml-81945717"></a>
 ### _hasArg
@@ -54,7 +54,7 @@ Performs the '_hasArg' step in MiniDoc's application workflow.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L72)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L78)
 
 <a id="function-function-minidoc-app-printdiagnostics-function-printdiagnostics-project-src-minidoc-app-ml-250768944"></a>
 ### _printDiagnostics
@@ -70,7 +70,7 @@ Performs the '_printDiagnostics' step in MiniDoc's application workflow.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L82)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L88)
 
 <a id="function-function-minidoc-app-generate-function-generate-cfg-src-minidoc-app-ml-1058954463"></a>
 ### generate
@@ -88,7 +88,7 @@ Loads, analyzes, measures, and deterministically orders a MiniLang project.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L104)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L110)
 
 <a id="function-function-minidoc-app-printhelp-function-printhelp-src-minidoc-app-ml-210253363"></a>
 ### printHelp
@@ -134,7 +134,7 @@ Writes every configured output format for an analyzed project.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L121)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L129)
 
 <a id="function-function-minidoc-app-run-function-run-args-src-minidoc-app-ml-382026988"></a>
 ### run
@@ -152,13 +152,13 @@ Executes the command-line workflow and returns a process exit code.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L137)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L145)
 
-<a id="constant-constant-minidoc-app-version-const-version-0-3-0-src-minidoc-app-ml-650754777"></a>
+<a id="constant-constant-minidoc-app-version-const-version-0-4-0-src-minidoc-app-ml-38366564"></a>
 ### VERSION
 
 ```ml
-const VERSION = "0.3.0"
+const VERSION = "0.4.0"
 ```
 
 Semantic version embedded in generated output and CLI messages.

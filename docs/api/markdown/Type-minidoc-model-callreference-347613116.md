@@ -12,7 +12,7 @@ struct CallReference
 Deferred call reference resolved after every symbol has been indexed.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L141)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L157)
 
 ## Members
 
@@ -24,7 +24,7 @@ caller_id
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L142)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L158)
 
 <a id="field-field-minidoc-model-callreference-dynamic-dynamic-src-minidoc-model-ml-24183099"></a>
 ### dynamic
@@ -34,7 +34,7 @@ dynamic
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L148)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L164)
 
 <a id="field-field-minidoc-model-callreference-file-id-file-id-src-minidoc-model-ml-1783657275"></a>
 ### file_id
@@ -44,7 +44,7 @@ file_id
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L144)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L160)
 
 <a id="field-field-minidoc-model-callreference-namespace-name-namespace-name-src-minidoc-model-ml-1205378505"></a>
 ### namespace_name
@@ -54,7 +54,7 @@ namespace_name
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L146)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L162)
 
 <a id="field-field-minidoc-model-callreference-package-name-package-name-src-minidoc-model-ml-1974641355"></a>
 ### package_name
@@ -64,7 +64,7 @@ package_name
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L145)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L161)
 
 <a id="field-field-minidoc-model-callreference-position-position-src-minidoc-model-ml-713754321"></a>
 ### position
@@ -74,7 +74,7 @@ position
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L147)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L163)
 
 <a id="field-field-minidoc-model-callreference-raw-target-raw-target-src-minidoc-model-ml-397666779"></a>
 ### raw_target
@@ -84,4 +84,4 @@ raw_target
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L143)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L159)

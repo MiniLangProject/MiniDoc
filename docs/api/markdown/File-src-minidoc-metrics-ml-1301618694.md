@@ -12,10 +12,10 @@ Reachable from entry: **yes**
 
 - `minidoc/model.ml` as `model` → [src/minidoc/model.ml](File-src-minidoc-model-ml-438170230.md)
 - `minidoc/util.ml` as `util` → [src/minidoc/util.ml](File-src-minidoc-util-ml-1632979029.md)
-- `mlc/minilang_parser.ml` as `parser` → [../MiniLangCompilerML/mlc/minilang_parser.ml](File-minilangcompilerml-mlc-minilang-parser-ml-1826223559.md)
-- `mlc/tools.ml` as `tools` → [../MiniLangCompilerML/mlc/tools.ml](File-minilangcompilerml-mlc-tools-ml-978540687.md)
-- `std/math.ml` as `math` → [../MiniLangCompilerML/std/math.ml](File-minilangcompilerml-std-math-ml-695743397.md)
-- `std/string.ml` as `strings` → [../MiniLangCompilerML/std/string.ml](File-minilangcompilerml-std-string-ml-1722707944.md)
+- `mlc/minilang_parser.ml` as `parser` → `../MiniLangCompilerML/mlc/minilang_parser.ml` — external dependency
+- `mlc/tools.ml` as `tools` → `../MiniLangCompilerML/mlc/tools.ml` — external dependency
+- `std/math.ml` as `math` → `../MiniLangCompilerML/std/math.ml` — external dependency
+- `std/string.ml` as `strings` → `../MiniLangCompilerML/std/string.ml` — external dependency
 
 ## Declarations
 
@@ -160,6 +160,23 @@ Performs the '_complexity' step in MiniDoc's metrics pipeline.
 
 [View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L378)
 
+<a id="function-function-minidoc-metrics-coveragemetric-function-coveragemetric-documented-total-src-minidoc-metrics-ml-216051785"></a>
+### _coverageMetric
+
+```ml
+function _coverageMetric(documented, total)
+```
+
+Creates one rounded documentation-coverage metric.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `documented` | `dynamic` | — |  |
+| `total` | `dynamic` | — |  |
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L708)
+
 <a id="function-function-minidoc-metrics-duplicatedlinecount-function-duplicatedlinecount-source-data-src-minidoc-metrics-ml-1920902583"></a>
 ### _duplicatedLineCount
 
@@ -276,6 +293,22 @@ Performs the '_isDocumentable' step in MiniDoc's metrics pipeline.
 
 [View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L692)
 
+<a id="function-function-minidoc-metrics-isdocumentablecallable-function-isdocumentablecallable-doc-symbol-src-minidoc-metrics-ml-755917228"></a>
+### _isDocumentableCallable
+
+```ml
+function _isDocumentableCallable(doc_symbol)
+```
+
+Returns whether a symbol contributes parameter contracts to public API coverage.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `doc_symbol` | `dynamic` | — |  |
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L700)
+
 <a id="function-function-minidoc-metrics-ismeasuredfile-function-ismeasuredfile-project-file-src-minidoc-metrics-ml-1753902428"></a>
 ### _isMeasuredFile
 
@@ -291,7 +324,7 @@ Performs the '_isMeasuredFile' step in MiniDoc's metrics pipeline.
 | `file` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L700)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L716)
 
 <a id="function-function-minidoc-metrics-maintainability-function-maintainability-volume-cyclomatic-source-lines-src-minidoc-metrics-ml-27050618"></a>
 ### _maintainability
@@ -596,7 +629,7 @@ Calculates project, file, and function metrics for an analyzed project.
 
 **Since:** `0.2.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L707)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L723)
 
 <a id="constant-constant-minidoc-metrics-clone-detail-limit-const-clone-detail-limit-200-src-minidoc-metrics-ml-1708870366"></a>
 ### CLONE_DETAIL_LIMIT

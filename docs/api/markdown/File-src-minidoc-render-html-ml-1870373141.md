@@ -12,8 +12,8 @@ Reachable from entry: **yes**
 
 - `minidoc/graph.ml` as `graph` → [src/minidoc/graph.ml](File-src-minidoc-graph-ml-29661697.md)
 - `minidoc/util.ml` as `util` → [src/minidoc/util.ml](File-src-minidoc-util-ml-1632979029.md)
-- `std/string.ml` as `strings` → [../MiniLangCompilerML/std/string.ml](File-minilangcompilerml-std-string-ml-1722707944.md)
-- `std/string_builder.ml` as `builders` → [../MiniLangCompilerML/std/string_builder.ml](File-minilangcompilerml-std-string-builder-ml-553784756.md)
+- `std/string.ml` as `strings` → `../MiniLangCompilerML/std/string.ml` — external dependency
+- `std/string_builder.ml` as `builders` → `../MiniLangCompilerML/std/string_builder.ml` — external dependency
 
 ## Declarations
 
@@ -27,7 +27,40 @@ function _css()
 Performs the '_css' step in MiniDoc's HTML renderer.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L555)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L649)
+
+<a id="function-function-minidoc-render-html-dependencies-function-dependencies-project-src-minidoc-render-html-ml-1815882224"></a>
+### _dependencies
+
+```ml
+function _dependencies(project)
+```
+
+Renders imported source dependencies without expanding their API pages.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `project` | `dynamic` | — |  |
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L484)
+
+<a id="function-function-minidoc-render-html-dependencyreferencecount-function-dependencyreferencecount-project-dependency-id-src-minidoc-render-html-ml-2092930733"></a>
+### _dependencyReferenceCount
+
+```ml
+function _dependencyReferenceCount(project, dependency_id)
+```
+
+Counts project-owned files importing one dependency file.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `project` | `dynamic` | — |  |
+| `dependency_id` | `dynamic` | — |  |
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L468)
 
 <a id="function-function-minidoc-render-html-diagnostics-function-diagnostics-project-src-minidoc-render-html-ml-1860874224"></a>
 ### _diagnostics
@@ -43,7 +76,7 @@ Performs the '_diagnostics' step in MiniDoc's HTML renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L439)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L521)
 
 <a id="function-function-minidoc-render-html-file-function-file-project-file-src-minidoc-render-html-ml-490889384"></a>
 ### _file
@@ -60,7 +93,7 @@ Performs the '_file' step in MiniDoc's HTML renderer.
 | `file` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L380)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L424)
 
 <a id="function-function-minidoc-render-html-filebyid-function-filebyid-project-id-src-minidoc-render-html-ml-435004607"></a>
 ### _fileById
@@ -77,7 +110,7 @@ Performs the '_fileById' step in MiniDoc's HTML renderer.
 | `id` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L44)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L53)
 
 <a id="function-function-minidoc-render-html-filepage-function-filepage-file-src-minidoc-render-html-ml-419870347"></a>
 ### _filePage
@@ -93,7 +126,7 @@ Performs the '_filePage' step in MiniDoc's HTML renderer.
 | `file` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L54)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L87)
 
 <a id="function-function-minidoc-render-html-files-function-files-project-src-minidoc-render-html-ml-1929023196"></a>
 ### _files
@@ -109,25 +142,77 @@ Performs the '_files' step in MiniDoc's HTML renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L304)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L346)
 
-<a id="function-function-minidoc-render-html-graphpage-function-graphpage-title-filename-description-src-minidoc-render-html-ml-1488656330"></a>
+<a id="function-function-minidoc-render-html-filevisible-function-filevisible-project-file-src-minidoc-render-html-ml-1061123602"></a>
+### _fileVisible
+
+```ml
+function _fileVisible(project, file)
+```
+
+Returns whether a source file should receive full documentation pages.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `project` | `dynamic` | — |  |
+| `file` | `dynamic` | — |  |
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L22)
+
+<a id="function-function-minidoc-render-html-graphenabled-function-graphenabled-project-relation-kind-configured-src-minidoc-render-html-ml-788187789"></a>
+### _graphEnabled
+
+```ml
+function _graphEnabled(project, relation_kind, configured)
+```
+
+Reports whether a configured graph has visible relations.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `project` | `dynamic` | — |  |
+| `relation_kind` | `dynamic` | — |  |
+| `configured` | `dynamic` | — |  |
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L73)
+
+<a id="function-function-minidoc-render-html-graphpage-function-graphpage-project-title-filename-description-src-minidoc-render-html-ml-1193469419"></a>
 ### _graphPage
 
 ```ml
-function _graphPage(title, filename, description)
+function _graphPage(project, title, filename, description)
 ```
 
 Performs the '_graphPage' step in MiniDoc's HTML renderer.
 
 | Parameter | Type | Default | Description |
 | --- | --- | --- | --- |
+| `project` | `dynamic` | — |  |
 | `title` | `dynamic` | — |  |
 | `filename` | `dynamic` | — |  |
 | `description` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L530)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L622)
+
+<a id="function-function-minidoc-render-html-hasdependencies-function-hasdependencies-project-src-minidoc-render-html-ml-181909412"></a>
+### _hasDependencies
+
+```ml
+function _hasDependencies(project)
+```
+
+Reports whether imported source dependencies are present.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `project` | `dynamic` | — |  |
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L63)
 
 <a id="function-function-minidoc-render-html-home-function-home-project-src-minidoc-render-html-ml-2034429428"></a>
 ### _home
@@ -143,7 +228,7 @@ Performs the '_home' step in MiniDoc's HTML renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L272)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L310)
 
 <a id="function-function-minidoc-render-html-istype-function-istype-doc-symbol-src-minidoc-render-html-ml-1873039548"></a>
 ### _isType
@@ -159,7 +244,7 @@ Performs the '_isType' step in MiniDoc's HTML renderer.
 | `doc_symbol` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L28)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L37)
 
 <a id="function-function-minidoc-render-html-javascript-function-javascript-src-minidoc-render-html-ml-771571021"></a>
 ### _javascript
@@ -171,7 +256,7 @@ function _javascript()
 Performs the '_javascript' step in MiniDoc's HTML renderer.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L561)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L655)
 
 <a id="function-function-minidoc-render-html-layout-function-layout-project-title-content-src-minidoc-render-html-ml-793745437"></a>
 ### _layout
@@ -189,7 +274,7 @@ Performs the '_layout' step in MiniDoc's HTML renderer.
 | `content` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L240)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L273)
 
 <a id="function-function-minidoc-render-html-markdownhtml-function-markdownhtml-text-src-minidoc-render-html-ml-1903815168"></a>
 ### _markdownHtml
@@ -205,7 +290,7 @@ Performs the '_markdownHtml' step in MiniDoc's HTML renderer.
 | `text` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L96)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L129)
 
 <a id="function-function-minidoc-render-html-metrics-function-metrics-project-src-minidoc-render-html-ml-1447599980"></a>
 ### _metrics
@@ -221,7 +306,7 @@ Performs the '_metrics' step in MiniDoc's HTML renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L454)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L536)
 
 <a id="function-function-minidoc-render-html-ownertype-function-ownertype-project-doc-symbol-src-minidoc-render-html-ml-1808108667"></a>
 ### _ownerType
@@ -238,7 +323,7 @@ Performs the '_ownerType' step in MiniDoc's HTML renderer.
 | `doc_symbol` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L72)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L105)
 
 <a id="function-function-minidoc-render-html-package-function-package-project-package-name-src-minidoc-render-html-ml-821137262"></a>
 ### _package
@@ -255,7 +340,7 @@ Performs the '_package' step in MiniDoc's HTML renderer.
 | `package_name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L354)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L397)
 
 <a id="function-function-minidoc-render-html-packagepage-function-packagepage-name-src-minidoc-render-html-ml-1754427610"></a>
 ### _packagePage
@@ -271,7 +356,7 @@ Performs the '_packagePage' step in MiniDoc's HTML renderer.
 | `name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L66)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L99)
 
 <a id="function-function-minidoc-render-html-packages-function-packages-project-src-minidoc-render-html-ml-152823440"></a>
 ### _packages
@@ -287,7 +372,7 @@ Performs the '_packages' step in MiniDoc's HTML renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L252)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L289)
 
 <a id="function-function-minidoc-render-html-packagesindex-function-packagesindex-project-src-minidoc-render-html-ml-1876075040"></a>
 ### _packagesIndex
@@ -303,7 +388,7 @@ Performs the '_packagesIndex' step in MiniDoc's HTML renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L339)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L382)
 
 <a id="function-function-minidoc-render-html-projectdescription-function-projectdescription-project-src-minidoc-render-html-ml-104319708"></a>
 ### _projectDescription
@@ -319,7 +404,7 @@ Performs the '_projectDescription' step in MiniDoc's HTML renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L265)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L303)
 
 <a id="function-function-minidoc-render-html-searchindex-function-searchindex-project-src-minidoc-render-html-ml-1008698196"></a>
 ### _searchIndex
@@ -335,7 +420,23 @@ Performs the '_searchIndex' step in MiniDoc's HTML renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L536)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L630)
+
+<a id="function-function-minidoc-render-html-shortrevision-function-shortrevision-value-src-minidoc-render-html-ml-150195100"></a>
+### _shortRevision
+
+```ml
+function _shortRevision(value)
+```
+
+Returns a compact revision label for generated-page metadata.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `dynamic` | — |  |
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L80)
 
 <a id="function-function-minidoc-render-html-sorttags-function-sorttags-tags-src-minidoc-render-html-ml-98000292"></a>
 ### _sortTags
@@ -351,7 +452,7 @@ Performs the '_sortTags' step in MiniDoc's HTML renderer.
 | `tags` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L147)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L180)
 
 <a id="function-function-minidoc-render-html-symbolbyid-function-symbolbyid-project-id-src-minidoc-render-html-ml-761027075"></a>
 ### _symbolById
@@ -368,7 +469,7 @@ Performs the '_symbolById' step in MiniDoc's HTML renderer.
 | `id` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L34)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L43)
 
 <a id="function-function-minidoc-render-html-symbolhtml-function-symbolhtml-project-doc-symbol-heading-src-minidoc-render-html-ml-426613973"></a>
 ### _symbolHtml
@@ -386,7 +487,7 @@ Performs the '_symbolHtml' step in MiniDoc's HTML renderer.
 | `heading` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L166)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L199)
 
 <a id="function-function-minidoc-render-html-symbollink-function-symbollink-project-doc-symbol-src-minidoc-render-html-ml-747058409"></a>
 ### _symbolLink
@@ -403,7 +504,7 @@ Performs the '_symbolLink' step in MiniDoc's HTML renderer.
 | `doc_symbol` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L85)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L118)
 
 <a id="function-function-minidoc-render-html-symbols-function-symbols-project-src-minidoc-render-html-ml-1501047772"></a>
 ### _symbols
@@ -419,7 +520,7 @@ Performs the '_symbols' step in MiniDoc's HTML renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L323)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L366)
 
 <a id="function-function-minidoc-render-html-tagvalue-function-tagvalue-doc-symbol-name-src-minidoc-render-html-ml-2064001193"></a>
 ### _tagValue
@@ -436,7 +537,7 @@ Performs the '_tagValue' step in MiniDoc's HTML renderer.
 | `name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L137)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L170)
 
 <a id="function-function-minidoc-render-html-type-function-type-project-type-symbol-src-minidoc-render-html-ml-1278264173"></a>
 ### _type
@@ -453,7 +554,7 @@ Performs the '_type' step in MiniDoc's HTML renderer.
 | `type_symbol` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L420)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L502)
 
 <a id="function-function-minidoc-render-html-typepage-function-typepage-doc-symbol-src-minidoc-render-html-ml-496705942"></a>
 ### _typePage
@@ -469,7 +570,7 @@ Performs the '_typePage' step in MiniDoc's HTML renderer.
 | `doc_symbol` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L60)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L93)
 
 <a id="function-function-minidoc-render-html-visible-function-visible-project-doc-symbol-src-minidoc-render-html-ml-419580155"></a>
 ### _visible
@@ -486,7 +587,7 @@ Performs the '_visible' step in MiniDoc's HTML renderer.
 | `doc_symbol` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L22)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L29)
 
 <a id="function-function-minidoc-render-html-writegenerated-function-writegenerated-root-generated-relative-path-content-src-minidoc-render-html-ml-979553409"></a>
 ### _writeGenerated
@@ -505,7 +606,7 @@ Performs the '_writeGenerated' step in MiniDoc's HTML renderer.
 | `content` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L567)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L661)
 
 <a id="function-function-minidoc-render-html-render-function-render-project-src-minidoc-render-html-ml-961220700"></a>
 ### render
@@ -523,4 +624,4 @@ Writes the complete HTML documentation tree and removes stale generated files.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L576)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_html.ml#L670)

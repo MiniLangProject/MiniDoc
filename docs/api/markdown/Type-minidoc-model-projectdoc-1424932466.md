@@ -12,7 +12,7 @@ struct ProjectDoc
 Complete format-independent documentation model.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L257)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L302)
 
 ## Members
 
@@ -24,7 +24,7 @@ call_references
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L265)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L311)
 
 <a id="field-field-minidoc-model-projectdoc-complete-complete-src-minidoc-model-ml-532702175"></a>
 ### complete
@@ -34,7 +34,7 @@ complete
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L268)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L314)
 
 <a id="field-field-minidoc-model-projectdoc-config-config-src-minidoc-model-ml-1266899357"></a>
 ### config
@@ -44,7 +44,7 @@ config
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L258)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L303)
 
 <a id="field-field-minidoc-model-projectdoc-diagnostics-diagnostics-src-minidoc-model-ml-1850355429"></a>
 ### diagnostics
@@ -54,7 +54,7 @@ diagnostics
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L266)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L312)
 
 <a id="field-field-minidoc-model-projectdoc-files-files-src-minidoc-model-ml-182797137"></a>
 ### files
@@ -64,7 +64,7 @@ files
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L262)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L308)
 
 <a id="field-field-minidoc-model-projectdoc-generated-at-generated-at-src-minidoc-model-ml-1223259711"></a>
 ### generated_at
@@ -74,7 +74,7 @@ generated_at
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L261)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L306)
 
 <a id="field-field-minidoc-model-projectdoc-generator-version-generator-version-src-minidoc-model-ml-1587645789"></a>
 ### generator_version
@@ -84,7 +84,7 @@ generator_version
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L260)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L305)
 
 <a id="field-field-minidoc-model-projectdoc-metrics-metrics-src-minidoc-model-ml-740034441"></a>
 ### metrics
@@ -94,7 +94,7 @@ metrics
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L267)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L313)
 
 <a id="field-field-minidoc-model-projectdoc-relations-relations-src-minidoc-model-ml-1646457241"></a>
 ### relations
@@ -104,7 +104,7 @@ relations
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L264)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L310)
 
 <a id="field-field-minidoc-model-projectdoc-root-dir-root-dir-src-minidoc-model-ml-1606429109"></a>
 ### root_dir
@@ -114,7 +114,17 @@ root_dir
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L259)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L304)
+
+<a id="field-field-minidoc-model-projectdoc-source-revision-source-revision-src-minidoc-model-ml-1335970041"></a>
+### source_revision
+
+```ml
+source_revision
+```
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L307)
 
 <a id="field-field-minidoc-model-projectdoc-symbols-symbols-src-minidoc-model-ml-1937926353"></a>
 ### symbols
@@ -124,4 +134,4 @@ symbols
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L263)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L309)

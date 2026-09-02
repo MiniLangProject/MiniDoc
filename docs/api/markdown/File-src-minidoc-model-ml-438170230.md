@@ -14,6 +14,7 @@ Reachable from entry: **yes**
 - [minidoc.model.CloneGroup](Type-minidoc-model-clonegroup-116491919.md) — struct
 - [minidoc.model.CloneOccurrence](Type-minidoc-model-cloneoccurrence-662261681.md) — struct
 - [minidoc.model.Config](Type-minidoc-model-config-2006227981.md) — struct
+- [minidoc.model.CoverageMetric](Type-minidoc-model-coveragemetric-1686880781.md) — struct
 <a id="function-function-minidoc-model-defaultconfig-function-defaultconfig-src-minidoc-model-ml-878829745"></a>
 ### defaultConfig
 
@@ -26,11 +27,12 @@ Creates a configuration populated with safe default values.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L273)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L319)
 
 - [minidoc.model.Diagnostic](Type-minidoc-model-diagnostic-285652516.md) — struct
 - [minidoc.model.DocBlock](Type-minidoc-model-docblock-1745261956.md) — struct
 - [minidoc.model.DocTag](Type-minidoc-model-doctag-813866201.md) — struct
+- [minidoc.model.DocumentationCoverage](Type-minidoc-model-documentationcoverage-2076077517.md) — struct
 <a id="function-function-minidoc-model-emptydocblock-function-emptydocblock-src-minidoc-model-ml-1867502199"></a>
 ### emptyDocBlock
 
@@ -43,7 +45,7 @@ Creates an empty documentation block.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L305)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L358)
 
 <a id="function-function-minidoc-model-emptyhalsteadmetrics-function-emptyhalsteadmetrics-src-minidoc-model-ml-480079767"></a>
 ### emptyHalsteadMetrics
@@ -57,7 +59,7 @@ Creates an empty Halstead metric result.
 
 **Since:** `0.2.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L331)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L384)
 
 <a id="function-function-minidoc-model-emptyproject-function-emptyproject-config-root-dir-src-minidoc-model-ml-510474277"></a>
 ### emptyProject
@@ -76,7 +78,7 @@ Creates an empty project model for a configuration and root directory.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L325)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L378)
 
 <a id="function-function-minidoc-model-emptyprojectmetrics-function-emptyprojectmetrics-src-minidoc-model-ml-496127141"></a>
 ### emptyProjectMetrics
@@ -90,7 +92,7 @@ Creates an empty aggregate project metric result.
 
 **Since:** `0.2.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L337)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L390)
 
 - [minidoc.model.FileDoc](Type-minidoc-model-filedoc-1009751833.md) — struct
 - [minidoc.model.FileMetrics](Type-minidoc-model-filemetrics-548638530.md) — struct
@@ -118,7 +120,7 @@ Creates a source diagnostic.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L317)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L370)
 
 - [minidoc.model.ParameterDoc](Type-minidoc-model-parameterdoc-1619648880.md) — struct
 - [minidoc.model.ProjectDoc](Type-minidoc-model-projectdoc-1424932466.md) — struct

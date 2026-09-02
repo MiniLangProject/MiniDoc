@@ -12,7 +12,7 @@ Reachable from entry: **yes**
 
 - `minidoc/model.ml` as `model` → [src/minidoc/model.ml](File-src-minidoc-model-ml-438170230.md)
 - `minidoc/util.ml` as `util` → [src/minidoc/util.ml](File-src-minidoc-util-ml-1632979029.md)
-- `std/string.ml` as `strings` → [../MiniLangCompilerML/std/string.ml](File-minilangcompilerml-std-string-ml-1722707944.md)
+- `std/string.ml` as `strings` → `../MiniLangCompilerML/std/string.ml` — external dependency
 
 ## Declarations
 

@@ -12,7 +12,7 @@ struct HalsteadMetrics
 Halstead token metrics for a source scope.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L162)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L180)
 
 ## Members
 
@@ -24,7 +24,7 @@ difficulty
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L170)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L188)
 
 <a id="field-field-minidoc-model-halsteadmetrics-distinct-operands-distinct-operands-src-minidoc-model-ml-203985047"></a>
 ### distinct_operands
@@ -34,7 +34,7 @@ distinct_operands
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L164)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L182)
 
 <a id="field-field-minidoc-model-halsteadmetrics-distinct-operators-distinct-operators-src-minidoc-model-ml-767114491"></a>
 ### distinct_operators
@@ -44,7 +44,7 @@ distinct_operators
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L163)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L181)
 
 <a id="field-field-minidoc-model-halsteadmetrics-effort-effort-src-minidoc-model-ml-1301829011"></a>
 ### effort
@@ -54,7 +54,7 @@ effort
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L171)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L189)
 
 <a id="field-field-minidoc-model-halsteadmetrics-estimated-bugs-estimated-bugs-src-minidoc-model-ml-1523941619"></a>
 ### estimated_bugs
@@ -64,7 +64,7 @@ estimated_bugs
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L172)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L190)
 
 <a id="field-field-minidoc-model-halsteadmetrics-length-length-src-minidoc-model-ml-1149513423"></a>
 ### length
@@ -74,7 +74,7 @@ length
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L168)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L186)
 
 <a id="field-field-minidoc-model-halsteadmetrics-total-operands-total-operands-src-minidoc-model-ml-645241445"></a>
 ### total_operands
@@ -84,7 +84,7 @@ total_operands
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L166)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L184)
 
 <a id="field-field-minidoc-model-halsteadmetrics-total-operators-total-operators-src-minidoc-model-ml-1265383575"></a>
 ### total_operators
@@ -94,7 +94,7 @@ total_operators
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L165)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L183)
 
 <a id="field-field-minidoc-model-halsteadmetrics-vocabulary-vocabulary-src-minidoc-model-ml-326357723"></a>
 ### vocabulary
@@ -104,7 +104,7 @@ vocabulary
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L167)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L185)
 
 <a id="field-field-minidoc-model-halsteadmetrics-volume-volume-src-minidoc-model-ml-1991646187"></a>
 ### volume
@@ -114,4 +114,4 @@ volume
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L169)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L187)

@@ -13,11 +13,11 @@ Reachable from entry: **yes**
 - `minidoc/doc_comments.ml` as `comments` → [src/minidoc/doc_comments.ml](File-src-minidoc-doc-comments-ml-1995285450.md)
 - `minidoc/model.ml` as `model` → [src/minidoc/model.ml](File-src-minidoc-model-ml-438170230.md)
 - `minidoc/util.ml` as `util` → [src/minidoc/util.ml](File-src-minidoc-util-ml-1632979029.md)
-- `mlc/frontend.ml` as `frontend` → [../MiniLangCompilerML/mlc/frontend.ml](File-minilangcompilerml-mlc-frontend-ml-852059304.md)
-- `mlc/minilang_parser.ml` as `parser` → [../MiniLangCompilerML/mlc/minilang_parser.ml](File-minilangcompilerml-mlc-minilang-parser-ml-1826223559.md)
-- `mlc/tools.ml` as `tools` → [../MiniLangCompilerML/mlc/tools.ml](File-minilangcompilerml-mlc-tools-ml-978540687.md)
-- `std/fs.ml` as `fs` → [../MiniLangCompilerML/std/fs.ml](File-minilangcompilerml-std-fs-ml-1549776322.md)
-- `std/string.ml` as `strings` → [../MiniLangCompilerML/std/string.ml](File-minilangcompilerml-std-string-ml-1722707944.md)
+- `mlc/frontend.ml` as `frontend` → `../MiniLangCompilerML/mlc/frontend.ml` — external dependency
+- `mlc/minilang_parser.ml` as `parser` → `../MiniLangCompilerML/mlc/minilang_parser.ml` — external dependency
+- `mlc/tools.ml` as `tools` → `../MiniLangCompilerML/mlc/tools.ml` — external dependency
+- `std/fs.ml` as `fs` → `../MiniLangCompilerML/std/fs.ml` — external dependency
+- `std/string.ml` as `strings` → `../MiniLangCompilerML/std/string.ml` — external dependency
 
 ## Declarations
 
