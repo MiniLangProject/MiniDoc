@@ -47,9 +47,18 @@ end function
 function expressionText(expr)
   if typeof(expr) == "void" then return "" end if
   kind = tools.ast_kind(expr)
-  if kind == "Num" or kind == "Bool" then return "" + tools.ast_value(expr) end if
+  if kind == "VoidLit" then return "void" end if
+  if kind == "Num" or kind == "Bool" then
+    scalar = tools.ast_value(expr)
+    // Compact AST arenas can be reset while MiniDoc loads additional orphan
+    // files. Never stringify a stale/void payload while formatting a default.
+    if typeof(scalar) == "void" then return "..." end if
+    return "" + scalar
+  end if
   if kind == "Str" then
-    value = "" + tools.ast_value(expr)
+    scalar_text = tools.ast_value(expr)
+    if typeof(scalar_text) == "void" then return "\"...\"" end if
+    value = "" + scalar_text
     value = strings.replaceAll(value, "\\", "\\\\")
     value = strings.replaceAll(value, "\"", "\\\"")
     return "\"" + value + "\""
@@ -92,9 +101,19 @@ function expressionText(expr)
   return "..."
 end function
 
-/// Performs the '_findWord' step in MiniDoc's symbol-analysis pipeline.
+/// Reports whether a source position belongs to a scanned documentation block.
 /// @internal
-function _findWord(source, name, start_pos)
+function _insideDocumentation(docs, position)
+  if typeof(docs) != "array" or len(docs) == 0 then return false end if
+  for i = 0 to len(docs) - 1
+    if position >= docs[i].start_pos and position < docs[i].end_pos then return true end if
+  end for
+  return false
+end function
+
+/// Finds a declaration word while ignoring identical words inside its comments.
+/// @internal
+function _findWord(source, name, start_pos, docs)
   if name == "" then return start_pos end if
   cursor = start_pos
   while cursor < len(source)
@@ -111,7 +130,7 @@ function _findWord(source, name, start_pos)
       a = bytes(source[after_pos])[0]
       after_ok = not ((a >= 48 and a <= 57) or (a >= 65 and a <= 90) or (a >= 97 and a <= 122) or a == 95)
     end if
-    if before_ok and after_ok then return found end if
+    if before_ok and after_ok and not _insideDocumentation(docs, found) then return found end if
     cursor = found + len(name)
   end while
   return start_pos
@@ -514,7 +533,7 @@ function _addStruct(project, file, node, prefix, namespace_name)
   if len(node.fields) > 0 then
     for fi = 0 to len(node.fields) - 1
       field_name = node.fields[fi]
-      field_pos = _findWord(file.processed_source, field_name, cursor)
+      field_pos = _findWord(file.processed_source, field_name, cursor, file.docs)
       cursor = field_pos + len(field_name)
       field_doc = comments.documentationBefore(file.docs, file.processed_source, field_pos)
       field_type = ""
@@ -555,10 +574,10 @@ function _addInterface(project, file, node, prefix, namespace_name)
   cursor = node._pos + len(node.name)
   if len(node.methods) > 0 then
     for i = 0 to len(node.methods) - 1
-      declaration_pos = _findWord(file.processed_source, "function", cursor)
+      declaration_pos = _findWord(file.processed_source, "function", cursor, file.docs)
       if declaration_pos >= 0 then
         node.methods[i]._pos = declaration_pos
-        method_pos = _findWord(file.processed_source, node.methods[i].name, declaration_pos + len("function"))
+        method_pos = _findWord(file.processed_source, node.methods[i].name, declaration_pos + len("function"), file.docs)
         if method_pos >= 0 then cursor = method_pos + len(node.methods[i].name) end if
       end if
       _addFunction(project, file, node.methods[i], "interface_method", qualified_name, namespace_name, interface_sym.id)
@@ -578,7 +597,7 @@ function _addEnum(project, file, node, prefix, namespace_name)
   if len(node.variants) == 0 then return enum_sym end if
   for i = 0 to len(node.variants) - 1
     variant_name = node.variants[i]
-    variant_pos = _findWord(file.processed_source, variant_name, cursor)
+    variant_pos = _findWord(file.processed_source, variant_name, cursor, file.docs)
     cursor = variant_pos + len(variant_name)
     variant_doc = comments.documentationBefore(file.docs, file.processed_source, variant_pos)
     value = ""
@@ -616,7 +635,17 @@ function _walkDeclarations(project, file, body, namespace_name)
     else if kind == "ExternFunctionDef" then _addExternFunction(project, file, node, prefix, namespace_name)
     else if kind == "ConstDecl" then
       doc_const = comments.documentationBefore(file.docs, file.processed_source, node._pos)
-      signature_const = "const " + node.name + " = " + expressionText(node.expr)
+      signature_const = "const " + node.name
+      if tools.ast_kind(node.expr) == "VoidLit" then
+        signature_const = signature_const + " = void"
+      else
+        const_value = expressionText(node.expr)
+        if typeof(const_value) == "string" then
+          signature_const = signature_const + " = " + const_value
+        else
+          signature_const = signature_const + " = ..."
+        end if
+      end if
       _addSymbol(project, file, "constant", node.name, _qualified(prefix, node.name), "", namespace_name, node._pos, signature_const, "", [], [], "", doc_const)
     else if kind == "Assign" or kind == "SynchronizedDecl" then
       doc_global = comments.documentationBefore(file.docs, file.processed_source, node._pos)

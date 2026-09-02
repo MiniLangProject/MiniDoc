@@ -8,19 +8,19 @@ Static metrics are calculated from target-specific preprocessed MiniLang files i
 
 | Metric | Value |
 | --- | ---: |
-| Blank lines | 380 |
+| Blank lines | 381 |
 | Clone groups | 61 |
-| Cognitive complexity | 2582 (maximum per function: 105) |
-| Comment lines | 764 |
-| Cyclomatic complexity | 1790 (average: 6.94, maximum: 53) |
+| Cognitive complexity | 2601 (maximum per function: 105) |
+| Comment lines | 768 |
+| Cyclomatic complexity | 1802 (average: 6.96, maximum: 53) |
 | Documentation coverage | 100% (69 of 69 documentation items) |
-| Duplicated lines | 340 (7.03%) |
+| Duplicated lines | 340 (6.99%) |
 | Files | 13 |
-| Functions | 258 |
-| Maintainability index | 3.27 / 100 |
-| Physical lines | 5982 |
-| Source lines | 4838 |
-| Statements | 3892 |
+| Functions | 259 |
+| Maintainability index | 3.25 / 100 |
+| Physical lines | 6011 |
+| Source lines | 4862 |
+| Statements | 3912 |
 
 ## Documentation coverage
 
@@ -40,14 +40,14 @@ Coverage is split by documentation contract so strong API summaries cannot hide 
 
 | Distinct operators | Distinct operands | Total operators | Total operands | Vocabulary | Length | Volume | Difficulty | Effort | Estimated defects |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 40 | 1889 | 24203 | 18124 | 1929 | 42327 | 461941.5 | 191.89 | 88641903.92 | 153.98 |
+| 40 | 1896 | 24306 | 18194 | 1936 | 42500 | 464051.66 | 191.92 | 89060716.03 | 154.68 |
 
 ## Files
 
 | File | SLOC | Functions | Cyclomatic total / avg / max | Cognitive total / max | Duplication | Halstead volume | MI |
 | --- | ---: | ---: | --- | --- | --- | ---: | ---: |
 | [`src/main.ml`](File-src-main-ml-186468670.md) | 4 | 1 | 1 / 1 / 1 | 0 / 0 | 0 (0%) | 74.01 | 73.64 |
-| [`src/minidoc/analyzer.ml`](File-src-minidoc-analyzer-ml-492085543.md) | 683 | 32 | 306 / 9.56 / 28 | 462 / 59 | 14 (2.05%) | 64433.37 | 0 |
+| [`src/minidoc/analyzer.ml`](File-src-minidoc-analyzer-ml-492085543.md) | 707 | 33 | 318 / 9.64 / 30 | 481 / 59 | 14 (1.98%) | 66150.7 | 0 |
 | [`src/minidoc/app.ml`](File-src-minidoc-app-ml-1489174864.md) | 131 | 8 | 37 / 4.63 / 13 | 33 / 12 | 0 (0%) | 5842.5 | 22.46 |
 | [`src/minidoc/config.ml`](File-src-minidoc-config-ml-2001755147.md) | 372 | 18 | 214 / 11.89 / 53 | 352 / 105 | 0 (0%) | 30046.6 | 0 |
 | [`src/minidoc/doc_comments.ml`](File-src-minidoc-doc-comments-ml-1995285450.md) | 262 | 11 | 85 / 7.73 / 22 | 115 / 39 | 0 (0%) | 14814.2 | 6.61 |
@@ -65,38 +65,39 @@ Coverage is split by documentation contract so strong API summaries cannot hide 
 | Function | Location | LOC | Statements | Cyclomatic | Cognitive | Max nesting | Halstead volume | MI |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | [`main`](File-src-main-ml-186468670.md#function-function-main-function-main-args-src-main-ml-776500952) | `src/main.ml:18` | 3 | 1 | 1 | 0 | 0 | 46.51 | 77.78 |
-| [`minidoc.analyzer._addEnum`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addenum-function-addenum-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-1898800049) | `src/minidoc/analyzer.ml:572` | 24 | 21 | 5 | 7 | 3 | 1762.44 | 46.49 |
-| [`minidoc.analyzer._addExternFunction`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addexternfunction-function-addexternfunction-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-1344035985) | `src/minidoc/analyzer.ml:477` | 1 | 21 | 7 | 9 | 3 | 43.19 | 87.61 |
-| [`minidoc.analyzer._addFunction`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addfunction-function-addfunction-project-file-node-kind-prefix-namespace-name-container-id-src-minidoc-analyzer-ml-1636501440) | `src/minidoc/analyzer.ml:424` | 20 | 22 | 7 | 6 | 1 | 1512.16 | 48.41 |
-| [`minidoc.analyzer._addInterface`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addinterface-function-addinterface-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-466710023) | `src/minidoc/analyzer.ml:551` | 18 | 14 | 5 | 10 | 4 | 1281.97 | 50.18 |
-| [`minidoc.analyzer._addStruct`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addstruct-function-addstruct-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-2123710885) | `src/minidoc/analyzer.ml:502` | 44 | 43 | 20 | 34 | 4 | 3644.35 | 36.52 |
-| [`minidoc.analyzer._addSymbol`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addsymbol-function-addsymbol-project-file-kind-name-qualified-name-container-id-namespace-name-position-signature-type-name-modifiers-parameters-return-type-doc-src-minidoc-analyzer-ml-624033249) | `src/minidoc/analyzer.ml:156` | 47 | 18 | 7 | 10 | 3 | 1812.59 | 39.77 |
-| [`minidoc.analyzer._aliasTargetPackage`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-aliastargetpackage-function-aliastargetpackage-project-file-id-alias-src-minidoc-analyzer-ml-1437372212) | `src/minidoc/analyzer.ml:659` | 13 | 12 | 7 | 9 | 3 | 563.52 | 55.5 |
-| [`minidoc.analyzer._calleeName`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-calleename-function-calleename-expr-src-minidoc-analyzer-ml-1597510084) | `src/minidoc/analyzer.ml:310` | 10 | 9 | 5 | 5 | 2 | 324.33 | 59.93 |
-| [`minidoc.analyzer._diagnostic`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-diagnostic-function-diagnostic-project-severity-code-file-position-message-src-minidoc-analyzer-ml-1923704018) | `src/minidoc/analyzer.ml:122` | 4 | 2 | 1 | 0 | 0 | 317.29 | 69.22 |
-| [`minidoc.analyzer._fileById`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-filebyid-function-filebyid-project-id-src-minidoc-analyzer-ml-1558966907) | `src/minidoc/analyzer.ml:129` | 7 | 6 | 4 | 4 | 2 | 279.68 | 63.9 |
-| [`minidoc.analyzer._findWord`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-findword-function-findword-source-name-start-pos-src-minidoc-analyzer-ml-1352989268) | `src/minidoc/analyzer.ml:97` | 22 | 20 | 9 | 12 | 2 | 1225.24 | 47.88 |
-| [`minidoc.analyzer._functionParameters`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-functionparameters-function-functionparameters-node-doc-src-minidoc-analyzer-ml-706939433) | `src/minidoc/analyzer.ml:257` | 20 | 21 | 13 | 18 | 3 | 1404.19 | 47.83 |
-| [`minidoc.analyzer._functionSignature`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-functionsignature-function-functionsignature-node-parameters-name-kind-src-minidoc-analyzer-ml-620797374) | `src/minidoc/analyzer.ml:280` | 1 | 30 | 14 | 20 | 3 | 34.87 | 87.32 |
+| [`minidoc.analyzer._addEnum`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addenum-function-addenum-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-1898800049) | `src/minidoc/analyzer.ml:591` | 24 | 21 | 5 | 7 | 3 | 1786.26 | 46.45 |
+| [`minidoc.analyzer._addExternFunction`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addexternfunction-function-addexternfunction-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-1344035985) | `src/minidoc/analyzer.ml:496` | 1 | 21 | 7 | 9 | 3 | 43.19 | 87.61 |
+| [`minidoc.analyzer._addFunction`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addfunction-function-addfunction-project-file-node-kind-prefix-namespace-name-container-id-src-minidoc-analyzer-ml-1636501440) | `src/minidoc/analyzer.ml:443` | 20 | 22 | 7 | 6 | 1 | 1512.16 | 48.41 |
+| [`minidoc.analyzer._addInterface`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addinterface-function-addinterface-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-466710023) | `src/minidoc/analyzer.ml:570` | 18 | 14 | 5 | 10 | 4 | 1327.35 | 50.08 |
+| [`minidoc.analyzer._addStruct`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addstruct-function-addstruct-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-2123710885) | `src/minidoc/analyzer.ml:521` | 44 | 43 | 20 | 34 | 4 | 3670.57 | 36.5 |
+| [`minidoc.analyzer._addSymbol`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addsymbol-function-addsymbol-project-file-kind-name-qualified-name-container-id-namespace-name-position-signature-type-name-modifiers-parameters-return-type-doc-src-minidoc-analyzer-ml-624033249) | `src/minidoc/analyzer.ml:175` | 47 | 18 | 7 | 10 | 3 | 1812.59 | 39.77 |
+| [`minidoc.analyzer._aliasTargetPackage`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-aliastargetpackage-function-aliastargetpackage-project-file-id-alias-src-minidoc-analyzer-ml-1437372212) | `src/minidoc/analyzer.ml:688` | 13 | 12 | 7 | 9 | 3 | 563.52 | 55.5 |
+| [`minidoc.analyzer._calleeName`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-calleename-function-calleename-expr-src-minidoc-analyzer-ml-1597510084) | `src/minidoc/analyzer.ml:329` | 10 | 9 | 5 | 5 | 2 | 324.33 | 59.93 |
+| [`minidoc.analyzer._diagnostic`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-diagnostic-function-diagnostic-project-severity-code-file-position-message-src-minidoc-analyzer-ml-1923704018) | `src/minidoc/analyzer.ml:141` | 4 | 2 | 1 | 0 | 0 | 317.29 | 69.22 |
+| [`minidoc.analyzer._fileById`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-filebyid-function-filebyid-project-id-src-minidoc-analyzer-ml-1558966907) | `src/minidoc/analyzer.ml:148` | 7 | 6 | 4 | 4 | 2 | 279.68 | 63.9 |
+| [`minidoc.analyzer._findWord`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-findword-function-findword-source-name-start-pos-docs-src-minidoc-analyzer-ml-633312485) | `src/minidoc/analyzer.ml:116` | 22 | 20 | 10 | 13 | 2 | 1294.51 | 47.58 |
+| [`minidoc.analyzer._functionParameters`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-functionparameters-function-functionparameters-node-doc-src-minidoc-analyzer-ml-706939433) | `src/minidoc/analyzer.ml:276` | 20 | 21 | 13 | 18 | 3 | 1404.19 | 47.83 |
+| [`minidoc.analyzer._functionSignature`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-functionsignature-function-functionsignature-node-parameters-name-kind-src-minidoc-analyzer-ml-620797374) | `src/minidoc/analyzer.ml:299` | 1 | 30 | 14 | 20 | 3 | 34.87 | 87.32 |
+| [`minidoc.analyzer._insideDocumentation`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-insidedocumentation-function-insidedocumentation-docs-position-src-minidoc-analyzer-ml-1609564489) | `src/minidoc/analyzer.ml:106` | 7 | 6 | 6 | 6 | 2 | 335.77 | 63.07 |
 | [`minidoc.analyzer._qualified`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-qualified-function-qualified-prefix-name-src-minidoc-analyzer-ml-1309113056) | `src/minidoc/analyzer.ml:23` | 5 | 5 | 3 | 2 | 1 | 128.93 | 69.57 |
-| [`minidoc.analyzer._resolveCalls`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-resolvecalls-function-resolvecalls-project-src-minidoc-analyzer-ml-2135136698) | `src/minidoc/analyzer.ml:675` | 33 | 32 | 15 | 25 | 3 | 2503.48 | 41.06 |
-| [`minidoc.analyzer._resolveTypeRelations`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-resolvetyperelations-function-resolvetyperelations-project-src-minidoc-analyzer-ml-1763154930) | `src/minidoc/analyzer.ml:711` | 14 | 16 | 10 | 13 | 2 | 1032.38 | 52.55 |
-| [`minidoc.analyzer._resolveUnique`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-resolveunique-function-resolveunique-project-candidates-allowed-kinds-src-minidoc-analyzer-ml-1675174222) | `src/minidoc/analyzer.ml:638` | 18 | 16 | 8 | 12 | 3 | 675.88 | 51.73 |
+| [`minidoc.analyzer._resolveCalls`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-resolvecalls-function-resolvecalls-project-src-minidoc-analyzer-ml-2135136698) | `src/minidoc/analyzer.ml:704` | 33 | 32 | 15 | 25 | 3 | 2503.48 | 41.06 |
+| [`minidoc.analyzer._resolveTypeRelations`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-resolvetyperelations-function-resolvetyperelations-project-src-minidoc-analyzer-ml-1763154930) | `src/minidoc/analyzer.ml:740` | 14 | 16 | 10 | 13 | 2 | 1032.38 | 52.55 |
+| [`minidoc.analyzer._resolveUnique`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-resolveunique-function-resolveunique-project-candidates-allowed-kinds-src-minidoc-analyzer-ml-1675174222) | `src/minidoc/analyzer.ml:667` | 18 | 16 | 8 | 12 | 3 | 675.88 | 51.73 |
 | [`minidoc.analyzer._scope`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-scope-function-scope-package-name-namespace-name-src-minidoc-analyzer-ml-1593120142) | `src/minidoc/analyzer.ml:31` | 3 | 1 | 1 | 0 | 0 | 53.15 | 77.38 |
-| [`minidoc.analyzer._summaryQualityEligible`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-summaryqualityeligible-function-summaryqualityeligible-project-doc-symbol-src-minidoc-analyzer-ml-1404154389) | `src/minidoc/analyzer.ml:743` | 7 | 8 | 4 | 3 | 1 | 447.7 | 62.46 |
-| [`minidoc.analyzer._symbolById`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-symbolbyid-function-symbolbyid-project-id-src-minidoc-analyzer-ml-201427511) | `src/minidoc/analyzer.ml:139` | 7 | 6 | 4 | 4 | 2 | 279.68 | 63.9 |
-| [`minidoc.analyzer._symbolId`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-symbolid-function-symbolid-kind-qualified-name-signature-file-path-src-minidoc-analyzer-ml-736578529) | `src/minidoc/analyzer.ml:149` | 4 | 2 | 1 | 0 | 0 | 165.67 | 71.19 |
+| [`minidoc.analyzer._summaryQualityEligible`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-summaryqualityeligible-function-summaryqualityeligible-project-doc-symbol-src-minidoc-analyzer-ml-1404154389) | `src/minidoc/analyzer.ml:772` | 7 | 8 | 4 | 3 | 1 | 447.7 | 62.46 |
+| [`minidoc.analyzer._symbolById`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-symbolbyid-function-symbolbyid-project-id-src-minidoc-analyzer-ml-201427511) | `src/minidoc/analyzer.ml:158` | 7 | 6 | 4 | 4 | 2 | 279.68 | 63.9 |
+| [`minidoc.analyzer._symbolId`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-symbolid-function-symbolid-kind-qualified-name-signature-file-path-src-minidoc-analyzer-ml-736578529) | `src/minidoc/analyzer.ml:168` | 4 | 2 | 1 | 0 | 0 | 165.67 | 71.19 |
 | [`minidoc.analyzer._typeName`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-typename-function-typename-value-optional-src-minidoc-analyzer-ml-231327762) | `src/minidoc/analyzer.ml:37` | 6 | 6 | 4 | 3 | 1 | 180.09 | 66.69 |
-| [`minidoc.analyzer._validateCoverage`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatecoverage-function-validatecoverage-project-src-minidoc-analyzer-ml-1362902924) | `src/minidoc/analyzer.ml:728` | 12 | 10 | 8 | 10 | 3 | 913.33 | 54.65 |
-| [`minidoc.analyzer._validateFunctionDoc`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatefunctiondoc-function-validatefunctiondoc-project-file-node-doc-parameters-return-type-internal-src-minidoc-analyzer-ml-672643656) | `src/minidoc/analyzer.ml:214` | 1 | 33 | 21 | 49 | 6 | 60.94 | 84.68 |
-| [`minidoc.analyzer._validateSummaryQuality`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatesummaryquality-function-validatesummaryquality-project-src-minidoc-analyzer-ml-1396789550) | `src/minidoc/analyzer.ml:753` | 26 | 25 | 10 | 13 | 2 | 1765.23 | 45.05 |
-| [`minidoc.analyzer._walkDeclarations`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walkdeclarations-function-walkdeclarations-project-file-body-namespace-name-src-minidoc-analyzer-ml-1227878639) | `src/minidoc/analyzer.ml:599` | 36 | 32 | 17 | 30 | 4 | 3026.77 | 39.39 |
-| [`minidoc.analyzer._walkExpression`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walkexpression-function-walkexpression-project-file-caller-expr-namespace-name-src-minidoc-analyzer-ml-2008412265) | `src/minidoc/analyzer.ml:323` | 35 | 25 | 19 | 25 | 3 | 2617.2 | 39.83 |
-| [`minidoc.analyzer._walkNested`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walknested-function-walknested-project-file-body-parent-namespace-name-src-minidoc-analyzer-ml-888770987) | `src/minidoc/analyzer.ml:447` | 27 | 17 | 16 | 29 | 4 | 1586.55 | 44.21 |
-| [`minidoc.analyzer._walkStatementsForCalls`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walkstatementsforcalls-function-walkstatementsforcalls-project-file-caller-body-namespace-name-src-minidoc-analyzer-ml-1230640592) | `src/minidoc/analyzer.ml:361` | 60 | 44 | 28 | 59 | 6 | 4092.39 | 32.15 |
-| [`minidoc.analyzer._warningScopeIncludes`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-warningscopeincludes-function-warningscopeincludes-scope-internal-src-minidoc-analyzer-ml-130785450) | `src/minidoc/analyzer.ml:206` | 5 | 5 | 3 | 2 | 1 | 124 | 69.69 |
-| [`minidoc.analyzer.analyze`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-analyze-function-analyze-project-src-minidoc-analyzer-ml-448369014) | `src/minidoc/analyzer.ml:783` | 15 | 11 | 3 | 3 | 2 | 506.65 | 55 |
-| [`minidoc.analyzer.expressionText`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-expressiontext-function-expressiontext-expr-src-minidoc-analyzer-ml-2077794936) | `src/minidoc/analyzer.ml:47` | 47 | 51 | 27 | 36 | 4 | 3406.9 | 35.16 |
+| [`minidoc.analyzer._validateCoverage`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatecoverage-function-validatecoverage-project-src-minidoc-analyzer-ml-1362902924) | `src/minidoc/analyzer.ml:757` | 12 | 10 | 8 | 10 | 3 | 913.33 | 54.65 |
+| [`minidoc.analyzer._validateFunctionDoc`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatefunctiondoc-function-validatefunctiondoc-project-file-node-doc-parameters-return-type-internal-src-minidoc-analyzer-ml-672643656) | `src/minidoc/analyzer.ml:233` | 1 | 33 | 21 | 49 | 6 | 60.94 | 84.68 |
+| [`minidoc.analyzer._validateSummaryQuality`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatesummaryquality-function-validatesummaryquality-project-src-minidoc-analyzer-ml-1396789550) | `src/minidoc/analyzer.ml:782` | 26 | 25 | 10 | 13 | 2 | 1765.23 | 45.05 |
+| [`minidoc.analyzer._walkDeclarations`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walkdeclarations-function-walkdeclarations-project-file-body-namespace-name-src-minidoc-analyzer-ml-1227878639) | `src/minidoc/analyzer.ml:618` | 46 | 38 | 19 | 37 | 4 | 3338.5 | 36.5 |
+| [`minidoc.analyzer._walkExpression`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walkexpression-function-walkexpression-project-file-caller-expr-namespace-name-src-minidoc-analyzer-ml-2008412265) | `src/minidoc/analyzer.ml:342` | 35 | 25 | 19 | 25 | 3 | 2617.2 | 39.83 |
+| [`minidoc.analyzer._walkNested`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walknested-function-walknested-project-file-body-parent-namespace-name-src-minidoc-analyzer-ml-888770987) | `src/minidoc/analyzer.ml:466` | 27 | 17 | 16 | 29 | 4 | 1586.55 | 44.21 |
+| [`minidoc.analyzer._walkStatementsForCalls`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walkstatementsforcalls-function-walkstatementsforcalls-project-file-caller-body-namespace-name-src-minidoc-analyzer-ml-1230640592) | `src/minidoc/analyzer.ml:380` | 60 | 44 | 28 | 59 | 6 | 4092.39 | 32.15 |
+| [`minidoc.analyzer._warningScopeIncludes`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-warningscopeincludes-function-warningscopeincludes-scope-internal-src-minidoc-analyzer-ml-130785450) | `src/minidoc/analyzer.ml:225` | 5 | 5 | 3 | 2 | 1 | 124 | 69.69 |
+| [`minidoc.analyzer.analyze`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-analyze-function-analyze-project-src-minidoc-analyzer-ml-448369014) | `src/minidoc/analyzer.ml:812` | 15 | 11 | 3 | 3 | 2 | 506.65 | 55 |
+| [`minidoc.analyzer.expressionText`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-expressiontext-function-expressiontext-expr-src-minidoc-analyzer-ml-2077794936) | `src/minidoc/analyzer.ml:47` | 54 | 59 | 30 | 41 | 4 | 3687.58 | 33.2 |
 | [`minidoc.app._countSeverity`](File-src-minidoc-app-ml-1489174864.md#function-function-minidoc-app-countseverity-function-countseverity-project-severity-src-minidoc-app-ml-309679191) | `src/minidoc/app.ml:98` | 8 | 7 | 4 | 4 | 2 | 291.43 | 62.51 |
 | [`minidoc.app._hasArg`](File-src-minidoc-app-ml-1489174864.md#function-function-minidoc-app-hasarg-function-hasarg-args-value-src-minidoc-app-ml-81945717) | `src/minidoc/app.ml:78` | 7 | 6 | 5 | 5 | 2 | 264.4 | 63.93 |
 | [`minidoc.app._printDiagnostics`](File-src-minidoc-app-ml-1489174864.md#function-function-minidoc-app-printdiagnostics-function-printdiagnostics-project-src-minidoc-app-ml-250768944) | `src/minidoc/app.ml:88` | 7 | 5 | 3 | 2 | 1 | 391.73 | 63.01 |
@@ -339,7 +340,7 @@ Found 61 clone group(s). At most 61 groups are shown.
     end for
     return 0
 
-- [`src/minidoc/analyzer.ml:129`](File-src-minidoc-analyzer-ml-492085543.md)
+- [`src/minidoc/analyzer.ml:148`](File-src-minidoc-analyzer-ml-492085543.md)
 - [`src/minidoc/render_html.ml:53`](File-src-minidoc-render-html-ml-1870373141.md)
 - [`src/minidoc/render_markdown.ml:54`](File-src-minidoc-render-markdown-ml-212465045.md)
 
@@ -355,7 +356,7 @@ Found 61 clone group(s). At most 61 groups are shown.
     return 0
     end function
 
-- [`src/minidoc/analyzer.ml:130`](File-src-minidoc-analyzer-ml-492085543.md)
+- [`src/minidoc/analyzer.ml:149`](File-src-minidoc-analyzer-ml-492085543.md)
 - [`src/minidoc/render_html.ml:54`](File-src-minidoc-render-html-ml-1870373141.md)
 - [`src/minidoc/render_markdown.ml:55`](File-src-minidoc-render-markdown-ml-212465045.md)
 
@@ -371,7 +372,7 @@ Found 61 clone group(s). At most 61 groups are shown.
     end for
     return 0
 
-- [`src/minidoc/analyzer.ml:139`](File-src-minidoc-analyzer-ml-492085543.md)
+- [`src/minidoc/analyzer.ml:158`](File-src-minidoc-analyzer-ml-492085543.md)
 - [`src/minidoc/render_html.ml:43`](File-src-minidoc-render-html-ml-1870373141.md)
 - [`src/minidoc/render_markdown.ml:44`](File-src-minidoc-render-markdown-ml-212465045.md)
 
@@ -387,7 +388,7 @@ Found 61 clone group(s). At most 61 groups are shown.
     return 0
     end function
 
-- [`src/minidoc/analyzer.ml:140`](File-src-minidoc-analyzer-ml-492085543.md)
+- [`src/minidoc/analyzer.ml:159`](File-src-minidoc-analyzer-ml-492085543.md)
 - [`src/minidoc/render_html.ml:44`](File-src-minidoc-render-html-ml-1870373141.md)
 - [`src/minidoc/render_markdown.ml:45`](File-src-minidoc-render-markdown-ml-212465045.md)
 

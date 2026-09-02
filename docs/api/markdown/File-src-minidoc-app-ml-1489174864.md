@@ -154,11 +154,11 @@ Executes the command-line workflow and returns a process exit code.
 
 [View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L145)
 
-<a id="constant-constant-minidoc-app-version-const-version-0-4-0-src-minidoc-app-ml-38366564"></a>
+<a id="constant-constant-minidoc-app-version-const-version-0-4-1-src-minidoc-app-ml-1049388627"></a>
 ### VERSION
 
 ```ml
-const VERSION = "0.4.0"
+const VERSION = "0.4.1"
 ```
 
 Semantic version embedded in generated output and CLI messages.

@@ -21,7 +21,7 @@ end interface
 
 /// A person with a displayable name.
 struct Person implements Named
-  /// The person's raw name.
+  /// The value is the person's raw name.
   value as string
 
   /// Returns the person's raw name.
@@ -40,8 +40,8 @@ end function
 
 /// Lifecycle states for a person.
 enum PersonState
-  /// The person is active.
+  /// Active marks a person that can be displayed.
   Active = 1
-  /// The person is archived.
+  /// Archived marks a person that is no longer active.
   Archived = 2
 end enum

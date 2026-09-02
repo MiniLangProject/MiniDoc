@@ -5,7 +5,7 @@
 | File | Package | Reachable | Symbols |
 | --- | --- | --- | ---: |
 | [src/main.ml](File-src-main-ml-186468670.md) | `(global)` | yes | 1 |
-| [src/minidoc/analyzer.ml](File-src-minidoc-analyzer-ml-492085543.md) | `minidoc.analyzer` | yes | 32 |
+| [src/minidoc/analyzer.ml](File-src-minidoc-analyzer-ml-492085543.md) | `minidoc.analyzer` | yes | 33 |
 | [src/minidoc/app.ml](File-src-minidoc-app-ml-1489174864.md) | `minidoc.app` | yes | 9 |
 | [src/minidoc/config.ml](File-src-minidoc-config-ml-2001755147.md) | `minidoc.config` | yes | 23 |
 | [src/minidoc/doc_comments.ml](File-src-minidoc-doc-comments-ml-1995285450.md) | `minidoc.doc_comments` | yes | 11 |

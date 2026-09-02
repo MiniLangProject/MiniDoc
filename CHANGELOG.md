@@ -2,6 +2,15 @@
 
 All notable changes to MiniDoc are documented in this file.
 
+## 0.4.1 — 2026-09-02
+
+- Fixed declaration source locations when a field, enum variant, or other symbol
+  name also appears in its own documentation comment.
+- Made constant signature rendering robust for `void` and other values that do
+  not have a string representation.
+- Added regression coverage for declaration comments that mention their target
+  names and for the corrected source positions.
+
 ## 0.4.0 — 2026-09-02
 
 - Added documentation coverage for API declarations, parameters, fields, constants, globals, enum variants, and the combined documentation contract.
