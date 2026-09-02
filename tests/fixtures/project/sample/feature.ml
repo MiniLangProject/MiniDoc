@@ -35,4 +35,12 @@ function classify(value as int, enabled as bool) returns int
   end for
   return value
 end function
+
+/// Classifies a runtime value as callable or non-callable.
+/// @param value Runtime value to inspect.
+/// @returns A stable textual kind.
+function callableKind(value) returns string
+  if typeof(value) == "function" then return "callable" end if
+  return "other"
+end function
 #endif

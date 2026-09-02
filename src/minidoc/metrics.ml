@@ -397,7 +397,16 @@ end function
 function _startsFunction(line)
   lower = strings.toLowerAscii(strings.trim(line))
   if lower == "" or strings.startsWith(lower, "end function") or strings.contains(lower, " => ") then return false end if
-  return strings.startsWith(lower, "function ") or strings.contains(lower, " function ")
+  // Normalized string tokens contain their unquoted value. Searching for an
+  // arbitrary " function " substring therefore mistakes comparisons such as
+  // `typeof(value) == "function"` for nested declarations and loses the real
+  // closing line. MiniLang declarations have one of these exact prefixes;
+  // inline and synchronized modifiers follow the `function` token.
+  return strings.startsWith(lower, "function ") or
+         strings.startsWith(lower, "static function ") or
+         strings.startsWith(lower, "async function ") or
+         strings.startsWith(lower, "iterator function ") or
+         strings.startsWith(lower, "lazy iterator function ")
 end function
 
 /// Performs the '_functionEndLine' step in MiniDoc's metrics pipeline.

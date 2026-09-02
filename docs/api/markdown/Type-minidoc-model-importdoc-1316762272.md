@@ -12,7 +12,7 @@ struct ImportDoc
 A resolved or unresolved import from one source file.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L117)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L118)
 
 ## Members
 
@@ -24,7 +24,7 @@ alias
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L119)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L120)
 
 <a id="field-field-minidoc-model-importdoc-module-name-module-name-src-minidoc-model-ml-1654232047"></a>
 ### module_name
@@ -34,7 +34,7 @@ module_name
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L120)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L121)
 
 <a id="field-field-minidoc-model-importdoc-position-position-src-minidoc-model-ml-317760813"></a>
 ### position
@@ -44,7 +44,7 @@ position
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L124)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L125)
 
 <a id="field-field-minidoc-model-importdoc-request-request-src-minidoc-model-ml-1623675563"></a>
 ### request
@@ -54,7 +54,7 @@ request
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L118)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L119)
 
 <a id="field-field-minidoc-model-importdoc-resolved-path-resolved-path-src-minidoc-model-ml-1798765423"></a>
 ### resolved_path
@@ -64,7 +64,7 @@ resolved_path
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L123)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L124)
 
 <a id="field-field-minidoc-model-importdoc-source-file-id-source-file-id-src-minidoc-model-ml-653524535"></a>
 ### source_file_id
@@ -74,7 +74,7 @@ source_file_id
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L121)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L122)
 
 <a id="field-field-minidoc-model-importdoc-target-file-id-target-file-id-src-minidoc-model-ml-1896001135"></a>
 ### target_file_id
@@ -84,4 +84,4 @@ target_file_id
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L122)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L123)

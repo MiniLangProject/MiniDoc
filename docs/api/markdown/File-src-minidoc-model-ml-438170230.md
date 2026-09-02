@@ -27,7 +27,7 @@ Creates a configuration populated with safe default values.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L319)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L320)
 
 - [minidoc.model.Diagnostic](Type-minidoc-model-diagnostic-285652516.md) — struct
 - [minidoc.model.DocBlock](Type-minidoc-model-docblock-1745261956.md) — struct
@@ -45,7 +45,7 @@ Creates an empty documentation block.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L358)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L360)
 
 <a id="function-function-minidoc-model-emptyhalsteadmetrics-function-emptyhalsteadmetrics-src-minidoc-model-ml-480079767"></a>
 ### emptyHalsteadMetrics
@@ -59,7 +59,7 @@ Creates an empty Halstead metric result.
 
 **Since:** `0.2.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L384)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L386)
 
 <a id="function-function-minidoc-model-emptyproject-function-emptyproject-config-root-dir-src-minidoc-model-ml-510474277"></a>
 ### emptyProject
@@ -78,7 +78,7 @@ Creates an empty project model for a configuration and root directory.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L378)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L380)
 
 <a id="function-function-minidoc-model-emptyprojectmetrics-function-emptyprojectmetrics-src-minidoc-model-ml-496127141"></a>
 ### emptyProjectMetrics
@@ -92,7 +92,7 @@ Creates an empty aggregate project metric result.
 
 **Since:** `0.2.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L390)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L392)
 
 - [minidoc.model.FileDoc](Type-minidoc-model-filedoc-1009751833.md) — struct
 - [minidoc.model.FileMetrics](Type-minidoc-model-filemetrics-548638530.md) — struct
@@ -120,7 +120,7 @@ Creates a source diagnostic.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L370)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L372)
 
 - [minidoc.model.ParameterDoc](Type-minidoc-model-parameterdoc-1619648880.md) — struct
 - [minidoc.model.ProjectDoc](Type-minidoc-model-projectdoc-1424932466.md) — struct

@@ -20,11 +20,12 @@ import minidoc.ordering as ordering
 import minidoc.render_html as html
 import minidoc.render_markdown as markdown
 import minidoc.util as util
+import std.process as process
 import std.time as time
 
 /// Semantic version embedded in generated output and CLI messages.
 /// @internal
-const VERSION = "0.4.1"
+const VERSION = "0.4.2"
 
 /// Prints the current MiniDoc version.
 /// @since 0.1.0
@@ -56,6 +57,7 @@ function printHelp()
   print "  --html-out <dir>          HTML output directory"
   print "  --md-out <dir>            Markdown output directory"
   print "  --md-profile <profile>    repository or wiki"
+  print "  --no-timestamp            Omit volatile generation time metadata"
   print "  --dependencies <mode>     none, summary, or full"
   print "  --graph <list>            imports,calls,types"
   print "  --graph-granularity <g>   package or symbol"
@@ -71,6 +73,43 @@ function printHelp()
   print "  --summary-quality <s>     off, public, or all"
   print "  --revision <value>        Record an exact source revision"
   print "  --show-empty-graphs       Keep graph pages with no relations"
+end function
+
+/// Convert a SOURCE_DATE_EPOCH value into MiniDoc's stable UTC timestamp.
+/// @param raw Decimal seconds since 1970-01-01T00:00:00Z.
+/// The result is a UTC timestamp or an error for malformed/out-of-range input.
+/// @internal
+function _sourceDateEpochTimestamp(raw)
+  if typeof(raw) != "string" or len(raw) == 0 then return error(1, "SOURCE_DATE_EPOCH must be a non-empty decimal integer") end if
+  seconds = 0
+  for i = 0 to len(raw) - 1
+    encoded = bytes(raw[i])
+    if len(encoded) != 1 or encoded[0] < 48 or encoded[0] > 57 then
+      return error(1, "SOURCE_DATE_EPOCH must contain decimal digits only")
+    end if
+    digit = encoded[0] - 48
+    if seconds > 25340230079 or (seconds == 25340230079 and digit > 9) then
+      return error(1, "SOURCE_DATE_EPOCH is outside MiniDoc's supported calendar range")
+    end if
+    seconds = seconds * 10 + digit
+  end for
+  instant = time.datetime.fromUnixMillis(seconds * 1000)
+  if typeof(instant) != "struct" then return error(1, "SOURCE_DATE_EPOCH is outside MiniDoc's supported calendar range") end if
+  return time.datetimeToString(instant) + " UTC"
+end function
+
+/// Select deterministic UTC metadata when SOURCE_DATE_EPOCH is present.
+/// @param cfg Effective configuration controlling timestamp emission.
+/// The result is a rendered timestamp, an empty string, or a configuration error.
+/// @internal
+function _generationTimestamp(cfg)
+  if cfg.include_generation_timestamp == false then return "" end if
+  source_epoch = try(process.environment("SOURCE_DATE_EPOCH"))
+  if typeof(source_epoch) == "error" then return source_epoch end if
+  if typeof(source_epoch) == "string" then return _sourceDateEpochTimestamp(source_epoch) end if
+  local_timestamp = time.datetimeToString(time.datetime.nowLocal())
+  if typeof(local_timestamp) != "string" then return "Unknown local time" end if
+  return local_timestamp + " local time"
 end function
 
 /// Performs the '_hasArg' step in MiniDoc's application workflow.
@@ -110,8 +149,8 @@ end function
 function generate(cfg)
   project = try(loader.loadProject(cfg))
   if typeof(project) == "error" then return project end if
-  generated_at = time.datetimeToString(time.datetime.nowLocal())
-  if typeof(generated_at) != "string" then generated_at = "Unknown local time" end if
+  generated_at = try(_generationTimestamp(cfg))
+  if typeof(generated_at) == "error" then return generated_at end if
   project.generator_version = VERSION
   project.generated_at = generated_at
   project.source_revision = cfg.source_revision

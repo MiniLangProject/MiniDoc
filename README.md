@@ -5,7 +5,7 @@
 
 MiniDoc is a documentation generator for MiniLang projects, written entirely in MiniLang. It reads the same project structure and source syntax as the self-hosted MiniLang compiler and produces either an offline HTML documentation site, a linked Markdown documentation tree, or both.
 
-> Project status: working preview (`0.4.1`). The end-to-end generator, HTML and Markdown renderers, source metrics, dependency views, scalable graphs, configuration loader, and MiniLang test suite are implemented. See [Current limitations](#current-limitations) before treating the output as a complete semantic API reference.
+> Project status: working preview (`0.4.2`). The end-to-end generator, HTML and Markdown renderers, source metrics, dependency views, scalable graphs, configuration loader, and MiniLang test suite are implemented. See [Current limitations](#current-limitations) before treating the output as a complete semantic API reference.
 
 The repository dogfoods MiniDoc. Browse the committed [GitHub-friendly API documentation](docs/api/markdown/README.md), or download the repository and open [the offline HTML start page](docs/api/html/index.html). Both trees are regenerated from the documented MiniDoc source with [`minidoc.toml`](minidoc.toml).
 
@@ -19,7 +19,7 @@ The repository dogfoods MiniDoc. Browse the committed [GitHub-friendly API docum
 - Preserves signatures, parameter types, optional markers, defaults, variadic parameters, return types, and function modifiers.
 - Generates an offline HTML site with navigation and client-side symbol search.
 - Generates a project-specific introduction, an at-a-glance metrics dashboard, and responsive navigation cards on the home page.
-- Adds the MiniDoc version, local generation timestamp, and source revision to generated metadata.
+- Adds the MiniDoc version, an optional reproducible generation timestamp, and the source revision to generated metadata.
 - Keeps long package and navigation card labels inside responsive card boundaries.
 - Generates GitHub-compatible repository Markdown or a GitHub Wiki tree with `Home.md` and `_Sidebar.md`.
 - Emits deduplicated package-level SVG import, call, and interface-implementation graphs without Graphviz, with optional symbol-level detail.
@@ -222,7 +222,7 @@ The `Metrics` page is generated for both HTML and Markdown output. Metrics use t
 
 The page contains project totals, an alphabetical per-file table, an alphabetical per-function table, and up to 200 representative clone groups. Aggregate clone totals always include every detected group.
 
-All browse lists, indexes, diagnostics, imports, graph nodes, metric tables, and output manifests use deterministic case-insensitive alphabetical ordering. Declaration-order data whose position changes meaning—most notably function parameters and examples—remains in source order. A single local timestamp is captured per generation and reused across every rendered page; rendering the same in-memory project model therefore remains deterministic.
+All browse lists, indexes, diagnostics, imports, graph nodes, metric tables, and output manifests use deterministic case-insensitive alphabetical ordering. Declaration-order data whose position changes meaning—most notably function parameters and examples—remains in source order. Set `output.include_timestamp = false` or pass `--no-timestamp` for byte-identical output across independent runs. When timestamps remain enabled, `SOURCE_DATE_EPOCH` supplies their reproducible UTC value; otherwise MiniDoc captures one local timestamp and reuses it across every rendered page.
 
 ## Dependency graphs
 
@@ -271,6 +271,7 @@ minidoc --config <minidoc.toml> [options]
 | `--contract-warnings <scope>` | Select `off`, `public`, or `all` contract validation. |
 | `--summary-quality <scope>` | Select `off`, `public`, or `all` summary-quality validation. |
 | `--revision <value>` | Record an explicit source revision instead of auto-detecting Git `HEAD`. |
+| `--no-timestamp` | Omit generation timestamps for byte-identical independent runs. |
 | `--check` | Analyze and validate without writing output. |
 | `--strict` | Return exit code `1` if documentation warnings exist. |
 | `--keep-going` | Retain partial models and label output incomplete after parse or import errors. |
@@ -311,6 +312,7 @@ formats = ["html", "markdown"]
 html_dir = "build/minidoc/html"
 markdown_dir = "build/minidoc/markdown"
 markdown_profile = "repository"
+include_timestamp = false
 
 [graphs]
 imports = true
@@ -326,7 +328,7 @@ ref = "main"
 # revision = "0123456789abcdef" # Optional reproducible override
 ```
 
-The optional `project.description` value is used as the introduction on HTML and Markdown home pages. Without it, MiniDoc supplies a concise project-name-based fallback. When `links.revision` is absent, MiniDoc reads the repository or worktree `HEAD` directly and includes the resolved commit in generated metadata.
+The optional `project.description` value is used as the introduction on HTML and Markdown home pages. Without it, MiniDoc supplies a concise project-name-based fallback. When `links.revision` is absent, MiniDoc reads the repository or worktree `HEAD` directly and includes the resolved commit in generated metadata. `output.include_timestamp` defaults to `true`; disabling it omits the field entirely. With timestamps enabled, a decimal `SOURCE_DATE_EPOCH` value is converted to UTC and validated before rendering.
 
 The MiniDoc parser intentionally accepts a focused TOML subset: section headers, scalar strings, booleans, integers, and arrays of quoted strings. Unknown fields fail fast instead of being silently ignored. Compiler-only fields in `minilang.toml` are accepted and ignored where they do not affect documentation.
 
@@ -422,7 +424,7 @@ The MiniLang test suite covers:
 - function, type, enum, field, and parameter extraction;
 - aliased call resolution and interface implementation edges;
 - HTML, repository Markdown, and GitHub Wiki rendering;
-- generator version, timestamp, source revision, and responsive long-label card rendering;
+- generator version, optional and `SOURCE_DATE_EPOCH` timestamps, source revision, and responsive long-label card rendering;
 - configurable project introductions, home-page metrics, and contained navigation-card markup;
 - internal symbol filtering and safe HTML output;
 - LOC, cyclomatic complexity, cognitive complexity, Halstead, duplication, maintainability, and granular documentation coverage;
@@ -445,8 +447,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development conventions and self-docu
 - Graph layout is deterministic and dependency-free, but intentionally simple. Symbol-level graphs for very large projects should be capped.
 - Directory-link and junction behavior depends on the filesystem implementation exposed by the MiniLang standard library; linked source trees should be excluded explicitly when necessary.
 - Duplicate detection currently finds exact token-normalized line windows; it does not identify renamed or structurally similar clones.
-- Metric thresholds and the six-line clone window are not configurable in `0.4.1`.
-- Incremental model caching, API compatibility reports, theme selection, and plugin APIs are not implemented in `0.4.1`.
+- Metric thresholds and the six-line clone window are not configurable in `0.4.2`.
+- Incremental model caching, API compatibility reports, theme selection, and plugin APIs are not implemented in `0.4.2`.
 
 ## Roadmap
 

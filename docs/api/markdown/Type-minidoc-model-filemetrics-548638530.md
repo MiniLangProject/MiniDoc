@@ -12,7 +12,7 @@ struct FileMetrics
 Metrics aggregated for one MiniLang source file.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L213)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L214)
 
 ## Members
 
@@ -24,7 +24,7 @@ average_cyclomatic_complexity
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L223)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L224)
 
 <a id="field-field-minidoc-model-filemetrics-blank-lines-blank-lines-src-minidoc-model-ml-1254949105"></a>
 ### blank_lines
@@ -34,7 +34,7 @@ blank_lines
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L219)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L220)
 
 <a id="field-field-minidoc-model-filemetrics-cognitive-complexity-cognitive-complexity-src-minidoc-model-ml-267987275"></a>
 ### cognitive_complexity
@@ -44,7 +44,7 @@ cognitive_complexity
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L225)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L226)
 
 <a id="field-field-minidoc-model-filemetrics-comment-lines-comment-lines-src-minidoc-model-ml-1509790581"></a>
 ### comment_lines
@@ -54,7 +54,7 @@ comment_lines
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L218)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L219)
 
 <a id="field-field-minidoc-model-filemetrics-cyclomatic-complexity-cyclomatic-complexity-src-minidoc-model-ml-1535460421"></a>
 ### cyclomatic_complexity
@@ -64,7 +64,7 @@ cyclomatic_complexity
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L222)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L223)
 
 <a id="field-field-minidoc-model-filemetrics-duplicated-lines-duplicated-lines-src-minidoc-model-ml-1312409003"></a>
 ### duplicated_lines
@@ -74,7 +74,7 @@ duplicated_lines
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L227)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L228)
 
 <a id="field-field-minidoc-model-filemetrics-duplication-percent-duplication-percent-src-minidoc-model-ml-800414705"></a>
 ### duplication_percent
@@ -84,7 +84,7 @@ duplication_percent
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L228)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L229)
 
 <a id="field-field-minidoc-model-filemetrics-file-id-file-id-src-minidoc-model-ml-897652337"></a>
 ### file_id
@@ -94,7 +94,7 @@ file_id
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L214)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L215)
 
 <a id="field-field-minidoc-model-filemetrics-file-path-file-path-src-minidoc-model-ml-261303233"></a>
 ### file_path
@@ -104,7 +104,7 @@ file_path
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L215)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L216)
 
 <a id="field-field-minidoc-model-filemetrics-function-count-function-count-src-minidoc-model-ml-830665977"></a>
 ### function_count
@@ -114,7 +114,7 @@ function_count
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L220)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L221)
 
 <a id="field-field-minidoc-model-filemetrics-halstead-halstead-src-minidoc-model-ml-1782593177"></a>
 ### halstead
@@ -124,7 +124,7 @@ halstead
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L229)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L230)
 
 <a id="field-field-minidoc-model-filemetrics-maintainability-index-maintainability-index-src-minidoc-model-ml-548247073"></a>
 ### maintainability_index
@@ -134,7 +134,7 @@ maintainability_index
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L230)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L231)
 
 <a id="field-field-minidoc-model-filemetrics-maximum-cognitive-complexity-maximum-cognitive-complexity-src-minidoc-model-ml-1215005321"></a>
 ### maximum_cognitive_complexity
@@ -144,7 +144,7 @@ maximum_cognitive_complexity
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L226)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L227)
 
 <a id="field-field-minidoc-model-filemetrics-maximum-cyclomatic-complexity-maximum-cyclomatic-complexity-src-minidoc-model-ml-1006652753"></a>
 ### maximum_cyclomatic_complexity
@@ -154,7 +154,7 @@ maximum_cyclomatic_complexity
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L224)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L225)
 
 <a id="field-field-minidoc-model-filemetrics-physical-lines-physical-lines-src-minidoc-model-ml-303724179"></a>
 ### physical_lines
@@ -164,7 +164,7 @@ physical_lines
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L216)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L217)
 
 <a id="field-field-minidoc-model-filemetrics-source-lines-source-lines-src-minidoc-model-ml-2067231059"></a>
 ### source_lines
@@ -174,7 +174,7 @@ source_lines
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L217)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L218)
 
 <a id="field-field-minidoc-model-filemetrics-statement-count-statement-count-src-minidoc-model-ml-1179174321"></a>
 ### statement_count
@@ -184,4 +184,4 @@ statement_count
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L221)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L222)

@@ -12,7 +12,7 @@ struct CloneOccurrence
 One occurrence of a normalized duplicate-code window.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L235)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L236)
 
 ## Members
 
@@ -24,7 +24,7 @@ file_id
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L236)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L237)
 
 <a id="field-field-minidoc-model-cloneoccurrence-file-path-file-path-src-minidoc-model-ml-1458798764"></a>
 ### file_path
@@ -34,7 +34,7 @@ file_path
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L237)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L238)
 
 <a id="field-field-minidoc-model-cloneoccurrence-line-line-src-minidoc-model-ml-894265676"></a>
 ### line
@@ -44,4 +44,4 @@ line
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L238)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L239)

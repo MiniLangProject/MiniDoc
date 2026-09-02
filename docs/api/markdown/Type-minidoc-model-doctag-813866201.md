@@ -12,7 +12,7 @@ struct DocTag
 One structured documentation tag such as @param or @see.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L54)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L55)
 
 ## Members
 
@@ -24,7 +24,7 @@ key
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L56)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L57)
 
 <a id="field-field-minidoc-model-doctag-name-name-src-minidoc-model-ml-238298558"></a>
 ### name
@@ -34,7 +34,7 @@ name
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L55)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L56)
 
 <a id="field-field-minidoc-model-doctag-text-text-src-minidoc-model-ml-542590370"></a>
 ### text
@@ -44,4 +44,4 @@ text
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L57)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L58)

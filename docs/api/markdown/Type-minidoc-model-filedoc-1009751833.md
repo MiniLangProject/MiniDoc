@@ -12,7 +12,7 @@ struct FileDoc
 Parsed information for one MiniLang source file.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L129)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L130)
 
 ## Members
 
@@ -24,7 +24,7 @@ details
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L135)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L136)
 
 <a id="field-field-minidoc-model-filedoc-docs-docs-src-minidoc-model-ml-1276420442"></a>
 ### docs
@@ -34,7 +34,7 @@ docs
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L142)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L143)
 
 <a id="field-field-minidoc-model-filedoc-id-id-src-minidoc-model-ml-371436886"></a>
 ### id
@@ -44,7 +44,7 @@ id
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L130)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L131)
 
 <a id="field-field-minidoc-model-filedoc-imports-imports-src-minidoc-model-ml-1939895536"></a>
 ### imports
@@ -54,7 +54,7 @@ imports
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L136)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L137)
 
 <a id="field-field-minidoc-model-filedoc-package-name-package-name-src-minidoc-model-ml-1620364024"></a>
 ### package_name
@@ -64,7 +64,7 @@ package_name
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L133)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L134)
 
 <a id="field-field-minidoc-model-filedoc-path-path-src-minidoc-model-ml-434519854"></a>
 ### path
@@ -74,7 +74,7 @@ path
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L131)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L132)
 
 <a id="field-field-minidoc-model-filedoc-processed-source-processed-source-src-minidoc-model-ml-1583214128"></a>
 ### processed_source
@@ -84,7 +84,7 @@ processed_source
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L140)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L141)
 
 <a id="field-field-minidoc-model-filedoc-program-program-src-minidoc-model-ml-1422465160"></a>
 ### program
@@ -94,7 +94,7 @@ program
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L141)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L142)
 
 <a id="field-field-minidoc-model-filedoc-reachable-reachable-src-minidoc-model-ml-312461504"></a>
 ### reachable
@@ -104,7 +104,7 @@ reachable
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L138)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L139)
 
 <a id="field-field-minidoc-model-filedoc-relative-path-relative-path-src-minidoc-model-ml-1849006240"></a>
 ### relative_path
@@ -114,7 +114,7 @@ relative_path
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L132)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L133)
 
 <a id="field-field-minidoc-model-filedoc-source-source-src-minidoc-model-ml-1506651830"></a>
 ### source
@@ -124,7 +124,7 @@ source
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L139)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L140)
 
 <a id="field-field-minidoc-model-filedoc-summary-summary-src-minidoc-model-ml-616682792"></a>
 ### summary
@@ -134,7 +134,7 @@ summary
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L134)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L135)
 
 <a id="field-field-minidoc-model-filedoc-symbol-ids-symbol-ids-src-minidoc-model-ml-73769534"></a>
 ### symbol_ids
@@ -144,4 +144,4 @@ symbol_ids
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L137)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L138)

@@ -19,6 +19,7 @@ formats = ["html", "markdown"]
 html_dir = "build/docs/html"
 markdown_dir = "build/docs/markdown"
 markdown_profile = "repository"
+include_timestamp = false
 
 [graphs]
 imports = true

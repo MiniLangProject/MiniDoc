@@ -186,6 +186,16 @@ include_dirs
 
 [View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L23)
 
+<a id="field-field-minidoc-model-config-include-generation-timestamp-include-generation-timestamp-src-minidoc-model-ml-1503818168"></a>
+### include_generation_timestamp
+
+```ml
+include_generation_timestamp
+```
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L50)
+
 <a id="field-field-minidoc-model-config-include-internal-include-internal-src-minidoc-model-ml-311247416"></a>
 ### include_internal
 

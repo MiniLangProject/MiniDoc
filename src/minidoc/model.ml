@@ -47,6 +47,7 @@ struct Config
   graph_granularity,
   hide_empty_graphs,
   source_revision,
+  include_generation_timestamp,
 end struct
 
 /// One structured documentation tag such as @param or @see.
@@ -349,7 +350,8 @@ function defaultConfig()
     3,
     "package",
     true,
-    ""
+    "",
+    true
   )
 end function
 

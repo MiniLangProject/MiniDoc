@@ -12,7 +12,7 @@ struct FunctionMetrics
 Metrics for one documented function or method.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L195)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L196)
 
 ## Members
 
@@ -24,7 +24,7 @@ cognitive_complexity
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L204)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L205)
 
 <a id="field-field-minidoc-model-functionmetrics-cyclomatic-complexity-cyclomatic-complexity-src-minidoc-model-ml-71223987"></a>
 ### cyclomatic_complexity
@@ -34,7 +34,7 @@ cyclomatic_complexity
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L203)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L204)
 
 <a id="field-field-minidoc-model-functionmetrics-file-id-file-id-src-minidoc-model-ml-336087415"></a>
 ### file_id
@@ -44,7 +44,7 @@ file_id
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L198)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L199)
 
 <a id="field-field-minidoc-model-functionmetrics-file-path-file-path-src-minidoc-model-ml-1937548151"></a>
 ### file_path
@@ -54,7 +54,7 @@ file_path
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L199)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L200)
 
 <a id="field-field-minidoc-model-functionmetrics-halstead-halstead-src-minidoc-model-ml-960974639"></a>
 ### halstead
@@ -64,7 +64,7 @@ halstead
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L207)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L208)
 
 <a id="field-field-minidoc-model-functionmetrics-line-line-src-minidoc-model-ml-653821671"></a>
 ### line
@@ -74,7 +74,7 @@ line
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L200)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L201)
 
 <a id="field-field-minidoc-model-functionmetrics-lines-of-code-lines-of-code-src-minidoc-model-ml-692162287"></a>
 ### lines_of_code
@@ -84,7 +84,7 @@ lines_of_code
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L201)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L202)
 
 <a id="field-field-minidoc-model-functionmetrics-maintainability-index-maintainability-index-src-minidoc-model-ml-831904983"></a>
 ### maintainability_index
@@ -94,7 +94,7 @@ maintainability_index
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L208)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L209)
 
 <a id="field-field-minidoc-model-functionmetrics-maximum-nesting-maximum-nesting-src-minidoc-model-ml-1861191139"></a>
 ### maximum_nesting
@@ -104,7 +104,7 @@ maximum_nesting
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L205)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L206)
 
 <a id="field-field-minidoc-model-functionmetrics-parameter-count-parameter-count-src-minidoc-model-ml-454141711"></a>
 ### parameter_count
@@ -114,7 +114,7 @@ parameter_count
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L206)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L207)
 
 <a id="field-field-minidoc-model-functionmetrics-qualified-name-qualified-name-src-minidoc-model-ml-2006311071"></a>
 ### qualified_name
@@ -124,7 +124,7 @@ qualified_name
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L197)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L198)
 
 <a id="field-field-minidoc-model-functionmetrics-statement-count-statement-count-src-minidoc-model-ml-354652015"></a>
 ### statement_count
@@ -134,7 +134,7 @@ statement_count
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L202)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L203)
 
 <a id="field-field-minidoc-model-functionmetrics-symbol-id-symbol-id-src-minidoc-model-ml-1041130975"></a>
 ### symbol_id
@@ -144,4 +144,4 @@ symbol_id
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L196)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L197)

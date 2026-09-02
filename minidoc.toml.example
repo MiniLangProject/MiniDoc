@@ -20,6 +20,7 @@ formats = ["html", "markdown"]
 html_dir = "build/minidoc/html"
 markdown_dir = "build/minidoc/markdown"
 markdown_profile = "repository"
+include_timestamp = false
 
 [graphs]
 imports = true

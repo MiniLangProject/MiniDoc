@@ -16,7 +16,7 @@ These MiniLang source files are reachable through imports but are outside the co
 | 1 | `std.math` | `../MiniLangCompilerML/std/math.ml` |
 | 0 | `std.path` | `../MiniLangCompilerML/std/path.ml` |
 | 0 | `std.platform` | `../MiniLangCompilerML/std/platform.ml` |
-| 1 | `std.process` | `../MiniLangCompilerML/std/process.ml` |
+| 2 | `std.process` | `../MiniLangCompilerML/std/process.ml` |
 | 9 | `std.string` | `../MiniLangCompilerML/std/string.ml` |
 | 4 | `std.string_builder` | `../MiniLangCompilerML/std/string_builder.ml` |
 | 1 | `std.time` | `../MiniLangCompilerML/std/time.ml` |

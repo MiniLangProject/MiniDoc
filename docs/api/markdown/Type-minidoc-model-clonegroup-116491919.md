@@ -12,7 +12,7 @@ struct CloneGroup
 A repeated normalized code window. Overlapping windows are de-duplicated when the duplicated-line totals are calculated.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L244)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L245)
 
 ## Members
 
@@ -24,7 +24,7 @@ fingerprint
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L245)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L246)
 
 <a id="field-field-minidoc-model-clonegroup-line-count-line-count-src-minidoc-model-ml-626772454"></a>
 ### line_count
@@ -34,7 +34,7 @@ line_count
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L246)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L247)
 
 <a id="field-field-minidoc-model-clonegroup-occurrences-occurrences-src-minidoc-model-ml-1214444406"></a>
 ### occurrences
@@ -44,4 +44,4 @@ occurrences
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L247)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L248)

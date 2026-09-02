@@ -12,7 +12,7 @@ struct CoverageMetric
 One documentation-coverage category.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L252)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L253)
 
 ## Members
 
@@ -24,7 +24,7 @@ documented
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L253)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L254)
 
 <a id="field-field-minidoc-model-coveragemetric-percent-percent-src-minidoc-model-ml-2087312788"></a>
 ### percent
@@ -34,7 +34,7 @@ percent
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L255)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L256)
 
 <a id="field-field-minidoc-model-coveragemetric-total-total-src-minidoc-model-ml-1625952912"></a>
 ### total
@@ -44,4 +44,4 @@ total
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L254)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L255)

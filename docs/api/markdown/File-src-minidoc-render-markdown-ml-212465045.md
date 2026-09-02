@@ -69,7 +69,7 @@ Counts project-owned files importing one dependency file.
 | `dependency_id` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L451)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L453)
 
 <a id="function-function-minidoc-render-markdown-filebyid-function-filebyid-project-id-src-minidoc-render-markdown-ml-579038907"></a>
 ### _fileById
@@ -169,7 +169,7 @@ Performs the '_homeName' step in MiniDoc's Markdown renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L623)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L625)
 
 <a id="function-function-minidoc-render-markdown-indentedcode-function-indentedcode-text-src-minidoc-render-markdown-ml-511409356"></a>
 ### _indentedCode
@@ -185,7 +185,7 @@ Performs the '_indentedCode' step in MiniDoc's Markdown renderer.
 | `text` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L521)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L523)
 
 <a id="function-function-minidoc-render-markdown-istype-function-istype-doc-symbol-src-minidoc-render-markdown-ml-1542253352"></a>
 ### _isType
@@ -282,7 +282,7 @@ Renders imported source dependencies without expanding their API pages.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L467)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L469)
 
 <a id="function-function-minidoc-render-markdown-renderdiagnostics-function-renderdiagnostics-project-src-minidoc-render-markdown-ml-478275432"></a>
 ### _renderDiagnostics
@@ -298,7 +298,7 @@ Performs the '_renderDiagnostics' step in MiniDoc's Markdown renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L507)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L509)
 
 <a id="function-function-minidoc-render-markdown-renderfile-function-renderfile-project-file-src-minidoc-render-markdown-ml-1369235800"></a>
 ### _renderFile
@@ -315,7 +315,7 @@ Performs the '_renderFile' step in MiniDoc's Markdown renderer.
 | `file` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L404)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L406)
 
 <a id="function-function-minidoc-render-markdown-renderfiles-function-renderfiles-project-src-minidoc-render-markdown-ml-234256500"></a>
 ### _renderFiles
@@ -331,7 +331,7 @@ Performs the '_renderFiles' step in MiniDoc's Markdown renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L325)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L327)
 
 <a id="function-function-minidoc-render-markdown-rendergraphpage-function-rendergraphpage-project-title-image-name-description-src-minidoc-render-markdown-ml-1268984211"></a>
 ### _renderGraphPage
@@ -350,7 +350,7 @@ Performs the '_renderGraphPage' step in MiniDoc's Markdown renderer.
 | `description` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L652)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L654)
 
 <a id="function-function-minidoc-render-markdown-renderhome-function-renderhome-project-src-minidoc-render-markdown-ml-1392245616"></a>
 ### _renderHome
@@ -382,7 +382,7 @@ Performs the '_renderMetrics' step in MiniDoc's Markdown renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L534)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L536)
 
 <a id="function-function-minidoc-render-markdown-renderpackage-function-renderpackage-project-package-name-src-minidoc-render-markdown-ml-1076586018"></a>
 ### _renderPackage
@@ -399,7 +399,7 @@ Performs the '_renderPackage' step in MiniDoc's Markdown renderer.
 | `package_name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L375)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L377)
 
 <a id="function-function-minidoc-render-markdown-renderpackagesindex-function-renderpackagesindex-project-src-minidoc-render-markdown-ml-593340696"></a>
 ### _renderPackagesIndex
@@ -415,7 +415,7 @@ Performs the '_renderPackagesIndex' step in MiniDoc's Markdown renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L361)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L363)
 
 <a id="function-function-minidoc-render-markdown-rendersidebar-function-rendersidebar-project-src-minidoc-render-markdown-ml-197078972"></a>
 ### _renderSidebar
@@ -431,7 +431,7 @@ Performs the '_renderSidebar' step in MiniDoc's Markdown renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L630)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L632)
 
 <a id="function-function-minidoc-render-markdown-rendersymbols-function-rendersymbols-project-src-minidoc-render-markdown-ml-878417144"></a>
 ### _renderSymbols
@@ -447,7 +447,7 @@ Performs the '_renderSymbols' step in MiniDoc's Markdown renderer.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L345)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L347)
 
 <a id="function-function-minidoc-render-markdown-rendertype-function-rendertype-project-type-symbol-src-minidoc-render-markdown-ml-1036185877"></a>
 ### _renderType
@@ -464,7 +464,7 @@ Performs the '_renderType' step in MiniDoc's Markdown renderer.
 | `type_symbol` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L486)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L488)
 
 <a id="function-function-minidoc-render-markdown-shortrevision-function-shortrevision-value-src-minidoc-render-markdown-ml-1761394760"></a>
 ### _shortRevision
@@ -582,7 +582,7 @@ Performs the '_writeGenerated' step in MiniDoc's Markdown renderer.
 | `content` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L663)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L665)
 
 <a id="function-function-minidoc-render-markdown-render-function-render-project-src-minidoc-render-markdown-ml-12269608"></a>
 ### render
@@ -600,4 +600,4 @@ Writes the complete Markdown documentation tree and removes stale generated file
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L676)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/render_markdown.ml#L678)

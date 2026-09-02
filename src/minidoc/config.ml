@@ -272,6 +272,7 @@ function _applyMiniDoc(cfg, path)
       else if key == "html_dir" then cfg.html_out = util.absolutePath(_rowString(row, path), base)
       else if key == "markdown_dir" then cfg.markdown_out = util.absolutePath(_rowString(row, path), base)
       else if key == "markdown_profile" then cfg.markdown_profile = _rowString(row, path)
+      else if key == "include_timestamp" then cfg.include_generation_timestamp = _rowBool(row, path)
       else return error(1, path + ":" + row.line + ": unknown [output] field: " + key)
       end if
     else if section == "graphs" then
@@ -396,6 +397,7 @@ function _applyCli(cfg, args)
     else if arg == "--strict" then cfg.strict = true
     else if arg == "--check" then cfg.check_only = true
     else if arg == "--keep-going" then cfg.keep_going = true
+    else if arg == "--no-timestamp" then cfg.include_generation_timestamp = false
     else if arg == "--show-empty-graphs" then cfg.hide_empty_graphs = false
     else if arg == "--no-graphs" then
       cfg.graph_imports = false

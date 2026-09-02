@@ -2,6 +2,16 @@
 
 All notable changes to MiniDoc are documented in this file.
 
+## 0.4.2 — 2026-09-02
+
+- Fixed function LOC detection when a function body contains the string literal
+  `"function"`; normalized string tokens can no longer masquerade as nested
+  declarations and collapse long functions to one reported line.
+- Added `output.include_timestamp`, `--no-timestamp`, and `SOURCE_DATE_EPOCH`
+  support so separately generated documentation trees can be byte-identical.
+- Added regressions for both the LOC edge case and reproducible timestamp
+  conversion, suppression, and rendering.
+
 ## 0.4.1 — 2026-09-02
 
 - Fixed declaration source locations when a field, enum variant, or other symbol

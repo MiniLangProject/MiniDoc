@@ -18,6 +18,7 @@ Reachable from entry: **yes**
 - `minidoc/render_html.ml` as `html` → [src/minidoc/render_html.ml](File-src-minidoc-render-html-ml-1870373141.md)
 - `minidoc/render_markdown.ml` as `markdown` → [src/minidoc/render_markdown.ml](File-src-minidoc-render-markdown-ml-212465045.md)
 - `minidoc/util.ml` as `util` → [src/minidoc/util.ml](File-src-minidoc-util-ml-1632979029.md)
+- `std/process.ml` as `process` → `../MiniLangCompilerML/std/process.ml` — external dependency
 - `std/time.ml` as `time` → `../MiniLangCompilerML/std/time.ml` — external dependency
 
 ## Declarations
@@ -37,7 +38,23 @@ Performs the '_countSeverity' step in MiniDoc's application workflow.
 | `severity` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L98)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L137)
+
+<a id="function-function-minidoc-app-generationtimestamp-function-generationtimestamp-cfg-src-minidoc-app-ml-2138938087"></a>
+### _generationTimestamp
+
+```ml
+function _generationTimestamp(cfg)
+```
+
+Select deterministic UTC metadata when SOURCE_DATE_EPOCH is present.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `cfg` | `dynamic` | — | Effective configuration controlling timestamp emission. The result is a rendered timestamp, an empty string, or a configuration error. |
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L105)
 
 <a id="function-function-minidoc-app-hasarg-function-hasarg-args-value-src-minidoc-app-ml-81945717"></a>
 ### _hasArg
@@ -54,7 +71,7 @@ Performs the '_hasArg' step in MiniDoc's application workflow.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L78)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L117)
 
 <a id="function-function-minidoc-app-printdiagnostics-function-printdiagnostics-project-src-minidoc-app-ml-250768944"></a>
 ### _printDiagnostics
@@ -70,7 +87,23 @@ Performs the '_printDiagnostics' step in MiniDoc's application workflow.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L88)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L127)
+
+<a id="function-function-minidoc-app-sourcedateepochtimestamp-function-sourcedateepochtimestamp-raw-src-minidoc-app-ml-1773202237"></a>
+### _sourceDateEpochTimestamp
+
+```ml
+function _sourceDateEpochTimestamp(raw)
+```
+
+Convert a SOURCE_DATE_EPOCH value into MiniDoc's stable UTC timestamp.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `raw` | `dynamic` | — | Decimal seconds since 1970-01-01T00:00:00Z. The result is a UTC timestamp or an error for malformed/out-of-range input. |
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L82)
 
 <a id="function-function-minidoc-app-generate-function-generate-cfg-src-minidoc-app-ml-1058954463"></a>
 ### generate
@@ -88,7 +121,7 @@ Loads, analyzes, measures, and deterministically orders a MiniLang project.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L110)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L149)
 
 <a id="function-function-minidoc-app-printhelp-function-printhelp-src-minidoc-app-ml-210253363"></a>
 ### printHelp
@@ -102,7 +135,7 @@ Prints command-line usage and all supported options.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L37)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L38)
 
 <a id="function-function-minidoc-app-printversion-function-printversion-src-minidoc-app-ml-1716674331"></a>
 ### printVersion
@@ -116,7 +149,7 @@ Prints the current MiniDoc version.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L31)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L32)
 
 <a id="function-function-minidoc-app-render-function-render-project-src-minidoc-app-ml-643749544"></a>
 ### render
@@ -134,7 +167,7 @@ Writes every configured output format for an analyzed project.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L129)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L168)
 
 <a id="function-function-minidoc-app-run-function-run-args-src-minidoc-app-ml-382026988"></a>
 ### run
@@ -152,16 +185,16 @@ Executes the command-line workflow and returns a process exit code.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L145)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L184)
 
-<a id="constant-constant-minidoc-app-version-const-version-0-4-1-src-minidoc-app-ml-1049388627"></a>
+<a id="constant-constant-minidoc-app-version-const-version-0-4-2-src-minidoc-app-ml-1089430090"></a>
 ### VERSION
 
 ```ml
-const VERSION = "0.4.1"
+const VERSION = "0.4.2"
 ```
 
 Semantic version embedded in generated output and CLI messages.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L27)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L28)

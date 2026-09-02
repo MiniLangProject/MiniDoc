@@ -12,7 +12,7 @@ struct DocumentationCoverage
 Coverage split by API surface so one headline cannot hide weak categories.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L260)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L261)
 
 ## Members
 
@@ -24,7 +24,7 @@ api
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L261)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L262)
 
 <a id="field-field-minidoc-model-documentationcoverage-constants-constants-src-minidoc-model-ml-1049414064"></a>
 ### constants
@@ -34,7 +34,7 @@ constants
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L264)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L265)
 
 <a id="field-field-minidoc-model-documentationcoverage-enum-variants-enum-variants-src-minidoc-model-ml-659423552"></a>
 ### enum_variants
@@ -44,7 +44,7 @@ enum_variants
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L266)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L267)
 
 <a id="field-field-minidoc-model-documentationcoverage-fields-fields-src-minidoc-model-ml-1424870562"></a>
 ### fields
@@ -54,7 +54,7 @@ fields
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L263)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L264)
 
 <a id="field-field-minidoc-model-documentationcoverage-globals-globals-src-minidoc-model-ml-565123448"></a>
 ### globals
@@ -64,7 +64,7 @@ globals
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L265)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L266)
 
 <a id="field-field-minidoc-model-documentationcoverage-overall-overall-src-minidoc-model-ml-1975530108"></a>
 ### overall
@@ -74,7 +74,7 @@ overall
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L267)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L268)
 
 <a id="field-field-minidoc-model-documentationcoverage-parameters-parameters-src-minidoc-model-ml-499066424"></a>
 ### parameters
@@ -84,4 +84,4 @@ parameters
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L262)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L263)

@@ -49,7 +49,7 @@ Performs the '_applyCli' step in MiniDoc's configuration pipeline.
 | `args` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L347)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L348)
 
 <a id="function-function-minidoc-config-applyformats-function-applyformats-cfg-raw-src-minidoc-config-ml-1993873735"></a>
 ### _applyFormats
@@ -66,7 +66,7 @@ Performs the '_applyFormats' step in MiniDoc's configuration pipeline.
 | `raw` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L312)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L313)
 
 <a id="function-function-minidoc-config-applygraphselection-function-applygraphselection-cfg-raw-src-minidoc-config-ml-1585515829"></a>
 ### _applyGraphSelection
@@ -83,7 +83,7 @@ Performs the '_applyGraphSelection' step in MiniDoc's configuration pipeline.
 | `raw` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L329)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L330)
 
 <a id="function-function-minidoc-config-applyminidoc-function-applyminidoc-cfg-path-src-minidoc-config-ml-2010845010"></a>
 ### _applyMiniDoc
@@ -134,7 +134,7 @@ Performs the '_argValue' step in MiniDoc's configuration pipeline.
 | `names` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L302)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L303)
 
 <a id="function-function-minidoc-config-boolean-function-boolean-value-src-minidoc-config-ml-1445243942"></a>
 ### _boolean
@@ -316,6 +316,6 @@ Loads and validates the effective MiniDoc configuration.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L419)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/config.ml#L421)
 
 - [minidoc.config.TomlRow](Type-minidoc-config-tomlrow-1332474570.md) — struct

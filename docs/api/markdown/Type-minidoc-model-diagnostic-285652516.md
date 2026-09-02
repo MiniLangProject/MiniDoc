@@ -12,7 +12,7 @@ struct Diagnostic
 Stable diagnostic emitted by extraction, validation, or rendering.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L169)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L170)
 
 ## Members
 
@@ -24,7 +24,7 @@ code
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L171)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L172)
 
 <a id="field-field-minidoc-model-diagnostic-column-column-src-minidoc-model-ml-591657555"></a>
 ### column
@@ -34,7 +34,7 @@ column
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L174)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L175)
 
 <a id="field-field-minidoc-model-diagnostic-file-path-file-path-src-minidoc-model-ml-758379843"></a>
 ### file_path
@@ -44,7 +44,7 @@ file_path
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L172)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L173)
 
 <a id="field-field-minidoc-model-diagnostic-line-line-src-minidoc-model-ml-1446849363"></a>
 ### line
@@ -54,7 +54,7 @@ line
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L173)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L174)
 
 <a id="field-field-minidoc-model-diagnostic-message-message-src-minidoc-model-ml-1306508023"></a>
 ### message
@@ -64,7 +64,7 @@ message
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L175)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L176)
 
 <a id="field-field-minidoc-model-diagnostic-severity-severity-src-minidoc-model-ml-2056098489"></a>
 ### severity
@@ -74,4 +74,4 @@ severity
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L170)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L171)

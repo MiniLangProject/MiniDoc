@@ -54,7 +54,7 @@ Performs the '_appendFunctionAndNested' step in MiniDoc's metrics pipeline.
 | `output` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L537)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L546)
 
 <a id="function-function-minidoc-metrics-appendfunctionmetric-function-appendfunctionmetric-project-file-normalized-lines-node-output-src-minidoc-metrics-ml-854357784"></a>
 ### _appendFunctionMetric
@@ -74,7 +74,7 @@ Performs the '_appendFunctionMetric' step in MiniDoc's metrics pipeline.
 | `output` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L471)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L480)
 
 <a id="function-function-minidoc-metrics-booleanoperators-function-booleanoperators-expr-src-minidoc-metrics-ml-643365584"></a>
 ### _booleanOperators
@@ -106,7 +106,7 @@ Performs the '_calculateDuplicates' step in MiniDoc's metrics pipeline.
 | `sources` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L598)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L607)
 
 <a id="function-function-minidoc-metrics-collectfunctions-function-collectfunctions-project-file-normalized-lines-body-output-src-minidoc-metrics-ml-796792166"></a>
 ### _collectFunctions
@@ -126,7 +126,7 @@ Performs the '_collectFunctions' step in MiniDoc's metrics pipeline.
 | `output` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L544)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L553)
 
 <a id="function-function-minidoc-metrics-commentflags-function-commentflags-source-src-minidoc-metrics-ml-366355676"></a>
 ### _commentFlags
@@ -175,7 +175,7 @@ Creates one rounded documentation-coverage metric.
 | `total` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L708)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L717)
 
 <a id="function-function-minidoc-metrics-duplicatedlinecount-function-duplicatedlinecount-source-data-src-minidoc-metrics-ml-1920902583"></a>
 ### _duplicatedLineCount
@@ -191,7 +191,7 @@ Performs the '_duplicatedLineCount' step in MiniDoc's metrics pipeline.
 | `source_data` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L656)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L665)
 
 <a id="function-function-minidoc-metrics-findfunctionsymbol-function-findfunctionsymbol-project-file-id-position-src-minidoc-metrics-ml-877065609"></a>
 ### _findFunctionSymbol
@@ -242,7 +242,7 @@ Performs the '_functionEndLine' step in MiniDoc's metrics pipeline.
 | `start_line` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L405)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L414)
 
 <a id="function-function-minidoc-metrics-functiontotals-function-functiontotals-function-metrics-file-id-src-minidoc-metrics-ml-667394573"></a>
 ### _functionTotals
@@ -259,7 +259,7 @@ Performs the '_functionTotals' step in MiniDoc's metrics pipeline.
 | `file_id` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L668)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L677)
 
 <a id="function-function-minidoc-metrics-halstead-function-halstead-source-src-minidoc-metrics-ml-1602355904"></a>
 ### _halstead
@@ -291,7 +291,7 @@ Performs the '_isDocumentable' step in MiniDoc's metrics pipeline.
 | `doc_symbol` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L692)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L701)
 
 <a id="function-function-minidoc-metrics-isdocumentablecallable-function-isdocumentablecallable-doc-symbol-src-minidoc-metrics-ml-755917228"></a>
 ### _isDocumentableCallable
@@ -307,7 +307,7 @@ Returns whether a symbol contributes parameter contracts to public API coverage.
 | `doc_symbol` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L700)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L709)
 
 <a id="function-function-minidoc-metrics-ismeasuredfile-function-ismeasuredfile-project-file-src-minidoc-metrics-ml-1753902428"></a>
 ### _isMeasuredFile
@@ -324,7 +324,7 @@ Performs the '_isMeasuredFile' step in MiniDoc's metrics pipeline.
 | `file` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L716)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L725)
 
 <a id="function-function-minidoc-metrics-maintainability-function-maintainability-volume-cyclomatic-source-lines-src-minidoc-metrics-ml-27050618"></a>
 ### _maintainability
@@ -342,7 +342,7 @@ Performs the '_maintainability' step in MiniDoc's metrics pipeline.
 | `source_lines` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L459)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L468)
 
 <a id="function-function-minidoc-metrics-markwindow-function-markwindow-source-data-start-count-src-minidoc-metrics-ml-1506590456"></a>
 ### _markWindow
@@ -360,7 +360,7 @@ Performs the '_markWindow' step in MiniDoc's metrics pipeline.
 | `count` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L574)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L583)
 
 <a id="function-function-minidoc-metrics-newhalsteadaccumulator-function-newhalsteadaccumulator-src-minidoc-metrics-ml-495882533"></a>
 ### _newHalsteadAccumulator
@@ -471,7 +471,7 @@ Performs the '_sourceDataById' step in MiniDoc's metrics pipeline.
 | `file_id` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L564)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L573)
 
 <a id="function-function-minidoc-metrics-sourcelines-function-sourcelines-source-src-minidoc-metrics-ml-1184977954"></a>
 ### _sourceLines
@@ -487,7 +487,7 @@ Performs the '_sourceLines' step in MiniDoc's metrics pipeline.
 | `source` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L423)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L432)
 
 <a id="function-function-minidoc-metrics-sourceslice-function-sourceslice-source-start-line-end-line-src-minidoc-metrics-ml-2074663469"></a>
 ### _sourceSlice
@@ -505,7 +505,7 @@ Performs the '_sourceSlice' step in MiniDoc's metrics pipeline.
 | `end_line` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L440)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L449)
 
 <a id="function-function-minidoc-metrics-startsfunction-function-startsfunction-line-src-minidoc-metrics-ml-1539691709"></a>
 ### _startsFunction
@@ -593,7 +593,7 @@ Performs the '_walkNestedFunctions' step in MiniDoc's metrics pipeline.
 | `output` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L505)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L514)
 
 <a id="function-function-minidoc-metrics-windowfingerprint-function-windowfingerprint-lines-start-count-src-minidoc-metrics-ml-470461909"></a>
 ### _windowFingerprint
@@ -611,7 +611,7 @@ Performs the '_windowFingerprint' step in MiniDoc's metrics pipeline.
 | `count` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L584)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L593)
 
 <a id="function-function-minidoc-metrics-calculate-function-calculate-project-src-minidoc-metrics-ml-1071316968"></a>
 ### calculate
@@ -629,7 +629,7 @@ Calculates project, file, and function metrics for an analyzed project.
 
 **Since:** `0.2.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L723)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/metrics.ml#L732)
 
 <a id="constant-constant-minidoc-metrics-clone-detail-limit-const-clone-detail-limit-200-src-minidoc-metrics-ml-1708870366"></a>
 ### CLONE_DETAIL_LIMIT
