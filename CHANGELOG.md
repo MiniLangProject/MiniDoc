@@ -2,6 +2,19 @@
 
 All notable changes to MiniDoc are documented in this file.
 
+## 0.4.0 — 2026-09-02
+
+- Added documentation coverage for API declarations, parameters, fields, constants, globals, enum variants, and the combined documentation contract.
+- Added configurable warnings for missing `@param` and `@returns` documentation, known generic summaries, and summaries reused above a configurable threshold.
+- Added `none`, `summary`, and `full` dependency-output modes; the default summary mode keeps imported libraries out of project API indexes while preserving a compact inventory.
+- Added package-level graph aggregation, duplicate-edge removal, dependency-boundary filtering, and empty-graph suppression, with symbol-level graphs still available on demand.
+- Added automatic Git `HEAD` detection and explicit source-revision metadata in HTML and Markdown output.
+- Added stale generated-file cleanup based on the previous safe output manifest.
+- Added interface-method documentation association and inherited `@internal` visibility for container members.
+- Made diagnostic collection linear so large warning sets no longer degrade quadratically.
+- Removed residual constant-signature debug output and added regression coverage for constant extraction.
+- Expanded the MiniLang test suite for dependency modes, contract quality, summary quality, granular coverage, source revisions, and scalable graphs.
+
 ## 0.3.0 — 2026-09-02
 
 - Added project introductions, project statistics, and structured navigation to generated home pages.

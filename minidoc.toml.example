@@ -10,6 +10,10 @@ include_internal = false
 reachable_only = false
 strict = false
 page_granularity = "container"
+dependencies = "summary"
+contract_warnings = "public"
+summary_quality_warnings = "public"
+duplicate_summary_threshold = 3
 
 [output]
 formats = ["html", "markdown"]
@@ -23,7 +27,10 @@ calls = true
 types = true
 format = "svg"
 max_nodes = 250
+granularity = "package"
+hide_empty = true
 
 [links]
 repository = "https://github.com/example/project"
 ref = "main"
+# revision = "0123456789abcdef"

@@ -1,7 +1,7 @@
 [project]
 entry = "main.ml"
 output = "build/fixture.exe"
-include = ["."]
+include = [".", "../dependency"]
 target = "windows-x64"
 
 [defines]

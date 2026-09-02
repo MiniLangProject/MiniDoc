@@ -246,6 +246,27 @@ function writeText(path, text)
   return error(1, "cannot write output file: " + path)
 end function
 
+/// Removes files listed by a previous MiniDoc manifest that are no longer generated.
+/// @param root Output directory containing the generated-file manifest.
+/// @param generated Relative paths produced by the current render pass.
+/// @since 0.4.0
+function removeStaleGenerated(root, generated)
+  manifest = joinPath(root, ".minidoc-output")
+  if fs.isFile(manifest) == false then return true end if
+  content = fs.readAllText(manifest)
+  if typeof(content) != "string" then return true end if
+  entries = strings.split(strings.replaceAll(content, "\r", ""), "\n")
+  for i = 0 to len(entries) - 1
+    entry = strings.trim(entries[i])
+    if entry == "" or containsString(generated, entry) then continue end if
+    normalized = normalizePath(entry)
+    if isAbsolute(normalized) or normalized == ".." or strings.startsWith(normalized, "../") then continue end if
+    target = joinPath(root, normalized)
+    if fs.isFile(target) and fs.delete(target) == false then return error(1, "cannot remove stale generated file: " + target) end if
+  end for
+  return true
+end function
+
 /// Performs the 'readText' step in MiniDoc's shared utility layer.
 /// @internal
 function readText(path)
@@ -253,6 +274,73 @@ function readText(path)
   if typeof(result) == "string" then return result end if
   if typeof(result) == "error" then return result end if
   return error(1, "cannot read file: " + path)
+end function
+
+/// Reads a text file when it exists and returns an empty string otherwise.
+/// @internal
+function _optionalText(path)
+  if fs.isFile(path) == false then return "" end if
+  value = fs.readAllText(path)
+  if typeof(value) != "string" then return "" end if
+  return strings.trim(value)
+end function
+
+/// Resolves the Git metadata directory for a repository or worktree.
+/// @internal
+function _gitDirectory(root)
+  marker = joinPath(root, ".git")
+  if fs.isDir(marker) then return marker end if
+  content = _optionalText(marker)
+  prefix = "gitdir:"
+  if strings.startsWith(strings.toLowerAscii(content), prefix) == false then return "" end if
+  location = strings.trim(strings.substr(content, len(prefix), len(content) - len(prefix)))
+  return absolutePath(location, root)
+end function
+
+/// Finds a revision in one packed-refs file.
+/// @internal
+function _packedRevision(path, reference)
+  content = _optionalText(path)
+  if content == "" then return "" end if
+  lines = strings.split(strings.replaceAll(content, "\r", ""), "\n")
+  for i = 0 to len(lines) - 1
+    line = strings.trim(lines[i])
+    if line == "" or strings.startsWith(line, "#") or strings.startsWith(line, "^") then continue end if
+    fields = strings.split(line, " ")
+    if len(fields) >= 2 and fields[1] == reference then return fields[0] end if
+  end for
+  return ""
+end function
+
+/// Returns the exact Git commit recorded by HEAD without invoking Git.
+/// @param root Repository root containing a .git directory or worktree marker.
+/// @since 0.4.0
+function gitRevision(root)
+  current = normalizePath(root)
+  while true
+    git_dir = _gitDirectory(current)
+    if git_dir != "" then
+      head = _optionalText(joinPath(git_dir, "HEAD"))
+      if head == "" then return "" end if
+      if strings.startsWith(head, "ref:") == false then return head end if
+      reference = strings.trim(strings.substr(head, 4, len(head) - 4))
+      revision = _optionalText(joinPath(git_dir, reference))
+      if revision != "" then return revision end if
+      revision = _packedRevision(joinPath(git_dir, "packed-refs"), reference)
+      if revision != "" then return revision end if
+
+      common = _optionalText(joinPath(git_dir, "commondir"))
+      if common == "" then return "" end if
+      common_dir = absolutePath(common, git_dir)
+      revision = _optionalText(joinPath(common_dir, reference))
+      if revision != "" then return revision end if
+      return _packedRevision(joinPath(common_dir, "packed-refs"), reference)
+    end if
+    parent = directoryName(current)
+    if parent == current then break end if
+    current = parent
+  end while
+  return ""
 end function
 
 /// Performs the 'isWhitespaceChar' step in MiniDoc's shared utility layer.

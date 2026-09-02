@@ -24,7 +24,7 @@ import std.time as time
 
 /// Semantic version embedded in generated output and CLI messages.
 /// @internal
-const VERSION = "0.3.0"
+const VERSION = "0.4.0"
 
 /// Prints the current MiniDoc version.
 /// @since 0.1.0
@@ -56,7 +56,9 @@ function printHelp()
   print "  --html-out <dir>          HTML output directory"
   print "  --md-out <dir>            Markdown output directory"
   print "  --md-profile <profile>    repository or wiki"
+  print "  --dependencies <mode>     none, summary, or full"
   print "  --graph <list>            imports,calls,types"
+  print "  --graph-granularity <g>   package or symbol"
   print "  --no-graphs               Disable every graph"
   print ""
   print "Validation options:"
@@ -65,6 +67,10 @@ function printHelp()
   print "  --keep-going              Emit explicitly incomplete documentation"
   print "  --reachable-only          Omit orphan source files"
   print "  --include-internal        Include @internal declarations"
+  print "  --contract-warnings <s>   off, public, or all"
+  print "  --summary-quality <s>     off, public, or all"
+  print "  --revision <value>        Record an exact source revision"
+  print "  --show-empty-graphs       Keep graph pages with no relations"
 end function
 
 /// Performs the '_hasArg' step in MiniDoc's application workflow.
@@ -108,6 +114,8 @@ function generate(cfg)
   if typeof(generated_at) != "string" then generated_at = "Unknown local time" end if
   project.generator_version = VERSION
   project.generated_at = generated_at
+  project.source_revision = cfg.source_revision
+  if project.source_revision == "" then project.source_revision = util.gitRevision(project.root_dir) end if
   project = analyzer.analyze(project)
   project = ordering.apply(project)
   project.metrics = metrics.calculate(project)

@@ -258,6 +258,10 @@ function _applyMiniDoc(cfg, path)
       if key == "include_internal" then cfg.include_internal = _rowBool(row, path)
       else if key == "reachable_only" then cfg.reachable_only = _rowBool(row, path)
       else if key == "strict" then cfg.strict = _rowBool(row, path)
+      else if key == "dependencies" then cfg.dependency_mode = strings.toLowerAscii(_rowString(row, path))
+      else if key == "contract_warnings" then cfg.contract_warnings = strings.toLowerAscii(_rowString(row, path))
+      else if key == "summary_quality_warnings" then cfg.summary_quality_warnings = strings.toLowerAscii(_rowString(row, path))
+      else if key == "duplicate_summary_threshold" then cfg.duplicate_summary_threshold = _rowInt(row, path)
       else if key == "page_granularity" then
         // Container pages are used by the first implementation.
         ignored_granularity = _rowString(row, path)
@@ -275,12 +279,15 @@ function _applyMiniDoc(cfg, path)
       else if key == "calls" then cfg.graph_calls = _rowBool(row, path)
       else if key == "types" then cfg.graph_types = _rowBool(row, path)
       else if key == "max_nodes" then cfg.graph_max_nodes = _rowInt(row, path)
+      else if key == "granularity" then cfg.graph_granularity = strings.toLowerAscii(_rowString(row, path))
+      else if key == "hide_empty" then cfg.hide_empty_graphs = _rowBool(row, path)
       else if key == "format" then ignored_format = _rowString(row, path)
       else return error(1, path + ":" + row.line + ": unknown [graphs] field: " + key)
       end if
     else if section == "links" then
       if key == "repository" then cfg.repository = _rowString(row, path)
       else if key == "ref" then cfg.repository_ref = _rowString(row, path)
+      else if key == "revision" then cfg.source_revision = _rowString(row, path)
       else return error(1, path + ":" + row.line + ": unknown [links] field: " + key)
       end if
     else
@@ -364,7 +371,7 @@ function _applyCli(cfg, args)
       i = i + 1
       continue
     end if
-    if arg == "--target" or arg == "--format" or arg == "--html-out" or arg == "--md-out" or arg == "--md-profile" or arg == "--graph" or arg == "--name" or arg == "--description" then
+    if arg == "--target" or arg == "--format" or arg == "--html-out" or arg == "--md-out" or arg == "--md-profile" or arg == "--graph" or arg == "--name" or arg == "--description" or arg == "--dependencies" or arg == "--contract-warnings" or arg == "--summary-quality" or arg == "--graph-granularity" or arg == "--revision" then
       if i + 1 >= len(args) then return error(1, arg + " expects a value") end if
       value = args[i + 1]
       if arg == "--target" then cfg.target = value
@@ -375,6 +382,11 @@ function _applyCli(cfg, args)
       else if arg == "--graph" then cfg = _applyGraphSelection(cfg, value)
       else if arg == "--name" then cfg.project_name = value
       else if arg == "--description" then cfg.project_description = value
+      else if arg == "--dependencies" then cfg.dependency_mode = strings.toLowerAscii(value)
+      else if arg == "--contract-warnings" then cfg.contract_warnings = strings.toLowerAscii(value)
+      else if arg == "--summary-quality" then cfg.summary_quality_warnings = strings.toLowerAscii(value)
+      else if arg == "--graph-granularity" then cfg.graph_granularity = strings.toLowerAscii(value)
+      else if arg == "--revision" then cfg.source_revision = value
       end if
       i = i + 2
       continue
@@ -384,6 +396,7 @@ function _applyCli(cfg, args)
     else if arg == "--strict" then cfg.strict = true
     else if arg == "--check" then cfg.check_only = true
     else if arg == "--keep-going" then cfg.keep_going = true
+    else if arg == "--show-empty-graphs" then cfg.hide_empty_graphs = false
     else if arg == "--no-graphs" then
       cfg.graph_imports = false
       cfg.graph_calls = false
@@ -425,6 +438,11 @@ function load(args)
   if cfg.project_name == "" then cfg.project_name = util.stem(cfg.entry) end if
   if len(cfg.source_roots) == 0 then cfg.source_roots = [util.directoryName(cfg.entry)] end if
   if cfg.markdown_profile != "repository" and cfg.markdown_profile != "wiki" then return error(1, "markdown profile must be repository or wiki") end if
+  if cfg.dependency_mode != "none" and cfg.dependency_mode != "summary" and cfg.dependency_mode != "full" then return error(1, "documentation.dependencies must be none, summary, or full") end if
+  if cfg.contract_warnings != "off" and cfg.contract_warnings != "public" and cfg.contract_warnings != "all" then return error(1, "documentation.contract_warnings must be off, public, or all") end if
+  if cfg.summary_quality_warnings != "off" and cfg.summary_quality_warnings != "public" and cfg.summary_quality_warnings != "all" then return error(1, "documentation.summary_quality_warnings must be off, public, or all") end if
+  if cfg.duplicate_summary_threshold < 2 then return error(1, "documentation.duplicate_summary_threshold must be at least 2") end if
+  if cfg.graph_granularity != "package" and cfg.graph_granularity != "symbol" then return error(1, "graphs.granularity must be package or symbol") end if
   if cfg.graph_max_nodes < 1 then return error(1, "graphs.max_nodes must be positive") end if
   return cfg
 end function

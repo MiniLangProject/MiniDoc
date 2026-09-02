@@ -691,8 +691,24 @@ end function
 /// @internal
 function _isDocumentable(doc_symbol)
   if doc_symbol.internal then return false end if
-  required = ["function", "struct", "extern_struct", "interface", "enum", "extern_function"]
+  required = ["function", "method", "static_method", "interface_method", "struct", "extern_struct", "interface", "enum", "extern_function"]
   return util.containsString(required, doc_symbol.kind)
+end function
+
+/// Returns whether a symbol contributes parameter contracts to public API coverage.
+/// @internal
+function _isDocumentableCallable(doc_symbol)
+  if doc_symbol.internal then return false end if
+  callable = ["function", "method", "static_method", "interface_method", "extern_function"]
+  return util.containsString(callable, doc_symbol.kind)
+end function
+
+/// Creates one rounded documentation-coverage metric.
+/// @internal
+function _coverageMetric(documented, total)
+  percent = 100
+  if total > 0 then percent = _round2(documented * 100.0 / total) end if
+  return model.CoverageMetric(documented, total, percent)
 end function
 
 /// Performs the '_isMeasuredFile' step in MiniDoc's metrics pipeline.
@@ -799,6 +815,16 @@ function calculate(project)
 
   documented_symbols = 0
   documentable_symbols = 0
+  documented_parameters = 0
+  parameter_count = 0
+  documented_fields = 0
+  field_count = 0
+  documented_constants = 0
+  constant_count = 0
+  documented_globals = 0
+  global_count = 0
+  documented_enum_variants = 0
+  enum_variant_count = 0
   if len(project.symbols) > 0 then
     for i = 0 to len(project.symbols) - 1
       doc_symbol = project.symbols[i]
@@ -807,10 +833,39 @@ function calculate(project)
         documentable_symbols = documentable_symbols + 1
         if doc_symbol.summary != "" then documented_symbols = documented_symbols + 1 end if
       end if
+      if typeof(file_data) != "struct" or doc_symbol.internal then continue end if
+      if _isDocumentableCallable(doc_symbol) and len(doc_symbol.parameters) > 0 then
+        for pi = 0 to len(doc_symbol.parameters) - 1
+          parameter_count = parameter_count + 1
+          if strings.trim(doc_symbol.parameters[pi].description) != "" then documented_parameters = documented_parameters + 1 end if
+        end for
+      end if
+      if doc_symbol.kind == "field" then
+        field_count = field_count + 1
+        if doc_symbol.summary != "" then documented_fields = documented_fields + 1 end if
+      else if doc_symbol.kind == "constant" then
+        constant_count = constant_count + 1
+        if doc_symbol.summary != "" then documented_constants = documented_constants + 1 end if
+      else if doc_symbol.kind == "global" then
+        global_count = global_count + 1
+        if doc_symbol.summary != "" then documented_globals = documented_globals + 1 end if
+      else if doc_symbol.kind == "enum_variant" then
+        enum_variant_count = enum_variant_count + 1
+        if doc_symbol.summary != "" then documented_enum_variants = documented_enum_variants + 1 end if
+      end if
     end for
   end if
-  documentation_coverage = 100.0
-  if documentable_symbols > 0 then documentation_coverage = _round2(documented_symbols * 100.0 / documentable_symbols) end if
+  api_coverage = _coverageMetric(documented_symbols, documentable_symbols)
+  parameter_coverage = _coverageMetric(documented_parameters, parameter_count)
+  field_coverage = _coverageMetric(documented_fields, field_count)
+  constant_coverage = _coverageMetric(documented_constants, constant_count)
+  global_coverage = _coverageMetric(documented_globals, global_count)
+  enum_variant_coverage = _coverageMetric(documented_enum_variants, enum_variant_count)
+  overall_documented = documented_symbols + documented_parameters + documented_fields + documented_constants + documented_globals + documented_enum_variants
+  overall_total = documentable_symbols + parameter_count + field_count + constant_count + global_count + enum_variant_count
+  overall_coverage = _coverageMetric(overall_documented, overall_total)
+  documentation = model.DocumentationCoverage(api_coverage, parameter_coverage, field_coverage, constant_coverage, global_coverage, enum_variant_coverage, overall_coverage)
+  documentation_coverage = api_coverage.percent
 
   return model.ProjectMetrics(
     physical_lines,
@@ -831,6 +886,7 @@ function calculate(project)
     documented_symbols,
     documentable_symbols,
     documentation_coverage,
+    documentation,
     _finishHalstead(project_halstead),
     maintainability_index,
     file_metrics,

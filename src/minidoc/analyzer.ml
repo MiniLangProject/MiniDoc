@@ -121,7 +121,7 @@ end function
 /// @internal
 function _diagnostic(project, severity, code, file, position, message)
   location = util.lineAndColumn(file.processed_source, position)
-  project.diagnostics = project.diagnostics + [model.newDiagnostic(severity, code, file.relative_path, location[0], location[1], message)]
+  project.diagnostics = tools.arr_vec_push(project.diagnostics, model.newDiagnostic(severity, code, file.relative_path, location[0], location[1], message))
 end function
 
 /// Performs the '_fileById' step in MiniDoc's symbol-analysis pipeline.
@@ -165,6 +165,11 @@ function _addSymbol(project, file, kind, name, qualified_name, container_id, nam
     end for
   end if
   deprecated = comments.hasTag(doc, "deprecated")
+  internal = doc.internal
+  if container_id != "" then
+    parent = _symbolById(project, container_id)
+    if typeof(parent) == "struct" and parent.internal then internal = true end if
+  end if
   source_url = util.sourceUrl(project.config.repository, project.config.repository_ref, file.relative_path, location[0])
   sym = model.SymbolDoc(
     id,
@@ -187,7 +192,7 @@ function _addSymbol(project, file, kind, name, qualified_name, container_id, nam
     doc.summary,
     doc.details,
     doc.tags,
-    doc.internal,
+    internal,
     deprecated,
     source_url
   )
@@ -196,27 +201,55 @@ function _addSymbol(project, file, kind, name, qualified_name, container_id, nam
   return sym
 end function
 
+/// Returns whether a configured validation scope includes a declaration.
+/// @internal
+function _warningScopeIncludes(scope, internal)
+  if scope == "off" then return false end if
+  if scope == "all" then return true end if
+  return internal == false
+end function
+
 /// Performs the '_validateFunctionDoc' step in MiniDoc's symbol-analysis pipeline.
 /// @internal
-function _validateFunctionDoc(project, file, node, doc, parameters, return_type)
+function _validateFunctionDoc(project, file, node, doc, parameters, return_type, internal)
+  if util.isProjectSource(file.path, project.config.entry, project.config.source_roots) == false then return end if
   seen = []
-  if len(doc.tags) == 0 then return end if
-  for i = 0 to len(doc.tags) - 1
-    tag = doc.tags[i]
-    if tag.name == "param" then
-      exists = false
-      if len(parameters) > 0 then
-        for pi = 0 to len(parameters) - 1
-          if parameters[pi].name == tag.key then exists = true break end if
-        end for
+  has_returns = false
+  if len(doc.tags) > 0 then
+    for i = 0 to len(doc.tags) - 1
+      tag = doc.tags[i]
+      if tag.name == "param" then
+        exists = false
+        if len(parameters) > 0 then
+          for pi = 0 to len(parameters) - 1
+            if parameters[pi].name == tag.key then exists = true break end if
+          end for
+        end if
+        if exists == false then _diagnostic(project, "warning", "MD2101", file, node._pos, "@param names an unknown parameter: " + tag.key) end if
+        if util.containsString(seen, tag.key) then _diagnostic(project, "warning", "MD2102", file, node._pos, "duplicate @param documentation: " + tag.key) end if
+        seen = seen + [tag.key]
+      else if tag.name == "returns" then
+        has_returns = true
+        if return_type == "" or return_type == "void" then
+          _diagnostic(project, "warning", "MD2103", file, node._pos, "@returns is present on a function without a return contract")
+        end if
       end if
-      if exists == false then _diagnostic(project, "warning", "MD2101", file, node._pos, "@param names an unknown parameter: " + tag.key) end if
-      if util.containsString(seen, tag.key) then _diagnostic(project, "warning", "MD2102", file, node._pos, "duplicate @param documentation: " + tag.key) end if
-      seen = seen + [tag.key]
-    else if tag.name == "returns" and return_type == "" then
-      _diagnostic(project, "warning", "MD2103", file, node._pos, "@returns is present on a function without a return contract")
-    end if
-  end for
+    end for
+  end if
+
+  if _warningScopeIncludes(project.config.contract_warnings, internal) == false then return end if
+  missing = []
+  if len(parameters) > 0 then
+    for pi2 = 0 to len(parameters) - 1
+      if strings.trim(parameters[pi2].description) == "" then missing = missing + [parameters[pi2].name] end if
+    end for
+  end if
+  if len(missing) > 0 then
+    _diagnostic(project, "warning", "MD2104", file, node._pos, "missing @param documentation for: " + strings.join(missing, ", "))
+  end if
+  if return_type != "" and return_type != "void" and has_returns == false then
+    _diagnostic(project, "warning", "MD2105", file, node._pos, "missing @returns documentation for return type: " + return_type)
+  end if
 end function
 
 /// Performs the '_functionParameters' step in MiniDoc's symbol-analysis pipeline.
@@ -403,7 +436,7 @@ function _addFunction(project, file, node, kind, prefix, namespace_name, contain
   end if
   return_type = _typeName(node.return_type, node.return_optional)
   fn_sym = _addSymbol(project, file, kind, node.name, qualified_name, container_id, namespace_name, node._pos, signature, "", modifiers, parameters, return_type, doc)
-  _validateFunctionDoc(project, file, node, doc, parameters, return_type)
+  _validateFunctionDoc(project, file, node, doc, parameters, return_type, fn_sym.internal)
   _walkStatementsForCalls(project, file, fn_sym, node.body, namespace_name)
   _walkNested(project, file, node.body, fn_sym, namespace_name)
   return fn_sym
@@ -460,7 +493,7 @@ function _addExternFunction(project, file, node, prefix, namespace_name)
   if typeof(node.symbol_name) == "string" and node.symbol_name != "" then signature = signature + " symbol \"" + node.symbol_name + "\"" end if
   if return_type != "" then signature = signature + " returns " + return_type end if
   fn_sym = _addSymbol(project, file, "extern_function", node.name, _qualified(prefix, node.name), "", namespace_name, node._pos, signature, "", ["extern"], parameters, return_type, doc)
-  _validateFunctionDoc(project, file, node, doc, parameters, return_type)
+  _validateFunctionDoc(project, file, node, doc, parameters, return_type, fn_sym.internal)
   return fn_sym
 end function
 
@@ -519,8 +552,15 @@ function _addInterface(project, file, node, prefix, namespace_name)
   doc = comments.documentationBefore(file.docs, file.processed_source, node._pos)
   qualified_name = _qualified(prefix, node.name)
   interface_sym = _addSymbol(project, file, "interface", node.name, qualified_name, "", namespace_name, node._pos, "interface " + node.name, node.name, [], [], "", doc)
+  cursor = node._pos + len(node.name)
   if len(node.methods) > 0 then
     for i = 0 to len(node.methods) - 1
+      declaration_pos = _findWord(file.processed_source, "function", cursor)
+      if declaration_pos >= 0 then
+        node.methods[i]._pos = declaration_pos
+        method_pos = _findWord(file.processed_source, node.methods[i].name, declaration_pos + len("function"))
+        if method_pos >= 0 then cursor = method_pos + len(node.methods[i].name) end if
+      end if
       _addFunction(project, file, node.methods[i], "interface_method", qualified_name, namespace_name, interface_sym.id)
     end for
   end if
@@ -686,7 +726,7 @@ end function
 /// Performs the '_validateCoverage' step in MiniDoc's symbol-analysis pipeline.
 /// @internal
 function _validateCoverage(project)
-  required = ["function", "struct", "extern_struct", "interface", "enum", "extern_function"]
+  required = ["function", "method", "static_method", "interface_method", "struct", "extern_struct", "interface", "enum", "extern_function"]
   if len(project.symbols) == 0 then return end if
   for i = 0 to len(project.symbols) - 1
     covered_sym = project.symbols[i]
@@ -698,10 +738,50 @@ function _validateCoverage(project)
   end for
 end function
 
+/// Returns whether a declaration belongs to the configured summary-quality scope.
+/// @internal
+function _summaryQualityEligible(project, doc_symbol)
+  if _warningScopeIncludes(project.config.summary_quality_warnings, doc_symbol.internal) == false then return false end if
+  if strings.trim(doc_symbol.summary) == "" then return false end if
+  file = _fileById(project, doc_symbol.file_id)
+  if typeof(file) != "struct" then return false end if
+  return util.isProjectSource(file.path, project.config.entry, project.config.source_roots)
+end function
+
+/// Reports generic and excessively reused documentation summaries.
+/// @internal
+function _validateSummaryQuality(project)
+  if project.config.summary_quality_warnings == "off" or len(project.symbols) == 0 then return end if
+  groups = tools.fastmap_new(2048)
+  for i = 0 to len(project.symbols) - 1
+    quality_sym = project.symbols[i]
+    if _summaryQualityEligible(project, quality_sym) == false then continue end if
+    normalized = strings.toLowerAscii(strings.trim(quality_sym.summary))
+    quality_file = _fileById(project, quality_sym.file_id)
+    if strings.contains(normalized, "behavior for the active subsystem") then
+      _diagnostic(project, "warning", "MD2202", quality_file, quality_sym.position, "documentation summary is generic: " + quality_sym.qualified_name)
+    end if
+    group = tools.fastmap_get(groups, normalized, 0)
+    if typeof(group) == "array" then groups = tools.fastmap_set(groups, normalized, [group[0] + 1, group[1]])
+    else groups = tools.fastmap_set(groups, normalized, [1, quality_sym])
+    end if
+  end for
+  items = tools.fastmap_items(groups)
+  if len(items) == 0 then return end if
+  for i = 0 to len(items) - 1
+    group = items[i][1]
+    if group[0] < project.config.duplicate_summary_threshold then continue end if
+    first_sym = group[1]
+    first_file = _fileById(project, first_sym.file_id)
+    _diagnostic(project, "warning", "MD2203", first_file, first_sym.position, "documentation summary is reused by " + group[0] + " declarations: " + first_sym.summary)
+  end for
+end function
+
 /// Enriches a loaded project with declarations, calls, type relations, and documentation diagnostics.
 /// @param project Project model populated by the source loader.
 /// @since 0.1.0
 function analyze(project)
+  project.diagnostics = tools.arr_vec_from_array(project.diagnostics, 256)
   if len(project.files) > 0 then
     for i = 0 to len(project.files) - 1
       file = project.files[i]
@@ -711,5 +791,7 @@ function analyze(project)
   _resolveCalls(project)
   _resolveTypeRelations(project)
   _validateCoverage(project)
+  _validateSummaryQuality(project)
+  project.diagnostics = tools.arr_vec_finish(project.diagnostics)
   return project
 end function

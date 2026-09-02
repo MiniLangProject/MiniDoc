@@ -11,6 +11,10 @@ target = "windows-x64"
 include_internal = true
 reachable_only = false
 strict = false
+dependencies = "summary"
+contract_warnings = "public"
+summary_quality_warnings = "public"
+duplicate_summary_threshold = 3
 
 [output]
 formats = ["html", "markdown"]
@@ -23,6 +27,8 @@ imports = true
 calls = true
 types = true
 max_nodes = 300
+granularity = "package"
+hide_empty = true
 
 [links]
 repository = "https://github.com/MiniLangProject/MiniDoc"

@@ -12,7 +12,8 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 package minidoc.model
 
-// Runtime configuration shared by discovery, analysis, and rendering.
+/// Runtime configuration shared by discovery, analysis, and rendering.
+/// @internal
 struct Config
   project_name,
   project_description,
@@ -39,16 +40,25 @@ struct Config
   graph_max_nodes,
   repository,
   repository_ref,
+  dependency_mode,
+  contract_warnings,
+  summary_quality_warnings,
+  duplicate_summary_threshold,
+  graph_granularity,
+  hide_empty_graphs,
+  source_revision,
 end struct
 
-// One structured documentation tag such as @param or @see.
+/// One structured documentation tag such as @param or @see.
+/// @internal
 struct DocTag
   name,
   key,
   text,
 end struct
 
-// A declaration or file documentation block found in source text.
+/// A declaration or file documentation block found in source text.
+/// @internal
 struct DocBlock
   target_kind,
   start_pos,
@@ -63,7 +73,8 @@ struct DocBlock
   used,
 end struct
 
-// One function parameter in display order.
+/// One function parameter in display order.
+/// @internal
 struct ParameterDoc
   name,
   type_name,
@@ -73,7 +84,8 @@ struct ParameterDoc
   description,
 end struct
 
-// A flat symbol record. Container relationships reconstruct the hierarchy.
+/// A flat symbol record. Container relationships reconstruct the hierarchy.
+/// @internal
 struct SymbolDoc
   id,
   kind,
@@ -100,7 +112,8 @@ struct SymbolDoc
   source_url,
 end struct
 
-// A resolved or unresolved import from one source file.
+/// A resolved or unresolved import from one source file.
+/// @internal
 struct ImportDoc
   request,
   alias,
@@ -111,7 +124,8 @@ struct ImportDoc
   position,
 end struct
 
-// Parsed information for one MiniLang source file.
+/// Parsed information for one MiniLang source file.
+/// @internal
 struct FileDoc
   id,
   path,
@@ -128,7 +142,8 @@ struct FileDoc
   docs,
 end struct
 
-// Graph relation. Certainty is exact, inferred, dynamic, or unresolved.
+/// Graph relation. Certainty is exact, inferred, dynamic, or unresolved.
+/// @internal
 struct RelationDoc
   from_id,
   to_id,
@@ -137,7 +152,8 @@ struct RelationDoc
   label,
 end struct
 
-// Deferred call reference resolved after every symbol has been indexed.
+/// Deferred call reference resolved after every symbol has been indexed.
+/// @internal
 struct CallReference
   caller_id,
   raw_target,
@@ -148,7 +164,8 @@ struct CallReference
   dynamic,
 end struct
 
-// Stable diagnostic emitted by extraction, validation, or rendering.
+/// Stable diagnostic emitted by extraction, validation, or rendering.
+/// @internal
 struct Diagnostic
   severity,
   code,
@@ -158,7 +175,8 @@ struct Diagnostic
   message,
 end struct
 
-// Halstead token metrics for a source scope.
+/// Halstead token metrics for a source scope.
+/// @internal
 struct HalsteadMetrics
   distinct_operators,
   distinct_operands,
@@ -172,7 +190,8 @@ struct HalsteadMetrics
   estimated_bugs,
 end struct
 
-// Metrics for one documented function or method.
+/// Metrics for one documented function or method.
+/// @internal
 struct FunctionMetrics
   symbol_id,
   qualified_name,
@@ -189,7 +208,8 @@ struct FunctionMetrics
   maintainability_index,
 end struct
 
-// Metrics aggregated for one MiniLang source file.
+/// Metrics aggregated for one MiniLang source file.
+/// @internal
 struct FileMetrics
   file_id,
   file_path,
@@ -210,22 +230,45 @@ struct FileMetrics
   maintainability_index,
 end struct
 
-// One occurrence of a normalized duplicate-code window.
+/// One occurrence of a normalized duplicate-code window.
+/// @internal
 struct CloneOccurrence
   file_id,
   file_path,
   line,
 end struct
 
-// A repeated normalized code window. Overlapping windows are de-duplicated
-// when the duplicated-line totals are calculated.
+/// A repeated normalized code window. Overlapping windows are de-duplicated
+/// when the duplicated-line totals are calculated.
+/// @internal
 struct CloneGroup
   fingerprint,
   line_count,
   occurrences,
 end struct
 
-// Project-wide source and quality metrics.
+/// One documentation-coverage category.
+/// @internal
+struct CoverageMetric
+  documented,
+  total,
+  percent,
+end struct
+
+/// Coverage split by API surface so one headline cannot hide weak categories.
+/// @internal
+struct DocumentationCoverage
+  api,
+  parameters,
+  fields,
+  constants,
+  globals,
+  enum_variants,
+  overall,
+end struct
+
+/// Project-wide source and quality metrics.
+/// @internal
 struct ProjectMetrics
   physical_lines,
   source_lines,
@@ -245,6 +288,7 @@ struct ProjectMetrics
   documented_symbols,
   documentable_symbols,
   documentation_coverage,
+  documentation,
   halstead,
   maintainability_index,
   file_metrics,
@@ -253,12 +297,14 @@ struct ProjectMetrics
   duplicate_window_size,
 end struct
 
-// Complete format-independent documentation model.
+/// Complete format-independent documentation model.
+/// @internal
 struct ProjectDoc
   config,
   root_dir,
   generator_version,
   generated_at,
+  source_revision,
   files,
   symbols,
   relations,
@@ -296,7 +342,14 @@ function defaultConfig()
     true,
     250,
     "",
-    "main"
+    "main",
+    "summary",
+    "public",
+    "public",
+    3,
+    "package",
+    true,
+    ""
   )
 end function
 
@@ -323,7 +376,7 @@ end function
 /// @param root_dir Absolute project root directory.
 /// @since 0.1.0
 function emptyProject(config, root_dir)
-  return ProjectDoc(config, root_dir, "", "", [], [], [], [], [], emptyProjectMetrics(), true)
+  return ProjectDoc(config, root_dir, "", "", "", [], [], [], [], [], emptyProjectMetrics(), true)
 end function
 
 /// Creates an empty Halstead metric result.
@@ -335,5 +388,7 @@ end function
 /// Creates an empty aggregate project metric result.
 /// @since 0.2.0
 function emptyProjectMetrics()
-  return ProjectMetrics(0, 0, 0, 0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0.0, emptyHalsteadMetrics(), 0.0, [], [], [], 6)
+  empty_coverage = CoverageMetric(0, 0, 100)
+  documentation = DocumentationCoverage(empty_coverage, empty_coverage, empty_coverage, empty_coverage, empty_coverage, empty_coverage, empty_coverage)
+  return ProjectMetrics(0, 0, 0, 0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0.0, documentation, emptyHalsteadMetrics(), 0.0, [], [], [], 6)
 end function

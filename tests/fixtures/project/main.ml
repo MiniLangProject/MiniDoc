@@ -16,6 +16,10 @@ package sample.app
 
 import sample.models as models
 import sample.feature as feature
+import external.helper as dependency
+
+/// Maximum number of attempts used by the fixture.
+const MAX_ATTEMPTS = 3
 
 /// Builds a display name from a safe <label> & value.
 ///
@@ -25,7 +29,7 @@ import sample.feature as feature
 /// @see sample.models.createPerson
 function createDisplay(raw as string) returns string
   person = models.createPerson(raw)
-  return feature.decorate(person.name())
+  return dependency.passThrough(feature.decorate(person.name()))
 end function
 
 /// An implementation detail that is absent from public output.

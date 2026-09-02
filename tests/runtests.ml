@@ -65,6 +65,15 @@ function hasDiagnostic(project, code)
   return false
 end function
 
+function countDiagnostics(project, code)
+  count = 0
+  if len(project.diagnostics) == 0 then return count end if
+  for i = 0 to len(project.diagnostics) - 1
+    if project.diagnostics[i].code == code then count = count + 1 end if
+  end for
+  return count
+end function
+
 function readRequired(path)
   result = fs.readAllText(path)
   if typeof(result) == "error" then return "" end if
@@ -120,6 +129,7 @@ function main(args)
   output_root = util.joinPath(root, "build/test-output")
   html_root = util.joinPath(output_root, "html")
   markdown_root = util.joinPath(output_root, "markdown")
+  full_root = util.joinPath(output_root, "full")
   wiki_root = util.joinPath(output_root, "wiki")
 
   expect(util.htmlEscape("<tag a=\"b\">&") == "&lt;tag a=&quot;b&quot;&gt;&amp;", "HTML escaping", "unsafe characters were not escaped")
@@ -151,16 +161,16 @@ function main(args)
     expect(false, "configuration loading", cfg.message)
     return 1
   end if
-  expect(cfg.project_name == "MiniDoc Fixture" and cfg.project_description == "A compact MiniLang project used to verify MiniDoc output." and len(cfg.defines) == 1, "configuration loading", "manifest and MiniDoc settings were not merged")
+  expect(cfg.project_name == "MiniDoc Fixture" and cfg.project_description == "A compact MiniLang project used to verify MiniDoc output." and len(cfg.defines) == 1 and cfg.dependency_mode == "summary" and cfg.graph_granularity == "package", "configuration loading", "manifest and MiniDoc settings were not merged")
 
   project = app.generate(cfg)
   if typeof(project) == "error" then
     expect(false, "project analysis", project.message)
     return 1
   end if
-  expect(project.generator_version == "0.3.0" and typeof(project.generated_at) == "string" and len(project.generated_at) >= 19, "generation metadata", "MiniDoc version or local generation timestamp is missing")
+  expect(project.generator_version == "0.4.0" and typeof(project.generated_at) == "string" and len(project.generated_at) >= 19 and project.source_revision == "fixture-revision-1234567890", "generation metadata", "MiniDoc version, source revision, or local generation timestamp is missing")
   expect(hasDiagnostic(project, "MD1201") == false, "license header validation", "licensed fixture files produced a missing-license warning")
-  expect(len(project.files) == 4, "source discovery", "expected entry, two imports, and one orphan")
+  expect(len(project.files) == 5, "source discovery", "expected entry, three imports, and one orphan")
   expect(hasUnreachableFile(project, "orphan.ml"), "reachability tracking", "orphan.ml was not marked unreachable")
   expect(projectOrderIsAlphabetical(project), "project model ordering", "files or symbols are not alphabetical")
 
@@ -168,7 +178,9 @@ function main(args)
   person = findSymbol(project, "sample.models.Person")
   state = findSymbol(project, "sample.models.PersonState")
   enabled = findSymbol(project, "sample.feature.decorate")
+  max_attempts = findSymbol(project, "sample.app.MAX_ATTEMPTS")
   expect(typeof(display) == "struct" and len(display.parameters) == 1 and display.parameters[0].description == "The unformatted name.", "function extraction", "signature or parameter documentation is incomplete")
+  expect(typeof(max_attempts) == "struct" and max_attempts.kind == "constant" and max_attempts.signature == "const MAX_ATTEMPTS = 3", "constant extraction", "constant name, kind, or rendered signature is incorrect")
   expect(typeof(person) == "struct" and person.kind == "struct", "type extraction", "Person struct is missing")
   expect(typeof(state) == "struct" and state.kind == "enum", "enum extraction", "PersonState enum is missing")
   expect(typeof(enabled) == "struct", "compile directives", "FEATURE-controlled declaration is missing")
@@ -180,7 +192,7 @@ function main(args)
   expect(project.metrics.halstead.volume > 0.0 and project.metrics.halstead.vocabulary > 0, "Halstead metrics", "token metrics were not calculated")
   expect(typeof(classify_metric) == "struct" and classify_metric.cyclomatic_complexity == 5 and classify_metric.cognitive_complexity == 4 and classify_metric.maximum_nesting == 1, "complexity metrics", "fixture decision complexity was calculated incorrectly")
   expect(project.metrics.clone_group_count >= 1 and project.metrics.duplicated_lines >= 12 and project.metrics.duplication_percent > 0.0, "duplication metrics", "repeated normalized code was not detected")
-  expect(project.metrics.documentation_coverage == 100.0 and project.metrics.maintainability_index >= 0.0 and project.metrics.maintainability_index <= 100.0, "quality metrics", "coverage or maintainability index is invalid")
+  expect(project.metrics.documentation_coverage == 100.0 and project.metrics.documentation.api.percent == 100.0 and project.metrics.documentation.parameters.percent == 100.0 and project.metrics.documentation.fields.percent == 100.0 and project.metrics.documentation.enum_variants.percent == 100.0 and project.metrics.documentation.overall.percent == 100.0 and project.metrics.maintainability_index >= 0.0 and project.metrics.maintainability_index <= 100.0, "quality metrics", "granular coverage or maintainability index is invalid")
 
   rendered = app.render(project)
   expect(typeof(rendered) != "error", "documentation rendering", "renderer returned an error")
@@ -188,11 +200,13 @@ function main(args)
   html_symbols = readRequired(util.joinPath(html_root, "symbols.html"))
   html_file = readRequired(util.joinPath(html_root, "file-" + util.stableSlug("main.ml") + ".html"))
   html_metrics = readRequired(util.joinPath(html_root, "metrics.html"))
+  html_dependencies = readRequired(util.joinPath(html_root, "dependencies.html"))
   markdown_home = readRequired(util.joinPath(markdown_root, "README.md"))
+  markdown_dependencies = readRequired(util.joinPath(markdown_root, "Dependencies.md"))
   markdown_symbols = readRequired(util.joinPath(markdown_root, "Symbols.md"))
   markdown_metrics = readRequired(util.joinPath(markdown_root, "Metrics.md"))
   expect(strings.contains(html_index, "MiniDoc Fixture") and strings.contains(markdown_home, "MiniDoc Fixture API"), "home pages", "HTML or Markdown home page is missing")
-  expect(strings.contains(html_index, "Generated by <strong>MiniDoc 0.3.0</strong> on <time>" + project.generated_at + "</time> (local time).") and strings.contains(markdown_home, "Generated by MiniDoc 0.3.0 on " + project.generated_at + " (local time)"), "rendered generation metadata", "HTML footer or Markdown home metadata is incomplete")
+  expect(strings.contains(html_index, "Generated by <strong>MiniDoc 0.4.0</strong> on <time>" + project.generated_at + "</time> (local time) from source revision") and strings.contains(markdown_home, "Generated by MiniDoc 0.4.0 on " + project.generated_at + " (local time) from MiniLang source at revision"), "rendered generation metadata", "HTML footer or Markdown home metadata is incomplete")
   expect(strings.contains(html_index, "class=\"lede\">A compact MiniLang project used to verify MiniDoc output.") and strings.contains(markdown_home, "A compact MiniLang project used to verify MiniDoc output."), "project introduction", "configured project description is missing from the home page")
   expect(strings.contains(html_index, "<h2 id=\"overview-title\">Project at a glance</h2>") and strings.contains(html_index, "Documentation coverage") and strings.contains(markdown_home, "## Project at a glance"), "home page metrics", "project overview metrics are missing")
   expect(strings.contains(html_index, "<h2 id=\"explore-title\">Explore the documentation</h2>") and strings.contains(html_index, "<div class=\"cards\"><a href=\"graph-calls.html\">") and strings.contains(html_index, "href=\"diagnostics.html\"><strong>Diagnostics"), "home navigation cards", "Browse links are not contained in the card grid")
@@ -200,10 +214,13 @@ function main(args)
   expect(strings.contains(html_file, "See also") and strings.contains(html_file, "sample.models.createPerson") and strings.contains(html_file, "View source"), "structured HTML tags", "@see or source metadata is missing")
   expect(strings.contains(html_symbols, "sample.app.createDisplay") and strings.contains(markdown_symbols, "sample.models.Person"), "symbol indexes", "public symbols are missing")
   expect(not strings.contains(html_symbols, "secretHelper") and not strings.contains(markdown_symbols, "secretHelper"), "internal filtering", "@internal function leaked into public indexes")
-  expect(strings.contains(html_metrics, "Halstead metrics") and strings.contains(html_metrics, "sample.feature.classify") and strings.contains(markdown_metrics, "Code duplication"), "metrics rendering", "HTML or Markdown metrics content is missing")
-  expect(appearsBefore(html_index, "href=\"graph-calls.html\"><strong>Call graph", "href=\"diagnostics.html\"><strong>Diagnostics") and appearsBefore(html_index, "href=\"diagnostics.html\"><strong>Diagnostics", "href=\"files.html\"><strong>Files") and appearsBefore(html_index, "href=\"files.html\"><strong>Files", "href=\"graph-imports.html\"><strong>Import graph") and appearsBefore(html_index, "href=\"metrics.html\"><strong>Metrics", "href=\"packages.html\"><strong>Packages"), "alphabetical HTML navigation", "browse cards are not alphabetical")
+  expect(strings.contains(html_metrics, "Halstead metrics") and strings.contains(html_metrics, "sample.feature.classify") and strings.contains(html_metrics, "API declarations") and strings.contains(markdown_metrics, "Code duplication") and strings.contains(markdown_metrics, "| Parameters |"), "metrics rendering", "HTML or Markdown metrics content is missing")
+  expect(strings.contains(html_dependencies, "external.helper") and strings.contains(markdown_dependencies, "external.helper") and not strings.contains(html_symbols, "external.helper.passThrough") and not strings.contains(markdown_symbols, "external.helper.passThrough"), "dependency summary mode", "external dependency APIs were expanded or their summary page is missing")
+  expect(appearsBefore(html_index, "href=\"graph-calls.html\"><strong>Call graph", "href=\"diagnostics.html\"><strong>Diagnostics") and appearsBefore(html_index, "href=\"diagnostics.html\"><strong>Diagnostics", "href=\"dependencies.html\"><strong>Dependencies") and appearsBefore(html_index, "href=\"dependencies.html\"><strong>Dependencies", "href=\"files.html\"><strong>Files") and appearsBefore(html_index, "href=\"files.html\"><strong>Files", "href=\"graph-imports.html\"><strong>Import graph") and appearsBefore(html_index, "href=\"metrics.html\"><strong>Metrics", "href=\"packages.html\"><strong>Packages"), "alphabetical HTML navigation", "browse cards are not alphabetical")
   expect(appearsBefore(markdown_home, "- [All symbols]", "- [Call graph]") and appearsBefore(markdown_home, "- [Metrics]", "- [Packages]"), "alphabetical Markdown navigation", "browse links are not alphabetical")
   expect(fs.exists(util.joinPath(html_root, "assets/graph-imports.svg")) and fs.exists(util.joinPath(markdown_root, "assets/graph-calls.svg")), "graph rendering", "expected SVG graph files are missing")
+  graph_imports = readRequired(util.joinPath(html_root, "assets/graph-imports.svg"))
+  expect(strings.contains(graph_imports, "Relations are aggregated by package") and strings.contains(graph_imports, "external.helper") and fs.exists(util.joinPath(html_root, "graph-types.html")) == false, "scalable graphs", "package aggregation, external package visibility, or empty-graph suppression is incorrect")
   expect(fs.exists(util.joinPath(html_root, "search-index.json")) and fs.exists(util.joinPath(markdown_root, ".minidoc-output")), "output manifests", "search index or output manifest is missing")
   html_css = readRequired(util.joinPath(html_root, "assets/minidoc.css"))
   expect(strings.contains(html_css, ".cards a{display:flex;min-width:0") and strings.contains(html_css, "overflow-wrap:anywhere") and strings.contains(html_css, ".cards{grid-template-columns:1fr}"), "responsive package cards", "long card labels are not protected against overflow")
@@ -215,7 +232,15 @@ function main(args)
   rendered_again = app.render(project)
   expect(typeof(rendered_again) != "error" and first_html == readRequired(util.joinPath(html_root, "index.html")) and first_markdown == readRequired(util.joinPath(markdown_root, "README.md")), "deterministic rendering", "same input produced different output")
 
+  project.config.formats = ["html"]
+  project.config.dependency_mode = "full"
+  project.config.html_out = full_root
+  full_rendered = app.render(project)
+  full_symbols = readRequired(util.joinPath(full_root, "symbols.html"))
+  expect(typeof(full_rendered) != "error" and strings.contains(full_symbols, "external.helper.passThrough") and fs.exists(util.joinPath(full_root, "dependencies.html")) == false, "full dependency mode", "full mode did not expand dependency APIs or emitted a redundant summary page")
+
   project.config.formats = ["markdown"]
+  project.config.dependency_mode = "summary"
   project.config.markdown_profile = "wiki"
   project.config.markdown_out = wiki_root
   wiki_rendered = app.render(project)
@@ -235,6 +260,12 @@ function main(args)
     expect(warning_project.diagnostics[0].file_path == "main.ml", "relative diagnostic paths", "diagnostic exposed an absolute local path")
   end if
   expect(app.run([warning_entry, "--check", "--strict", "--no-graphs"]) == 1, "strict warning policy", "document coverage warning did not produce exit code 1")
+
+  quality_entry = util.joinPath(root, "tests/fixtures/quality/main.ml")
+  quality_cfg = configuration.load([quality_entry, "--check", "--no-graphs"])
+  quality_project = app.generate(quality_cfg)
+  expect(typeof(quality_project) != "error" and hasDiagnostic(quality_project, "MD2104") and hasDiagnostic(quality_project, "MD2105"), "documentation contract diagnostics", "missing @param or @returns contracts were not reported")
+  expect(typeof(quality_project) != "error" and hasDiagnostic(quality_project, "MD2202") and countDiagnostics(quality_project, "MD2203") == 1, "summary quality diagnostics", "generic or reused summaries were not reported deterministically")
 
   if _failures > 0 then
     print "MiniDoc tests: " + _failures + " failure(s)."

@@ -5,7 +5,7 @@
 
 MiniDoc is a documentation generator for MiniLang projects, written entirely in MiniLang. It reads the same project structure and source syntax as the self-hosted MiniLang compiler and produces either an offline HTML documentation site, a linked Markdown documentation tree, or both.
 
-> Project status: working preview (`0.3.0`). The end-to-end generator, HTML and Markdown renderers, source metrics, dependency graphs, configuration loader, and MiniLang test suite are implemented. See [Current limitations](#current-limitations) before treating the output as a complete semantic API reference.
+> Project status: working preview (`0.4.0`). The end-to-end generator, HTML and Markdown renderers, source metrics, dependency views, scalable graphs, configuration loader, and MiniLang test suite are implemented. See [Current limitations](#current-limitations) before treating the output as a complete semantic API reference.
 
 The repository dogfoods MiniDoc. Browse the committed [GitHub-friendly API documentation](docs/api/markdown/README.md), or download the repository and open [the offline HTML start page](docs/api/html/index.html). Both trees are regenerated from the documented MiniDoc source with [`minidoc.toml`](minidoc.toml).
 
@@ -19,16 +19,21 @@ The repository dogfoods MiniDoc. Browse the committed [GitHub-friendly API docum
 - Preserves signatures, parameter types, optional markers, defaults, variadic parameters, return types, and function modifiers.
 - Generates an offline HTML site with navigation and client-side symbol search.
 - Generates a project-specific introduction, an at-a-glance metrics dashboard, and responsive navigation cards on the home page.
-- Adds the MiniDoc version and local generation timestamp to HTML footers and Markdown home pages.
+- Adds the MiniDoc version, local generation timestamp, and source revision to generated metadata.
 - Keeps long package and navigation card labels inside responsive card boundaries.
 - Generates GitHub-compatible repository Markdown or a GitHub Wiki tree with `Home.md` and `_Sidebar.md`.
-- Emits static SVG import, call, and interface-implementation graphs without Graphviz.
-- Calculates LOC, cyclomatic and cognitive complexity, duplicate code, Halstead metrics, maintainability, and documentation coverage.
+- Emits deduplicated package-level SVG import, call, and interface-implementation graphs without Graphviz, with optional symbol-level detail.
+- Calculates LOC, cyclomatic and cognitive complexity, duplicate code, Halstead metrics, maintainability, and category-specific documentation coverage.
+- Keeps imported libraries compact by default: dependency source files are summarized without expanding their complete APIs.
 - Produces stable page names, anchors, case-insensitive alphabetical ordering, and output manifests for reproducible builds.
 - Escapes generated HTML and ships with a restrictive Content Security Policy.
-- Warns with `MD1201` when a MiniLang source file has no recognized SPDX or copyright/license header.
+- Warns about missing license headers, incomplete parameter and return contracts, generic summaries, and excessively reused documentation text.
 
 ## Quick start
+
+### Prebuilt releases
+
+GitHub releases provide separate archives for Windows x64 and Linux x64. Each archive contains the MiniDoc executable, this README, and the Apache 2.0 license. Extract the archive and run `minidoc.exe --help` on Windows or `./minidoc --help` on Linux.
 
 ### Prerequisites
 
@@ -132,7 +137,9 @@ Supported structured tags are:
 | `@group name` | Records a logical documentation group for future presentation. |
 | `@internal` | Hides a declaration unless `--include-internal` is active. |
 
-MiniDoc currently verifies duplicate and unknown `@param` names and warns when `@returns` is attached to a function without a declared return contract. Public functions, structs, interfaces, enums, and extern functions without a summary also produce documentation warnings. Every project-owned MiniLang source file is checked for a leading license declaration; imported dependencies are documented but do not produce project policy warnings. `MD1201` accepts an SPDX identifier or a conventional header containing copyright and license wording within the first 4 KiB.
+MiniDoc verifies duplicate and unknown `@param` names, missing parameter descriptions, missing return contracts, and `@returns` tags attached to functions without a return value. Public functions, methods, structs, interfaces, enums, and extern functions without a summary also produce documentation warnings. Summary-quality validation detects the known “behavior for the active subsystem” placeholder and exact summaries reused at or above a configurable threshold.
+
+Every project-owned MiniLang source file is checked for a leading license declaration. Imported dependencies do not produce project policy warnings. `MD1201` accepts an SPDX identifier or a conventional header containing copyright and license wording within the first 4 KiB. Contract and summary-quality warnings can independently target `off`, `public`, or `all` declarations.
 
 ## Output formats
 
@@ -140,7 +147,7 @@ MiniDoc currently verifies duplicate and unknown `@param` names and warns when `
 
 The HTML output is a static, offline site. It includes:
 
-- home, package, file, type, symbol, diagnostics, and metrics pages;
+- home, package, file, type, symbol, diagnostics, dependency-summary, and metrics pages;
 - responsive styling with no external assets;
 - a local JSON symbol index and small search script;
 - source links when a repository URL is configured;
@@ -156,6 +163,7 @@ build/minidoc/html/
 ├── files.html
 ├── symbols.html
 ├── diagnostics.html
+├── dependencies.html      # Summary mode when dependencies exist
 ├── metrics.html
 ├── package-*.html
 ├── file-*.html
@@ -185,6 +193,7 @@ build/minidoc/markdown/
 ├── Files.md
 ├── Symbols.md
 ├── Diagnostics.md
+├── Dependencies.md        # Summary mode when dependencies exist
 ├── Metrics.md
 ├── Package-*.md
 ├── File-*.md
@@ -199,7 +208,7 @@ All links are relative so the tree can be committed under `docs/`, copied into a
 
 ## Source metrics
 
-The `Metrics` page is generated for both HTML and Markdown output. Metrics use target-specific, conditionally preprocessed files inside the configured source roots, so inactive `#if` branches are not included. Resolved imports outside those roots remain documented but are excluded from project metrics, as are excluded paths and generated documentation.
+The `Metrics` page is generated for both HTML and Markdown output. Metrics use target-specific, conditionally preprocessed files inside the configured source roots, so inactive `#if` branches are not included. Resolved imports outside those roots are excluded from project metrics, as are excluded paths and generated documentation.
 
 | Metric | Definition |
 | --- | --- |
@@ -209,7 +218,7 @@ The `Metrics` page is generated for both HTML and Markdown output. Metrics use t
 | Code duplication | Repeated windows of six contiguous token-normalized code lines. Comments and formatting whitespace are ignored, and overlapping matches count each duplicated line once. |
 | Halstead | Distinct and total operators and operands, vocabulary, length, volume, difficulty, effort, and estimated defects, calculated from MiniLang lexer tokens. |
 | Maintainability index | A normalized 0–100 score based on Halstead volume, cyclomatic complexity, and source lines. The project value is source-line weighted across files. |
-| Documentation coverage | Percentage of non-internal API declarations checked by `MD2201`—functions, structs, interfaces, enums, and extern functions—that have a documentation summary. |
+| Documentation coverage | Separate ratios for API declarations, parameters, fields, constants, globals, enum variants, and their combined total. Empty categories report 100% and do not increase the overall numerator or denominator. |
 
 The page contains project totals, an alphabetical per-file table, an alphabetical per-function table, and up to 200 representative clone groups. Aggregate clone totals always include every detected group.
 
@@ -225,7 +234,11 @@ MiniDoc renders three independent graph types:
 | Calls | Statically recognizable function and method calls | Exact, dynamic, or unresolved |
 | Types | `struct implements Interface` relationships | Exact or unresolved |
 
-Call analysis is deliberately conservative. MiniLang supports dynamic values and higher-order calls, so MiniDoc never presents every inferred call as compiler-proven. Non-exact edges are dashed in SVG output. `graphs.max_nodes` limits graph size; larger graphs are marked as truncated.
+Call analysis is deliberately conservative. MiniLang supports dynamic values and higher-order calls, so MiniDoc never presents every inferred call as compiler-proven. Non-exact edges are dashed in SVG output.
+
+Graphs default to `package` granularity. Repeated symbol relationships collapse into one package edge, same-package edges disappear, and graph height remains useful for large projects. Set `graphs.granularity = "symbol"` for declaration-level detail. Empty graph pages are hidden by default, while `graphs.max_nodes` still caps either representation.
+
+Dependency output is independently controlled with `documentation.dependencies`: `none` excludes external source dependencies from generated views, `summary` creates one compact dependency page and keeps external declarations out of API indexes, and `full` restores complete file and symbol pages for every loaded dependency. Project metrics and policy diagnostics always remain scoped to configured source roots.
 
 ## Command line
 
@@ -248,10 +261,16 @@ minidoc --config <minidoc.toml> [options]
 | `--html-out <dir>` | Override the HTML output directory. |
 | `--md-out <dir>` | Override the Markdown output directory. |
 | `--md-profile <profile>` | Select `repository` or `wiki`. |
+| `--dependencies <mode>` | Select external dependency output: `none`, `summary`, or `full`. |
 | `--graph <list>` | Enable a comma-separated subset of `imports,calls,types`. |
+| `--graph-granularity <value>` | Select `package` or `symbol` graph nodes. |
 | `--no-graphs` | Disable all graph output. |
+| `--show-empty-graphs` | Generate configured graph pages even when they contain no relations. |
 | `--reachable-only` | Exclude source files not reachable from the entry file. |
 | `--include-internal` | Include declarations tagged with `@internal`. |
+| `--contract-warnings <scope>` | Select `off`, `public`, or `all` contract validation. |
+| `--summary-quality <scope>` | Select `off`, `public`, or `all` summary-quality validation. |
+| `--revision <value>` | Record an explicit source revision instead of auto-detecting Git `HEAD`. |
 | `--check` | Analyze and validate without writing output. |
 | `--strict` | Return exit code `1` if documentation warnings exist. |
 | `--keep-going` | Retain partial models and label output incomplete after parse or import errors. |
@@ -282,6 +301,10 @@ exclude = ["generated", "tests/fixtures"]
 include_internal = false
 reachable_only = false
 strict = false
+dependencies = "summary"
+contract_warnings = "public"
+summary_quality_warnings = "public"
+duplicate_summary_threshold = 3
 
 [output]
 formats = ["html", "markdown"]
@@ -294,13 +317,16 @@ imports = true
 calls = true
 types = true
 max_nodes = 250
+granularity = "package"
+hide_empty = true
 
 [links]
 repository = "https://github.com/example/project"
 ref = "main"
+# revision = "0123456789abcdef" # Optional reproducible override
 ```
 
-The optional `project.description` value is used as the introduction on HTML and Markdown home pages. Without it, MiniDoc supplies a concise project-name-based fallback.
+The optional `project.description` value is used as the introduction on HTML and Markdown home pages. Without it, MiniDoc supplies a concise project-name-based fallback. When `links.revision` is absent, MiniDoc reads the repository or worktree `HEAD` directly and includes the resolved commit in generated metadata.
 
 The MiniDoc parser intentionally accepts a focused TOML subset: section headers, scalar strings, booleans, integers, and arrays of quoted strings. Unknown fields fail fast instead of being silently ignored. Compiler-only fields in `minilang.toml` are accepted and ignored where they do not affect documentation.
 
@@ -327,6 +353,16 @@ The entry file and all resolved imports are analyzed first. Unless `reachable_on
 ## Diagnostics and exit codes
 
 Diagnostics include a stable code, severity, file, line, column, and message. They are printed to the console and included in generated output.
+
+| Code | Meaning |
+| --- | --- |
+| `MD1201` | Project source file has no recognized license header. |
+| `MD2101`–`MD2103` | Existing parameter or return tag is invalid or duplicated. |
+| `MD2104` | One or more callable parameters have no documentation. |
+| `MD2105` | A callable return value has no `@returns` documentation. |
+| `MD2201` | A public API declaration has no summary. |
+| `MD2202` | A documentation summary matches a known generic placeholder. |
+| `MD2203` | The same summary is reused by too many declarations. |
 
 | Exit code | Meaning |
 | ---: | --- |
@@ -386,14 +422,16 @@ The MiniLang test suite covers:
 - function, type, enum, field, and parameter extraction;
 - aliased call resolution and interface implementation edges;
 - HTML, repository Markdown, and GitHub Wiki rendering;
-- generator version, timestamp, and responsive long-label card rendering;
+- generator version, timestamp, source revision, and responsive long-label card rendering;
 - configurable project introductions, home-page metrics, and contained navigation-card markup;
 - internal symbol filtering and safe HTML output;
-- LOC, cyclomatic complexity, cognitive complexity, Halstead, duplication, maintainability, and documentation coverage;
+- LOC, cyclomatic complexity, cognitive complexity, Halstead, duplication, maintainability, and granular documentation coverage;
+- compact and full dependency modes, dependency summaries, and external API filtering;
+- contract, generic-summary, repeated-summary, and missing-license diagnostics;
 - case-insensitive alphabetical model, navigation, metrics, and manifest ordering;
-- SVG graph files, search index, and output manifests;
+- package-aggregated SVG graph files, empty-graph suppression, search indexes, and output manifests;
 - deterministic regeneration from identical input.
-- missing-license-header diagnostics and strict warning handling.
+- stale generated-file cleanup and strict warning handling.
 
 The fixture project itself contains packages, imports, conditional code, interfaces, structs, methods, an enum, an orphan module, structured comments, an internal function, known decision complexity, and a duplicate-code pair.
 
@@ -404,11 +442,11 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development conventions and self-docu
 - Call graphs are static approximations. Calls through arbitrary values, callbacks, reflection-like patterns, and some instance receivers cannot be resolved exactly.
 - `@see` values are displayed but are not yet validated or converted into symbol links.
 - Markdown in long descriptions supports paragraphs, headings, unordered lists, and fenced code in HTML output; it is not a complete CommonMark implementation.
-- Graph layout is deterministic and dependency-free, but intentionally simple. Very large graphs should be filtered or capped.
+- Graph layout is deterministic and dependency-free, but intentionally simple. Symbol-level graphs for very large projects should be capped.
 - Directory-link and junction behavior depends on the filesystem implementation exposed by the MiniLang standard library; linked source trees should be excluded explicitly when necessary.
 - Duplicate detection currently finds exact token-normalized line windows; it does not identify renamed or structurally similar clones.
-- Metric thresholds and the six-line clone window are not configurable in `0.3.0`.
-- Incremental model caching, API compatibility reports, theme selection, and plugin APIs are not implemented in `0.3.0`.
+- Metric thresholds and the six-line clone window are not configurable in `0.4.0`.
+- Incremental model caching, API compatibility reports, theme selection, and plugin APIs are not implemented in `0.4.0`.
 
 ## Roadmap
 
