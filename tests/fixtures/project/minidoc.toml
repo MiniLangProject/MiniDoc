@@ -1,0 +1,27 @@
+[project]
+name = "MiniDoc Fixture"
+description = "A compact MiniLang project used to verify MiniDoc output."
+manifest = "minilang.toml"
+source_roots = ["."]
+exclude = ["build"]
+
+[documentation]
+include_internal = false
+reachable_only = false
+strict = false
+
+[output]
+formats = ["html", "markdown"]
+html_dir = "build/docs/html"
+markdown_dir = "build/docs/markdown"
+markdown_profile = "repository"
+
+[graphs]
+imports = true
+calls = true
+types = true
+max_nodes = 100
+
+[links]
+repository = "https://github.com/example/minidoc-fixture"
+ref = "main"

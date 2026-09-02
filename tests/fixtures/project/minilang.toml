@@ -1,0 +1,8 @@
+[project]
+entry = "main.ml"
+output = "build/fixture.exe"
+include = ["."]
+target = "windows-x64"
+
+[defines]
+FEATURE = true

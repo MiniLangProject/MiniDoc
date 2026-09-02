@@ -1,0 +1,29 @@
+[project]
+name = "MiniDoc"
+description = "MiniDoc is a self-hosted documentation generator for MiniLang projects with HTML, GitHub-compatible Markdown, dependency graphs, source metrics, and documentation diagnostics."
+entry = "src/main.ml"
+source_roots = ["src"]
+include = ["src", "../MiniLangCompilerML"]
+exclude = ["build", "docs/api"]
+target = "windows-x64"
+
+[documentation]
+include_internal = true
+reachable_only = false
+strict = false
+
+[output]
+formats = ["html", "markdown"]
+html_dir = "docs/api/html"
+markdown_dir = "docs/api/markdown"
+markdown_profile = "repository"
+
+[graphs]
+imports = true
+calls = true
+types = true
+max_nodes = 300
+
+[links]
+repository = "https://github.com/MiniLangProject/MiniDoc"
+ref = "main"

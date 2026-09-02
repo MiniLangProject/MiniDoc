@@ -1,0 +1,29 @@
+[project]
+name = "Example MiniLang Project"
+description = "A short introduction displayed on the generated home page."
+manifest = "../MyProject/minilang.toml"
+source_roots = ["../MyProject/src"]
+exclude = ["generated", "tests/fixtures"]
+
+[documentation]
+include_internal = false
+reachable_only = false
+strict = false
+page_granularity = "container"
+
+[output]
+formats = ["html", "markdown"]
+html_dir = "build/minidoc/html"
+markdown_dir = "build/minidoc/markdown"
+markdown_profile = "repository"
+
+[graphs]
+imports = true
+calls = true
+types = true
+format = "svg"
+max_nodes = 250
+
+[links]
+repository = "https://github.com/example/project"
+ref = "main"

@@ -1,0 +1,13 @@
+* text=auto
+
+*.css text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.ml text eol=lf
+*.sh text eol=lf
+*.svg text eol=lf
+*.toml text eol=lf
+.minidoc-output text eol=lf
+*.ps1 text eol=crlf
