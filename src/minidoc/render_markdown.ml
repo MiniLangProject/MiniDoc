@@ -134,6 +134,12 @@ function _appendTagSections(writer, doc_symbol)
   examples = []
   errors = []
   see_items = []
+  test_role = ""
+  test_name = ""
+  skip_reason = ""
+  timeout = ""
+  categories = []
+  covers = []
   if len(doc_symbol.tags) > 0 then
     for i = 0 to len(doc_symbol.tags) - 1
       tag = doc_symbol.tags[i]
@@ -143,6 +149,12 @@ function _appendTagSections(writer, doc_symbol)
       else if tag.name == "example" then examples = examples + [tag.text]
       else if tag.name == "error" then errors = errors + [tag]
       else if tag.name == "see" then see_items = see_items + [tag]
+      else if tag.name == "testmethod" then test_role = "test method" test_name = tag.text
+      else if tag.name == "beforeall" or tag.name == "afterall" or tag.name == "beforeeach" or tag.name == "aftereach" then test_role = "fixture " + tag.name
+      else if tag.name == "skip" then skip_reason = tag.text
+      else if tag.name == "timeout" then timeout = tag.key
+      else if tag.name == "category" then categories = categories + [tag.key]
+      else if tag.name == "covers" then covers = covers + [tag.key]
       end if
     end for
   end if
@@ -183,6 +195,14 @@ function _appendTagSections(writer, doc_symbol)
       if see_items[i].text != "" then writer.appendString(" — " + see_items[i].text) end if
       writer.appendString("\n")
     end for
+  end if
+  if test_role != "" then
+    writer.appendString("\n**Test metadata**\n\n- Role: `" + test_role + "`\n")
+    if test_name != "" then writer.appendString("- Display name: " + test_name + "\n") end if
+    if len(categories) > 0 then writer.appendString("- Categories: `" + strings.join(categories, "`, `") + "`\n") end if
+    if timeout != "" then writer.appendString("- Timeout: `" + timeout + " ms`\n") end if
+    if skip_reason != "" then writer.appendString("- Skipped: " + skip_reason + "\n") end if
+    if len(covers) > 0 then writer.appendString("- Covers: `" + strings.join(covers, "`, `") + "`\n") end if
   end if
   if len(examples) > 0 then
     writer.appendString("\n**Examples**\n\n")
@@ -310,7 +330,7 @@ function _renderHome(project)
   if project.config.dependency_mode == "summary" and _hasDependencies(project) then writer.appendString("- [Dependencies](Dependencies.md)\n") end if
   writer.appendString("- [Files](Files.md)\n")
   if _graphEnabled(project, "imports", project.config.graph_imports) then writer.appendString("- [Import graph](Graph-Imports.md)\n") end if
-  writer.appendString("- [Metrics](Metrics.md)\n- [Packages](Packages.md)\n")
+  writer.appendString("- [Metrics](Metrics.md)\n- [Packages](Packages.md)\n- [Tests](Tests.md)\n")
   if _graphEnabled(project, "implements", project.config.graph_types) then writer.appendString("- [Type graph](Graph-Types.md)\n") end if
   writer.appendString("\n## Packages\n\n")
   packages = _packages(project)
@@ -355,6 +375,88 @@ function _renderSymbols(project)
       writer.appendString("| [" + util.markdownTableEscape(listed_sym.qualified_name) + "](" + _symbolLink(project, listed_sym) + ") | `" + listed_sym.kind + "` | `" + util.markdownTableEscape(listed_sym.signature) + "` |\n")
     end for
   end if
+  return writer.toString()
+end function
+
+/// Return whether a documented declaration carries a named tag.
+/// @internal
+function _symbolHasTag(doc_symbol, name)
+  if len(doc_symbol.tags) == 0 then return false end if
+  for i = 0 to len(doc_symbol.tags) - 1
+    if doc_symbol.tags[i].name == name then return true end if
+  end for
+  return false
+end function
+
+/// Collect non-empty tag keys used by test metadata.
+/// @internal
+function _symbolTagKeys(doc_symbol, name)
+  result = []
+  if len(doc_symbol.tags) == 0 then return result end if
+  for i = 0 to len(doc_symbol.tags) - 1
+    if doc_symbol.tags[i].name == name and doc_symbol.tags[i].key != "" then result = result + [doc_symbol.tags[i].key] end if
+  end for
+  return result
+end function
+
+/// Return the lifecycle role carried by a fixture declaration.
+/// @internal
+function _symbolFixtureRole(doc_symbol)
+  roles = ["beforeall", "afterall", "beforeeach", "aftereach"]
+  for i = 0 to len(roles) - 1
+    if _symbolHasTag(doc_symbol, roles[i]) then return "@" + roles[i] end if
+  end for
+  return ""
+end function
+
+/// Render the std.test discovery inventory.
+/// @internal
+function _renderTests(project)
+  writer = builders.StringBuilder.withCapacity(4096)
+  writer.appendString("# Tests\n\n[Home](" + _homeName(project) + ")\n\n")
+  count = 0
+  fixture_count = 0
+  if len(project.symbols) > 0 then
+    for i = 0 to len(project.symbols) - 1
+      if _visible(project, project.symbols[i]) then
+        if _symbolHasTag(project.symbols[i], "testmethod") then count = count + 1
+        else if _symbolFixtureRole(project.symbols[i]) != "" then fixture_count = fixture_count + 1
+        end if
+      end if
+    end for
+  end if
+  writer.appendString("MiniDoc found **" + count + "** declaration(s) discoverable by `mltest`.\n\n")
+  writer.appendString("| Test | Package | Categories | State | Covers |\n| --- | --- | --- | --- | --- |\n")
+  if len(project.symbols) > 0 then
+    for i = 0 to len(project.symbols) - 1
+      test_symbol = project.symbols[i]
+      if _visible(project, test_symbol) == false or _symbolHasTag(test_symbol, "testmethod") == false then continue end if
+      categories = _symbolTagKeys(test_symbol, "category")
+      covers = _symbolTagKeys(test_symbol, "covers")
+      state = "enabled"
+      if _symbolHasTag(test_symbol, "skip") then state = "skipped" end if
+      package_name = test_symbol.package_name
+      if package_name == "" then package_name = "(global)" end if
+      writer.appendString("| [" + util.markdownTableEscape(test_symbol.qualified_name) + "](" + _symbolLink(project, test_symbol) + ") | `" + util.markdownTableEscape(package_name) + "` | ")
+      if len(categories) == 0 then writer.appendString("—") else writer.appendString("`" + util.markdownTableEscape(strings.join(categories, "`, `")) + "`") end if
+      writer.appendString(" | " + state + " | ")
+      if len(covers) == 0 then writer.appendString("—") else writer.appendString("`" + util.markdownTableEscape(strings.join(covers, "`, `")) + "`") end if
+      writer.appendString(" |\n")
+    end for
+  end if
+  writer.appendString("\n## Fixtures\n\nMiniDoc found **" + fixture_count + "** lifecycle declaration(s).\n\n")
+  writer.appendString("| Fixture | Role | Package |\n| --- | --- | --- |\n")
+  if len(project.symbols) > 0 then
+    for i = 0 to len(project.symbols) - 1
+      fixture_symbol = project.symbols[i]
+      fixture_role = _symbolFixtureRole(fixture_symbol)
+      if _visible(project, fixture_symbol) == false or fixture_role == "" then continue end if
+      fixture_package = fixture_symbol.package_name
+      if fixture_package == "" then fixture_package = "(global)" end if
+      writer.appendString("| [" + util.markdownTableEscape(fixture_symbol.qualified_name) + "](" + _symbolLink(project, fixture_symbol) + ") | `" + fixture_role + "` | `" + util.markdownTableEscape(fixture_package) + "` |\n")
+    end for
+  end if
+  writer.appendString("\nMiniDoc validates lifecycle declarations together with test signatures.\n")
   return writer.toString()
 end function
 
@@ -637,7 +739,7 @@ function _renderSidebar(project)
   if project.config.dependency_mode == "summary" and _hasDependencies(project) then writer.appendString("- [Dependencies](Dependencies)\n") end if
   writer.appendString("- [Files](Files)\n")
   if _graphEnabled(project, "imports", project.config.graph_imports) then writer.appendString("- [Import graph](Graph-Imports)\n") end if
-  writer.appendString("- [Metrics](Metrics)\n- [Packages](Packages)\n")
+  writer.appendString("- [Metrics](Metrics)\n- [Packages](Packages)\n- [Tests](Tests)\n")
   if _graphEnabled(project, "implements", project.config.graph_types) then writer.appendString("- [Type graph](Graph-Types)\n") end if
   packages = _packages(project)
   if len(packages) > 0 then writer.appendString("- Packages\n") end if
@@ -693,6 +795,8 @@ function render(project)
   generated = _writeGenerated(root, generated, "Packages.md", _renderPackagesIndex(project))
   if typeof(generated) == "error" then return generated end if
   generated = _writeGenerated(root, generated, "Diagnostics.md", _renderDiagnostics(project))
+  if typeof(generated) == "error" then return generated end if
+  generated = _writeGenerated(root, generated, "Tests.md", _renderTests(project))
   if typeof(generated) == "error" then return generated end if
   if project.config.dependency_mode == "summary" and _hasDependencies(project) then
     generated = _writeGenerated(root, generated, "Dependencies.md", _renderDependencies(project))

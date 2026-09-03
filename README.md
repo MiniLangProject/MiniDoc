@@ -135,9 +135,18 @@ Supported structured tags are:
 | `@since version` | Records the first project version containing the API. |
 | `@example text` | Adds example content. Continuation lines belong to the tag. |
 | `@group name` | Records a logical documentation group for future presentation. |
+| `@testmethod [name]` | Marks a synchronous zero-parameter procedure as a test and optionally gives it a display name. |
+| `@beforeall`, `@afterall` | Mark suite-level setup and teardown procedures. |
+| `@beforeeach`, `@aftereach` | Mark per-test setup and teardown procedures. |
+| `@category name` | Adds a test category. The tag may be repeated. |
+| `@covers symbol` | Records the API or behavior covered by a test. The tag may be repeated. |
+| `@timeout milliseconds` | Sets a positive per-test timeout. |
+| `@skip [reason]` | Marks a test as intentionally skipped and optionally records why. |
 | `@internal` | Hides a declaration unless `--include-internal` is active. |
 
 MiniDoc verifies duplicate and unknown `@param` names, missing parameter descriptions, missing return contracts, and `@returns` tags attached to functions without a return value. Public functions, methods, structs, interfaces, enums, and extern functions without a summary also produce documentation warnings. Summary-quality validation detects the known “behavior for the active subsystem” placeholder and exact summaries reused at or above a configurable threshold.
+
+Test metadata is validated as documentation as well: roles must be attached to supported synchronous zero-parameter procedures, timeouts must be positive integers, category and coverage values must be present, and fixture roles must be unique within one source-file suite. MiniDoc presents discovered tests, fixtures, categories, coverage declarations, timeouts, and skip reasons on dedicated test inventory pages. It documents this metadata but deliberately does not execute tests; the compiler repositories provide `std.test` and `mltest` for execution.
 
 Every project-owned MiniLang source file is checked for a leading license declaration. Imported dependencies do not produce project policy warnings. `MD1201` accepts an SPDX identifier or a conventional header containing copyright and license wording within the first 4 KiB. Contract and summary-quality warnings can independently target `off`, `public`, or `all` declarations.
 
@@ -147,7 +156,7 @@ Every project-owned MiniLang source file is checked for a leading license declar
 
 The HTML output is a static, offline site. It includes:
 
-- home, package, file, type, symbol, diagnostics, dependency-summary, and metrics pages;
+- home, package, file, type, symbol, test-inventory, diagnostics, dependency-summary, and metrics pages;
 - responsive styling with no external assets;
 - a local JSON symbol index and small search script;
 - source links when a repository URL is configured;
@@ -162,6 +171,7 @@ build/minidoc/html/
 ├── packages.html
 ├── files.html
 ├── symbols.html
+├── tests.html
 ├── diagnostics.html
 ├── dependencies.html      # Summary mode when dependencies exist
 ├── metrics.html
@@ -192,6 +202,7 @@ build/minidoc/markdown/
 ├── Packages.md
 ├── Files.md
 ├── Symbols.md
+├── Tests.md
 ├── Diagnostics.md
 ├── Dependencies.md        # Summary mode when dependencies exist
 ├── Metrics.md
@@ -419,6 +430,7 @@ The MiniLang test suite covers:
 
 - path, JSON, and HTML escaping helpers;
 - documentation comment and tag parsing;
+- test-role metadata validation and HTML/Markdown test inventory rendering;
 - project-manifest and MiniDoc configuration merging;
 - source discovery, reachability, and compile-time definitions;
 - function, type, enum, field, and parameter extraction;
@@ -443,6 +455,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development conventions and self-docu
 
 - Call graphs are static approximations. Calls through arbitrary values, callbacks, reflection-like patterns, and some instance receivers cannot be resolved exactly.
 - `@see` values are displayed but are not yet validated or converted into symbol links.
+- MiniDoc inventories `@testmethod` and fixture metadata but does not run tests or measure runtime coverage.
 - Markdown in long descriptions supports paragraphs, headings, unordered lists, and fenced code in HTML output; it is not a complete CommonMark implementation.
 - Graph layout is deterministic and dependency-free, but intentionally simple. Symbol-level graphs for very large projects should be capped.
 - Directory-link and junction behavior depends on the filesystem implementation exposed by the MiniLang standard library; linked source trees should be excluded explicitly when necessary.

@@ -97,7 +97,7 @@ function _parseBlock(target_kind, start_pos, end_pos, start_line, end_line, raw_
         keyed = _firstWord(remainder)
         key = keyed[0]
         text = keyed[1]
-      else if tag_name == "see" or tag_name == "since" or tag_name == "group" then
+      else if tag_name == "see" or tag_name == "since" or tag_name == "group" or tag_name == "category" or tag_name == "covers" or tag_name == "timeout" then
         keyed2 = _firstWord(remainder)
         key = keyed2[0]
         text = keyed2[1]

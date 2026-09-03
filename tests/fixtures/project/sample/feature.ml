@@ -43,4 +43,27 @@ function callableKind(value) returns string
   if typeof(value) == "function" then return "callable" end if
   return "other"
 end function
+
+/// Prepares the source-file test fixture.
+/// @beforeeach
+function prepareFeatureTest()
+end function
+
+/// Groups static documentation-test declarations.
+struct FeatureTests
+  /// Verifies the public decorator contract.
+  /// @testmethod decorated display name
+  /// @category unit
+  /// @covers sample.feature.decorate
+  /// @timeout 1000
+  static function decoratedName()
+  end function
+
+  /// Documents an intentionally disabled integration case.
+  /// @testmethod unavailable integration
+  /// @category integration
+  /// @skip external service is unavailable in the fixture
+  static function unavailableIntegration()
+  end function
+end struct
 #endif

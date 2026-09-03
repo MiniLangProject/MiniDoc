@@ -8,19 +8,19 @@ Static metrics are calculated from target-specific preprocessed MiniLang files i
 
 | Metric | Value |
 | --- | ---: |
-| Blank lines | 383 |
-| Clone groups | 61 |
-| Cognitive complexity | 2624 (maximum per function: 108) |
-| Comment lines | 781 |
-| Cyclomatic complexity | 1822 (average: 6.98, maximum: 54) |
+| Blank lines | 396 |
+| Clone groups | 89 |
+| Cognitive complexity | 2889 (maximum per function: 108) |
+| Comment lines | 805 |
+| Cyclomatic complexity | 1970 (average: 7.22, maximum: 54) |
 | Documentation coverage | 100% (69 of 69 documentation items) |
-| Duplicated lines | 340 (6.94%) |
+| Duplicated lines | 476 (9.22%) |
 | Files | 13 |
-| Functions | 261 |
-| Maintainability index | 3.2 / 100 |
-| Physical lines | 6066 |
-| Source lines | 4902 |
-| Statements | 3946 |
+| Functions | 273 |
+| Maintainability index | 3.01 / 100 |
+| Physical lines | 6363 |
+| Source lines | 5162 |
+| Statements | 4203 |
 
 ## Documentation coverage
 
@@ -40,24 +40,24 @@ Coverage is split by documentation contract so strong API summaries cannot hide 
 
 | Distinct operators | Distinct operands | Total operators | Total operands | Vocabulary | Length | Volume | Difficulty | Effort | Estimated defects |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 40 | 1919 | 24509 | 18333 | 1959 | 42842 | 468515.86 | 191.07 | 89518513.26 | 156.17 |
+| 40 | 2021 | 26124 | 19508 | 2061 | 45632 | 502368.56 | 193.05 | 96983730.48 | 167.46 |
 
 ## Files
 
 | File | SLOC | Functions | Cyclomatic total / avg / max | Cognitive total / max | Duplication | Halstead volume | MI |
 | --- | ---: | ---: | --- | --- | --- | ---: | ---: |
 | [`src/main.ml`](File-src-main-ml-186468670.md) | 4 | 1 | 1 / 1 / 1 | 0 / 0 | 0 (0%) | 74.01 | 73.64 |
-| [`src/minidoc/analyzer.ml`](File-src-minidoc-analyzer-ml-492085543.md) | 707 | 33 | 318 / 9.64 / 30 | 481 / 59 | 14 (1.98%) | 66150.7 | 0 |
+| [`src/minidoc/analyzer.ml`](File-src-minidoc-analyzer-ml-492085543.md) | 783 | 37 | 369 / 9.97 / 30 | 567 / 59 | 14 (1.79%) | 74225.22 | 0 |
 | [`src/minidoc/app.ml`](File-src-minidoc-app-ml-1489174864.md) | 160 | 10 | 53 / 5.3 / 13 | 49 / 12 | 0 (0%) | 7953.14 | 17.48 |
 | [`src/minidoc/config.ml`](File-src-minidoc-config-ml-2001755147.md) | 374 | 18 | 216 / 12 / 54 | 357 / 108 | 0 (0%) | 30321.89 | 0 |
-| [`src/minidoc/doc_comments.ml`](File-src-minidoc-doc-comments-ml-1995285450.md) | 262 | 11 | 85 / 7.73 / 22 | 115 / 39 | 0 (0%) | 14814.2 | 6.61 |
+| [`src/minidoc/doc_comments.ml`](File-src-minidoc-doc-comments-ml-1995285450.md) | 262 | 11 | 88 / 8 / 22 | 118 / 39 | 0 (0%) | 14954.39 | 6.18 |
 | [`src/minidoc/graph.ml`](File-src-minidoc-graph-ml-29661697.md) | 259 | 11 | 88 / 8 / 33 | 140 / 66 | 20 (7.72%) | 15986.11 | 6.09 |
 | [`src/minidoc/loader.ml`](File-src-minidoc-loader-ml-952553188.md) | 257 | 14 | 104 / 7.43 / 19 | 151 / 32 | 0 (0%) | 18893.45 | 3.5 |
 | [`src/minidoc/metrics.ml`](File-src-minidoc-metrics-ml-1301618694.md) | 758 | 36 | 238 / 6.61 / 35 | 365 / 86 | 7 (0.92%) | 48089.07 | 0 |
 | [`src/minidoc/model.ml`](File-src-minidoc-model-ml-438170230.md) | 300 | 6 | 6 / 1 / 1 | 0 / 0 | 23 (7.67%) | 6318.46 | 18.55 |
 | [`src/minidoc/ordering.ml`](File-src-minidoc-ordering-ml-677118389.md) | 159 | 12 | 50 / 4.17 / 12 | 61 / 27 | 12 (7.55%) | 8708.94 | 17.67 |
-| [`src/minidoc/render_html.ml`](File-src-minidoc-render-html-ml-1870373141.md) | 617 | 37 | 241 / 6.51 / 38 | 353 / 58 | 120 (19.45%) | 63048.33 | 0 |
-| [`src/minidoc/render_markdown.ml`](File-src-minidoc-render-markdown-ml-212465045.md) | 631 | 35 | 230 / 6.57 / 37 | 334 / 58 | 136 (21.55%) | 56844.37 | 0 |
+| [`src/minidoc/render_html.ml`](File-src-minidoc-render-html-ml-1870373141.md) | 709 | 41 | 288 / 7.02 / 43 | 441 / 80 | 188 (26.52%) | 73437.94 | 0 |
+| [`src/minidoc/render_markdown.ml`](File-src-minidoc-render-markdown-ml-212465045.md) | 723 | 39 | 277 / 7.1 / 38 | 422 / 71 | 204 (28.22%) | 66566.77 | 0 |
 | [`src/minidoc/util.ml`](File-src-minidoc-util-ml-1632979029.md) | 414 | 37 | 192 / 5.19 / 24 | 218 / 42 | 8 (1.93%) | 26330 | 0 |
 
 ## Functions
@@ -65,38 +65,42 @@ Coverage is split by documentation contract so strong API summaries cannot hide 
 | Function | Location | LOC | Statements | Cyclomatic | Cognitive | Max nesting | Halstead volume | MI |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | [`main`](File-src-main-ml-186468670.md#function-function-main-function-main-args-src-main-ml-776500952) | `src/main.ml:18` | 3 | 1 | 1 | 0 | 0 | 46.51 | 77.78 |
-| [`minidoc.analyzer._addEnum`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addenum-function-addenum-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-1898800049) | `src/minidoc/analyzer.ml:591` | 24 | 21 | 5 | 7 | 3 | 1786.26 | 46.45 |
-| [`minidoc.analyzer._addExternFunction`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addexternfunction-function-addexternfunction-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-1344035985) | `src/minidoc/analyzer.ml:496` | 22 | 21 | 7 | 9 | 3 | 1793.16 | 46.99 |
-| [`minidoc.analyzer._addFunction`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addfunction-function-addfunction-project-file-node-kind-prefix-namespace-name-container-id-src-minidoc-analyzer-ml-1636501440) | `src/minidoc/analyzer.ml:443` | 20 | 22 | 7 | 6 | 1 | 1512.16 | 48.41 |
-| [`minidoc.analyzer._addInterface`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addinterface-function-addinterface-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-466710023) | `src/minidoc/analyzer.ml:570` | 18 | 14 | 5 | 10 | 4 | 1327.35 | 50.08 |
-| [`minidoc.analyzer._addStruct`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addstruct-function-addstruct-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-2123710885) | `src/minidoc/analyzer.ml:521` | 44 | 43 | 20 | 34 | 4 | 3670.57 | 36.5 |
+| [`minidoc.analyzer._addEnum`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addenum-function-addenum-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-1898800049) | `src/minidoc/analyzer.ml:648` | 24 | 21 | 5 | 7 | 3 | 1786.26 | 46.45 |
+| [`minidoc.analyzer._addExternFunction`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addexternfunction-function-addexternfunction-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-1344035985) | `src/minidoc/analyzer.ml:553` | 22 | 21 | 7 | 9 | 3 | 1805.65 | 46.97 |
+| [`minidoc.analyzer._addFunction`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addfunction-function-addfunction-project-file-node-kind-prefix-namespace-name-container-id-src-minidoc-analyzer-ml-1636501440) | `src/minidoc/analyzer.ml:500` | 20 | 22 | 7 | 6 | 1 | 1523.98 | 48.39 |
+| [`minidoc.analyzer._addInterface`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addinterface-function-addinterface-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-466710023) | `src/minidoc/analyzer.ml:627` | 18 | 14 | 5 | 10 | 4 | 1327.35 | 50.08 |
+| [`minidoc.analyzer._addStruct`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addstruct-function-addstruct-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-2123710885) | `src/minidoc/analyzer.ml:578` | 44 | 43 | 20 | 34 | 4 | 3670.57 | 36.5 |
 | [`minidoc.analyzer._addSymbol`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-addsymbol-function-addsymbol-project-file-kind-name-qualified-name-container-id-namespace-name-position-signature-type-name-modifiers-parameters-return-type-doc-src-minidoc-analyzer-ml-624033249) | `src/minidoc/analyzer.ml:175` | 47 | 18 | 7 | 10 | 3 | 1812.59 | 39.77 |
-| [`minidoc.analyzer._aliasTargetPackage`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-aliastargetpackage-function-aliastargetpackage-project-file-id-alias-src-minidoc-analyzer-ml-1437372212) | `src/minidoc/analyzer.ml:688` | 13 | 12 | 7 | 9 | 3 | 563.52 | 55.5 |
-| [`minidoc.analyzer._calleeName`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-calleename-function-calleename-expr-src-minidoc-analyzer-ml-1597510084) | `src/minidoc/analyzer.ml:329` | 10 | 9 | 5 | 5 | 2 | 324.33 | 59.93 |
+| [`minidoc.analyzer._aliasTargetPackage`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-aliastargetpackage-function-aliastargetpackage-project-file-id-alias-src-minidoc-analyzer-ml-1437372212) | `src/minidoc/analyzer.ml:745` | 13 | 12 | 7 | 9 | 3 | 563.52 | 55.5 |
+| [`minidoc.analyzer._calleeName`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-calleename-function-calleename-expr-src-minidoc-analyzer-ml-1597510084) | `src/minidoc/analyzer.ml:386` | 10 | 9 | 5 | 5 | 2 | 324.33 | 59.93 |
 | [`minidoc.analyzer._diagnostic`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-diagnostic-function-diagnostic-project-severity-code-file-position-message-src-minidoc-analyzer-ml-1923704018) | `src/minidoc/analyzer.ml:141` | 4 | 2 | 1 | 0 | 0 | 317.29 | 69.22 |
 | [`minidoc.analyzer._fileById`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-filebyid-function-filebyid-project-id-src-minidoc-analyzer-ml-1558966907) | `src/minidoc/analyzer.ml:148` | 7 | 6 | 4 | 4 | 2 | 279.68 | 63.9 |
 | [`minidoc.analyzer._findWord`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-findword-function-findword-source-name-start-pos-docs-src-minidoc-analyzer-ml-633312485) | `src/minidoc/analyzer.ml:116` | 22 | 20 | 10 | 13 | 2 | 1294.51 | 47.58 |
-| [`minidoc.analyzer._functionParameters`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-functionparameters-function-functionparameters-node-doc-src-minidoc-analyzer-ml-706939433) | `src/minidoc/analyzer.ml:276` | 20 | 21 | 13 | 18 | 3 | 1404.19 | 47.83 |
-| [`minidoc.analyzer._functionSignature`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-functionsignature-function-functionsignature-node-parameters-name-kind-src-minidoc-analyzer-ml-620797374) | `src/minidoc/analyzer.ml:299` | 27 | 30 | 14 | 20 | 3 | 1415.26 | 44.83 |
+| [`minidoc.analyzer._functionParameters`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-functionparameters-function-functionparameters-node-doc-src-minidoc-analyzer-ml-706939433) | `src/minidoc/analyzer.ml:333` | 20 | 21 | 13 | 18 | 3 | 1404.19 | 47.83 |
+| [`minidoc.analyzer._functionSignature`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-functionsignature-function-functionsignature-node-parameters-name-kind-src-minidoc-analyzer-ml-620797374) | `src/minidoc/analyzer.ml:356` | 27 | 30 | 14 | 20 | 3 | 1415.26 | 44.83 |
 | [`minidoc.analyzer._insideDocumentation`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-insidedocumentation-function-insidedocumentation-docs-position-src-minidoc-analyzer-ml-1609564489) | `src/minidoc/analyzer.ml:106` | 7 | 6 | 6 | 6 | 2 | 335.77 | 63.07 |
+| [`minidoc.analyzer._isPositiveDecimal`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-ispositivedecimal-function-ispositivedecimal-value-src-minidoc-analyzer-ml-1471197426) | `src/minidoc/analyzer.ml:239` | 10 | 9 | 6 | 6 | 2 | 413.59 | 59.06 |
+| [`minidoc.analyzer._isTestRoleTag`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-istestroletag-function-istestroletag-name-src-minidoc-analyzer-ml-356267668) | `src/minidoc/analyzer.ml:233` | 3 | 1 | 1 | 0 | 0 | 102.8 | 75.37 |
 | [`minidoc.analyzer._qualified`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-qualified-function-qualified-prefix-name-src-minidoc-analyzer-ml-1309113056) | `src/minidoc/analyzer.ml:23` | 5 | 5 | 3 | 2 | 1 | 128.93 | 69.57 |
-| [`minidoc.analyzer._resolveCalls`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-resolvecalls-function-resolvecalls-project-src-minidoc-analyzer-ml-2135136698) | `src/minidoc/analyzer.ml:704` | 33 | 32 | 15 | 25 | 3 | 2503.48 | 41.06 |
-| [`minidoc.analyzer._resolveTypeRelations`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-resolvetyperelations-function-resolvetyperelations-project-src-minidoc-analyzer-ml-1763154930) | `src/minidoc/analyzer.ml:740` | 14 | 16 | 10 | 13 | 2 | 1032.38 | 52.55 |
-| [`minidoc.analyzer._resolveUnique`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-resolveunique-function-resolveunique-project-candidates-allowed-kinds-src-minidoc-analyzer-ml-1675174222) | `src/minidoc/analyzer.ml:667` | 18 | 16 | 8 | 12 | 3 | 675.88 | 51.73 |
+| [`minidoc.analyzer._resolveCalls`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-resolvecalls-function-resolvecalls-project-src-minidoc-analyzer-ml-2135136698) | `src/minidoc/analyzer.ml:761` | 33 | 32 | 15 | 25 | 3 | 2503.48 | 41.06 |
+| [`minidoc.analyzer._resolveTypeRelations`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-resolvetyperelations-function-resolvetyperelations-project-src-minidoc-analyzer-ml-1763154930) | `src/minidoc/analyzer.ml:797` | 14 | 16 | 10 | 13 | 2 | 1032.38 | 52.55 |
+| [`minidoc.analyzer._resolveUnique`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-resolveunique-function-resolveunique-project-candidates-allowed-kinds-src-minidoc-analyzer-ml-1675174222) | `src/minidoc/analyzer.ml:724` | 18 | 16 | 8 | 12 | 3 | 675.88 | 51.73 |
 | [`minidoc.analyzer._scope`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-scope-function-scope-package-name-namespace-name-src-minidoc-analyzer-ml-1593120142) | `src/minidoc/analyzer.ml:31` | 3 | 1 | 1 | 0 | 0 | 53.15 | 77.38 |
-| [`minidoc.analyzer._summaryQualityEligible`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-summaryqualityeligible-function-summaryqualityeligible-project-doc-symbol-src-minidoc-analyzer-ml-1404154389) | `src/minidoc/analyzer.ml:772` | 7 | 8 | 4 | 3 | 1 | 447.7 | 62.46 |
+| [`minidoc.analyzer._summaryQualityEligible`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-summaryqualityeligible-function-summaryqualityeligible-project-doc-symbol-src-minidoc-analyzer-ml-1404154389) | `src/minidoc/analyzer.ml:860` | 7 | 8 | 4 | 3 | 1 | 447.7 | 62.46 |
 | [`minidoc.analyzer._symbolById`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-symbolbyid-function-symbolbyid-project-id-src-minidoc-analyzer-ml-201427511) | `src/minidoc/analyzer.ml:158` | 7 | 6 | 4 | 4 | 2 | 279.68 | 63.9 |
 | [`minidoc.analyzer._symbolId`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-symbolid-function-symbolid-kind-qualified-name-signature-file-path-src-minidoc-analyzer-ml-736578529) | `src/minidoc/analyzer.ml:168` | 4 | 2 | 1 | 0 | 0 | 165.67 | 71.19 |
 | [`minidoc.analyzer._typeName`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-typename-function-typename-value-optional-src-minidoc-analyzer-ml-231327762) | `src/minidoc/analyzer.ml:37` | 6 | 6 | 4 | 3 | 1 | 180.09 | 66.69 |
-| [`minidoc.analyzer._validateCoverage`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatecoverage-function-validatecoverage-project-src-minidoc-analyzer-ml-1362902924) | `src/minidoc/analyzer.ml:757` | 12 | 10 | 8 | 10 | 3 | 913.33 | 54.65 |
-| [`minidoc.analyzer._validateFunctionDoc`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatefunctiondoc-function-validatefunctiondoc-project-file-node-doc-parameters-return-type-internal-src-minidoc-analyzer-ml-672643656) | `src/minidoc/analyzer.ml:233` | 39 | 33 | 21 | 49 | 6 | 2451.31 | 38.74 |
-| [`minidoc.analyzer._validateSummaryQuality`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatesummaryquality-function-validatesummaryquality-project-src-minidoc-analyzer-ml-1396789550) | `src/minidoc/analyzer.ml:782` | 26 | 25 | 10 | 13 | 2 | 1765.23 | 45.05 |
-| [`minidoc.analyzer._walkDeclarations`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walkdeclarations-function-walkdeclarations-project-file-body-namespace-name-src-minidoc-analyzer-ml-1227878639) | `src/minidoc/analyzer.ml:618` | 46 | 38 | 19 | 37 | 4 | 3338.5 | 36.5 |
-| [`minidoc.analyzer._walkExpression`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walkexpression-function-walkexpression-project-file-caller-expr-namespace-name-src-minidoc-analyzer-ml-2008412265) | `src/minidoc/analyzer.ml:342` | 35 | 25 | 19 | 25 | 3 | 2617.2 | 39.83 |
-| [`minidoc.analyzer._walkNested`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walknested-function-walknested-project-file-body-parent-namespace-name-src-minidoc-analyzer-ml-888770987) | `src/minidoc/analyzer.ml:466` | 27 | 17 | 16 | 29 | 4 | 1586.55 | 44.21 |
-| [`minidoc.analyzer._walkStatementsForCalls`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walkstatementsforcalls-function-walkstatementsforcalls-project-file-caller-body-namespace-name-src-minidoc-analyzer-ml-1230640592) | `src/minidoc/analyzer.ml:380` | 60 | 44 | 28 | 59 | 6 | 4092.39 | 32.15 |
+| [`minidoc.analyzer._validateCoverage`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatecoverage-function-validatecoverage-project-src-minidoc-analyzer-ml-1362902924) | `src/minidoc/analyzer.ml:814` | 12 | 10 | 8 | 10 | 3 | 913.33 | 54.65 |
+| [`minidoc.analyzer._validateFunctionDoc`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatefunctiondoc-function-validatefunctiondoc-project-file-node-doc-parameters-return-type-internal-kind-src-minidoc-analyzer-ml-850600874) | `src/minidoc/analyzer.ml:289` | 40 | 34 | 21 | 49 | 6 | 2579.35 | 38.34 |
+| [`minidoc.analyzer._validateSummaryQuality`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatesummaryquality-function-validatesummaryquality-project-src-minidoc-analyzer-ml-1396789550) | `src/minidoc/analyzer.ml:870` | 26 | 25 | 10 | 13 | 2 | 1765.23 | 45.05 |
+| [`minidoc.analyzer._validateTestFixtureUniqueness`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatetestfixtureuniqueness-function-validatetestfixtureuniqueness-project-src-minidoc-analyzer-ml-640306438) | `src/minidoc/analyzer.ml:829` | 28 | 28 | 15 | 42 | 6 | 1447.13 | 44.28 |
+| [`minidoc.analyzer._validateTestTags`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-validatetesttags-function-validatetesttags-project-file-node-doc-parameters-return-type-kind-src-minidoc-analyzer-ml-866121661) | `src/minidoc/analyzer.ml:252` | 33 | 29 | 29 | 38 | 3 | 2563.32 | 39.11 |
+| [`minidoc.analyzer._walkDeclarations`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walkdeclarations-function-walkdeclarations-project-file-body-namespace-name-src-minidoc-analyzer-ml-1227878639) | `src/minidoc/analyzer.ml:675` | 46 | 38 | 19 | 37 | 4 | 3338.5 | 36.5 |
+| [`minidoc.analyzer._walkExpression`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walkexpression-function-walkexpression-project-file-caller-expr-namespace-name-src-minidoc-analyzer-ml-2008412265) | `src/minidoc/analyzer.ml:399` | 35 | 25 | 19 | 25 | 3 | 2617.2 | 39.83 |
+| [`minidoc.analyzer._walkNested`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walknested-function-walknested-project-file-body-parent-namespace-name-src-minidoc-analyzer-ml-888770987) | `src/minidoc/analyzer.ml:523` | 27 | 17 | 16 | 29 | 4 | 1586.55 | 44.21 |
+| [`minidoc.analyzer._walkStatementsForCalls`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-walkstatementsforcalls-function-walkstatementsforcalls-project-file-caller-body-namespace-name-src-minidoc-analyzer-ml-1230640592) | `src/minidoc/analyzer.ml:437` | 60 | 44 | 28 | 59 | 6 | 4092.39 | 32.15 |
 | [`minidoc.analyzer._warningScopeIncludes`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-warningscopeincludes-function-warningscopeincludes-scope-internal-src-minidoc-analyzer-ml-130785450) | `src/minidoc/analyzer.ml:225` | 5 | 5 | 3 | 2 | 1 | 124 | 69.69 |
-| [`minidoc.analyzer.analyze`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-analyze-function-analyze-project-src-minidoc-analyzer-ml-448369014) | `src/minidoc/analyzer.ml:812` | 15 | 11 | 3 | 3 | 2 | 506.65 | 55 |
+| [`minidoc.analyzer.analyze`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-analyze-function-analyze-project-src-minidoc-analyzer-ml-448369014) | `src/minidoc/analyzer.ml:900` | 16 | 12 | 3 | 3 | 2 | 531.36 | 54.25 |
 | [`minidoc.analyzer.expressionText`](File-src-minidoc-analyzer-ml-492085543.md#function-function-minidoc-analyzer-expressiontext-function-expressiontext-expr-src-minidoc-analyzer-ml-2077794936) | `src/minidoc/analyzer.ml:47` | 54 | 59 | 30 | 41 | 4 | 3687.58 | 33.2 |
 | [`minidoc.app._countSeverity`](File-src-minidoc-app-ml-1489174864.md#function-function-minidoc-app-countseverity-function-countseverity-project-severity-src-minidoc-app-ml-309679191) | `src/minidoc/app.ml:137` | 8 | 7 | 4 | 4 | 2 | 291.43 | 62.51 |
 | [`minidoc.app._generationTimestamp`](File-src-minidoc-app-ml-1489174864.md#function-function-minidoc-app-generationtimestamp-function-generationtimestamp-cfg-src-minidoc-app-ml-2138938087) | `src/minidoc/app.ml:105` | 9 | 11 | 5 | 4 | 1 | 433.82 | 60.05 |
@@ -129,7 +133,7 @@ Coverage is split by documentation contract so strong API summaries cannot hide 
 | [`minidoc.doc_comments._cleanBlockLine`](File-src-minidoc-doc-comments-ml-1995285450.md#function-function-minidoc-doc-comments-cleanblockline-function-cleanblockline-value-src-minidoc-doc-comments-ml-57678238) | `src/minidoc/doc_comments.ml:30` | 9 | 6 | 3 | 2 | 1 | 309.07 | 61.35 |
 | [`minidoc.doc_comments._finishPending`](File-src-minidoc-doc-comments-ml-1995285450.md#function-function-minidoc-doc-comments-finishpending-function-finishpending-docs-pending-kind-pending-start-pending-end-pending-start-line-pending-end-line-pending-lines-src-minidoc-doc-comments-ml-97374425) | `src/minidoc/doc_comments.ml:126` | 4 | 3 | 2 | 1 | 1 | 209.59 | 70.34 |
 | [`minidoc.doc_comments._firstWord`](File-src-minidoc-doc-comments-ml-1995285450.md#function-function-minidoc-doc-comments-firstword-function-firstword-value-src-minidoc-doc-comments-ml-523093244) | `src/minidoc/doc_comments.ml:42` | 12 | 11 | 5 | 4 | 1 | 549.84 | 56.6 |
-| [`minidoc.doc_comments._parseBlock`](File-src-minidoc-doc-comments-ml-1995285450.md#function-function-minidoc-doc-comments-parseblock-function-parseblock-target-kind-start-pos-end-pos-start-line-end-line-raw-lines-src-minidoc-doc-comments-ml-46187865) | `src/minidoc/doc_comments.ml:81` | 40 | 33 | 13 | 25 | 4 | 2122.45 | 40.01 |
+| [`minidoc.doc_comments._parseBlock`](File-src-minidoc-doc-comments-ml-1995285450.md#function-function-minidoc-doc-comments-parseblock-function-parseblock-target-kind-start-pos-end-pos-start-line-end-line-raw-lines-src-minidoc-doc-comments-ml-46187865) | `src/minidoc/doc_comments.ml:81` | 40 | 33 | 16 | 28 | 4 | 2217.46 | 39.47 |
 | [`minidoc.doc_comments._stripOneSpace`](File-src-minidoc-doc-comments-ml-1995285450.md#function-function-minidoc-doc-comments-striponespace-function-striponespace-value-src-minidoc-doc-comments-ml-2032218004) | `src/minidoc/doc_comments.ml:21` | 6 | 3 | 3 | 2 | 1 | 189.99 | 66.67 |
 | [`minidoc.doc_comments._summaryAndDetails`](File-src-minidoc-doc-comments-ml-1995285450.md#function-function-minidoc-doc-comments-summaryanddetails-function-summaryanddetails-body-src-minidoc-doc-comments-ml-726081093) | `src/minidoc/doc_comments.ml:57` | 21 | 16 | 6 | 9 | 3 | 753.4 | 50.21 |
 | [`minidoc.doc_comments.documentationBefore`](File-src-minidoc-doc-comments-ml-1995285450.md#function-function-minidoc-doc-comments-documentationbefore-function-documentationbefore-docs-source-position-src-minidoc-doc-comments-ml-2090428024) | `src/minidoc/doc_comments.ml:288` | 16 | 15 | 10 | 11 | 2 | 752.38 | 52.25 |
@@ -216,78 +220,86 @@ Coverage is split by documentation contract so strong API summaries cannot hide 
 | [`minidoc.ordering._sortSymbols`](File-src-minidoc-ordering-ml-677118389.md#function-function-minidoc-ordering-sortsymbols-function-sortsymbols-values-src-minidoc-ordering-ml-2029087899) | `src/minidoc/ordering.ml:90` | 8 | 6 | 3 | 2 | 1 | 395 | 61.72 |
 | [`minidoc.ordering._sortWithKeys`](File-src-minidoc-ordering-ml-677118389.md#function-function-minidoc-ordering-sortwithkeys-function-sortwithkeys-values-keys-src-minidoc-ordering-ml-94474953) | `src/minidoc/ordering.ml:28` | 48 | 40 | 12 | 27 | 4 | 1563.79 | 39.35 |
 | [`minidoc.ordering.apply`](File-src-minidoc-ordering-ml-677118389.md#function-function-minidoc-ordering-apply-function-apply-project-src-minidoc-ordering-ml-520226802) | `src/minidoc/ordering.ml:197` | 18 | 13 | 4 | 4 | 2 | 955.58 | 51.21 |
-| [`minidoc.render_html._css`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-css-function-css-src-minidoc-render-html-ml-1625528009) | `src/minidoc/render_html.ml:650` | 3 | 1 | 1 | 0 | 0 | 22.46 | 80 |
-| [`minidoc.render_html._dependencies`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-dependencies-function-dependencies-project-src-minidoc-render-html-ml-1815882224) | `src/minidoc/render_html.ml:485` | 15 | 13 | 5 | 9 | 3 | 842 | 53.19 |
-| [`minidoc.render_html._dependencyReferenceCount`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-dependencyreferencecount-function-dependencyreferencecount-project-dependency-id-src-minidoc-render-html-ml-2092930733) | `src/minidoc/render_html.ml:469` | 13 | 14 | 7 | 11 | 3 | 665.96 | 54.99 |
-| [`minidoc.render_html._diagnostics`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-diagnostics-function-diagnostics-project-src-minidoc-render-html-ml-1860874224) | `src/minidoc/render_html.ml:522` | 12 | 11 | 3 | 2 | 1 | 786.06 | 55.78 |
-| [`minidoc.render_html._file`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-file-function-file-project-file-src-minidoc-render-html-ml-490889384) | `src/minidoc/render_html.ml:425` | 41 | 43 | 22 | 43 | 4 | 3375.71 | 37.15 |
+| [`minidoc.render_html._css`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-css-function-css-src-minidoc-render-html-ml-1625528009) | `src/minidoc/render_html.ml:752` | 3 | 1 | 1 | 0 | 0 | 22.46 | 80 |
+| [`minidoc.render_html._dependencies`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-dependencies-function-dependencies-project-src-minidoc-render-html-ml-1815882224) | `src/minidoc/render_html.ml:587` | 15 | 13 | 5 | 9 | 3 | 842 | 53.19 |
+| [`minidoc.render_html._dependencyReferenceCount`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-dependencyreferencecount-function-dependencyreferencecount-project-dependency-id-src-minidoc-render-html-ml-2092930733) | `src/minidoc/render_html.ml:571` | 13 | 14 | 7 | 11 | 3 | 665.96 | 54.99 |
+| [`minidoc.render_html._diagnostics`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-diagnostics-function-diagnostics-project-src-minidoc-render-html-ml-1860874224) | `src/minidoc/render_html.ml:624` | 12 | 11 | 3 | 2 | 1 | 786.06 | 55.78 |
+| [`minidoc.render_html._file`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-file-function-file-project-file-src-minidoc-render-html-ml-490889384) | `src/minidoc/render_html.ml:527` | 41 | 43 | 22 | 43 | 4 | 3375.71 | 37.15 |
 | [`minidoc.render_html._fileById`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-filebyid-function-filebyid-project-id-src-minidoc-render-html-ml-435004607) | `src/minidoc/render_html.ml:53` | 7 | 6 | 4 | 4 | 2 | 279.68 | 63.9 |
 | [`minidoc.render_html._filePage`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-filepage-function-filepage-file-src-minidoc-render-html-ml-419870347) | `src/minidoc/render_html.ml:87` | 3 | 1 | 1 | 0 | 0 | 76.15 | 76.28 |
-| [`minidoc.render_html._files`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-files-function-files-project-src-minidoc-render-html-ml-1929023196) | `src/minidoc/render_html.ml:347` | 17 | 16 | 6 | 12 | 3 | 903.52 | 51.65 |
+| [`minidoc.render_html._files`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-files-function-files-project-src-minidoc-render-html-ml-1929023196) | `src/minidoc/render_html.ml:368` | 17 | 16 | 6 | 12 | 3 | 903.52 | 51.65 |
 | [`minidoc.render_html._fileVisible`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-filevisible-function-filevisible-project-file-src-minidoc-render-html-ml-1061123602) | `src/minidoc/render_html.ml:22` | 4 | 3 | 2 | 1 | 1 | 191.76 | 70.61 |
 | [`minidoc.render_html._graphEnabled`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-graphenabled-function-graphenabled-project-relation-kind-configured-src-minidoc-render-html-ml-788187789) | `src/minidoc/render_html.ml:73` | 4 | 3 | 2 | 1 | 1 | 159.91 | 71.17 |
-| [`minidoc.render_html._graphPage`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-graphpage-function-graphpage-project-title-filename-description-src-minidoc-render-html-ml-1193469419) | `src/minidoc/render_html.ml:623` | 5 | 4 | 2 | 1 | 1 | 315.77 | 66.98 |
+| [`minidoc.render_html._graphPage`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-graphpage-function-graphpage-project-title-filename-description-src-minidoc-render-html-ml-1193469419) | `src/minidoc/render_html.ml:725` | 5 | 4 | 2 | 1 | 1 | 315.77 | 66.98 |
 | [`minidoc.render_html._hasDependencies`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-hasdependencies-function-hasdependencies-project-src-minidoc-render-html-ml-181909412) | `src/minidoc/render_html.ml:63` | 7 | 6 | 4 | 4 | 2 | 351.75 | 63.2 |
-| [`minidoc.render_html._home`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-home-function-home-project-src-minidoc-render-html-ml-2034429428) | `src/minidoc/render_html.ml:311` | 33 | 36 | 11 | 13 | 3 | 2608.73 | 41.47 |
+| [`minidoc.render_html._home`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-home-function-home-project-src-minidoc-render-html-ml-2034429428) | `src/minidoc/render_html.ml:332` | 33 | 36 | 11 | 13 | 3 | 2608.73 | 41.47 |
 | [`minidoc.render_html._isType`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-istype-function-istype-doc-symbol-src-minidoc-render-html-ml-1873039548) | `src/minidoc/render_html.ml:37` | 3 | 1 | 1 | 0 | 0 | 121.11 | 74.87 |
-| [`minidoc.render_html._javascript`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-javascript-function-javascript-src-minidoc-render-html-ml-771571021) | `src/minidoc/render_html.ml:656` | 3 | 1 | 1 | 0 | 0 | 22.46 | 80 |
-| [`minidoc.render_html._layout`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-layout-function-layout-project-title-content-src-minidoc-render-html-ml-793745437) | `src/minidoc/render_html.ml:273` | 14 | 15 | 5 | 4 | 1 | 1162.05 | 52.86 |
+| [`minidoc.render_html._javascript`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-javascript-function-javascript-src-minidoc-render-html-ml-771571021) | `src/minidoc/render_html.ml:758` | 3 | 1 | 1 | 0 | 0 | 22.46 | 80 |
+| [`minidoc.render_html._layout`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-layout-function-layout-project-title-content-src-minidoc-render-html-ml-793745437) | `src/minidoc/render_html.ml:294` | 14 | 15 | 5 | 4 | 1 | 1162.05 | 52.86 |
 | [`minidoc.render_html._markdownHtml`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-markdownhtml-function-markdownhtml-text-src-minidoc-render-html-ml-1903815168) | `src/minidoc/render_html.ml:129` | 38 | 44 | 17 | 30 | 3 | 2586.64 | 39.36 |
-| [`minidoc.render_html._metrics`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-metrics-function-metrics-project-src-minidoc-render-html-ml-1447599980) | `src/minidoc/render_html.ml:537` | 76 | 70 | 14 | 31 | 5 | 8435.83 | 29.6 |
+| [`minidoc.render_html._metrics`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-metrics-function-metrics-project-src-minidoc-render-html-ml-1447599980) | `src/minidoc/render_html.ml:639` | 76 | 70 | 14 | 31 | 5 | 8435.83 | 29.6 |
 | [`minidoc.render_html._ownerType`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-ownertype-function-ownertype-project-doc-symbol-src-minidoc-render-html-ml-1808108667) | `src/minidoc/render_html.ml:105` | 10 | 9 | 5 | 6 | 2 | 299.56 | 60.17 |
-| [`minidoc.render_html._package`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-package-function-package-project-package-name-src-minidoc-render-html-ml-821137262) | `src/minidoc/render_html.ml:398` | 24 | 23 | 12 | 23 | 3 | 1476.64 | 46.09 |
+| [`minidoc.render_html._package`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-package-function-package-project-package-name-src-minidoc-render-html-ml-821137262) | `src/minidoc/render_html.ml:500` | 24 | 23 | 12 | 23 | 3 | 1476.64 | 46.09 |
 | [`minidoc.render_html._packagePage`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-packagepage-function-packagepage-name-src-minidoc-render-html-ml-1754427610) | `src/minidoc/render_html.ml:99` | 3 | 1 | 1 | 0 | 0 | 66.61 | 76.69 |
-| [`minidoc.render_html._packages`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-packages-function-packages-project-src-minidoc-render-html-ml-152823440) | `src/minidoc/render_html.ml:290` | 11 | 11 | 5 | 6 | 2 | 483.31 | 57.82 |
-| [`minidoc.render_html._packagesIndex`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-packagesindex-function-packagesindex-project-src-minidoc-render-html-ml-1876075040) | `src/minidoc/render_html.ml:383` | 12 | 8 | 3 | 3 | 2 | 486.26 | 57.24 |
-| [`minidoc.render_html._projectDescription`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-projectdescription-function-projectdescription-project-src-minidoc-render-html-ml-104319708) | `src/minidoc/render_html.ml:304` | 4 | 3 | 2 | 1 | 1 | 130.8 | 71.78 |
-| [`minidoc.render_html._searchIndex`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-searchindex-function-searchindex-project-src-minidoc-render-html-ml-1008698196) | `src/minidoc/render_html.ml:631` | 16 | 14 | 5 | 9 | 3 | 955.31 | 52.19 |
+| [`minidoc.render_html._packages`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-packages-function-packages-project-src-minidoc-render-html-ml-152823440) | `src/minidoc/render_html.ml:311` | 11 | 11 | 5 | 6 | 2 | 483.31 | 57.82 |
+| [`minidoc.render_html._packagesIndex`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-packagesindex-function-packagesindex-project-src-minidoc-render-html-ml-1876075040) | `src/minidoc/render_html.ml:485` | 12 | 8 | 3 | 3 | 2 | 486.26 | 57.24 |
+| [`minidoc.render_html._projectDescription`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-projectdescription-function-projectdescription-project-src-minidoc-render-html-ml-104319708) | `src/minidoc/render_html.ml:325` | 4 | 3 | 2 | 1 | 1 | 130.8 | 71.78 |
+| [`minidoc.render_html._searchIndex`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-searchindex-function-searchindex-project-src-minidoc-render-html-ml-1008698196) | `src/minidoc/render_html.ml:733` | 16 | 14 | 5 | 9 | 3 | 955.31 | 52.19 |
 | [`minidoc.render_html._shortRevision`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-shortrevision-function-shortrevision-value-src-minidoc-render-html-ml-150195100) | `src/minidoc/render_html.ml:80` | 4 | 3 | 2 | 1 | 1 | 122.62 | 71.97 |
 | [`minidoc.render_html._sortTags`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-sorttags-function-sorttags-tags-src-minidoc-render-html-ml-98000292) | `src/minidoc/render_html.ml:180` | 16 | 12 | 4 | 4 | 2 | 515.24 | 54.21 |
 | [`minidoc.render_html._symbolById`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-symbolbyid-function-symbolbyid-project-id-src-minidoc-render-html-ml-761027075) | `src/minidoc/render_html.ml:43` | 7 | 6 | 4 | 4 | 2 | 279.68 | 63.9 |
-| [`minidoc.render_html._symbolHtml`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-symbolhtml-function-symbolhtml-project-doc-symbol-heading-src-minidoc-render-html-ml-426613973) | `src/minidoc/render_html.ml:199` | 71 | 68 | 28 | 48 | 3 | 5524.31 | 29.65 |
+| [`minidoc.render_html._symbolFixtureRole`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-symbolfixturerole-function-symbolfixturerole-doc-symbol-src-minidoc-render-html-ml-165079326) | `src/minidoc/render_html.ml:425` | 7 | 5 | 3 | 3 | 2 | 257.47 | 64.28 |
+| [`minidoc.render_html._symbolHasTag`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-symbolhastag-function-symbolhastag-doc-symbol-name-src-minidoc-render-html-ml-1399844595) | `src/minidoc/render_html.ml:404` | 7 | 6 | 4 | 4 | 2 | 263.22 | 64.08 |
+| [`minidoc.render_html._symbolHtml`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-symbolhtml-function-symbolhtml-project-doc-symbol-heading-src-minidoc-render-html-ml-426613973) | `src/minidoc/render_html.ml:199` | 92 | 94 | 43 | 80 | 3 | 7991.64 | 24.05 |
 | [`minidoc.render_html._symbolLink`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-symbollink-function-symbollink-project-doc-symbol-src-minidoc-render-html-ml-747058409) | `src/minidoc/render_html.ml:118` | 8 | 9 | 4 | 3 | 1 | 423.05 | 61.37 |
-| [`minidoc.render_html._symbols`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-symbols-function-symbols-project-src-minidoc-render-html-ml-1501047772) | `src/minidoc/render_html.ml:367` | 13 | 10 | 4 | 6 | 3 | 707.45 | 55.21 |
+| [`minidoc.render_html._symbols`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-symbols-function-symbols-project-src-minidoc-render-html-ml-1501047772) | `src/minidoc/render_html.ml:388` | 13 | 10 | 4 | 6 | 3 | 707.45 | 55.21 |
+| [`minidoc.render_html._symbolTagKeys`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-symboltagkeys-function-symboltagkeys-doc-symbol-name-src-minidoc-render-html-ml-1691570861) | `src/minidoc/render_html.ml:414` | 8 | 7 | 5 | 5 | 2 | 407.27 | 61.35 |
 | [`minidoc.render_html._tagValue`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-tagvalue-function-tagvalue-doc-symbol-name-src-minidoc-render-html-ml-2064001193) | `src/minidoc/render_html.ml:170` | 7 | 6 | 4 | 4 | 2 | 296.13 | 63.72 |
-| [`minidoc.render_html._type`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-type-function-type-project-type-symbol-src-minidoc-render-html-ml-1278264173) | `src/minidoc/render_html.ml:503` | 16 | 15 | 6 | 8 | 3 | 1019.29 | 51.86 |
+| [`minidoc.render_html._tests`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-tests-function-tests-project-src-minidoc-render-html-ml-339301540) | `src/minidoc/render_html.ml:435` | 47 | 47 | 19 | 43 | 4 | 3151.41 | 36.47 |
+| [`minidoc.render_html._type`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-type-function-type-project-type-symbol-src-minidoc-render-html-ml-1278264173) | `src/minidoc/render_html.ml:605` | 16 | 15 | 6 | 8 | 3 | 1019.29 | 51.86 |
 | [`minidoc.render_html._typePage`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-typepage-function-typepage-doc-symbol-src-minidoc-render-html-ml-496705942) | `src/minidoc/render_html.ml:93` | 3 | 1 | 1 | 0 | 0 | 76.15 | 76.28 |
 | [`minidoc.render_html._visible`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-visible-function-visible-project-doc-symbol-src-minidoc-render-html-ml-419580155) | `src/minidoc/render_html.ml:29` | 5 | 4 | 3 | 2 | 1 | 232.19 | 67.78 |
-| [`minidoc.render_html._writeGenerated`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-writegenerated-function-writegenerated-root-generated-relative-path-content-src-minidoc-render-html-ml-979553409) | `src/minidoc/render_html.ml:662` | 5 | 4 | 2 | 1 | 1 | 222.91 | 68.04 |
-| [`minidoc.render_html.render`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-render-function-render-project-src-minidoc-render-html-ml-961220700) | `src/minidoc/render_html.ml:671` | 79 | 90 | 38 | 58 | 4 | 7072.55 | 26.54 |
-| [`minidoc.render_markdown._appendSymbol`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-appendsymbol-function-appendsymbol-writer-project-doc-symbol-heading-level-src-minidoc-render-markdown-ml-173001445) | `src/minidoc/render_markdown.ml:217` | 38 | 39 | 10 | 16 | 3 | 2211.77 | 40.77 |
-| [`minidoc.render_markdown._appendTagSections`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-appendtagsections-function-appendtagsections-writer-doc-symbol-src-minidoc-render-markdown-ml-1272647537) | `src/minidoc/render_markdown.ml:130` | 65 | 54 | 21 | 39 | 3 | 2662.9 | 33.64 |
-| [`minidoc.render_markdown._dependencyReferenceCount`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-dependencyreferencecount-function-dependencyreferencecount-project-dependency-id-src-minidoc-render-markdown-ml-648139245) | `src/minidoc/render_markdown.ml:453` | 13 | 14 | 7 | 11 | 3 | 665.96 | 54.99 |
+| [`minidoc.render_html._writeGenerated`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-writegenerated-function-writegenerated-root-generated-relative-path-content-src-minidoc-render-html-ml-979553409) | `src/minidoc/render_html.ml:764` | 5 | 4 | 2 | 1 | 1 | 222.91 | 68.04 |
+| [`minidoc.render_html.render`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-render-function-render-project-src-minidoc-render-html-ml-961220700) | `src/minidoc/render_html.ml:773` | 81 | 93 | 39 | 59 | 4 | 7345.4 | 26.05 |
+| [`minidoc.render_markdown._appendSymbol`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-appendsymbol-function-appendsymbol-writer-project-doc-symbol-heading-level-src-minidoc-render-markdown-ml-173001445) | `src/minidoc/render_markdown.ml:237` | 38 | 39 | 10 | 16 | 3 | 2211.77 | 40.77 |
+| [`minidoc.render_markdown._appendTagSections`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-appendtagsections-function-appendtagsections-writer-doc-symbol-src-minidoc-render-markdown-ml-1272647537) | `src/minidoc/render_markdown.ml:130` | 85 | 79 | 36 | 71 | 3 | 4521.6 | 27.48 |
+| [`minidoc.render_markdown._dependencyReferenceCount`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-dependencyreferencecount-function-dependencyreferencecount-project-dependency-id-src-minidoc-render-markdown-ml-648139245) | `src/minidoc/render_markdown.ml:555` | 13 | 14 | 7 | 11 | 3 | 665.96 | 54.99 |
 | [`minidoc.render_markdown._fileById`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-filebyid-function-filebyid-project-id-src-minidoc-render-markdown-ml-579038907) | `src/minidoc/render_markdown.ml:54` | 7 | 6 | 4 | 4 | 2 | 279.68 | 63.9 |
 | [`minidoc.render_markdown._filePage`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-filepage-function-filepage-file-src-minidoc-render-markdown-ml-589252103) | `src/minidoc/render_markdown.ml:88` | 3 | 1 | 1 | 0 | 0 | 76.15 | 76.28 |
 | [`minidoc.render_markdown._fileVisible`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-filevisible-function-filevisible-project-file-src-minidoc-render-markdown-ml-2065479994) | `src/minidoc/render_markdown.ml:23` | 4 | 3 | 2 | 1 | 1 | 191.76 | 70.61 |
 | [`minidoc.render_markdown._graphEnabled`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-graphenabled-function-graphenabled-project-relation-kind-configured-src-minidoc-render-markdown-ml-1992356813) | `src/minidoc/render_markdown.ml:74` | 4 | 3 | 2 | 1 | 1 | 159.91 | 71.17 |
 | [`minidoc.render_markdown._hasDependencies`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-hasdependencies-function-hasdependencies-project-src-minidoc-render-markdown-ml-386212480) | `src/minidoc/render_markdown.ml:64` | 7 | 6 | 4 | 4 | 2 | 351.75 | 63.2 |
-| [`minidoc.render_markdown._homeName`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-homename-function-homename-project-src-minidoc-render-markdown-ml-1694838250) | `src/minidoc/render_markdown.ml:625` | 4 | 3 | 2 | 1 | 1 | 88 | 72.98 |
-| [`minidoc.render_markdown._indentedCode`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-indentedcode-function-indentedcode-text-src-minidoc-render-markdown-ml-511409356) | `src/minidoc/render_markdown.ml:523` | 10 | 6 | 3 | 3 | 2 | 318.95 | 60.25 |
+| [`minidoc.render_markdown._homeName`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-homename-function-homename-project-src-minidoc-render-markdown-ml-1694838250) | `src/minidoc/render_markdown.ml:727` | 4 | 3 | 2 | 1 | 1 | 88 | 72.98 |
+| [`minidoc.render_markdown._indentedCode`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-indentedcode-function-indentedcode-text-src-minidoc-render-markdown-ml-511409356) | `src/minidoc/render_markdown.ml:625` | 10 | 6 | 3 | 3 | 2 | 318.95 | 60.25 |
 | [`minidoc.render_markdown._isType`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-istype-function-istype-doc-symbol-src-minidoc-render-markdown-ml-1542253352) | `src/minidoc/render_markdown.ml:38` | 3 | 1 | 1 | 0 | 0 | 121.11 | 74.87 |
 | [`minidoc.render_markdown._ownerType`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-ownertype-function-ownertype-project-doc-symbol-src-minidoc-render-markdown-ml-2082832311) | `src/minidoc/render_markdown.ml:106` | 10 | 9 | 5 | 6 | 2 | 299.56 | 60.17 |
 | [`minidoc.render_markdown._packagePage`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-packagepage-function-packagepage-name-src-minidoc-render-markdown-ml-282590802) | `src/minidoc/render_markdown.ml:100` | 3 | 1 | 1 | 0 | 0 | 66.61 | 76.69 |
-| [`minidoc.render_markdown._packages`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-packages-function-packages-project-src-minidoc-render-markdown-ml-204965004) | `src/minidoc/render_markdown.ml:258` | 11 | 11 | 5 | 6 | 2 | 483.31 | 57.82 |
-| [`minidoc.render_markdown._projectDescription`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-projectdescription-function-projectdescription-project-src-minidoc-render-markdown-ml-1404482280) | `src/minidoc/render_markdown.ml:272` | 4 | 3 | 2 | 1 | 1 | 130.8 | 71.78 |
-| [`minidoc.render_markdown._renderDependencies`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderdependencies-function-renderdependencies-project-src-minidoc-render-markdown-ml-1169613352) | `src/minidoc/render_markdown.ml:469` | 16 | 14 | 5 | 9 | 3 | 929.18 | 52.28 |
-| [`minidoc.render_markdown._renderDiagnostics`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderdiagnostics-function-renderdiagnostics-project-src-minidoc-render-markdown-ml-478275432) | `src/minidoc/render_markdown.ml:509` | 11 | 10 | 3 | 2 | 1 | 795.78 | 56.57 |
-| [`minidoc.render_markdown._renderFile`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderfile-function-renderfile-project-file-src-minidoc-render-markdown-ml-1369235800) | `src/minidoc/render_markdown.ml:406` | 44 | 44 | 22 | 43 | 4 | 3135.37 | 36.71 |
-| [`minidoc.render_markdown._renderFiles`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderfiles-function-renderfiles-project-src-minidoc-render-markdown-ml-234256500) | `src/minidoc/render_markdown.ml:327` | 17 | 16 | 6 | 12 | 3 | 956.59 | 51.48 |
-| [`minidoc.render_markdown._renderGraphPage`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-rendergraphpage-function-rendergraphpage-project-title-image-name-description-src-minidoc-render-markdown-ml-1268984211) | `src/minidoc/render_markdown.ml:654` | 8 | 7 | 2 | 1 | 1 | 425.73 | 61.62 |
-| [`minidoc.render_markdown._renderHome`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderhome-function-renderhome-project-src-minidoc-render-markdown-ml-1392245616) | `src/minidoc/render_markdown.ml:279` | 45 | 47 | 14 | 17 | 3 | 3229.55 | 37.48 |
-| [`minidoc.render_markdown._renderMetrics`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-rendermetrics-function-rendermetrics-project-src-minidoc-render-markdown-ml-1897863144) | `src/minidoc/render_markdown.ml:536` | 81 | 75 | 14 | 31 | 5 | 8501.63 | 28.97 |
-| [`minidoc.render_markdown._renderPackage`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderpackage-function-renderpackage-project-package-name-src-minidoc-render-markdown-ml-1076586018) | `src/minidoc/render_markdown.ml:377` | 26 | 23 | 12 | 23 | 3 | 1440 | 45.4 |
-| [`minidoc.render_markdown._renderPackagesIndex`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderpackagesindex-function-renderpackagesindex-project-src-minidoc-render-markdown-ml-593340696) | `src/minidoc/render_markdown.ml:363` | 11 | 7 | 3 | 3 | 2 | 461.82 | 58.22 |
-| [`minidoc.render_markdown._renderSidebar`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-rendersidebar-function-rendersidebar-project-src-minidoc-render-markdown-ml-197078972) | `src/minidoc/render_markdown.ml:632` | 19 | 20 | 9 | 9 | 2 | 1262.29 | 49.18 |
-| [`minidoc.render_markdown._renderSymbols`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-rendersymbols-function-rendersymbols-project-src-minidoc-render-markdown-ml-878417144) | `src/minidoc/render_markdown.ml:347` | 13 | 10 | 4 | 6 | 3 | 754.43 | 55.01 |
-| [`minidoc.render_markdown._renderType`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-rendertype-function-rendertype-project-type-symbol-src-minidoc-render-markdown-ml-1036185877) | `src/minidoc/render_markdown.ml:488` | 18 | 13 | 7 | 10 | 3 | 1026.71 | 50.59 |
+| [`minidoc.render_markdown._packages`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-packages-function-packages-project-src-minidoc-render-markdown-ml-204965004) | `src/minidoc/render_markdown.ml:278` | 11 | 11 | 5 | 6 | 2 | 483.31 | 57.82 |
+| [`minidoc.render_markdown._projectDescription`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-projectdescription-function-projectdescription-project-src-minidoc-render-markdown-ml-1404482280) | `src/minidoc/render_markdown.ml:292` | 4 | 3 | 2 | 1 | 1 | 130.8 | 71.78 |
+| [`minidoc.render_markdown._renderDependencies`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderdependencies-function-renderdependencies-project-src-minidoc-render-markdown-ml-1169613352) | `src/minidoc/render_markdown.ml:571` | 16 | 14 | 5 | 9 | 3 | 929.18 | 52.28 |
+| [`minidoc.render_markdown._renderDiagnostics`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderdiagnostics-function-renderdiagnostics-project-src-minidoc-render-markdown-ml-478275432) | `src/minidoc/render_markdown.ml:611` | 11 | 10 | 3 | 2 | 1 | 795.78 | 56.57 |
+| [`minidoc.render_markdown._renderFile`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderfile-function-renderfile-project-file-src-minidoc-render-markdown-ml-1369235800) | `src/minidoc/render_markdown.ml:508` | 44 | 44 | 22 | 43 | 4 | 3135.37 | 36.71 |
+| [`minidoc.render_markdown._renderFiles`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderfiles-function-renderfiles-project-src-minidoc-render-markdown-ml-234256500) | `src/minidoc/render_markdown.ml:347` | 17 | 16 | 6 | 12 | 3 | 956.59 | 51.48 |
+| [`minidoc.render_markdown._renderGraphPage`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-rendergraphpage-function-rendergraphpage-project-title-image-name-description-src-minidoc-render-markdown-ml-1268984211) | `src/minidoc/render_markdown.ml:756` | 8 | 7 | 2 | 1 | 1 | 425.73 | 61.62 |
+| [`minidoc.render_markdown._renderHome`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderhome-function-renderhome-project-src-minidoc-render-markdown-ml-1392245616) | `src/minidoc/render_markdown.ml:299` | 45 | 47 | 14 | 17 | 3 | 3229.55 | 37.48 |
+| [`minidoc.render_markdown._renderMetrics`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-rendermetrics-function-rendermetrics-project-src-minidoc-render-markdown-ml-1897863144) | `src/minidoc/render_markdown.ml:638` | 81 | 75 | 14 | 31 | 5 | 8501.63 | 28.97 |
+| [`minidoc.render_markdown._renderPackage`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderpackage-function-renderpackage-project-package-name-src-minidoc-render-markdown-ml-1076586018) | `src/minidoc/render_markdown.ml:479` | 26 | 23 | 12 | 23 | 3 | 1440 | 45.4 |
+| [`minidoc.render_markdown._renderPackagesIndex`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-renderpackagesindex-function-renderpackagesindex-project-src-minidoc-render-markdown-ml-593340696) | `src/minidoc/render_markdown.ml:465` | 11 | 7 | 3 | 3 | 2 | 461.82 | 58.22 |
+| [`minidoc.render_markdown._renderSidebar`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-rendersidebar-function-rendersidebar-project-src-minidoc-render-markdown-ml-197078972) | `src/minidoc/render_markdown.ml:734` | 19 | 20 | 9 | 9 | 2 | 1262.29 | 49.18 |
+| [`minidoc.render_markdown._renderSymbols`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-rendersymbols-function-rendersymbols-project-src-minidoc-render-markdown-ml-878417144) | `src/minidoc/render_markdown.ml:367` | 13 | 10 | 4 | 6 | 3 | 754.43 | 55.01 |
+| [`minidoc.render_markdown._renderTests`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-rendertests-function-rendertests-project-src-minidoc-render-markdown-ml-274041520) | `src/minidoc/render_markdown.ml:414` | 48 | 48 | 19 | 43 | 4 | 3251.69 | 36.18 |
+| [`minidoc.render_markdown._renderType`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-rendertype-function-rendertype-project-type-symbol-src-minidoc-render-markdown-ml-1036185877) | `src/minidoc/render_markdown.ml:590` | 18 | 13 | 7 | 10 | 3 | 1026.71 | 50.59 |
 | [`minidoc.render_markdown._shortRevision`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-shortrevision-function-shortrevision-value-src-minidoc-render-markdown-ml-1761394760) | `src/minidoc/render_markdown.ml:81` | 4 | 3 | 2 | 1 | 1 | 122.62 | 71.97 |
-| [`minidoc.render_markdown._sortTags`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-sorttags-function-sorttags-tags-src-minidoc-render-markdown-ml-1028920960) | `src/minidoc/render_markdown.ml:198` | 16 | 12 | 4 | 4 | 2 | 515.24 | 54.21 |
+| [`minidoc.render_markdown._sortTags`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-sorttags-function-sorttags-tags-src-minidoc-render-markdown-ml-1028920960) | `src/minidoc/render_markdown.ml:218` | 16 | 12 | 4 | 4 | 2 | 515.24 | 54.21 |
 | [`minidoc.render_markdown._symbolById`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-symbolbyid-function-symbolbyid-project-id-src-minidoc-render-markdown-ml-606316783) | `src/minidoc/render_markdown.ml:44` | 7 | 6 | 4 | 4 | 2 | 279.68 | 63.9 |
+| [`minidoc.render_markdown._symbolFixtureRole`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-symbolfixturerole-function-symbolfixturerole-doc-symbol-src-minidoc-render-markdown-ml-1692549846) | `src/minidoc/render_markdown.ml:404` | 7 | 5 | 3 | 3 | 2 | 257.47 | 64.28 |
+| [`minidoc.render_markdown._symbolHasTag`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-symbolhastag-function-symbolhastag-doc-symbol-name-src-minidoc-render-markdown-ml-1195790431) | `src/minidoc/render_markdown.ml:383` | 7 | 6 | 4 | 4 | 2 | 263.22 | 64.08 |
 | [`minidoc.render_markdown._symbolLink`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-symbollink-function-symbollink-project-doc-symbol-src-minidoc-render-markdown-ml-1288607865) | `src/minidoc/render_markdown.ml:119` | 8 | 9 | 4 | 3 | 1 | 423.05 | 61.37 |
+| [`minidoc.render_markdown._symbolTagKeys`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-symboltagkeys-function-symboltagkeys-doc-symbol-name-src-minidoc-render-markdown-ml-769449549) | `src/minidoc/render_markdown.ml:393` | 8 | 7 | 5 | 5 | 2 | 407.27 | 61.35 |
 | [`minidoc.render_markdown._typePage`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-typepage-function-typepage-doc-symbol-src-minidoc-render-markdown-ml-1928748606) | `src/minidoc/render_markdown.ml:94` | 3 | 1 | 1 | 0 | 0 | 76.15 | 76.28 |
 | [`minidoc.render_markdown._visible`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-visible-function-visible-project-doc-symbol-src-minidoc-render-markdown-ml-1836227959) | `src/minidoc/render_markdown.ml:30` | 5 | 4 | 3 | 2 | 1 | 232.19 | 67.78 |
-| [`minidoc.render_markdown._writeGenerated`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-writegenerated-function-writegenerated-root-generated-relative-path-content-src-minidoc-render-markdown-ml-1480454785) | `src/minidoc/render_markdown.ml:665` | 9 | 8 | 4 | 3 | 1 | 491.14 | 59.8 |
-| [`minidoc.render_markdown.render`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-render-function-render-project-src-minidoc-render-markdown-ml-12269608) | `src/minidoc/render_markdown.ml:678` | 78 | 86 | 37 | 58 | 4 | 5958.28 | 27.32 |
+| [`minidoc.render_markdown._writeGenerated`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-writegenerated-function-writegenerated-root-generated-relative-path-content-src-minidoc-render-markdown-ml-1480454785) | `src/minidoc/render_markdown.ml:767` | 9 | 8 | 4 | 3 | 1 | 491.14 | 59.8 |
+| [`minidoc.render_markdown.render`](File-src-minidoc-render-markdown-ml-212465045.md#function-function-minidoc-render-markdown-render-function-render-project-src-minidoc-render-markdown-ml-12269608) | `src/minidoc/render_markdown.ml:780` | 80 | 89 | 38 | 59 | 4 | 6165.32 | 26.84 |
 | [`minidoc.util._gitDirectory`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-gitdirectory-function-gitdirectory-root-src-minidoc-util-ml-1506255809) | `src/minidoc/util.ml:290` | 9 | 9 | 3 | 2 | 1 | 464.08 | 60.11 |
 | [`minidoc.util._optionalText`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-optionaltext-function-optionaltext-path-src-minidoc-util-ml-1436453920) | `src/minidoc/util.ml:281` | 6 | 6 | 3 | 2 | 1 | 217.13 | 66.26 |
 | [`minidoc.util._packedRevision`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-packedrevision-function-packedrevision-path-reference-src-minidoc-util-ml-855697853) | `src/minidoc/util.ml:302` | 12 | 12 | 8 | 9 | 2 | 693.35 | 55.49 |
@@ -330,7 +342,7 @@ Coverage is split by documentation contract so strong API summaries cannot hide 
 
 A clone group is an exact sequence of 6 normalized, contiguous code lines found more than once. Comments and formatting whitespace are ignored. Duplicated-line totals count overlapping windows only once.
 
-Found 61 clone group(s). At most 61 groups are shown.
+Found 89 clone group(s). At most 89 groups are shown.
 
 <details>
 <summary>Clone 1 — 3 occurrences</summary>
@@ -408,7 +420,7 @@ Found 61 clone group(s). At most 61 groups are shown.
 
 - [`src/minidoc/graph.ml:155`](File-src-minidoc-graph-ml-29661697.md)
 - [`src/minidoc/render_html.ml:188`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:206`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:226`](File-src-minidoc-render-markdown-ml-212465045.md)
 - [`src/minidoc/util.ml:529`](File-src-minidoc-util-ml-1632979029.md)
 
 </details>
@@ -425,7 +437,7 @@ Found 61 clone group(s). At most 61 groups are shown.
 
 - [`src/minidoc/graph.ml:156`](File-src-minidoc-graph-ml-29661697.md)
 - [`src/minidoc/render_html.ml:189`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:207`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:227`](File-src-minidoc-render-markdown-ml-212465045.md)
 - [`src/minidoc/util.ml:530`](File-src-minidoc-util-ml-1632979029.md)
 
 </details>
@@ -442,7 +454,7 @@ Found 61 clone group(s). At most 61 groups are shown.
 
 - [`src/minidoc/graph.ml:157`](File-src-minidoc-graph-ml-29661697.md)
 - [`src/minidoc/render_html.ml:190`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:208`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:228`](File-src-minidoc-render-markdown-ml-212465045.md)
 - [`src/minidoc/util.ml:531`](File-src-minidoc-util-ml-1632979029.md)
 
 </details>
@@ -743,7 +755,7 @@ Found 61 clone group(s). At most 61 groups are shown.
     before = index - 1
 
 - [`src/minidoc/render_html.ml:180`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:198`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:218`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
@@ -758,7 +770,7 @@ Found 61 clone group(s). At most 61 groups are shown.
     value_key = value . key + "\n" + value . text
 
 - [`src/minidoc/render_html.ml:181`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:199`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:219`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
@@ -773,7 +785,7 @@ Found 61 clone group(s). At most 61 groups are shown.
     while before >= 0 and util . alphabeticalLess ( value_key , result [ before ] . key + "\n" + result [ before ] . text )
 
 - [`src/minidoc/render_html.ml:182`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:200`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:220`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
@@ -788,7 +800,7 @@ Found 61 clone group(s). At most 61 groups are shown.
     result [ before + 1 ] = result [ before ]
 
 - [`src/minidoc/render_html.ml:183`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:201`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:221`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
@@ -803,7 +815,7 @@ Found 61 clone group(s). At most 61 groups are shown.
     before = before - 1
 
 - [`src/minidoc/render_html.ml:184`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:202`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:222`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
@@ -818,7 +830,7 @@ Found 61 clone group(s). At most 61 groups are shown.
     end while
 
 - [`src/minidoc/render_html.ml:185`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:203`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:223`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
@@ -833,7 +845,7 @@ Found 61 clone group(s). At most 61 groups are shown.
     result [ before + 1 ] = value
 
 - [`src/minidoc/render_html.ml:186`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:204`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:224`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
@@ -848,7 +860,7 @@ Found 61 clone group(s). At most 61 groups are shown.
     index = index + 1
 
 - [`src/minidoc/render_html.ml:187`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:205`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:225`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
@@ -863,12 +875,132 @@ Found 61 clone group(s). At most 61 groups are shown.
     if type_name == "" then type_name = "dynamic" end if
 
 - [`src/minidoc/render_html.ml:210`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:234`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:254`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
 <summary>Clone 36 — 2 occurrences</summary>
+
+    test_role = ""
+    test_name = ""
+    skip_reason = ""
+    timeout = ""
+    categories = [ ]
+    covers = [ ]
+
+- [`src/minidoc/render_html.ml:228`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:137`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 37 — 2 occurrences</summary>
+
+    test_name = ""
+    skip_reason = ""
+    timeout = ""
+    categories = [ ]
+    covers = [ ]
+    if len ( doc_symbol . tags ) > 0 then
+
+- [`src/minidoc/render_html.ml:229`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:138`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 38 — 2 occurrences</summary>
+
+    skip_reason = ""
+    timeout = ""
+    categories = [ ]
+    covers = [ ]
+    if len ( doc_symbol . tags ) > 0 then
+    for i = 0 to len ( doc_symbol . tags ) - 1
+
+- [`src/minidoc/render_html.ml:230`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:139`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 39 — 2 occurrences</summary>
+
+    timeout = ""
+    categories = [ ]
+    covers = [ ]
+    if len ( doc_symbol . tags ) > 0 then
+    for i = 0 to len ( doc_symbol . tags ) - 1
+    tag = doc_symbol . tags [ i ]
+
+- [`src/minidoc/render_html.ml:231`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:140`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 40 — 2 occurrences</summary>
+
+    else if tag . name == "testmethod" then test_role = "test method" test_name = tag . text
+    else if tag . name == "beforeall" or tag . name == "afterall" or tag . name == "beforeeach" or tag . name == "aftereach" then test_role = "fixture " + tag . name
+    else if tag . name == "skip" then skip_reason = tag . text
+    else if tag . name == "timeout" then timeout = tag . key
+    else if tag . name == "category" then categories = categories + [ tag . key ]
+    else if tag . name == "covers" then covers = covers + [ tag . key ]
+
+- [`src/minidoc/render_html.ml:242`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:152`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 41 — 2 occurrences</summary>
+
+    else if tag . name == "beforeall" or tag . name == "afterall" or tag . name == "beforeeach" or tag . name == "aftereach" then test_role = "fixture " + tag . name
+    else if tag . name == "skip" then skip_reason = tag . text
+    else if tag . name == "timeout" then timeout = tag . key
+    else if tag . name == "category" then categories = categories + [ tag . key ]
+    else if tag . name == "covers" then covers = covers + [ tag . key ]
+    end if
+
+- [`src/minidoc/render_html.ml:243`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:153`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 42 — 2 occurrences</summary>
+
+    else if tag . name == "skip" then skip_reason = tag . text
+    else if tag . name == "timeout" then timeout = tag . key
+    else if tag . name == "category" then categories = categories + [ tag . key ]
+    else if tag . name == "covers" then covers = covers + [ tag . key ]
+    end if
+    end for
+
+- [`src/minidoc/render_html.ml:244`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:154`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 43 — 2 occurrences</summary>
+
+    else if tag . name == "timeout" then timeout = tag . key
+    else if tag . name == "category" then categories = categories + [ tag . key ]
+    else if tag . name == "covers" then covers = covers + [ tag . key ]
+    end if
+    end for
+    end if
+
+- [`src/minidoc/render_html.ml:245`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:155`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 44 — 2 occurrences</summary>
 
     function _packages ( project )
     result = [ ]
@@ -877,13 +1009,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     if _fileVisible ( project , project . files [ i ] ) == false then continue end if
     name = project . files [ i ] . package_name
 
-- [`src/minidoc/render_html.ml:290`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:258`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:311`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:278`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 37 — 2 occurrences</summary>
+<summary>Clone 45 — 2 occurrences</summary>
 
     result = [ ]
     if len ( project . files ) == 0 then return result end if
@@ -892,13 +1024,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     name = project . files [ i ] . package_name
     if name == "" then name = "(global)" end if
 
-- [`src/minidoc/render_html.ml:291`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:259`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:312`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:279`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 38 — 2 occurrences</summary>
+<summary>Clone 46 — 2 occurrences</summary>
 
     if len ( project . files ) == 0 then return result end if
     for i = 0 to len ( project . files ) - 1
@@ -907,13 +1039,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     if name == "" then name = "(global)" end if
     result = util . addUnique ( result , name )
 
-- [`src/minidoc/render_html.ml:292`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:260`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:313`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:280`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 39 — 2 occurrences</summary>
+<summary>Clone 47 — 2 occurrences</summary>
 
     for i = 0 to len ( project . files ) - 1
     if _fileVisible ( project , project . files [ i ] ) == false then continue end if
@@ -922,13 +1054,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     result = util . addUnique ( result , name )
     end for
 
-- [`src/minidoc/render_html.ml:293`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:261`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:314`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:281`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 40 — 2 occurrences</summary>
+<summary>Clone 48 — 2 occurrences</summary>
 
     if _fileVisible ( project , project . files [ i ] ) == false then continue end if
     name = project . files [ i ] . package_name
@@ -937,13 +1069,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     end for
     return util . sortedStrings ( result )
 
-- [`src/minidoc/render_html.ml:294`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:262`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:315`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:282`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 41 — 2 occurrences</summary>
+<summary>Clone 49 — 2 occurrences</summary>
 
     name = project . files [ i ] . package_name
     if name == "" then name = "(global)" end if
@@ -952,13 +1084,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     return util . sortedStrings ( result )
     end function
 
-- [`src/minidoc/render_html.ml:295`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:263`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:316`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:283`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 42 — 2 occurrences</summary>
+<summary>Clone 50 — 2 occurrences</summary>
 
     if len ( project . files ) > 0 then
     for i = 0 to len ( project . files ) - 1
@@ -967,13 +1099,313 @@ Found 61 clone group(s). At most 61 groups are shown.
     package_name = file . package_name
     if package_name == "" then package_name = "(global)" end if
 
-- [`src/minidoc/render_html.ml:350`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:331`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:371`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:351`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 43 — 2 occurrences</summary>
+<summary>Clone 51 — 2 occurrences</summary>
+
+    function _symbolHasTag ( doc_symbol , name )
+    if len ( doc_symbol . tags ) == 0 then return false end if
+    for i = 0 to len ( doc_symbol . tags ) - 1
+    if doc_symbol . tags [ i ] . name == name then return true end if
+    end for
+    return false
+
+- [`src/minidoc/render_html.ml:404`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:383`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 52 — 2 occurrences</summary>
+
+    if len ( doc_symbol . tags ) == 0 then return false end if
+    for i = 0 to len ( doc_symbol . tags ) - 1
+    if doc_symbol . tags [ i ] . name == name then return true end if
+    end for
+    return false
+    end function
+
+- [`src/minidoc/render_html.ml:405`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:384`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 53 — 2 occurrences</summary>
+
+    function _symbolTagKeys ( doc_symbol , name )
+    result = [ ]
+    if len ( doc_symbol . tags ) == 0 then return result end if
+    for i = 0 to len ( doc_symbol . tags ) - 1
+    if doc_symbol . tags [ i ] . name == name and doc_symbol . tags [ i ] . key != "" then result = result + [ doc_symbol . tags [ i ] . key ] end if
+    end for
+
+- [`src/minidoc/render_html.ml:414`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:393`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 54 — 2 occurrences</summary>
+
+    result = [ ]
+    if len ( doc_symbol . tags ) == 0 then return result end if
+    for i = 0 to len ( doc_symbol . tags ) - 1
+    if doc_symbol . tags [ i ] . name == name and doc_symbol . tags [ i ] . key != "" then result = result + [ doc_symbol . tags [ i ] . key ] end if
+    end for
+    return result
+
+- [`src/minidoc/render_html.ml:415`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:394`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 55 — 2 occurrences</summary>
+
+    if len ( doc_symbol . tags ) == 0 then return result end if
+    for i = 0 to len ( doc_symbol . tags ) - 1
+    if doc_symbol . tags [ i ] . name == name and doc_symbol . tags [ i ] . key != "" then result = result + [ doc_symbol . tags [ i ] . key ] end if
+    end for
+    return result
+    end function
+
+- [`src/minidoc/render_html.ml:416`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:395`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 56 — 2 occurrences</summary>
+
+    function _symbolFixtureRole ( doc_symbol )
+    roles = [ "beforeall" , "afterall" , "beforeeach" , "aftereach" ]
+    for i = 0 to len ( roles ) - 1
+    if _symbolHasTag ( doc_symbol , roles [ i ] ) then return "@" + roles [ i ] end if
+    end for
+    return ""
+
+- [`src/minidoc/render_html.ml:425`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:404`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 57 — 2 occurrences</summary>
+
+    roles = [ "beforeall" , "afterall" , "beforeeach" , "aftereach" ]
+    for i = 0 to len ( roles ) - 1
+    if _symbolHasTag ( doc_symbol , roles [ i ] ) then return "@" + roles [ i ] end if
+    end for
+    return ""
+    end function
+
+- [`src/minidoc/render_html.ml:426`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:405`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 58 — 2 occurrences</summary>
+
+    count = 0
+    fixture_count = 0
+    if len ( project . symbols ) > 0 then
+    for i = 0 to len ( project . symbols ) - 1
+    if _visible ( project , project . symbols [ i ] ) then
+    if _symbolHasTag ( project . symbols [ i ] , "testmethod" ) then count = count + 1
+
+- [`src/minidoc/render_html.ml:437`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:417`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 59 — 2 occurrences</summary>
+
+    fixture_count = 0
+    if len ( project . symbols ) > 0 then
+    for i = 0 to len ( project . symbols ) - 1
+    if _visible ( project , project . symbols [ i ] ) then
+    if _symbolHasTag ( project . symbols [ i ] , "testmethod" ) then count = count + 1
+    else if _symbolFixtureRole ( project . symbols [ i ] ) != "" then fixture_count = fixture_count + 1
+
+- [`src/minidoc/render_html.ml:438`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:418`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 60 — 2 occurrences</summary>
+
+    if len ( project . symbols ) > 0 then
+    for i = 0 to len ( project . symbols ) - 1
+    if _visible ( project , project . symbols [ i ] ) then
+    if _symbolHasTag ( project . symbols [ i ] , "testmethod" ) then count = count + 1
+    else if _symbolFixtureRole ( project . symbols [ i ] ) != "" then fixture_count = fixture_count + 1
+    end if
+
+- [`src/minidoc/render_html.ml:439`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:419`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 61 — 2 occurrences</summary>
+
+    for i = 0 to len ( project . symbols ) - 1
+    if _visible ( project , project . symbols [ i ] ) then
+    if _symbolHasTag ( project . symbols [ i ] , "testmethod" ) then count = count + 1
+    else if _symbolFixtureRole ( project . symbols [ i ] ) != "" then fixture_count = fixture_count + 1
+    end if
+    end if
+
+- [`src/minidoc/render_html.ml:440`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:420`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 62 — 2 occurrences</summary>
+
+    if _visible ( project , project . symbols [ i ] ) then
+    if _symbolHasTag ( project . symbols [ i ] , "testmethod" ) then count = count + 1
+    else if _symbolFixtureRole ( project . symbols [ i ] ) != "" then fixture_count = fixture_count + 1
+    end if
+    end if
+    end for
+
+- [`src/minidoc/render_html.ml:441`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:421`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 63 — 2 occurrences</summary>
+
+    if _symbolHasTag ( project . symbols [ i ] , "testmethod" ) then count = count + 1
+    else if _symbolFixtureRole ( project . symbols [ i ] ) != "" then fixture_count = fixture_count + 1
+    end if
+    end if
+    end for
+    end if
+
+- [`src/minidoc/render_html.ml:442`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:422`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 64 — 2 occurrences</summary>
+
+    if len ( project . symbols ) > 0 then
+    for i = 0 to len ( project . symbols ) - 1
+    test_symbol = project . symbols [ i ]
+    if _visible ( project , test_symbol ) == false or _symbolHasTag ( test_symbol , "testmethod" ) == false then continue end if
+    categories = _symbolTagKeys ( test_symbol , "category" )
+    covers = _symbolTagKeys ( test_symbol , "covers" )
+
+- [`src/minidoc/render_html.ml:450`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:430`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 65 — 2 occurrences</summary>
+
+    for i = 0 to len ( project . symbols ) - 1
+    test_symbol = project . symbols [ i ]
+    if _visible ( project , test_symbol ) == false or _symbolHasTag ( test_symbol , "testmethod" ) == false then continue end if
+    categories = _symbolTagKeys ( test_symbol , "category" )
+    covers = _symbolTagKeys ( test_symbol , "covers" )
+    state = "enabled"
+
+- [`src/minidoc/render_html.ml:451`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:431`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 66 — 2 occurrences</summary>
+
+    test_symbol = project . symbols [ i ]
+    if _visible ( project , test_symbol ) == false or _symbolHasTag ( test_symbol , "testmethod" ) == false then continue end if
+    categories = _symbolTagKeys ( test_symbol , "category" )
+    covers = _symbolTagKeys ( test_symbol , "covers" )
+    state = "enabled"
+    if _symbolHasTag ( test_symbol , "skip" ) then state = "skipped" end if
+
+- [`src/minidoc/render_html.ml:452`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:432`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 67 — 2 occurrences</summary>
+
+    if _visible ( project , test_symbol ) == false or _symbolHasTag ( test_symbol , "testmethod" ) == false then continue end if
+    categories = _symbolTagKeys ( test_symbol , "category" )
+    covers = _symbolTagKeys ( test_symbol , "covers" )
+    state = "enabled"
+    if _symbolHasTag ( test_symbol , "skip" ) then state = "skipped" end if
+    package_name = test_symbol . package_name
+
+- [`src/minidoc/render_html.ml:453`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:433`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 68 — 2 occurrences</summary>
+
+    categories = _symbolTagKeys ( test_symbol , "category" )
+    covers = _symbolTagKeys ( test_symbol , "covers" )
+    state = "enabled"
+    if _symbolHasTag ( test_symbol , "skip" ) then state = "skipped" end if
+    package_name = test_symbol . package_name
+    if package_name == "" then package_name = "(global)" end if
+
+- [`src/minidoc/render_html.ml:454`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:434`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 69 — 2 occurrences</summary>
+
+    if len ( project . symbols ) > 0 then
+    for i = 0 to len ( project . symbols ) - 1
+    fixture_symbol = project . symbols [ i ]
+    fixture_role = _symbolFixtureRole ( fixture_symbol )
+    if _visible ( project , fixture_symbol ) == false or fixture_role == "" then continue end if
+    fixture_package = fixture_symbol . package_name
+
+- [`src/minidoc/render_html.ml:469`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:449`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 70 — 2 occurrences</summary>
+
+    for i = 0 to len ( project . symbols ) - 1
+    fixture_symbol = project . symbols [ i ]
+    fixture_role = _symbolFixtureRole ( fixture_symbol )
+    if _visible ( project , fixture_symbol ) == false or fixture_role == "" then continue end if
+    fixture_package = fixture_symbol . package_name
+    if fixture_package == "" then fixture_package = "(global)" end if
+
+- [`src/minidoc/render_html.ml:470`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:450`](File-src-minidoc-render-markdown-ml-212465045.md)
+
+</details>
+
+<details>
+<summary>Clone 71 — 2 occurrences</summary>
 
     if len ( project . files ) > 0 then
     for i = 0 to len ( project . files ) - 1
@@ -982,13 +1414,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     actual = file . package_name
     if actual == "" then actual = "(global)" end if
 
-- [`src/minidoc/render_html.ml:401`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:381`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:503`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:483`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 44 — 2 occurrences</summary>
+<summary>Clone 72 — 2 occurrences</summary>
 
     function _dependencyReferenceCount ( project , dependency_id )
     count = 0
@@ -997,13 +1429,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     file = project . files [ i ]
     if util . isProjectSource ( file . path , project . config . entry , project . config . source_roots ) == false then continue end if
 
-- [`src/minidoc/render_html.ml:469`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:453`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:571`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:555`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 45 — 2 occurrences</summary>
+<summary>Clone 73 — 2 occurrences</summary>
 
     count = 0
     if len ( project . files ) == 0 then return count end if
@@ -1012,13 +1444,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     if util . isProjectSource ( file . path , project . config . entry , project . config . source_roots ) == false then continue end if
     if len ( file . imports ) == 0 then continue end if
 
-- [`src/minidoc/render_html.ml:470`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:454`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:572`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:556`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 46 — 2 occurrences</summary>
+<summary>Clone 74 — 2 occurrences</summary>
 
     if len ( project . files ) == 0 then return count end if
     for i = 0 to len ( project . files ) - 1
@@ -1027,13 +1459,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     if len ( file . imports ) == 0 then continue end if
     for j = 0 to len ( file . imports ) - 1
 
-- [`src/minidoc/render_html.ml:471`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:455`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:573`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:557`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 47 — 2 occurrences</summary>
+<summary>Clone 75 — 2 occurrences</summary>
 
     for i = 0 to len ( project . files ) - 1
     file = project . files [ i ]
@@ -1042,13 +1474,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     for j = 0 to len ( file . imports ) - 1
     if file . imports [ j ] . target_file_id == dependency_id then count = count + 1 break end if
 
-- [`src/minidoc/render_html.ml:472`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:456`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:574`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:558`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 48 — 2 occurrences</summary>
+<summary>Clone 76 — 2 occurrences</summary>
 
     file = project . files [ i ]
     if util . isProjectSource ( file . path , project . config . entry , project . config . source_roots ) == false then continue end if
@@ -1057,13 +1489,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     if file . imports [ j ] . target_file_id == dependency_id then count = count + 1 break end if
     end for
 
-- [`src/minidoc/render_html.ml:473`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:457`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:575`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:559`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 49 — 2 occurrences</summary>
+<summary>Clone 77 — 2 occurrences</summary>
 
     if util . isProjectSource ( file . path , project . config . entry , project . config . source_roots ) == false then continue end if
     if len ( file . imports ) == 0 then continue end if
@@ -1072,13 +1504,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     end for
     end for
 
-- [`src/minidoc/render_html.ml:474`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:458`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:576`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:560`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 50 — 2 occurrences</summary>
+<summary>Clone 78 — 2 occurrences</summary>
 
     if len ( file . imports ) == 0 then continue end if
     for j = 0 to len ( file . imports ) - 1
@@ -1087,13 +1519,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     end for
     return count
 
-- [`src/minidoc/render_html.ml:475`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:459`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:577`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:561`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 51 — 2 occurrences</summary>
+<summary>Clone 79 — 2 occurrences</summary>
 
     for j = 0 to len ( file . imports ) - 1
     if file . imports [ j ] . target_file_id == dependency_id then count = count + 1 break end if
@@ -1102,13 +1534,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     return count
     end function
 
-- [`src/minidoc/render_html.ml:476`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:460`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:578`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:562`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 52 — 2 occurrences</summary>
+<summary>Clone 80 — 2 occurrences</summary>
 
     if len ( project . files ) > 0 then
     for i = 0 to len ( project . files ) - 1
@@ -1117,13 +1549,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     package_name = file . package_name
     if package_name == "" then package_name = "(global)" end if
 
-- [`src/minidoc/render_html.ml:488`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:474`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:590`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:576`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 53 — 2 occurrences</summary>
+<summary>Clone 81 — 2 occurrences</summary>
 
     function _hasDependencies ( project )
     if len ( project . files ) == 0 then return false end if
@@ -1138,7 +1570,7 @@ Found 61 clone group(s). At most 61 groups are shown.
 </details>
 
 <details>
-<summary>Clone 54 — 2 occurrences</summary>
+<summary>Clone 82 — 2 occurrences</summary>
 
     if len ( project . files ) == 0 then return false end if
     for i = 0 to len ( project . files ) - 1
@@ -1153,7 +1585,7 @@ Found 61 clone group(s). At most 61 groups are shown.
 </details>
 
 <details>
-<summary>Clone 55 — 2 occurrences</summary>
+<summary>Clone 83 — 2 occurrences</summary>
 
     if typeof ( generated ) == "error" then return generated end if
     end for
@@ -1162,13 +1594,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     for i = 0 to len ( project . files ) - 1
     if _fileVisible ( project , project . files [ i ] ) == false then continue end if
 
-- [`src/minidoc/render_html.ml:699`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:709`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:803`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:813`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 56 — 2 occurrences</summary>
+<summary>Clone 84 — 2 occurrences</summary>
 
     if typeof ( generated ) == "error" then return generated end if
     end for
@@ -1177,13 +1609,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     for i = 0 to len ( project . symbols ) - 1
     listed_sym = project . symbols [ i ]
 
-- [`src/minidoc/render_html.ml:707`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:717`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:811`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:821`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 57 — 2 occurrences</summary>
+<summary>Clone 85 — 2 occurrences</summary>
 
     end for
     end if
@@ -1192,13 +1624,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     listed_sym = project . symbols [ i ]
     if _isType ( listed_sym ) and _visible ( project , listed_sym ) then
 
-- [`src/minidoc/render_html.ml:708`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:718`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:812`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:822`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 58 — 2 occurrences</summary>
+<summary>Clone 86 — 2 occurrences</summary>
 
     cleaned = util . removeStaleGenerated ( root , generated )
     if typeof ( cleaned ) == "error" then return cleaned end if
@@ -1207,13 +1639,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     return true
     end function
 
-- [`src/minidoc/render_html.ml:744`](File-src-minidoc-render-html-ml-1870373141.md)
-- [`src/minidoc/render_markdown.ml:753`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_html.ml:848`](File-src-minidoc-render-html-ml-1870373141.md)
+- [`src/minidoc/render_markdown.ml:857`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 59 — 2 occurrences</summary>
+<summary>Clone 87 — 2 occurrences</summary>
 
     packages = _packages ( project )
     if len ( packages ) > 0 then
@@ -1222,13 +1654,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     end for
     end if
 
-- [`src/minidoc/render_markdown.ml:316`](File-src-minidoc-render-markdown-ml-212465045.md)
-- [`src/minidoc/render_markdown.ml:366`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:336`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:468`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 60 — 2 occurrences</summary>
+<summary>Clone 88 — 2 occurrences</summary>
 
     if len ( packages ) > 0 then
     for i = 0 to len ( packages ) - 1
@@ -1237,13 +1669,13 @@ Found 61 clone group(s). At most 61 groups are shown.
     end if
     return writer . toString ( )
 
-- [`src/minidoc/render_markdown.ml:317`](File-src-minidoc-render-markdown-ml-212465045.md)
-- [`src/minidoc/render_markdown.ml:367`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:337`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:469`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 
 <details>
-<summary>Clone 61 — 2 occurrences</summary>
+<summary>Clone 89 — 2 occurrences</summary>
 
     for i = 0 to len ( packages ) - 1
     writer . appendString ( "- [" + packages [ i ] + "](" + _packagePage ( packages [ i ] ) + ")\n" )
@@ -1252,8 +1684,8 @@ Found 61 clone group(s). At most 61 groups are shown.
     return writer . toString ( )
     end function
 
-- [`src/minidoc/render_markdown.ml:318`](File-src-minidoc-render-markdown-ml-212465045.md)
-- [`src/minidoc/render_markdown.ml:368`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:338`](File-src-minidoc-render-markdown-ml-212465045.md)
+- [`src/minidoc/render_markdown.ml:470`](File-src-minidoc-render-markdown-ml-212465045.md)
 
 </details>
 

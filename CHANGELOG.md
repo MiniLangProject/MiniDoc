@@ -2,6 +2,14 @@
 
 All notable changes to MiniDoc are documented in this file.
 
+## Unreleased
+
+- Added structured support and diagnostics for `std.test` declaration tags,
+  including callback signatures, fixture uniqueness, categories, coverage
+  targets, skips, and positive millisecond timeouts.
+- Added HTML and Markdown test inventories and rendered test metadata on
+  declaration pages.
+
 ## 0.4.2 — 2026-09-02
 
 - Fixed function LOC detection when a function body contains the string literal

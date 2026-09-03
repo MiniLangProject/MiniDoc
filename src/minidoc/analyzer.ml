@@ -228,9 +228,65 @@ function _warningScopeIncludes(scope, internal)
   return internal == false
 end function
 
+/// Return whether a tag participates in std.test discovery.
+/// @internal
+function _isTestRoleTag(name)
+  return name == "testmethod" or name == "beforeall" or name == "afterall" or name == "beforeeach" or name == "aftereach"
+end function
+
+/// Return whether a string contains a positive decimal integer.
+/// @internal
+function _isPositiveDecimal(value)
+  if typeof(value) != "string" or value == "" then return false end if
+  raw = bytes(value)
+  number = 0
+  for i = 0 to len(raw) - 1
+    if raw[i] < 48 or raw[i] > 57 then return false end if
+    number = number * 10 + raw[i] - 48
+  end for
+  return number > 0
+end function
+
+/// Validate std.test discovery tags attached to one callable declaration.
+/// @internal
+function _validateTestTags(project, file, node, doc, parameters, return_type, kind)
+  if util.isProjectSource(file.path, project.config.entry, project.config.source_roots) == false or len(doc.tags) == 0 then return end if
+  role_count = 0
+  testmethod_count = 0
+  has_test_metadata = false
+  for i = 0 to len(doc.tags) - 1
+    tag = doc.tags[i]
+    if _isTestRoleTag(tag.name) then
+      role_count = role_count + 1
+      if tag.name == "testmethod" then testmethod_count = testmethod_count + 1 end if
+    else if tag.name == "skip" or tag.name == "timeout" or tag.name == "category" or tag.name == "covers" then
+      has_test_metadata = true
+    end if
+    if tag.name == "timeout" and not _isPositiveDecimal(tag.key) then
+      _diagnostic(project, "warning", "MD2304", file, node._pos, "@timeout expects a positive number of milliseconds")
+    end if
+    if (tag.name == "category" or tag.name == "covers") and tag.key == "" then
+      _diagnostic(project, "warning", "MD2305", file, node._pos, "@" + tag.name + " requires a value")
+    end if
+  end for
+
+  if role_count > 1 then _diagnostic(project, "warning", "MD2301", file, node._pos, "a declaration may have only one std.test role tag") end if
+  if role_count > 0 then
+    if kind != "function" and kind != "static_method" then
+      _diagnostic(project, "warning", "MD2302", file, node._pos, "std.test roles require a top-level or static function")
+    end if
+    if len(parameters) != 0 then _diagnostic(project, "warning", "MD2303", file, node._pos, "std.test callbacks must have zero parameters") end if
+    if return_type != "" and return_type != "void" then _diagnostic(project, "warning", "MD2306", file, node._pos, "std.test callbacks should not declare a non-void return contract") end if
+    if (kind == "function" or kind == "static_method" or kind == "method") and (node.is_async or node.is_iterator) then _diagnostic(project, "warning", "MD2309", file, node._pos, "async and iterator functions cannot be std.test callbacks") end if
+  end if
+  if has_test_metadata and testmethod_count == 0 then
+    _diagnostic(project, "warning", "MD2307", file, node._pos, "@skip, @timeout, @category, and @covers require @testmethod")
+  end if
+end function
+
 /// Performs the '_validateFunctionDoc' step in MiniDoc's symbol-analysis pipeline.
 /// @internal
-function _validateFunctionDoc(project, file, node, doc, parameters, return_type, internal)
+function _validateFunctionDoc(project, file, node, doc, parameters, return_type, internal, kind)
   if util.isProjectSource(file.path, project.config.entry, project.config.source_roots) == false then return end if
   seen = []
   has_returns = false
@@ -256,6 +312,7 @@ function _validateFunctionDoc(project, file, node, doc, parameters, return_type,
     end for
   end if
 
+  _validateTestTags(project, file, node, doc, parameters, return_type, kind)
   if _warningScopeIncludes(project.config.contract_warnings, internal) == false then return end if
   missing = []
   if len(parameters) > 0 then
@@ -455,7 +512,7 @@ function _addFunction(project, file, node, kind, prefix, namespace_name, contain
   end if
   return_type = _typeName(node.return_type, node.return_optional)
   fn_sym = _addSymbol(project, file, kind, node.name, qualified_name, container_id, namespace_name, node._pos, signature, "", modifiers, parameters, return_type, doc)
-  _validateFunctionDoc(project, file, node, doc, parameters, return_type, fn_sym.internal)
+  _validateFunctionDoc(project, file, node, doc, parameters, return_type, fn_sym.internal, kind)
   _walkStatementsForCalls(project, file, fn_sym, node.body, namespace_name)
   _walkNested(project, file, node.body, fn_sym, namespace_name)
   return fn_sym
@@ -512,7 +569,7 @@ function _addExternFunction(project, file, node, prefix, namespace_name)
   if typeof(node.symbol_name) == "string" and node.symbol_name != "" then signature = signature + " symbol \"" + node.symbol_name + "\"" end if
   if return_type != "" then signature = signature + " returns " + return_type end if
   fn_sym = _addSymbol(project, file, "extern_function", node.name, _qualified(prefix, node.name), "", namespace_name, node._pos, signature, "", ["extern"], parameters, return_type, doc)
-  _validateFunctionDoc(project, file, node, doc, parameters, return_type, fn_sym.internal)
+  _validateFunctionDoc(project, file, node, doc, parameters, return_type, fn_sym.internal, "extern_function")
   return fn_sym
 end function
 
@@ -767,6 +824,37 @@ function _validateCoverage(project)
   end for
 end function
 
+/// Report duplicate lifecycle hooks within one source-file suite.
+/// @internal
+function _validateTestFixtureUniqueness(project)
+  if len(project.symbols) < 2 then return end if
+  roles = ["beforeall", "afterall", "beforeeach", "aftereach"]
+  for i = 0 to len(project.symbols) - 1
+    current = project.symbols[i]
+    if len(current.tags) == 0 then continue end if
+    for ri = 0 to len(roles) - 1
+      role = roles[ri]
+      current_has_role = false
+      for ti = 0 to len(current.tags) - 1
+        if current.tags[ti].name == role then current_has_role = true break end if
+      end for
+      if not current_has_role then continue end if
+      if i == 0 then continue end if
+      for j = 0 to i - 1
+        previous = project.symbols[j]
+        if previous.file_id != current.file_id or len(previous.tags) == 0 then continue end if
+        for pti = 0 to len(previous.tags) - 1
+          if previous.tags[pti].name == role then
+            file = _fileById(project, current.file_id)
+            if typeof(file) == "struct" then _diagnostic(project, "warning", "MD2308", file, current.position, "duplicate @" + role + " in one std.test source suite") end if
+            break
+          end if
+        end for
+      end for
+    end for
+  end for
+end function
+
 /// Returns whether a declaration belongs to the configured summary-quality scope.
 /// @internal
 function _summaryQualityEligible(project, doc_symbol)
@@ -819,6 +907,7 @@ function analyze(project)
   end if
   _resolveCalls(project)
   _resolveTypeRelations(project)
+  _validateTestFixtureUniqueness(project)
   _validateCoverage(project)
   _validateSummaryQuality(project)
   project.diagnostics = tools.arr_vec_finish(project.diagnostics)
