@@ -4,6 +4,13 @@ All notable changes to MiniDoc are documented in this file.
 
 ## Unreleased
 
+## 0.4.3 — 2026-09-05
+
+- Added first-class documentation for user-defined unary and binary operators,
+  including overload-safe identities, source-level signatures, search entries,
+  declaration comments, contract coverage, and per-operator code metrics.
+- Prevented compiler-internal `__operator_*` lowering names and implicit static
+  modifiers from leaking into generated HTML or Markdown documentation.
 - Added structured support and diagnostics for `std.test` declaration tags,
   including callback signatures, fixture uniqueness, categories, coverage
   targets, skips, and positive millisecond timeouts.

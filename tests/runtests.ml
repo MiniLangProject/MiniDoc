@@ -10,9 +10,11 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 import std.fs as fs
 import std.string as strings
+import minidoc.analyzer as analyzer
 import minidoc.app as app
 import minidoc.config as configuration
 import minidoc.doc_comments as comments
+import minidoc.metrics as metrics
 import minidoc.util as util
 
 _failures = 0
@@ -118,6 +120,15 @@ function appearsBefore(text, left, right)
   return typeof(left_pos) == "int" and typeof(right_pos) == "int" and left_pos >= 0 and right_pos > left_pos
 end function
 
+function operatorMappingsAreComplete()
+  lowered = ["pos", "neg", "not", "bitnot", "add", "sub", "mul", "div", "mod", "eq", "ne", "lt", "le", "gt", "ge", "bitand", "bitor", "bitxor", "shl", "shr"]
+  source = ["+", "-", "not", "~", "+", "-", "*", "/", "%", "==", "!=", "<", "<=", ">", ">=", "&", "|", "^", "<<", ">>"]
+  for i = 0 to len(lowered) - 1
+    if analyzer._operatorSourceSymbol("__operator_" + lowered[i] + "__overload_7") != source[i] then return false end if
+  end for
+  return analyzer._operatorSourceSymbol("__operator_unknown__overload_0") == ""
+end function
+
 function main(args)
   if len(args) < 1 then
     print "usage: minidoc_tests <MiniDoc root>"
@@ -173,7 +184,7 @@ function main(args)
     expect(false, "project analysis", project.message)
     return 1
   end if
-  expect(project.generator_version == "0.4.2" and project.generated_at == "" and project.source_revision == "fixture-revision-1234567890", "generation metadata", "MiniDoc version, source revision, or timestamp suppression is incorrect")
+  expect(project.generator_version == "0.4.3" and project.generated_at == "" and project.source_revision == "fixture-revision-1234567890", "generation metadata", "MiniDoc version, source revision, or timestamp suppression is incorrect")
   invalid_epoch = try(app._sourceDateEpochTimestamp("invalid"))
   expect(app._sourceDateEpochTimestamp("0") == "1970-01-01 00:00:00.000 UTC" and typeof(invalid_epoch) == "error", "reproducible timestamp", "SOURCE_DATE_EPOCH conversion or validation is incorrect")
   expect(hasDiagnostic(project, "MD1201") == false, "license header validation", "licensed fixture files produced a missing-license warning")
@@ -190,6 +201,10 @@ function main(args)
   tagged_test = findSymbol(project, "sample.feature.FeatureTests.decoratedName")
   skipped_test = findSymbol(project, "sample.feature.FeatureTests.unavailableIntegration")
   max_attempts = findSymbol(project, "sample.app.MAX_ATTEMPTS")
+  score_add = findSymbol(project, "sample.models.Score.operator +(Score,Score)")
+  score_add_scalar = findSymbol(project, "sample.models.Score.operator +(Score,int)")
+  score_positive = findSymbol(project, "sample.models.Score.operator +(Score)")
+  score_negate = findSymbol(project, "sample.models.Score.operator -(Score)")
   expect(typeof(display) == "struct" and len(display.parameters) == 1 and display.parameters[0].description == "The unformatted name.", "function extraction", "signature or parameter documentation is incomplete")
   expect(typeof(max_attempts) == "struct" and max_attempts.kind == "constant" and max_attempts.signature == "const MAX_ATTEMPTS = 3", "constant extraction", "constant name, kind, or rendered signature is incorrect")
   expect(typeof(person) == "struct" and person.kind == "struct", "type extraction", "Person struct is missing")
@@ -199,16 +214,24 @@ function main(args)
   expect(typeof(enabled) == "struct", "compile directives", "FEATURE-controlled declaration is missing")
   expect(typeof(tagged_test) == "struct" and comments.hasTag(tagged_test, "testmethod") and comments.tagText(tagged_test, "category", "unit") == "" and comments.tagText(tagged_test, "covers", "sample.feature.decorate") == "", "test symbol metadata", "tagged static test metadata is incomplete")
   expect(typeof(skipped_test) == "struct" and comments.hasTag(skipped_test, "skip"), "skipped test metadata", "@skip metadata is missing from the documented test")
+  expect(typeof(score_add) == "struct" and score_add.kind == "operator" and score_add.name == "operator +" and score_add.signature == "operator inline +(left as Score, right as Score) returns Score" and score_add.summary == "Adds two scores.", "operator extraction", "binary operator metadata or declaration comments are incomplete")
+  expect(typeof(score_add_scalar) == "struct" and score_add_scalar.id != score_add.id and score_add_scalar.parameters[1].description == "The scalar amount to add.", "operator overload identity", "operator overloads collided or lost parameter documentation")
+  expect(typeof(score_positive) == "struct" and score_positive.id != score_add.id and score_positive.signature == "operator +(value as Score) returns Score", "operator arity identity", "unary and binary forms of the same source operator collided")
+  expect(typeof(score_negate) == "struct" and score_negate.signature == "operator -(value as Score) returns Score", "unary operator extraction", "unary operator signature is incorrect")
+  expect(operatorMappingsAreComplete(), "operator lowering map", "a supported compiler operator is not reconstructed correctly")
   expect(hasRelation(project, "calls", "sample.app.createDisplay", "sample.models.createPerson"), "call graph resolution", "aliased imported call was not resolved")
   expect(hasRelation(project, "implements", "sample.models.Person", "sample.models.Named"), "type graph resolution", "implements edge was not resolved")
 
   classify_metric = findFunctionMetric(project, "sample.feature.classify")
   callable_metric = findFunctionMetric(project, "sample.feature.callableKind")
+  operator_metric = findFunctionMetric(project, "sample.models.Score.operator +(Score,Score)")
   expect(project.metrics.file_count == len(project.metrics.file_metrics) and project.metrics.source_lines > 0 and project.metrics.physical_lines >= project.metrics.source_lines, "line metrics", "project LOC totals or measured file count are invalid")
   expect(project.metrics.halstead.volume > 0.0 and project.metrics.halstead.vocabulary > 0, "Halstead metrics", "token metrics were not calculated")
   expect(typeof(classify_metric) == "struct" and classify_metric.cyclomatic_complexity == 5 and classify_metric.cognitive_complexity == 4 and classify_metric.maximum_nesting == 1, "complexity metrics", "fixture decision complexity was calculated incorrectly")
   expect(typeof(callable_metric) == "struct" and callable_metric.lines_of_code > 1, "function LOC with string literal", "a string value named function corrupted the closing-line scan")
   expect(metrics._startsFunction("static function new()") and metrics._startsFunction("iterator function values()") and metrics._startsFunction("lazy iterator function values()") and not metrics._startsFunction("if typeof(value) == function then"), "function declaration detection", "function modifiers or normalized string values are classified incorrectly")
+  expect(metrics._startsOperator("operator +(left as Score, right as Score)") and metrics._startsOperator("operator inline -(value as Score)") and not metrics._startsOperator("end operator"), "operator declaration detection", "operator metric boundaries are classified incorrectly")
+  expect(typeof(operator_metric) == "struct" and operator_metric.lines_of_code == 3, "operator metrics", "operator LOC did not include its complete declaration body")
   expect(project.metrics.clone_group_count >= 1 and project.metrics.duplicated_lines >= 12 and project.metrics.duplication_percent > 0.0, "duplication metrics", "repeated normalized code was not detected")
   expect(project.metrics.documentation_coverage == 100.0 and project.metrics.documentation.api.percent == 100.0 and project.metrics.documentation.parameters.percent == 100.0 and project.metrics.documentation.fields.percent == 100.0 and project.metrics.documentation.enum_variants.percent == 100.0 and project.metrics.documentation.overall.percent == 100.0 and project.metrics.maintainability_index >= 0.0 and project.metrics.maintainability_index <= 100.0, "quality metrics", "granular coverage or maintainability index is invalid")
 
@@ -225,14 +248,19 @@ function main(args)
   markdown_symbols = readRequired(util.joinPath(markdown_root, "Symbols.md"))
   markdown_metrics = readRequired(util.joinPath(markdown_root, "Metrics.md"))
   markdown_tests = readRequired(util.joinPath(markdown_root, "Tests.md"))
+  html_score = readRequired(util.joinPath(html_root, "type-" + util.stableSlug("sample.models.Score") + ".html"))
+  markdown_score = readRequired(util.joinPath(markdown_root, "Type-" + util.stableSlug("sample.models.Score") + ".md"))
+  search_index = readRequired(util.joinPath(html_root, "search-index.json"))
   expect(strings.contains(html_index, "MiniDoc Fixture") and strings.contains(markdown_home, "MiniDoc Fixture API"), "home pages", "HTML or Markdown home page is missing")
-  expect(strings.contains(html_index, "Generated by <strong>MiniDoc 0.4.2</strong> from source revision") and not strings.contains(html_index, "<time>") and strings.contains(markdown_home, "Generated by MiniDoc 0.4.2 from MiniLang source at revision"), "rendered generation metadata", "timestamp-free HTML or Markdown metadata is incorrect")
+  expect(strings.contains(html_index, "Generated by <strong>MiniDoc 0.4.3</strong> from source revision") and not strings.contains(html_index, "<time>") and strings.contains(markdown_home, "Generated by MiniDoc 0.4.3 from MiniLang source at revision"), "rendered generation metadata", "timestamp-free HTML or Markdown metadata is incorrect")
   expect(strings.contains(html_index, "class=\"lede\">A compact MiniLang project used to verify MiniDoc output.") and strings.contains(markdown_home, "A compact MiniLang project used to verify MiniDoc output."), "project introduction", "configured project description is missing from the home page")
   expect(strings.contains(html_index, "<h2 id=\"overview-title\">Project at a glance</h2>") and strings.contains(html_index, "Documentation coverage") and strings.contains(markdown_home, "## Project at a glance"), "home page metrics", "project overview metrics are missing")
   expect(strings.contains(html_index, "<h2 id=\"explore-title\">Explore the documentation</h2>") and strings.contains(html_index, "<div class=\"cards\"><a href=\"graph-calls.html\">") and strings.contains(html_index, "href=\"diagnostics.html\"><strong>Diagnostics"), "home navigation cards", "Browse links are not contained in the card grid")
   expect(strings.contains(html_file, "safe &lt;label&gt; &amp; value") and not strings.contains(html_file, "<label>"), "safe HTML output", "documentation text was not escaped")
   expect(strings.contains(html_file, "See also") and strings.contains(html_file, "sample.models.createPerson") and strings.contains(html_file, "View source"), "structured HTML tags", "@see or source metadata is missing")
   expect(strings.contains(html_symbols, "sample.app.createDisplay") and strings.contains(markdown_symbols, "sample.models.Person"), "symbol indexes", "public symbols are missing")
+  expect(strings.contains(html_score, "operator inline +(left as Score, right as Score) returns Score") and strings.contains(html_score, "operator +(left as Score, amount as int) returns Score") and strings.contains(markdown_score, "operator -(value as Score) returns Score"), "operator rendering", "HTML or Markdown type pages omitted operator overloads")
+  expect(strings.contains(search_index, "sample.models.Score.operator +(Score,Score)") and strings.contains(search_index, "\"kind\":\"operator\"") and not strings.contains(html_score, "__operator_") and not strings.contains(markdown_score, "__operator_") and not strings.contains(search_index, "__operator_"), "operator search and internals", "operator search metadata is missing or lowered compiler names leaked into output")
   expect(strings.contains(html_tests, "sample.feature.FeatureTests.decoratedName") and strings.contains(html_tests, "sample.feature.decorate") and strings.contains(html_tests, "sample.feature.prepareFeature") and strings.contains(html_tests, "@beforeeach") and strings.contains(markdown_tests, "unavailableIntegration") and strings.contains(markdown_tests, "skipped") and strings.contains(markdown_tests, "sample.feature.prepareFeature") and strings.contains(markdown_tests, "@beforeeach"), "test inventory rendering", "HTML or Markdown test metadata page is incomplete")
   expect(not strings.contains(html_symbols, "secretHelper") and not strings.contains(markdown_symbols, "secretHelper"), "internal filtering", "@internal function leaked into public indexes")
   expect(strings.contains(html_metrics, "Halstead metrics") and strings.contains(html_metrics, "sample.feature.classify") and strings.contains(html_metrics, "API declarations") and strings.contains(markdown_metrics, "Code duplication") and strings.contains(markdown_metrics, "| Parameters |"), "metrics rendering", "HTML or Markdown metrics content is missing")

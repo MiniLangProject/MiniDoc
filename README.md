@@ -5,7 +5,7 @@
 
 MiniDoc is a documentation generator for MiniLang projects, written entirely in MiniLang. It reads the same project structure and source syntax as the self-hosted MiniLang compiler and produces either an offline HTML documentation site, a linked Markdown documentation tree, or both.
 
-> Project status: working preview (`0.4.2`). The end-to-end generator, HTML and Markdown renderers, source metrics, dependency views, scalable graphs, configuration loader, and MiniLang test suite are implemented. See [Current limitations](#current-limitations) before treating the output as a complete semantic API reference.
+> Project status: working preview (`0.4.3`). The end-to-end generator, HTML and Markdown renderers, source metrics, dependency views, scalable graphs, configuration loader, and MiniLang test suite are implemented. See [Current limitations](#current-limitations) before treating the output as a complete semantic API reference.
 
 The repository dogfoods MiniDoc. Browse the committed [GitHub-friendly API documentation](docs/api/markdown/README.md), or download the repository and open [the offline HTML start page](docs/api/html/index.html). Both trees are regenerated from the documented MiniDoc source with [`minidoc.toml`](minidoc.toml).
 
@@ -15,7 +15,7 @@ The repository dogfoods MiniDoc. Browse the committed [GitHub-friendly API docum
 - Reads an entry file, a `minilang.toml` project, or a dedicated `minidoc.toml` file.
 - Follows imports and can also discover non-reachable `.ml` source files below configured roots.
 - Understands compile-time definitions and the selected MiniLang target.
-- Documents packages, namespaces, functions, nested functions, parameters, structs, fields, methods, interfaces, enums, constants, globals, and extern functions.
+- Documents packages, namespaces, functions, nested functions, parameters, structs, fields, methods, user-defined operators and overloads, interfaces, enums, constants, globals, and extern functions.
 - Preserves signatures, parameter types, optional markers, defaults, variadic parameters, return types, and function modifiers.
 - Generates an offline HTML site with navigation and client-side symbol search.
 - Generates a project-specific introduction, an at-a-glance metrics dashboard, and responsive navigation cards on the home page.
@@ -145,6 +145,18 @@ Supported structured tags are:
 | `@internal` | Hides a declaration unless `--include-internal` is active. |
 
 MiniDoc verifies duplicate and unknown `@param` names, missing parameter descriptions, missing return contracts, and `@returns` tags attached to functions without a return value. Public functions, methods, structs, interfaces, enums, and extern functions without a summary also produce documentation warnings. Summary-quality validation detects the known “behavior for the active subsystem” placeholder and exact summaries reused at or above a configurable threshold.
+
+User-defined operators are documented as first-class `operator` symbols on their owning struct. MiniDoc reconstructs the original source spelling, keeps unary and binary overloads distinct through their operand types, includes them in search, documentation coverage, and per-callable metrics, and never exposes the compiler's lowered `__operator_*` method names.
+
+```ml
+/// Adds two vectors.
+/// @param left The left vector.
+/// @param right The right vector.
+/// @returns Their component-wise sum.
+operator inline +(left as Vector2, right as Vector2) returns Vector2
+  return Vector2(left.x + right.x, left.y + right.y)
+end operator
+```
 
 Test metadata is validated as documentation as well: roles must be attached to supported synchronous zero-parameter procedures, timeouts must be positive integers, category and coverage values must be present, and fixture roles must be unique within one source-file suite. MiniDoc presents discovered tests, fixtures, categories, coverage declarations, timeouts, and skip reasons on dedicated test inventory pages. It documents this metadata but deliberately does not execute tests; the compiler repositories provide `std.test` and `mltest` for execution.
 
@@ -460,8 +472,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development conventions and self-docu
 - Graph layout is deterministic and dependency-free, but intentionally simple. Symbol-level graphs for very large projects should be capped.
 - Directory-link and junction behavior depends on the filesystem implementation exposed by the MiniLang standard library; linked source trees should be excluded explicitly when necessary.
 - Duplicate detection currently finds exact token-normalized line windows; it does not identify renamed or structurally similar clones.
-- Metric thresholds and the six-line clone window are not configurable in `0.4.2`.
-- Incremental model caching, API compatibility reports, theme selection, and plugin APIs are not implemented in `0.4.2`.
+- Metric thresholds and the six-line clone window are not configurable in `0.4.3`.
+- Incremental model caching, API compatibility reports, theme selection, and plugin APIs are not implemented in `0.4.3`.
 
 ## Roadmap
 

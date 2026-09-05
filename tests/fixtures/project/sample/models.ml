@@ -31,6 +31,42 @@ struct Person implements Named
   end function
 end struct
 
+/// A numeric value used to exercise documented operator overloads.
+struct Score
+  /// The wrapped score value.
+  value as int
+
+  /// Adds two scores.
+  /// @param left The left score.
+  /// @param right The right score.
+  /// @returns A score containing the sum.
+  operator inline +(left as Score, right as Score) returns Score
+    return Score(value = left.value + right.value)
+  end operator
+
+  /// Adds a scalar value to a score.
+  /// @param left The score to adjust.
+  /// @param amount The scalar amount to add.
+  /// @returns A score containing the adjusted value.
+  operator +(left as Score, amount as int) returns Score
+    return Score(value = left.value + amount)
+  end operator
+
+  /// Returns a score unchanged.
+  /// @param value The score to preserve.
+  /// @returns The original score.
+  operator +(value as Score) returns Score
+    return value
+  end operator
+
+  /// Negates a score.
+  /// @param value The score to negate.
+  /// @returns A score containing the negated value.
+  operator -(value as Score) returns Score
+    return Score(value = -value.value)
+  end operator
+end struct
+
 /// Creates a person.
 /// @param value The person's raw name.
 /// @returns A new person.

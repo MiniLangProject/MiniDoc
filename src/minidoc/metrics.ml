@@ -384,7 +384,7 @@ end function
 /// @internal
 function _findFunctionSymbol(project, file_id, position)
   if len(project.symbols) == 0 then return 0 end if
-  kinds = ["function", "nested_function", "method", "static_method", "interface_method"]
+  kinds = ["function", "nested_function", "method", "static_method", "operator", "interface_method"]
   for i = 0 to len(project.symbols) - 1
     item = project.symbols[i]
     if item.file_id == file_id and item.position == position and util.containsString(kinds, item.kind) then return item end if
@@ -409,6 +409,13 @@ function _startsFunction(line)
          strings.startsWith(lower, "lazy iterator function ")
 end function
 
+/// Reports whether a normalized line starts a user-defined operator.
+/// @internal
+function _startsOperator(line)
+  lower = strings.toLowerAscii(strings.trim(line))
+  return strings.startsWith(lower, "operator ") and not strings.startsWith(lower, "end operator")
+end function
+
 /// Performs the '_functionEndLine' step in MiniDoc's metrics pipeline.
 /// @internal
 function _functionEndLine(normalized_lines, start_line)
@@ -417,10 +424,10 @@ function _functionEndLine(normalized_lines, start_line)
   index = start_line
   while index < len(normalized_lines)
     lower = strings.toLowerAscii(strings.trim(normalized_lines[index]))
-    if strings.startsWith(lower, "end function") then
+    if strings.startsWith(lower, "end function") or strings.startsWith(lower, "end operator") then
       depth = depth - 1
       if depth == 0 then return index + 1 end if
-    else if _startsFunction(lower) then depth = depth + 1
+    else if _startsFunction(lower) or _startsOperator(lower) then depth = depth + 1
     end if
     index = index + 1
   end while
@@ -700,7 +707,7 @@ end function
 /// @internal
 function _isDocumentable(doc_symbol)
   if doc_symbol.internal then return false end if
-  required = ["function", "method", "static_method", "interface_method", "struct", "extern_struct", "interface", "enum", "extern_function"]
+  required = ["function", "method", "static_method", "operator", "interface_method", "struct", "extern_struct", "interface", "enum", "extern_function"]
   return util.containsString(required, doc_symbol.kind)
 end function
 
@@ -708,7 +715,7 @@ end function
 /// @internal
 function _isDocumentableCallable(doc_symbol)
   if doc_symbol.internal then return false end if
-  callable = ["function", "method", "static_method", "interface_method", "extern_function"]
+  callable = ["function", "method", "static_method", "operator", "interface_method", "extern_function"]
   return util.containsString(callable, doc_symbol.kind)
 end function
 

@@ -351,20 +351,26 @@ function _functionParameters(node, doc)
   return result
 end function
 
+/// Converts callable parameters into their source-level signature fragments.
+/// @internal
+function _parameterSignaturePieces(parameters)
+  pieces = []
+  if len(parameters) == 0 then return pieces end if
+  for i = 0 to len(parameters) - 1
+    parameter = parameters[i]
+    part = parameter.name
+    if parameter.type_name != "" then part = part + " as " + parameter.type_name end if
+    if parameter.default_value != "" then part = part + " = " + parameter.default_value end if
+    if parameter.variadic then part = part + "..." end if
+    pieces = pieces + [part]
+  end for
+  return pieces
+end function
+
 /// Performs the '_functionSignature' step in MiniDoc's symbol-analysis pipeline.
 /// @internal
 function _functionSignature(node, parameters, name, kind)
-  pieces = []
-  if len(parameters) > 0 then
-    for i = 0 to len(parameters) - 1
-      parameter = parameters[i]
-      part = parameter.name
-      if parameter.type_name != "" then part = part + " as " + parameter.type_name end if
-      if parameter.default_value != "" then part = part + " = " + parameter.default_value end if
-      if parameter.variadic then part = part + "..." end if
-      pieces = pieces + [part]
-    end for
-  end if
+  pieces = _parameterSignaturePieces(parameters)
   prefix = "function "
   if kind == "interface_method" then prefix = "function "
   else if node.is_async then prefix = "async function "
@@ -379,6 +385,62 @@ function _functionSignature(node, parameters, name, kind)
   return_type = _typeName(node.return_type, node.return_optional)
   if return_type != "" then signature = signature + " returns " + return_type end if
   return signature
+end function
+
+/// Recovers the source operator from the compiler's reserved lowered method name.
+/// @internal
+function _operatorSourceSymbol(name)
+  mappings = [
+    ["__operator_pos__overload_", "+"],
+    ["__operator_neg__overload_", "-"],
+    ["__operator_not__overload_", "not"],
+    ["__operator_bitnot__overload_", "~"],
+    ["__operator_add__overload_", "+"],
+    ["__operator_sub__overload_", "-"],
+    ["__operator_mul__overload_", "*"],
+    ["__operator_div__overload_", "/"],
+    ["__operator_mod__overload_", "%"],
+    ["__operator_eq__overload_", "=="],
+    ["__operator_ne__overload_", "!="],
+    ["__operator_lt__overload_", "<"],
+    ["__operator_le__overload_", "<="],
+    ["__operator_gt__overload_", ">"],
+    ["__operator_ge__overload_", ">="],
+    ["__operator_bitand__overload_", "&"],
+    ["__operator_bitor__overload_", "|"],
+    ["__operator_bitxor__overload_", "^"],
+    ["__operator_shl__overload_", "<<"],
+    ["__operator_shr__overload_", ">>"]
+  ]
+  for i = 0 to len(mappings) - 1
+    if strings.startsWith(name, mappings[i][0]) then return mappings[i][1] end if
+  end for
+  return ""
+end function
+
+/// Builds a source-level signature for a user-defined operator declaration.
+/// @internal
+function _operatorSignature(node, parameters, operator_symbol)
+  prefix = "operator "
+  if node.is_inline then prefix = prefix + "inline " end if
+  signature = prefix + operator_symbol + "(" + strings.join(_parameterSignaturePieces(parameters), ", ") + ")"
+  return_type = _typeName(node.return_type, node.return_optional)
+  if return_type != "" then signature = signature + " returns " + return_type end if
+  return signature
+end function
+
+/// Builds an overload-safe qualified name without exposing compiler internals.
+/// @internal
+function _operatorQualifiedName(prefix, operator_symbol, parameters)
+  operand_types = []
+  if len(parameters) > 0 then
+    for i = 0 to len(parameters) - 1
+      type_name = parameters[i].type_name
+      if type_name == "" then type_name = "dynamic" end if
+      operand_types = operand_types + [type_name]
+    end for
+  end if
+  return _qualified(prefix, "operator " + operator_symbol + "(" + strings.join(operand_types, ",") + ")")
 end function
 
 /// Performs the '_calleeName' step in MiniDoc's symbol-analysis pipeline.
@@ -500,10 +562,21 @@ end function
 function _addFunction(project, file, node, kind, prefix, namespace_name, container_id)
   doc = comments.documentationBefore(file.docs, file.processed_source, node._pos)
   parameters = _functionParameters(node, doc)
-  signature = _functionSignature(node, parameters, node.name, kind)
-  qualified_name = _qualified(prefix, node.name)
+  symbol_kind = kind
+  symbol_name = node.name
+  operator_symbol = _operatorSourceSymbol(node.name)
+  signature = _functionSignature(node, parameters, symbol_name, symbol_kind)
+  qualified_name = _qualified(prefix, symbol_name)
+  if operator_symbol != "" then
+    symbol_kind = "operator"
+    symbol_name = "operator " + operator_symbol
+    signature = _operatorSignature(node, parameters, operator_symbol)
+    qualified_name = _operatorQualifiedName(prefix, operator_symbol, parameters)
+  end if
   modifiers = []
-  if node.is_static then modifiers = modifiers + ["static"] end if
+  // Operators are semantically static, but `static` is not part of their
+  // source syntax and must not leak from the lowered FunctionDef node.
+  if node.is_static and operator_symbol == "" then modifiers = modifiers + ["static"] end if
   if node.is_inline then modifiers = modifiers + ["inline"] end if
   if node.is_synchronized then modifiers = modifiers + ["synchronized"] end if
   if node.is_async then modifiers = modifiers + ["async"] end if
@@ -511,8 +584,8 @@ function _addFunction(project, file, node, kind, prefix, namespace_name, contain
   else if node.is_iterator then modifiers = modifiers + ["iterator"]
   end if
   return_type = _typeName(node.return_type, node.return_optional)
-  fn_sym = _addSymbol(project, file, kind, node.name, qualified_name, container_id, namespace_name, node._pos, signature, "", modifiers, parameters, return_type, doc)
-  _validateFunctionDoc(project, file, node, doc, parameters, return_type, fn_sym.internal, kind)
+  fn_sym = _addSymbol(project, file, symbol_kind, symbol_name, qualified_name, container_id, namespace_name, node._pos, signature, "", modifiers, parameters, return_type, doc)
+  _validateFunctionDoc(project, file, node, doc, parameters, return_type, fn_sym.internal, symbol_kind)
   _walkStatementsForCalls(project, file, fn_sym, node.body, namespace_name)
   _walkNested(project, file, node.body, fn_sym, namespace_name)
   return fn_sym
@@ -759,7 +832,7 @@ end function
 /// Performs the '_resolveCalls' step in MiniDoc's symbol-analysis pipeline.
 /// @internal
 function _resolveCalls(project)
-  function_kinds = ["function", "nested_function", "method", "static_method", "interface_method", "extern_function"]
+  function_kinds = ["function", "nested_function", "method", "static_method", "operator", "interface_method", "extern_function"]
   if len(project.call_references) == 0 then return end if
   for i = 0 to len(project.call_references) - 1
     ref = project.call_references[i]
@@ -812,7 +885,7 @@ end function
 /// Performs the '_validateCoverage' step in MiniDoc's symbol-analysis pipeline.
 /// @internal
 function _validateCoverage(project)
-  required = ["function", "method", "static_method", "interface_method", "struct", "extern_struct", "interface", "enum", "extern_function"]
+  required = ["function", "method", "static_method", "operator", "interface_method", "struct", "extern_struct", "interface", "enum", "extern_function"]
   if len(project.symbols) == 0 then return end if
   for i = 0 to len(project.symbols) - 1
     covered_sym = project.symbols[i]

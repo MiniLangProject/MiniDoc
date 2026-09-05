@@ -38,6 +38,7 @@
 - [`minidoc.metrics._sourceLines`](File-src-minidoc-metrics-ml-1301618694.md#function-function-minidoc-metrics-sourcelines-function-sourcelines-source-src-minidoc-metrics-ml-1184977954) — function
 - [`minidoc.metrics._sourceSlice`](File-src-minidoc-metrics-ml-1301618694.md#function-function-minidoc-metrics-sourceslice-function-sourceslice-source-start-line-end-line-src-minidoc-metrics-ml-2074663469) — function
 - [`minidoc.metrics._startsFunction`](File-src-minidoc-metrics-ml-1301618694.md#function-function-minidoc-metrics-startsfunction-function-startsfunction-line-src-minidoc-metrics-ml-1539691709) — function
+- [`minidoc.metrics._startsOperator`](File-src-minidoc-metrics-ml-1301618694.md#function-function-minidoc-metrics-startsoperator-function-startsoperator-line-src-minidoc-metrics-ml-84289733) — function
 - [`minidoc.metrics._tokenValue`](File-src-minidoc-metrics-ml-1301618694.md#function-function-minidoc-metrics-tokenvalue-function-tokenvalue-tokens-index-src-minidoc-metrics-ml-437919237) — function
 - [`minidoc.metrics._touchNesting`](File-src-minidoc-metrics-ml-1301618694.md#function-function-minidoc-metrics-touchnesting-function-touchnesting-accumulator-nesting-src-minidoc-metrics-ml-1877717551) — function
 - [`minidoc.metrics._walkComplexity`](File-src-minidoc-metrics-ml-1301618694.md#function-function-minidoc-metrics-walkcomplexity-function-walkcomplexity-body-accumulator-nesting-src-minidoc-metrics-ml-286232695) — function
