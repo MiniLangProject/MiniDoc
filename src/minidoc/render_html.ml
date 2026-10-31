@@ -35,7 +35,7 @@ end function
 /// Performs the '_isType' step in MiniDoc's HTML renderer.
 /// @internal
 function _isType(doc_symbol)
-  return doc_symbol.kind == "struct" or doc_symbol.kind == "extern_struct" or doc_symbol.kind == "interface" or doc_symbol.kind == "enum"
+  return doc_symbol.kind == "struct" or doc_symbol.kind == "class" or doc_symbol.kind == "extern_struct" or doc_symbol.kind == "interface" or doc_symbol.kind == "enum"
 end function
 
 /// Performs the '_symbolById' step in MiniDoc's HTML renderer.
@@ -351,7 +351,7 @@ function _home(project)
   writer.appendString("<a href=\"files.html\"><strong>Files</strong><span>Browse documented MiniLang source files</span></a>")
   if _graphEnabled(project, "imports", project.config.graph_imports) then writer.appendString("<a href=\"graph-imports.html\"><strong>Import graph</strong><span>Exact file dependencies</span></a>") end if
   writer.appendString("<a href=\"metrics.html\"><strong>Metrics</strong><span>Inspect complexity, duplication, and code health</span></a><a href=\"packages.html\"><strong>Packages</strong><span>Browse declarations grouped by package</span></a><a href=\"symbols.html\"><strong>Symbols</strong><span>Find functions, types, constants, and globals</span></a><a href=\"tests.html\"><strong>Tests</strong><span>Browse std.test declaration metadata</span></a>")
-  if _graphEnabled(project, "implements", project.config.graph_types) then writer.appendString("<a href=\"graph-types.html\"><strong>Type graph</strong><span>Interface implementations</span></a>") end if
+  if _graphEnabled(project, "implements", project.config.graph_types) then writer.appendString("<a href=\"graph-types.html\"><strong>Type graph</strong><span>Inheritance and interface implementations</span></a>") end if
   writer.appendString("</div></section>")
   return writer.toString()
 end function
@@ -829,7 +829,7 @@ function render(project)
   if _graphEnabled(project, "implements", project.config.graph_types) then
     generated = _writeGenerated(root, generated, "assets/graph-types.svg", graph.renderSvg(project, "implements", "Type and interface graph"))
     if typeof(generated) == "error" then return generated end if
-    generated = _writeGenerated(root, generated, "graph-types.html", _layout(project, "Type graph", _graphPage(project, "Type and interface graph", "graph-types.svg", "Exact implements relationships.")))
+    generated = _writeGenerated(root, generated, "graph-types.html", _layout(project, "Type graph", _graphPage(project, "Type and interface graph", "graph-types.svg", "Exact implements and extends relationships.")))
     if typeof(generated) == "error" then return generated end if
   end if
   generated = _writeGenerated(root, generated, "assets/minidoc.css", _css())

@@ -1,0 +1,16 @@
+[project]
+name = "OOP fixture"
+entry = "main.ml"
+source_roots = ["."]
+
+[documentation]
+strict = false
+
+[output]
+formats = ["html", "markdown"]
+include_timestamp = false
+
+[graphs]
+types = true
+granularity = "symbol"
+hide_empty = true

@@ -320,6 +320,28 @@ function main(args)
   expect(typeof(quality_project) != "error" and hasDiagnostic(quality_project, "MD2202") and countDiagnostics(quality_project, "MD2203") == 1, "summary quality diagnostics", "generic or reused summaries were not reported deterministically")
   expect(typeof(quality_project) != "error" and hasDiagnostic(quality_project, "MD2301") and hasDiagnostic(quality_project, "MD2302") and hasDiagnostic(quality_project, "MD2303") and hasDiagnostic(quality_project, "MD2304") and hasDiagnostic(quality_project, "MD2305") and hasDiagnostic(quality_project, "MD2306") and hasDiagnostic(quality_project, "MD2307") and hasDiagnostic(quality_project, "MD2308") and hasDiagnostic(quality_project, "MD2309"), "test metadata diagnostics", "invalid std.test declaration metadata was not diagnosed")
 
+  oop_config_path = util.joinPath(root, "tests/fixtures/oop/minidoc.toml")
+  oop_html = util.joinPath(output_root, "oop-html")
+  oop_markdown = util.joinPath(output_root, "oop-markdown")
+  oop_cfg = configuration.load(["--config", oop_config_path, "--html-out", oop_html, "--md-out", oop_markdown])
+  oop_project = app.generate(oop_cfg)
+  expect(typeof(oop_project) != "error", "OOP fixture analysis", "class and interface declarations were not parsed")
+  if typeof(oop_project) != "error" then
+    base_type = findSymbol(oop_project, "sample.oop.Base")
+    child_type = findSymbol(oop_project, "sample.oop.Item")
+    child_method = findSymbol(oop_project, "sample.oop.Item.description")
+    protected_field = findSymbol(oop_project, "sample.oop.Base.value")
+    derived_interface = findSymbol(oop_project, "sample.oop.Described")
+    expect(typeof(base_type) == "struct" and base_type.kind == "class" and base_type.signature == "abstract class Base implements Described", "abstract class documentation", "class kind or declaration signature is incorrect")
+    expect(typeof(child_type) == "struct" and child_type.kind == "class" and child_type.signature == "final class Item extends Base", "derived class documentation", "base class or final modifier is missing")
+    expect(typeof(child_method) == "struct" and child_method.signature == "override function description() returns string", "override documentation", "override modifier is missing")
+    expect(typeof(protected_field) == "struct" and protected_field.signature == "protected value as string = \"base\"", "field visibility and default", "protected field source contract is missing")
+    expect(typeof(derived_interface) == "struct" and derived_interface.signature == "interface Described extends Named", "interface inheritance documentation", "base interface is missing")
+    expect(hasRelation(oop_project, "extends", "sample.oop.Item", "sample.oop.Base") and hasRelation(oop_project, "extends", "sample.oop.Described", "sample.oop.Named"), "inheritance relations", "class or interface edge is unresolved")
+    oop_rendered = app.render(oop_project)
+    expect(typeof(oop_rendered) != "error" and fs.exists(util.joinPath(oop_html, "index.html")) and fs.exists(util.joinPath(oop_markdown, "Symbols.md")), "OOP documentation rendering", "HTML or Markdown symbol page is missing")
+  end if
+
   if _failures > 0 then
     print "MiniDoc tests: " + _failures + " failure(s)."
     return 1

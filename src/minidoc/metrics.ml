@@ -770,7 +770,7 @@ end function
 /// @internal
 function _isDocumentable(doc_symbol)
   if doc_symbol.internal then return false end if
-  required = ["function", "method", "static_method", "operator", "interface_method", "struct", "extern_struct", "interface", "enum", "extern_function"]
+  required = ["function", "method", "static_method", "operator", "interface_method", "struct", "class", "extern_struct", "interface", "enum", "extern_function"]
   return util.containsString(required, doc_symbol.kind)
 end function
 

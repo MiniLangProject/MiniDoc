@@ -15,8 +15,9 @@ The repository dogfoods MiniDoc. Browse the committed [GitHub-friendly API docum
 - Reads an entry file, a `minilang.toml` project, or a dedicated `minidoc.toml` file.
 - Follows imports and can also discover non-reachable `.ml` source files below configured roots.
 - Understands compile-time definitions and the selected MiniLang target.
-- Documents packages, namespaces, functions, nested functions, parameters, structs, fields, methods, user-defined operators and overloads, interfaces, enums, constants, globals, and extern functions.
+- Documents packages, namespaces, functions, nested functions, parameters, structs, classes, fields, methods, user-defined operators and overloads, interfaces, enums, constants, globals, and extern functions.
 - Preserves signatures, parameter types, optional markers, defaults, variadic parameters, return types, and function modifiers.
+- Shows class and interface inheritance, implemented interfaces, member visibility, abstract/final declarations, and method overrides.
 - Generates an offline HTML site with navigation and client-side symbol search.
 - Generates a project-specific introduction, an at-a-glance metrics dashboard, and responsive navigation cards on the home page.
 - Adds the MiniDoc version, an optional reproducible generation timestamp, and the source revision to generated metadata.
@@ -146,7 +147,9 @@ Supported structured tags are:
 | `@skip [reason]` | Marks a test as intentionally skipped and optionally records why. |
 | `@internal` | Hides a declaration unless `--include-internal` is active. |
 
-MiniDoc verifies duplicate and unknown `@param` names, missing parameter descriptions, missing return contracts, and `@returns` tags attached to functions without a return value. Public functions, methods, structs, interfaces, enums, and extern functions without a summary also produce documentation warnings. Summary-quality validation detects the known “behavior for the active subsystem” placeholder and exact summaries reused at or above a configurable threshold.
+MiniDoc verifies duplicate and unknown `@param` names, missing parameter descriptions, missing return contracts, and `@returns` tags attached to functions without a return value. Public functions, methods, structs, classes, interfaces, enums, and extern functions without a summary also produce documentation warnings. Summary-quality validation detects the known “behavior for the active subsystem” placeholder and exact summaries reused at or above a configurable threshold.
+
+Classes appear as their own type kind. Their pages show `extends` and `implements`, field visibility and defaults, constructor `init(...)` signatures, and `override`, `abstract`, and `final` method modifiers. Interface pages show inherited interfaces. The type graph includes both inheritance and implementation relationships.
 
 User-defined operators are documented as first-class `operator` symbols on their owning struct. MiniDoc reconstructs the original source spelling, keeps unary and binary overloads distinct through their operand types, includes them in search, documentation coverage, and per-callable metrics, and never exposes the compiler's lowered `__operator_*` method names.
 

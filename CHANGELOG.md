@@ -4,6 +4,12 @@ All notable changes to MiniDoc are documented in this file.
 
 ## Unreleased
 
+- Document MiniLang classes as a separate type kind, including inherited base
+  classes, visibility, field defaults, constructor signatures, and method
+  override, abstract, and final modifiers.
+- Document interface inheritance and resolve class and interface `extends`
+  relations in the type graph and generated HTML and Markdown.
+
 ## 0.4.4 — 2026-10-31
 
 - Build and test with MiniLang compiler 1.3.0 and its updated standard library.

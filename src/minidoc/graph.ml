@@ -100,7 +100,8 @@ function hasRelations(project, relation_kind)
   if len(project.relations) == 0 then return false end if
   for i = 0 to len(project.relations) - 1
     relation = project.relations[i]
-    if relation.kind != relation_kind or _relationVisible(project, relation) == false then continue end if
+    if relation.kind != relation_kind and not (relation_kind == "implements" and relation.kind == "extends") then continue end if
+    if _relationVisible(project, relation) == false then continue end if
     if project.config.graph_granularity == "package" and relation.to_id != "" and _entityPackage(project, relation.from_id) == _entityPackage(project, relation.to_id) then continue end if
     return true
   end for
@@ -174,7 +175,8 @@ function renderSvg(project, relation_kind, title)
   if len(project.relations) > 0 then
     for i = 0 to len(project.relations) - 1
       relation = project.relations[i]
-      if relation.kind != relation_kind or _relationVisible(project, relation) == false then continue end if
+      if relation.kind != relation_kind and not (relation_kind == "implements" and relation.kind == "extends") then continue end if
+      if _relationVisible(project, relation) == false then continue end if
       from_id = relation.from_id
       from_label = _symbolLabel(project, relation.from_id)
       target_id = relation.to_id

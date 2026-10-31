@@ -36,7 +36,7 @@ end function
 /// Performs the '_isType' step in MiniDoc's Markdown renderer.
 /// @internal
 function _isType(doc_symbol)
-  return doc_symbol.kind == "struct" or doc_symbol.kind == "extern_struct" or doc_symbol.kind == "interface" or doc_symbol.kind == "enum"
+  return doc_symbol.kind == "struct" or doc_symbol.kind == "class" or doc_symbol.kind == "extern_struct" or doc_symbol.kind == "interface" or doc_symbol.kind == "enum"
 end function
 
 /// Performs the '_symbolById' step in MiniDoc's Markdown renderer.
@@ -840,7 +840,7 @@ function render(project)
   if _graphEnabled(project, "implements", project.config.graph_types) then
     generated = _writeGenerated(root, generated, "assets/graph-types.svg", graph.renderSvg(project, "implements", "Type and interface graph"))
     if typeof(generated) == "error" then return generated end if
-    generated = _writeGenerated(root, generated, "Graph-Types.md", _renderGraphPage(project, "Type and interface graph", "graph-types.svg", "Exact `implements` relationships between structs and interfaces."))
+    generated = _writeGenerated(root, generated, "Graph-Types.md", _renderGraphPage(project, "Type and interface graph", "graph-types.svg", "Exact `implements` and `extends` relationships between structs, classes and interfaces."))
     if typeof(generated) == "error" then return generated end if
   end if
   if project.config.markdown_profile == "wiki" then

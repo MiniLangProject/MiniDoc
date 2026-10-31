@@ -656,6 +656,13 @@ function _addStruct(project, file, node, prefix, namespace_name)
   signature = "struct " + node.name
   modifiers = []
   if is_extern then kind = "extern_struct" signature = "extern struct " + node.name modifiers = ["extern"] end if
+  if node.is_class then
+    kind = "class"
+    signature = "class " + node.name
+    if node.is_abstract then signature = "abstract " + signature modifiers = modifiers + ["abstract"] end if
+    if node.is_final then signature = "final " + signature modifiers = modifiers + ["final"] end if
+    if typeof(node.base) == "string" and node.base != "" then signature = signature + " extends " + node.base end if
+  end if
   if typeof(node.interfaces) == "array" and len(node.interfaces) > 0 then signature = signature + " implements " + strings.join(node.interfaces, ", ") end if
   type_sym = _addSymbol(project, file, kind, node.name, qualified_name, "", namespace_name, node._pos, signature, node.name, modifiers, [], "", doc)
 
@@ -676,7 +683,15 @@ function _addStruct(project, file, node, prefix, namespace_name)
       display_type = _typeName(field_type, optional)
       field_signature = field_name
       if display_type != "" then field_signature = field_signature + " as " + display_type end if
-      _addSymbol(project, file, "field", field_name, qualified_name + "." + field_name, type_sym.id, namespace_name, field_pos, field_signature, display_type, [], [], "", field_doc)
+      field_modifiers = []
+      if typeof(node.field_visibility) == "array" and fi < len(node.field_visibility) and node.field_visibility[fi] != "public" then
+        field_modifiers = [node.field_visibility[fi]]
+        field_signature = node.field_visibility[fi] + " " + field_signature
+      end if
+      if typeof(node.field_defaults) == "array" and fi < len(node.field_defaults) and typeof(node.field_defaults[fi]) != "void" then
+        field_signature = field_signature + " = " + expressionText(node.field_defaults[fi])
+      end if
+      _addSymbol(project, file, "field", field_name, qualified_name + "." + field_name, type_sym.id, namespace_name, field_pos, field_signature, display_type, field_modifiers, [], "", field_doc)
     end for
   end if
 
@@ -684,13 +699,30 @@ function _addStruct(project, file, node, prefix, namespace_name)
     for mi = 0 to len(node.methods) - 1
       method_kind = "method"
       if node.methods[mi].is_static then method_kind = "static_method" end if
-      _addFunction(project, file, node.methods[mi], method_kind, qualified_name, namespace_name, type_sym.id)
+      method = node.methods[mi]
+      method_sym = _addFunction(project, file, method, method_kind, qualified_name, namespace_name, type_sym.id)
+      method_modifiers = []
+      if typeof(node.method_visibility) == "array" and len(node.method_visibility) > 0 then
+        for vi = 0 to len(node.method_visibility) - 1
+          if node.method_visibility[vi][0] == method.name and node.method_visibility[vi][1] != "public" then method_modifiers = method_modifiers + [node.method_visibility[vi][1]] break end if
+        end for
+      end if
+      if typeof(node.override_methods) == "array" and util.containsString(node.override_methods, method.name) then method_modifiers = method_modifiers + ["override"] end if
+      if typeof(node.abstract_methods) == "array" and util.containsString(node.abstract_methods, method.name) then method_modifiers = method_modifiers + ["abstract"] end if
+      if typeof(node.final_methods) == "array" and util.containsString(node.final_methods, method.name) then method_modifiers = method_modifiers + ["final"] end if
+      if len(method_modifiers) > 0 then
+        method_sym.signature = strings.join(method_modifiers, " ") + " " + method_sym.signature
+        method_sym.modifiers = method_modifiers + method_sym.modifiers
+      end if
     end for
   end if
   if typeof(node.interfaces) == "array" and len(node.interfaces) > 0 then
     for ii = 0 to len(node.interfaces) - 1
       project.relations = project.relations + [model.RelationDoc(type_sym.id, "", "implements", "exact", node.interfaces[ii])]
     end for
+  end if
+  if node.is_class and typeof(node.base) == "string" and node.base != "" then
+    project.relations = project.relations + [model.RelationDoc(type_sym.id, "", "extends", "exact", node.base)]
   end if
   return type_sym
 end function
@@ -700,7 +732,14 @@ end function
 function _addInterface(project, file, node, prefix, namespace_name)
   doc = comments.documentationBefore(file.docs, file.processed_source, node._pos)
   qualified_name = _qualified(prefix, node.name)
-  interface_sym = _addSymbol(project, file, "interface", node.name, qualified_name, "", namespace_name, node._pos, "interface " + node.name, node.name, [], [], "", doc)
+  signature = "interface " + node.name
+  if typeof(node.bases) == "array" and len(node.bases) > 0 then signature = signature + " extends " + strings.join(node.bases, ", ") end if
+  interface_sym = _addSymbol(project, file, "interface", node.name, qualified_name, "", namespace_name, node._pos, signature, node.name, [], [], "", doc)
+  if typeof(node.bases) == "array" and len(node.bases) > 0 then
+    for bi = 0 to len(node.bases) - 1
+      project.relations = project.relations + [model.RelationDoc(interface_sym.id, "", "extends", "exact", node.bases[bi])]
+    end for
+  end if
   cursor = node._pos + len(node.name)
   if len(node.methods) > 0 then
     for i = 0 to len(node.methods) - 1
@@ -868,11 +907,11 @@ end function
 /// Performs the '_resolveTypeRelations' step in MiniDoc's symbol-analysis pipeline.
 /// @internal
 function _resolveTypeRelations(project)
-  type_kinds = ["struct", "extern_struct", "interface", "enum"]
+  type_kinds = ["struct", "class", "extern_struct", "interface", "enum"]
   if len(project.relations) == 0 then return end if
   for i = 0 to len(project.relations) - 1
     relation = project.relations[i]
-    if relation.kind != "implements" or relation.to_id != "" then continue end if
+    if (relation.kind != "implements" and relation.kind != "extends") or relation.to_id != "" then continue end if
     source = _symbolById(project, relation.from_id)
     candidates = [relation.label]
     if typeof(source) == "struct" and source.namespace_name != "" then candidates = candidates + [_scope(source.package_name, source.namespace_name) + "." + relation.label] end if
@@ -885,7 +924,7 @@ end function
 /// Performs the '_validateCoverage' step in MiniDoc's symbol-analysis pipeline.
 /// @internal
 function _validateCoverage(project)
-  required = ["function", "method", "static_method", "operator", "interface_method", "struct", "extern_struct", "interface", "enum", "extern_function"]
+  required = ["function", "method", "static_method", "operator", "interface_method", "struct", "class", "extern_struct", "interface", "enum", "extern_function"]
   if len(project.symbols) == 0 then return end if
   for i = 0 to len(project.symbols) - 1
     covered_sym = project.symbols[i]
