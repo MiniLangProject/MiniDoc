@@ -34,7 +34,7 @@ Performs the '_addNode' step in MiniDoc's graph renderer.
 | `maximum` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L122)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L123)
 
 <a id="function-function-minidoc-graph-entityowned-function-entityowned-project-id-src-minidoc-graph-ml-830551589"></a>
 ### _entityOwned
@@ -86,7 +86,7 @@ Returns whether an edge has already been added to an aggregated graph.
 | `to_id` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L130)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L131)
 
 <a id="function-function-minidoc-graph-nodeindex-function-nodeindex-nodes-id-src-minidoc-graph-ml-1580849361"></a>
 ### _nodeIndex
@@ -103,7 +103,7 @@ Performs the '_nodeIndex' step in MiniDoc's graph renderer.
 | `id` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L112)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L113)
 
 <a id="function-function-minidoc-graph-relationvisible-function-relationvisible-project-relation-src-minidoc-graph-ml-1824775216"></a>
 ### _relationVisible
@@ -136,7 +136,7 @@ Performs the '_shortLabel' step in MiniDoc's graph renderer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L140)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L141)
 
 <a id="function-function-minidoc-graph-sortnodes-function-sortnodes-nodes-src-minidoc-graph-ml-1625324464"></a>
 ### _sortNodes
@@ -152,7 +152,7 @@ Performs the '_sortNodes' step in MiniDoc's graph renderer.
 | `nodes` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L147)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L148)
 
 <a id="function-function-minidoc-graph-symbollabel-function-symbollabel-project-id-src-minidoc-graph-ml-931677709"></a>
 ### _symbolLabel
@@ -209,4 +209,4 @@ Renders one relation category as a self-contained SVG document.
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L169)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L170)
