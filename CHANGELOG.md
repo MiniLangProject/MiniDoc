@@ -4,6 +4,15 @@ All notable changes to MiniDoc are documented in this file.
 
 ## Unreleased
 
+## 0.4.4 — 2026-10-31
+
+- Build and test with MiniLang compiler 1.3.0 and its updated standard library.
+- Count typed inline x64 assembly conditional jumps in callable cyclomatic and
+  cognitive complexity metrics, including jumps nested in expressions.
+- Preserve configured revision labels such as `shared-stdlib-1.3.0` in full;
+  abbreviate only Git commit hashes.
+- Regenerate the self-hosted HTML and Markdown API reference.
+
 ## 0.4.3 — 2026-09-05
 
 - Added first-class documentation for user-defined unary and binary operators,

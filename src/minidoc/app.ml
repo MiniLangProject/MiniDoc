@@ -25,7 +25,7 @@ import std.time as time
 
 /// Semantic version embedded in generated output and CLI messages.
 /// @internal
-const VERSION = "0.4.3"
+const VERSION = "0.4.4"
 
 /// Prints the current MiniDoc version.
 /// @since 0.1.0

@@ -32,7 +32,7 @@ Resolves the Git metadata directory for a repository or worktree.
 | `root` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L290)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L304)
 
 <a id="function-function-minidoc-util-optionaltext-function-optionaltext-path-src-minidoc-util-ml-1436453920"></a>
 ### _optionalText
@@ -48,7 +48,7 @@ Reads a text file when it exists and returns an empty string otherwise.
 | `path` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L281)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L295)
 
 <a id="function-function-minidoc-util-packedrevision-function-packedrevision-path-reference-src-minidoc-util-ml-855697853"></a>
 ### _packedRevision
@@ -65,7 +65,7 @@ Finds a revision in one packed-refs file.
 | `reference` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L302)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L316)
 
 <a id="function-function-minidoc-util-stringless-function-stringless-left-right-src-minidoc-util-ml-1708326844"></a>
 ### _stringLess
@@ -82,7 +82,7 @@ Performs the '_stringLess' step in MiniDoc's shared utility layer.
 | `right` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L485)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L499)
 
 <a id="function-function-minidoc-util-absolutepath-function-absolutepath-path-base-src-minidoc-util-ml-514406695"></a>
 ### absolutePath
@@ -99,7 +99,7 @@ Performs the 'absolutePath' step in MiniDoc's shared utility layer.
 | `base` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L119)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L133)
 
 <a id="function-function-minidoc-util-addunique-function-addunique-values-value-src-minidoc-util-ml-1616123664"></a>
 ### addUnique
@@ -116,7 +116,7 @@ Performs the 'addUnique' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L550)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L564)
 
 <a id="function-function-minidoc-util-alphabeticalless-function-alphabeticalless-left-right-src-minidoc-util-ml-727255026"></a>
 ### alphabeticalLess
@@ -133,7 +133,7 @@ Case-insensitive alphabetical comparison with the original spelling as a determi
 | `right` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L503)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L517)
 
 <a id="function-function-minidoc-util-containsstring-function-containsstring-values-value-src-minidoc-util-ml-566265228"></a>
 ### containsString
@@ -150,7 +150,7 @@ Performs the 'containsString' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L540)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L554)
 
 <a id="function-function-minidoc-util-currentdirectory-function-currentdirectory-src-minidoc-util-ml-113802665"></a>
 ### currentDirectory
@@ -162,7 +162,7 @@ function currentDirectory()
 Performs the 'currentDirectory' step in MiniDoc's shared utility layer.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L111)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L125)
 
 <a id="function-function-minidoc-util-directoryname-function-directoryname-path-src-minidoc-util-ml-1501831564"></a>
 ### directoryName
@@ -178,7 +178,7 @@ Performs the 'directoryName' step in MiniDoc's shared utility layer.
 | `path` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L127)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L141)
 
 <a id="function-function-minidoc-util-ensuredirectory-function-ensuredirectory-path-src-minidoc-util-ml-1374154082"></a>
 ### ensureDirectory
@@ -194,7 +194,7 @@ Performs the 'ensureDirectory' step in MiniDoc's shared utility layer.
 | `path` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L223)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L237)
 
 <a id="function-function-minidoc-util-filename-function-filename-path-src-minidoc-util-ml-1336661524"></a>
 ### fileName
@@ -210,7 +210,7 @@ Performs the 'fileName' step in MiniDoc's shared utility layer.
 | `path` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L138)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L152)
 
 <a id="function-function-minidoc-util-gitrevision-function-gitrevision-root-src-minidoc-util-ml-671168135"></a>
 ### gitRevision
@@ -228,7 +228,7 @@ Returns the exact Git commit recorded by HEAD without invoking Git.
 
 **Since:** `0.4.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L318)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L332)
 
 <a id="function-function-minidoc-util-hashtext-function-hashtext-value-src-minidoc-util-ml-1635069358"></a>
 ### hashText
@@ -244,7 +244,7 @@ Performs the 'hashText' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L387)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L401)
 
 <a id="function-function-minidoc-util-htmlescape-function-htmlescape-value-src-minidoc-util-ml-244495214"></a>
 ### htmlEscape
@@ -260,7 +260,7 @@ Performs the 'htmlEscape' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L433)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L447)
 
 <a id="function-function-minidoc-util-isabsolute-function-isabsolute-path-src-minidoc-util-ml-1214071280"></a>
 ### isAbsolute
@@ -276,7 +276,7 @@ Performs the 'isAbsolute' step in MiniDoc's shared utility layer.
 | `path` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L30)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L44)
 
 <a id="function-function-minidoc-util-isprojectsource-function-isprojectsource-path-entry-source-roots-src-minidoc-util-ml-1301122291"></a>
 ### isProjectSource
@@ -294,7 +294,7 @@ Reports whether a file belongs to the documented project rather than an imported
 | `source_roots` | `dynamic` | — | Configured roots whose source files belong to the project. |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L176)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L190)
 
 <a id="function-function-minidoc-util-issafeurl-function-issafeurl-value-src-minidoc-util-ml-178306030"></a>
 ### isSafeUrl
@@ -310,7 +310,7 @@ Performs the 'isSafeUrl' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L557)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L571)
 
 <a id="function-function-minidoc-util-iswhitespacechar-function-iswhitespacechar-ch-src-minidoc-util-ml-1629633848"></a>
 ### isWhitespaceChar
@@ -326,7 +326,7 @@ Performs the 'isWhitespaceChar' step in MiniDoc's shared utility layer.
 | `ch` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L348)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L362)
 
 <a id="function-function-minidoc-util-joinpath-function-joinpath-left-right-src-minidoc-util-ml-984722546"></a>
 ### joinPath
@@ -343,7 +343,7 @@ Performs the 'joinPath' step in MiniDoc's shared utility layer.
 | `right` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L102)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L116)
 
 <a id="function-function-minidoc-util-jsonescape-function-jsonescape-value-src-minidoc-util-ml-1752083326"></a>
 ### jsonEscape
@@ -359,7 +359,7 @@ Performs the 'jsonEscape' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L456)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L470)
 
 <a id="function-function-minidoc-util-lineandcolumn-function-lineandcolumn-source-position-src-minidoc-util-ml-592355921"></a>
 ### lineAndColumn
@@ -376,7 +376,7 @@ Performs the 'lineAndColumn' step in MiniDoc's shared utility layer.
 | `position` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L367)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L381)
 
 <a id="function-function-minidoc-util-markdowntableescape-function-markdowntableescape-value-src-minidoc-util-ml-1230576038"></a>
 ### markdownTableEscape
@@ -392,7 +392,7 @@ Performs the 'markdownTableEscape' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L445)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L459)
 
 <a id="function-function-minidoc-util-normalizepath-function-normalizepath-path-src-minidoc-util-ml-912855504"></a>
 ### normalizePath
@@ -408,7 +408,7 @@ Performs the 'normalizePath' step in MiniDoc's shared utility layer.
 | `path` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L39)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L53)
 
 <a id="function-function-minidoc-util-onlywhitespace-function-onlywhitespace-source-start-pos-end-pos-src-minidoc-util-ml-1891259271"></a>
 ### onlyWhitespace
@@ -426,7 +426,7 @@ Performs the 'onlyWhitespace' step in MiniDoc's shared utility layer.
 | `end_pos` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L354)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L368)
 
 <a id="function-function-minidoc-util-pathkey-function-pathkey-path-src-minidoc-util-ml-1467472176"></a>
 ### pathKey
@@ -442,7 +442,7 @@ Performs the 'pathKey' step in MiniDoc's shared utility layer.
 | `path` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L156)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L170)
 
 <a id="function-function-minidoc-util-pathsequal-function-pathsequal-left-right-src-minidoc-util-ml-1148717714"></a>
 ### pathsEqual
@@ -459,7 +459,7 @@ Performs the 'pathsEqual' step in MiniDoc's shared utility layer.
 | `right` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L167)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L181)
 
 <a id="function-function-minidoc-util-readtext-function-readtext-path-src-minidoc-util-ml-1933403872"></a>
 ### readText
@@ -475,7 +475,7 @@ Performs the 'readText' step in MiniDoc's shared utility layer.
 | `path` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L272)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L286)
 
 <a id="function-function-minidoc-util-relativepath-function-relativepath-base-target-src-minidoc-util-ml-703996981"></a>
 ### relativePath
@@ -492,7 +492,7 @@ Performs the 'relativePath' step in MiniDoc's shared utility layer.
 | `target` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L189)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L203)
 
 <a id="function-function-minidoc-util-removestalegenerated-function-removestalegenerated-root-generated-src-minidoc-util-ml-77044230"></a>
 ### removeStaleGenerated
@@ -511,7 +511,7 @@ Removes files listed by a previous MiniDoc manifest that are no longer generated
 
 **Since:** `0.4.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L253)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L267)
 
 <a id="function-function-minidoc-util-replaceslashes-function-replaceslashes-value-src-minidoc-util-ml-1042596854"></a>
 ### replaceSlashes
@@ -527,7 +527,23 @@ Performs the 'replaceSlashes' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L23)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L37)
+
+<a id="function-function-minidoc-util-revisionlabel-function-revisionlabel-value-src-minidoc-util-ml-1818928556"></a>
+### revisionLabel
+
+```ml
+function revisionLabel(value)
+```
+
+Abbreviates Git object IDs while preserving explicit revision labels.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `dynamic` | — | Revision supplied by Git or the project configuration. |
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L24)
 
 <a id="function-function-minidoc-util-slug-function-slug-value-src-minidoc-util-ml-137599686"></a>
 ### slug
@@ -543,7 +559,7 @@ Performs the 'slug' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L401)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L415)
 
 <a id="function-function-minidoc-util-sortedstrings-function-sortedstrings-values-src-minidoc-util-ml-1938694817"></a>
 ### sortedStrings
@@ -559,7 +575,7 @@ Performs the 'sortedStrings' step in MiniDoc's shared utility layer.
 | `values` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L514)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L528)
 
 <a id="function-function-minidoc-util-sourceurl-function-sourceurl-repository-ref-name-relative-path-line-src-minidoc-util-ml-306910688"></a>
 ### sourceUrl
@@ -578,7 +594,7 @@ Performs the 'sourceUrl' step in MiniDoc's shared utility layer.
 | `line` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L468)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L482)
 
 <a id="function-function-minidoc-util-stableslug-function-stableslug-value-src-minidoc-util-ml-855303090"></a>
 ### stableSlug
@@ -594,7 +610,7 @@ Performs the 'stableSlug' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L427)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L441)
 
 <a id="function-function-minidoc-util-stem-function-stem-path-src-minidoc-util-ml-38274428"></a>
 ### stem
@@ -610,7 +626,7 @@ Performs the 'stem' step in MiniDoc's shared utility layer.
 | `path` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L147)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L161)
 
 <a id="function-function-minidoc-util-writetext-function-writetext-path-text-src-minidoc-util-ml-1017090225"></a>
 ### writeText
@@ -627,4 +643,4 @@ Performs the 'writeText' step in MiniDoc's shared utility layer.
 | `text` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L239)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L253)

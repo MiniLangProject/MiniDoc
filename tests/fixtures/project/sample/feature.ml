@@ -44,6 +44,21 @@ function callableKind(value) returns string
   return "other"
 end function
 
+/// Classifies a value with MiniLang 1.3.0 inline assembly.
+/// @param value Value to classify.
+/// @returns One for a nonzero value, otherwise zero.
+function asmClassify(value as int) returns int
+  return asm x64(in value as int) returns int
+    cmp value, 0
+    je zero
+    mov result, 1
+    jmp done
+    label zero
+    mov result, 0
+    label done
+  end asm
+end function
+
 /// Prepares the source-file test fixture.
 /// @beforeeach
 function prepareFeatureTest()

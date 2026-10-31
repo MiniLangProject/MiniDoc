@@ -39,6 +39,7 @@
 - [`minidoc.util.relativePath`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-relativepath-function-relativepath-base-target-src-minidoc-util-ml-703996981) — function
 - [`minidoc.util.removeStaleGenerated`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-removestalegenerated-function-removestalegenerated-root-generated-src-minidoc-util-ml-77044230) — function
 - [`minidoc.util.replaceSlashes`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-replaceslashes-function-replaceslashes-value-src-minidoc-util-ml-1042596854) — function
+- [`minidoc.util.revisionLabel`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-revisionlabel-function-revisionlabel-value-src-minidoc-util-ml-1818928556) — function
 - [`minidoc.util.slug`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-slug-function-slug-value-src-minidoc-util-ml-137599686) — function
 - [`minidoc.util.sortedStrings`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-sortedstrings-function-sortedstrings-values-src-minidoc-util-ml-1938694817) — function
 - [`minidoc.util.sourceUrl`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-sourceurl-function-sourceurl-repository-ref-name-relative-path-line-src-minidoc-util-ml-306910688) — function

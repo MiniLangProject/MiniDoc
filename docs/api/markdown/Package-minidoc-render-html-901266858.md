@@ -33,7 +33,6 @@
 - [`minidoc.render_html._packagesIndex`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-packagesindex-function-packagesindex-project-src-minidoc-render-html-ml-1876075040) — function
 - [`minidoc.render_html._projectDescription`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-projectdescription-function-projectdescription-project-src-minidoc-render-html-ml-104319708) — function
 - [`minidoc.render_html._searchIndex`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-searchindex-function-searchindex-project-src-minidoc-render-html-ml-1008698196) — function
-- [`minidoc.render_html._shortRevision`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-shortrevision-function-shortrevision-value-src-minidoc-render-html-ml-150195100) — function
 - [`minidoc.render_html._sortTags`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-sorttags-function-sorttags-tags-src-minidoc-render-html-ml-98000292) — function
 - [`minidoc.render_html._symbolById`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-symbolbyid-function-symbolbyid-project-id-src-minidoc-render-html-ml-761027075) — function
 - [`minidoc.render_html._symbolFixtureRole`](File-src-minidoc-render-html-ml-1870373141.md#function-function-minidoc-render-html-symbolfixturerole-function-symbolfixturerole-doc-symbol-src-minidoc-render-html-ml-165079326) — function

@@ -312,6 +312,53 @@ function _booleanOperators(expr)
   return 0
 end function
 
+/// Counts conditional control-flow edges in a typed inline-assembly expression.
+/// @param expr Expression to inspect, including nested assembly expressions.
+/// @internal
+function _asmBranches(expr)
+  if typeof(expr) == "void" or tools.ast_is_node(expr) == false then return 0 end if
+  kind = tools.ast_kind(expr)
+  if kind == "AsmExpr" then
+    count = 0
+    if len(expr.instructions) > 0 then
+      for i = 0 to len(expr.instructions) - 1
+        op = expr.instructions[i][0]
+        if op == "jz" or op == "je" or op == "jnz" or op == "jne" or
+           op == "jl" or op == "jle" or op == "jg" or op == "jge" or
+           op == "jb" or op == "jbe" or op == "ja" or op == "jae" then
+          count = count + 1
+        end if
+      end for
+    end if
+    return count
+  end if
+  if kind == "Unary" then return _asmBranches(tools.ast_right(expr)) end if
+  if kind == "Bin" then return _asmBranches(tools.ast_left(expr)) + _asmBranches(tools.ast_right(expr)) end if
+  if kind == "Coalesce" then return _asmBranches(expr.left) + _asmBranches(expr.right) end if
+  if kind == "IsType" or kind == "TypeGuard" then return _asmBranches(expr.expr) end if
+  if kind == "Member" or kind == "SafeMember" then return _asmBranches(expr.target) end if
+  if kind == "Index" then return _asmBranches(expr.target) + _asmBranches(expr.index) end if
+  if kind == "Call" then
+    call_count = _asmBranches(expr.callee)
+    if len(expr.args) > 0 then
+      for i = 0 to len(expr.args) - 1
+        call_count = call_count + _asmBranches(expr.args[i])
+      end for
+    end if
+    return call_count
+  end if
+  if kind == "ArrayLit" then
+    array_count = 0
+    if len(expr.items) > 0 then
+      for i = 0 to len(expr.items) - 1
+        array_count = array_count + _asmBranches(expr.items[i])
+      end for
+    end if
+    return array_count
+  end if
+  return 0
+end function
+
 /// Performs the '_touchNesting' step in MiniDoc's metrics pipeline.
 /// @internal
 function _touchNesting(accumulator, nesting)
@@ -328,6 +375,21 @@ function _walkComplexity(body, accumulator, nesting)
     kind = tools.ast_kind(statement)
     if kind == "FunctionDef" then continue end if
     accumulator.statement_count = accumulator.statement_count + 1
+    asm_branches = 0
+    if kind == "Print" or kind == "ExprStmt" or kind == "Return" or kind == "Yield" or
+       kind == "Assign" or kind == "ConstDecl" or kind == "SynchronizedDecl" or kind == "Defer" then
+      asm_branches = _asmBranches(statement.expr)
+    else if kind == "If" or kind == "While" or kind == "DoWhile" then
+      asm_branches = _asmBranches(statement.cond)
+    else if kind == "For" then
+      asm_branches = _asmBranches(statement.start) + _asmBranches(statement.end_expr)
+    else if kind == "ForEach" then
+      asm_branches = _asmBranches(statement.iterable)
+    else if kind == "Switch" then
+      asm_branches = _asmBranches(statement.expr)
+    end if
+    accumulator.cyclomatic_complexity = accumulator.cyclomatic_complexity + asm_branches
+    accumulator.cognitive_complexity = accumulator.cognitive_complexity + asm_branches * (1 + nesting)
     if kind == "If" then
       boolean_count = _booleanOperators(statement.cond)
       accumulator.cyclomatic_complexity = accumulator.cyclomatic_complexity + 1 + boolean_count
@@ -338,8 +400,9 @@ function _walkComplexity(body, accumulator, nesting)
         for ei = 0 to len(statement.elifs) - 1
           pair = statement.elifs[ei]
           elif_booleans = _booleanOperators(pair[0])
-          accumulator.cyclomatic_complexity = accumulator.cyclomatic_complexity + 1 + elif_booleans
-          accumulator.cognitive_complexity = accumulator.cognitive_complexity + 1 + nesting + elif_booleans
+          elif_asm_branches = _asmBranches(pair[0])
+          accumulator.cyclomatic_complexity = accumulator.cyclomatic_complexity + 1 + elif_booleans + elif_asm_branches
+          accumulator.cognitive_complexity = accumulator.cognitive_complexity + 1 + nesting + elif_booleans + elif_asm_branches * (1 + nesting)
           accumulator = _walkComplexity(pair[1], accumulator, nesting + 1)
         end for
       end if

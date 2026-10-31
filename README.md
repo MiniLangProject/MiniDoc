@@ -5,7 +5,7 @@
 
 MiniDoc is a documentation generator for MiniLang projects, written entirely in MiniLang. It reads the same project structure and source syntax as the self-hosted MiniLang compiler and produces either an offline HTML documentation site, a linked Markdown documentation tree, or both.
 
-> Project status: working preview (`0.4.3`). The end-to-end generator, HTML and Markdown renderers, source metrics, dependency views, scalable graphs, configuration loader, and MiniLang test suite are implemented. See [Current limitations](#current-limitations) before treating the output as a complete semantic API reference.
+> Project status: working preview (`0.4.4`). The end-to-end generator, HTML and Markdown renderers, source metrics, dependency views, scalable graphs, configuration loader, and MiniLang test suite are implemented. See [Current limitations](#current-limitations) before treating the output as a complete semantic API reference.
 
 The repository dogfoods MiniDoc. Browse the committed [GitHub-friendly API documentation](docs/api/markdown/README.md), or download the repository and open [the offline HTML start page](docs/api/html/index.html). Both trees are regenerated from the documented MiniDoc source with [`minidoc.toml`](minidoc.toml).
 
@@ -20,10 +20,12 @@ The repository dogfoods MiniDoc. Browse the committed [GitHub-friendly API docum
 - Generates an offline HTML site with navigation and client-side symbol search.
 - Generates a project-specific introduction, an at-a-glance metrics dashboard, and responsive navigation cards on the home page.
 - Adds the MiniDoc version, an optional reproducible generation timestamp, and the source revision to generated metadata.
+- Abbreviates Git commit IDs in generated metadata while preserving descriptive revision labels in full.
 - Keeps long package and navigation card labels inside responsive card boundaries.
 - Generates GitHub-compatible repository Markdown or a GitHub Wiki tree with `Home.md` and `_Sidebar.md`.
 - Emits deduplicated package-level SVG import, call, and interface-implementation graphs without Graphviz, with optional symbol-level detail.
 - Calculates LOC, cyclomatic and cognitive complexity, duplicate code, Halstead metrics, maintainability, and category-specific documentation coverage.
+- Recognizes MiniLang 1.3.0 typed inline x64 assembly and counts conditional assembly jumps in callable complexity metrics.
 - Keeps imported libraries compact by default: dependency source files are summarized without expanding their complete APIs.
 - Produces stable page names, anchors, case-insensitive alphabetical ordering, and output manifests for reproducible builds.
 - Escapes generated HTML and ships with a restrictive Content Security Policy.
@@ -37,7 +39,7 @@ GitHub releases provide separate archives for Windows x64 and Linux x64. Each ar
 
 ### Prerequisites
 
-MiniDoc currently builds against the self-hosted [MiniLang compiler](https://github.com/MiniLangProject/MiniLangCompilerML). The default build scripts expect sibling checkouts:
+MiniDoc 0.4.4 builds against the self-hosted [MiniLang compiler](https://github.com/MiniLangProject/MiniLangCompilerML) **1.3.0 or newer**. The default build scripts expect sibling checkouts:
 
 ```text
 workspace/
@@ -45,7 +47,7 @@ workspace/
 └── MiniLangCompilerML/
 ```
 
-On Windows, a compiler at another location can be selected with `-Compiler`. On Linux, set `MINILANG_COMPILER`; the compiler source checkout must still be available as an import root beside MiniDoc.
+On Windows, a compiler at another location can be selected with `-Compiler`. On Linux, set `MINILANG_COMPILER`; the compiler source checkout must still be available as an import root beside MiniDoc. Build the current compiler first or select its 1.3.0 release executable if the default `build` executable is older.
 
 ### Windows
 
@@ -236,8 +238,8 @@ The `Metrics` page is generated for both HTML and Markdown output. Metrics use t
 | Metric | Definition |
 | --- | --- |
 | LOC | Physical lines, source lines containing MiniLang tokens, comment lines, and blank lines. Mixed code/comment lines can count in both source and comment totals. |
-| Cyclomatic complexity | One base path per executable function plus conditions, loops, switch cases, and logical `and`/`or` operators. |
-| Cognitive complexity | Decision complexity weighted by nesting; logical `and`/`or` operators add one. |
+| Cyclomatic complexity | One base path per executable function plus conditions, loops, switch cases, logical `and`/`or` operators, and conditional inline-assembly jumps. |
+| Cognitive complexity | Decision complexity weighted by nesting; logical `and`/`or` operators and conditional inline-assembly jumps add to the score. |
 | Code duplication | Repeated windows of six contiguous token-normalized code lines. Comments and formatting whitespace are ignored, and overlapping matches count each duplicated line once. |
 | Halstead | Distinct and total operators and operands, vocabulary, length, volume, difficulty, effort, and estimated defects, calculated from MiniLang lexer tokens. |
 | Maintainability index | A normalized 0–100 score based on Halstead volume, cyclomatic complexity, and source lines. The project value is source-line weighted across files. |
@@ -472,8 +474,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development conventions and self-docu
 - Graph layout is deterministic and dependency-free, but intentionally simple. Symbol-level graphs for very large projects should be capped.
 - Directory-link and junction behavior depends on the filesystem implementation exposed by the MiniLang standard library; linked source trees should be excluded explicitly when necessary.
 - Duplicate detection currently finds exact token-normalized line windows; it does not identify renamed or structurally similar clones.
-- Metric thresholds and the six-line clone window are not configurable in `0.4.3`.
-- Incremental model caching, API compatibility reports, theme selection, and plugin APIs are not implemented in `0.4.3`.
+- Metric thresholds and the six-line clone window are not configurable in `0.4.4`.
+- Incremental model caching, API compatibility reports, theme selection, and plugin APIs are not implemented in `0.4.4`.
 
 ## Roadmap
 

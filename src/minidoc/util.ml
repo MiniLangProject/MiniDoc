@@ -18,6 +18,20 @@ import std.process as process
 import std.string as strings
 import std.string_builder as builders
 
+/// Abbreviates Git object IDs while preserving explicit revision labels.
+/// @param value Revision supplied by Git or the project configuration.
+/// @internal
+function revisionLabel(value)
+  if typeof(value) != "string" then return "" end if
+  if len(value) != 40 and len(value) != 64 then return value end if
+  raw = bytes(value)
+  for i = 0 to len(raw) - 1
+    ch = raw[i]
+    if not ((ch >= 48 and ch <= 57) or (ch >= 65 and ch <= 70) or (ch >= 97 and ch <= 102)) then return value end if
+  end for
+  return strings.substr(value, 0, 12)
+end function
+
 /// Performs the 'replaceSlashes' step in MiniDoc's shared utility layer.
 /// @internal
 function replaceSlashes(value)

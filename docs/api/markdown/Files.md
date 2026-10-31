@@ -11,9 +11,9 @@
 | [src/minidoc/doc_comments.ml](File-src-minidoc-doc-comments-ml-1995285450.md) | `minidoc.doc_comments` | yes | 11 |
 | [src/minidoc/graph.ml](File-src-minidoc-graph-ml-29661697.md) | `minidoc.graph` | yes | 15 |
 | [src/minidoc/loader.ml](File-src-minidoc-loader-ml-952553188.md) | `minidoc.loader` | yes | 14 |
-| [src/minidoc/metrics.ml](File-src-minidoc-metrics-ml-1301618694.md) | `minidoc.metrics` | yes | 63 |
+| [src/minidoc/metrics.ml](File-src-minidoc-metrics-ml-1301618694.md) | `minidoc.metrics` | yes | 64 |
 | [src/minidoc/model.ml](File-src-minidoc-model-ml-438170230.md) | `minidoc.model` | yes | 232 |
 | [src/minidoc/ordering.ml](File-src-minidoc-ordering-ml-677118389.md) | `minidoc.ordering` | yes | 15 |
-| [src/minidoc/render_html.ml](File-src-minidoc-render-html-ml-1870373141.md) | `minidoc.render_html` | yes | 41 |
-| [src/minidoc/render_markdown.ml](File-src-minidoc-render-markdown-ml-212465045.md) | `minidoc.render_markdown` | yes | 39 |
-| [src/minidoc/util.ml](File-src-minidoc-util-ml-1632979029.md) | `minidoc.util` | yes | 37 |
+| [src/minidoc/render_html.ml](File-src-minidoc-render-html-ml-1870373141.md) | `minidoc.render_html` | yes | 40 |
+| [src/minidoc/render_markdown.ml](File-src-minidoc-render-markdown-ml-212465045.md) | `minidoc.render_markdown` | yes | 38 |
+| [src/minidoc/util.ml](File-src-minidoc-util-ml-1632979029.md) | `minidoc.util` | yes | 38 |
