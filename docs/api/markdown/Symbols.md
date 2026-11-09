@@ -56,7 +56,7 @@
 | [minidoc.app.printVersion](File-src-minidoc-app-ml-1489174864.md#function-function-minidoc-app-printversion-function-printversion-src-minidoc-app-ml-1716674331) | `function` | `function printVersion()` |
 | [minidoc.app.render](File-src-minidoc-app-ml-1489174864.md#function-function-minidoc-app-render-function-render-project-src-minidoc-app-ml-643749544) | `function` | `function render(project)` |
 | [minidoc.app.run](File-src-minidoc-app-ml-1489174864.md#function-function-minidoc-app-run-function-run-args-src-minidoc-app-ml-382026988) | `function` | `function run(args)` |
-| [minidoc.app.VERSION](File-src-minidoc-app-ml-1489174864.md#constant-constant-minidoc-app-version-const-version-0-4-4-src-minidoc-app-ml-1685391464) | `constant` | `const VERSION = "0.4.4"` |
+| [minidoc.app.VERSION](File-src-minidoc-app-ml-1489174864.md#constant-constant-minidoc-app-version-const-version-0-4-5-src-minidoc-app-ml-1882642679) | `constant` | `const VERSION = "0.4.5"` |
 | [minidoc.config._absoluteItems](File-src-minidoc-config-ml-2001755147.md#function-function-minidoc-config-absoluteitems-function-absoluteitems-items-base-src-minidoc-config-ml-2103852774) | `function` | `function _absoluteItems(items, base)` |
 | [minidoc.config._applyCli](File-src-minidoc-config-ml-2001755147.md#function-function-minidoc-config-applycli-function-applycli-cfg-args-src-minidoc-config-ml-1158403242) | `function` | `function _applyCli(cfg, args)` |
 | [minidoc.config._applyFormats](File-src-minidoc-config-ml-2001755147.md#function-function-minidoc-config-applyformats-function-applyformats-cfg-raw-src-minidoc-config-ml-1993873735) | `function` | `function _applyFormats(cfg, raw)` |

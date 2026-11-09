@@ -18,4 +18,4 @@
 - [`minidoc.app.printVersion`](File-src-minidoc-app-ml-1489174864.md#function-function-minidoc-app-printversion-function-printversion-src-minidoc-app-ml-1716674331) — function
 - [`minidoc.app.render`](File-src-minidoc-app-ml-1489174864.md#function-function-minidoc-app-render-function-render-project-src-minidoc-app-ml-643749544) — function
 - [`minidoc.app.run`](File-src-minidoc-app-ml-1489174864.md#function-function-minidoc-app-run-function-run-args-src-minidoc-app-ml-382026988) — function
-- [`minidoc.app.VERSION`](File-src-minidoc-app-ml-1489174864.md#constant-constant-minidoc-app-version-const-version-0-4-4-src-minidoc-app-ml-1685391464) — constant
+- [`minidoc.app.VERSION`](File-src-minidoc-app-ml-1489174864.md#constant-constant-minidoc-app-version-const-version-0-4-5-src-minidoc-app-ml-1882642679) — constant
