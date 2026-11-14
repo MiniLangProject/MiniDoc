@@ -19,13 +19,13 @@ no MiniLang source to document.
 | MiniIDE | 21 | 1,804 | 0 |
 | MiniInstaller | 50 | 2,752 | 0 |
 | MiniOriginAudit | 32 | 1,292 | 0 |
-| MiniPixels | 56 | 2,419 | 0 |
+| MiniPixels | 55 | 2,389 | 0 |
 | MiniQuake | 148 | 8,368 | 0 |
 | MiniQuake2 | 223 | 9,040 | 0 |
 | MiniQuake3 | 591 | 34,329 | 23,981 |
 | MiniRealisticDoom | 97 | 7,993 | 0 |
-| MiniSQL | 115 | 7,622 | 0 |
-| MiniJavaScript | 20 | 1,084 | 655 |
+| MiniSQL | 112 | 7,546 | 0 |
+| MiniJavaScript | 22 | 1,242 | 686 |
 | MiniRedAlert (core reference) | 101 | 3,537 | 2,521 |
 
 The MiniJavaScript, MiniQuake3, and MiniRedAlert diagnostics concern declaration
@@ -43,5 +43,6 @@ The complete MiniQuake3 reference contains 591 parsed files and was generated
 in 447 seconds on this Windows workstation. MiniDoc now uses transient lookup
 indexes and stable merge sorts to keep large projects practical.
 
-This refresh only changes local working trees. The pre-existing uncommitted
-changes in MiniPixels, MiniSQL, and MiniJavaScript were preserved.
+The references for MiniPixels, MiniSQL, and MiniJavaScript were generated from
+clean published source revisions in isolated worktrees. Their pre-existing
+local source changes were preserved.
