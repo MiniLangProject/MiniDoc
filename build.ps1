@@ -10,6 +10,8 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 param(
     [string]$Compiler = "",
+    [string]$HeapReserve = "16g",
+    [string]$HeapCommit = "32m",
     [switch]$SkipTests
 )
 
@@ -32,7 +34,10 @@ $sourceRoot = Join-Path $root "src"
     (Join-Path $sourceRoot "main.ml") `
     (Join-Path $outputDirectory "minidoc.exe") `
     -I $sourceRoot `
-    -I $compilerSources
+    -I $compilerSources `
+    --heap-reserve $HeapReserve `
+    --heap-commit $HeapCommit `
+    --heap-shrink
 if ($LASTEXITCODE -ne 0) {
     throw "MiniDoc compilation failed with exit code $LASTEXITCODE"
 }

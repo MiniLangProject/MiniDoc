@@ -2,6 +2,27 @@
 
 All notable changes to MiniDoc are documented in this file.
 
+## 0.4.6 — 2026-11-14
+
+- Build and test with MiniLang compiler 1.3.8 on Windows and Linux.
+- Verify documentation of the 1.3.8 standard library's FileHandle and TLS
+  methods and owning TCP/UDP socket types against the actual compiler sources.
+- Raise the generator's default virtual heap reserve to 16 GiB for large
+  repositories while keeping committed pages demand-driven and shrinkable.
+- Build declaration symbols in a growable vector with a transient hash index,
+  avoiding repeated full-array copies and linear duplicate/parent lookups.
+- Build call references and relations in vectors and resolve call/type names
+  through an indexed lookup instead of rescanning every symbol per reference.
+- Resolve relation sort keys through a transient id-to-name index; this avoids
+  a symbol-table scan for both endpoints of every call edge in large projects.
+- Precompute folded and original byte keys for deterministic symbol sorting,
+  avoiding repeated case conversion and allocation during merge comparisons.
+- Sort filename and output-manifest lists with a stable merge sort so large
+  generated references do not spend quadratic time ordering their pages.
+- Index function source positions while collecting metrics, avoiding a full
+  symbol-table scan for every function in large projects.
+- Regenerate MiniDoc and repository API references with the current frontend.
+
 ## 0.4.5 — 2026-11-09
 
 - Document MiniLang classes as a separate type kind, including inherited base

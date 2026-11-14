@@ -446,13 +446,7 @@ end function
 /// Performs the '_findFunctionSymbol' step in MiniDoc's metrics pipeline.
 /// @internal
 function _findFunctionSymbol(project, file_id, position)
-  if len(project.symbols) == 0 then return 0 end if
-  kinds = ["function", "nested_function", "method", "static_method", "operator", "interface_method"]
-  for i = 0 to len(project.symbols) - 1
-    item = project.symbols[i]
-    if item.file_id == file_id and item.position == position and util.containsString(kinds, item.kind) then return item end if
-  end for
-  return 0
+  return tools.fastmap_get(project.symbol_index, file_id + ":" + position, 0)
 end function
 
 /// Performs the '_startsFunction' step in MiniDoc's metrics pipeline.
@@ -812,6 +806,18 @@ function calculate(project)
   end if
   sources = tools.arr_vec_finish(sources_vector)
 
+  // Resolve function AST positions in constant time during metric collection.
+  project.symbol_index = tools.fastmap_new(2048)
+  if len(project.symbols) > 0 then
+    for si = 0 to len(project.symbols) - 1
+      doc_symbol = project.symbols[si]
+      if doc_symbol.kind == "function" or doc_symbol.kind == "nested_function" or doc_symbol.kind == "method" or doc_symbol.kind == "static_method" or doc_symbol.kind == "operator" or doc_symbol.kind == "interface_method" then
+        key = doc_symbol.file_id + ":" + doc_symbol.position
+        if tools.fastmap_get(project.symbol_index, key, 0) == 0 then project.symbol_index = tools.fastmap_set(project.symbol_index, key, doc_symbol) end if
+      end if
+    end for
+  end if
+
   function_vector = tools.arr_vec_new(256)
   if len(project.files) > 0 then
     for i = 0 to len(project.files) - 1
@@ -822,6 +828,7 @@ function calculate(project)
     end for
   end if
   function_metrics = tools.arr_vec_finish(function_vector)
+  project.symbol_index = 0
 
   duplicate_result = _calculateDuplicates(sources)
   sources = duplicate_result[0]

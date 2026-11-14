@@ -156,6 +156,9 @@ end function
 /// Performs the '_symbolById' step in MiniDoc's symbol-analysis pipeline.
 /// @internal
 function _symbolById(project, id)
+  if typeof(project.symbol_index) == "struct" then
+    return tools.fastmap_get(project.symbol_index, id, 0)
+  end if
   if len(project.symbols) == 0 then return 0 end if
   for i = 0 to len(project.symbols) - 1
     if project.symbols[i].id == id then return project.symbols[i] end if
@@ -175,13 +178,10 @@ end function
 function _addSymbol(project, file, kind, name, qualified_name, container_id, namespace_name, position, signature, type_name, modifiers, parameters, return_type, doc)
   location = util.lineAndColumn(file.processed_source, position)
   id = _symbolId(kind, qualified_name, signature, file.relative_path)
-  if len(project.symbols) > 0 then
-    for i = 0 to len(project.symbols) - 1
-      if project.symbols[i].id == id then
-        _diagnostic(project, "error", "MD2001", file, position, "duplicate symbol identity: " + qualified_name)
-        return project.symbols[i]
-      end if
-    end for
+  existing = tools.fastmap_get(project.symbol_index, id, 0)
+  if typeof(existing) == "struct" then
+    _diagnostic(project, "error", "MD2001", file, position, "duplicate symbol identity: " + qualified_name)
+    return existing
   end if
   deprecated = comments.hasTag(doc, "deprecated")
   internal = doc.internal
@@ -215,7 +215,8 @@ function _addSymbol(project, file, kind, name, qualified_name, container_id, nam
     deprecated,
     source_url
   )
-  project.symbols = project.symbols + [sym]
+  project.symbols = tools.arr_vec_push(project.symbols, sym)
+  project.symbol_index = tools.fastmap_set(project.symbol_index, id, sym)
   file.symbol_ids = file.symbol_ids + [id]
   return sym
 end function
@@ -464,7 +465,7 @@ function _walkExpression(project, file, caller, expr, namespace_name)
   if kind == "Call" then
     raw = _calleeName(expr.callee)
     dynamic = raw == "" or tools.ast_kind(expr.callee) == "SafeMember"
-    if raw != "" then project.call_references = project.call_references + [model.CallReference(caller.id, raw, file.id, file.package_name, namespace_name, tools.ast_pos(expr), dynamic)] end if
+    if raw != "" then project.call_references = tools.arr_vec_push(project.call_references, model.CallReference(caller.id, raw, file.id, file.package_name, namespace_name, tools.ast_pos(expr), dynamic)) end if
     _walkExpression(project, file, caller, expr.callee, namespace_name)
     if len(expr.args) > 0 then
       for i = 0 to len(expr.args) - 1
@@ -718,11 +719,11 @@ function _addStruct(project, file, node, prefix, namespace_name)
   end if
   if typeof(node.interfaces) == "array" and len(node.interfaces) > 0 then
     for ii = 0 to len(node.interfaces) - 1
-      project.relations = project.relations + [model.RelationDoc(type_sym.id, "", "implements", "exact", node.interfaces[ii])]
+      project.relations = tools.arr_vec_push(project.relations, model.RelationDoc(type_sym.id, "", "implements", "exact", node.interfaces[ii]))
     end for
   end if
   if node.is_class and typeof(node.base) == "string" and node.base != "" then
-    project.relations = project.relations + [model.RelationDoc(type_sym.id, "", "extends", "exact", node.base)]
+    project.relations = tools.arr_vec_push(project.relations, model.RelationDoc(type_sym.id, "", "extends", "exact", node.base))
   end if
   return type_sym
 end function
@@ -737,7 +738,7 @@ function _addInterface(project, file, node, prefix, namespace_name)
   interface_sym = _addSymbol(project, file, "interface", node.name, qualified_name, "", namespace_name, node._pos, signature, node.name, [], [], "", doc)
   if typeof(node.bases) == "array" and len(node.bases) > 0 then
     for bi = 0 to len(node.bases) - 1
-      project.relations = project.relations + [model.RelationDoc(interface_sym.id, "", "extends", "exact", node.bases[bi])]
+      project.relations = tools.arr_vec_push(project.relations, model.RelationDoc(interface_sym.id, "", "extends", "exact", node.bases[bi]))
     end for
   end if
   cursor = node._pos + len(node.name)
@@ -831,20 +832,37 @@ function _walkDeclarations(project, file, body, namespace_name)
   end for
 end function
 
-/// Performs the '_resolveUnique' step in MiniDoc's symbol-analysis pipeline.
+/// Indexes qualified symbol names by kind for call and inheritance resolution.
 /// @internal
-function _resolveUnique(project, candidates, allowed_kinds)
+function _nameIndex(symbols)
+  index = tools.fastmap_new(2048)
+  if len(symbols) == 0 then return index end if
+  for i = 0 to len(symbols) - 1
+    sym = symbols[i]
+    key = sym.kind + ":" + sym.qualified_name
+    entry = tools.fastmap_get(index, key, 0)
+    if typeof(entry) == "array" then
+      index = tools.fastmap_set(index, key, [entry[0], entry[1] + 1])
+    else
+      index = tools.fastmap_set(index, key, [sym.id, 1])
+    end if
+  end for
+  return index
+end function
+
+/// Resolves one unambiguous candidate using the indexed symbol names.
+/// @internal
+function _resolveUnique(index, candidates, allowed_kinds)
   found = ""
   count = 0
-  if len(candidates) == 0 or len(project.symbols) == 0 then return "" end if
+  if len(candidates) == 0 then return "" end if
   for ci = 0 to len(candidates) - 1
     candidate = candidates[ci]
-    for si = 0 to len(project.symbols) - 1
-      candidate_sym = project.symbols[si]
-      if util.containsString(allowed_kinds, candidate_sym.kind) == false then continue end if
-      if candidate_sym.qualified_name == candidate then
-        found = candidate_sym.id
-        count = count + 1
+    for ki = 0 to len(allowed_kinds) - 1
+      entry = tools.fastmap_get(index, allowed_kinds[ki] + ":" + candidate, 0)
+      if typeof(entry) == "array" then
+        found = entry[0]
+        count = count + entry[1]
       end if
     end for
   end for
@@ -870,7 +888,7 @@ end function
 
 /// Performs the '_resolveCalls' step in MiniDoc's symbol-analysis pipeline.
 /// @internal
-function _resolveCalls(project)
+function _resolveCalls(project, name_index)
   function_kinds = ["function", "nested_function", "method", "static_method", "operator", "interface_method", "extern_function"]
   if len(project.call_references) == 0 then return end if
   for i = 0 to len(project.call_references) - 1
@@ -893,20 +911,20 @@ function _resolveCalls(project)
     if ref.namespace_name != "" then candidates = candidates + [_scope(ref.package_name, ref.namespace_name) + "." + raw] end if
     if ref.package_name != "" then candidates = candidates + [ref.package_name + "." + raw] end if
     candidates = candidates + [raw]
-    target_id = _resolveUnique(project, candidates, function_kinds)
+    target_id = _resolveUnique(name_index, candidates, function_kinds)
     certainty = "exact"
     if ref.dynamic then certainty = "dynamic" end if
     if target_id != "" then
-      project.relations = project.relations + [model.RelationDoc(ref.caller_id, target_id, "calls", certainty, raw)]
+      project.relations = tools.arr_vec_push(project.relations, model.RelationDoc(ref.caller_id, target_id, "calls", certainty, raw))
     else if strings.contains(raw, ".") and not strings.startsWith(raw, "std.") then
-      project.relations = project.relations + [model.RelationDoc(ref.caller_id, "", "calls", "unresolved", raw)]
+      project.relations = tools.arr_vec_push(project.relations, model.RelationDoc(ref.caller_id, "", "calls", "unresolved", raw))
     end if
   end for
 end function
 
 /// Performs the '_resolveTypeRelations' step in MiniDoc's symbol-analysis pipeline.
 /// @internal
-function _resolveTypeRelations(project)
+function _resolveTypeRelations(project, name_index)
   type_kinds = ["struct", "class", "extern_struct", "interface", "enum"]
   if len(project.relations) == 0 then return end if
   for i = 0 to len(project.relations) - 1
@@ -916,7 +934,7 @@ function _resolveTypeRelations(project)
     candidates = [relation.label]
     if typeof(source) == "struct" and source.namespace_name != "" then candidates = candidates + [_scope(source.package_name, source.namespace_name) + "." + relation.label] end if
     if typeof(source) == "struct" and source.package_name != "" then candidates = candidates + [source.package_name + "." + relation.label] end if
-    relation.to_id = _resolveUnique(project, candidates, type_kinds)
+    relation.to_id = _resolveUnique(name_index, candidates, type_kinds)
     if relation.to_id == "" then relation.certainty = "unresolved" end if
   end for
 end function
@@ -1011,17 +1029,30 @@ end function
 /// @since 0.1.0
 function analyze(project)
   project.diagnostics = tools.arr_vec_from_array(project.diagnostics, 256)
+  // Build symbols without copying the full array for every declaration. The
+  // index also keeps duplicate and parent lookups constant-time while walking.
+  project.symbols = tools.arr_vec_from_array(project.symbols, 1024)
+  project.symbol_index = tools.fastmap_new(2048)
+  project.call_references = tools.arr_vec_from_array(project.call_references, 1024)
+  project.relations = tools.arr_vec_from_array(project.relations, 1024)
   if len(project.files) > 0 then
     for i = 0 to len(project.files) - 1
       file = project.files[i]
       _walkDeclarations(project, file, file.program, "")
     end for
   end if
-  _resolveCalls(project)
-  _resolveTypeRelations(project)
+  project.symbols = tools.arr_vec_finish(project.symbols)
+  project.call_references = tools.arr_vec_finish(project.call_references)
+  name_index = _nameIndex(project.symbols)
+  _resolveCalls(project, name_index)
+  project.relations = tools.arr_vec_finish(project.relations)
+  _resolveTypeRelations(project, name_index)
   _validateTestFixtureUniqueness(project)
   _validateCoverage(project)
   _validateSummaryQuality(project)
+  // The public model keeps the ordered array; the transient lookup index must
+  // not retain a second reference to every symbol after analysis.
+  project.symbol_index = 0
   project.diagnostics = tools.arr_vec_finish(project.diagnostics)
   return project
 end function

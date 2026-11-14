@@ -308,6 +308,7 @@ struct ProjectDoc
   source_revision,
   files,
   symbols,
+  symbol_index,
   relations,
   call_references,
   diagnostics,
@@ -378,7 +379,7 @@ end function
 /// @param root_dir Absolute project root directory.
 /// @since 0.1.0
 function emptyProject(config, root_dir)
-  return ProjectDoc(config, root_dir, "", "", "", [], [], [], [], [], emptyProjectMetrics(), true)
+  return ProjectDoc(config, root_dir, "", "", "", [], [], 0, [], [], [], emptyProjectMetrics(), true)
 end function
 
 /// Creates an empty Halstead metric result.

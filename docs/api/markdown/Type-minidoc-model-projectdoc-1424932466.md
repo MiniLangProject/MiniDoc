@@ -24,7 +24,7 @@ call_references
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L312)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L313)
 
 <a id="field-field-minidoc-model-projectdoc-complete-complete-src-minidoc-model-ml-532702175"></a>
 ### complete
@@ -34,7 +34,7 @@ complete
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L315)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L316)
 
 <a id="field-field-minidoc-model-projectdoc-config-config-src-minidoc-model-ml-1266899357"></a>
 ### config
@@ -54,7 +54,7 @@ diagnostics
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L313)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L314)
 
 <a id="field-field-minidoc-model-projectdoc-files-files-src-minidoc-model-ml-182797137"></a>
 ### files
@@ -94,7 +94,7 @@ metrics
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L314)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L315)
 
 <a id="field-field-minidoc-model-projectdoc-relations-relations-src-minidoc-model-ml-1646457241"></a>
 ### relations
@@ -104,7 +104,7 @@ relations
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L311)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L312)
 
 <a id="field-field-minidoc-model-projectdoc-root-dir-root-dir-src-minidoc-model-ml-1606429109"></a>
 ### root_dir
@@ -125,6 +125,16 @@ source_revision
 
 
 [View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L308)
+
+<a id="field-field-minidoc-model-projectdoc-symbol-index-symbol-index-src-minidoc-model-ml-501424343"></a>
+### symbol_index
+
+```ml
+symbol_index
+```
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/model.ml#L311)
 
 <a id="field-field-minidoc-model-projectdoc-symbols-symbols-src-minidoc-model-ml-1937926353"></a>
 ### symbols

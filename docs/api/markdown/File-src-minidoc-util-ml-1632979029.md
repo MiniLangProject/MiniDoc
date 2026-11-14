@@ -116,7 +116,7 @@ Performs the 'addUnique' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L564)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L586)
 
 <a id="function-function-minidoc-util-alphabeticalless-function-alphabeticalless-left-right-src-minidoc-util-ml-727255026"></a>
 ### alphabeticalLess
@@ -150,7 +150,7 @@ Performs the 'containsString' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L554)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L576)
 
 <a id="function-function-minidoc-util-currentdirectory-function-currentdirectory-src-minidoc-util-ml-113802665"></a>
 ### currentDirectory
@@ -310,7 +310,7 @@ Performs the 'isSafeUrl' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L571)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L593)
 
 <a id="function-function-minidoc-util-iswhitespacechar-function-iswhitespacechar-ch-src-minidoc-util-ml-1629633848"></a>
 ### isWhitespaceChar

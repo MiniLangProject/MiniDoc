@@ -13,10 +13,13 @@ set -euo pipefail
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 compiler="${MINILANG_COMPILER:-$root/../MiniLangCompilerML/build/mlc_linux_x64}"
 output="$root/build"
+heap_reserve="${MINIDOC_HEAP_RESERVE:-16g}"
+heap_commit="${MINIDOC_HEAP_COMMIT:-32m}"
 mkdir -p "$output"
 
 "$compiler" "$root/src/main.ml" "$output/minidoc" \
-  --target linux-x64 -I "$root/src" -I "$root/../MiniLangCompilerML"
+  --target linux-x64 -I "$root/src" -I "$root/../MiniLangCompilerML" \
+  --heap-reserve "$heap_reserve" --heap-commit "$heap_commit" --heap-shrink
 "$compiler" "$root/tests/runtests.ml" "$output/minidoc_tests" \
   --target linux-x64 -I "$root/src" -I "$root/../MiniLangCompilerML"
 chmod +x "$output/minidoc" "$output/minidoc_tests"

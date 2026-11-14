@@ -43,6 +43,8 @@
 <path d="M 710 221 C 710 338, 150 338, 150 455" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M 710 221 C 710 230, 990 230, 990 239" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M 710 221 C 710 266, 710 266, 710 311" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M 1270 257 C 1270 311, 150 311, 150 365" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M 1270 257 C 1270 356, 150 356, 150 455" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M 1270 257 C 1270 284, 710 284, 710 311" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M 150 275 C 150 365, 150 365, 150 455" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M 150 275 C 150 374, 430 374, 430 473" fill="none" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>

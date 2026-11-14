@@ -12,14 +12,40 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 package minidoc.ordering
 
+import mlc.tools as tools
+import std.string as strings
 import minidoc.util as util
 
 /// Internal key-value pair used by the stable ordering implementation.
 /// @internal
 struct SortItem
   key,
+  folded_bytes,
+  original_bytes,
   value,
 end struct
+
+/// Compares already materialized UTF-8 byte sequences without copying strings.
+/// @internal
+function _compareBytes(left, right)
+  count = len(left)
+  if len(right) < count then count = len(right) end if
+  for i = 0 to count - 1
+    if left[i] < right[i] then return -1 end if
+    if left[i] > right[i] then return 1 end if
+  end for
+  if len(left) < len(right) then return -1 end if
+  if len(left) > len(right) then return 1 end if
+  return 0
+end function
+
+/// Preserves MiniDoc's case-insensitive ordering and original-spelling tie-break.
+/// @internal
+function _sortLess(left, right)
+  folded = _compareBytes(left.folded_bytes, right.folded_bytes)
+  if folded != 0 then return folded < 0 end if
+  return _compareBytes(left.original_bytes, right.original_bytes) < 0
+end function
 
 // Stable bottom-up merge sort. MiniDoc keeps this local because the current
 // standard-library quicksort computes a non-integer pivot for larger arrays.
@@ -31,7 +57,7 @@ function _sortWithKeys(values, keys)
   source = array(count, 0)
   destination = array(count, 0)
   for i = 0 to count - 1
-    source[i] = SortItem(keys[i], values[i])
+    source[i] = SortItem(keys[i], bytes(strings.toLowerAscii(keys[i])), bytes(keys[i]), values[i])
   end for
   width = 1
   while width < count
@@ -51,7 +77,7 @@ function _sortWithKeys(values, keys)
         else if ri >= right then
           destination[target] = source[li]
           li = li + 1
-        else if util.alphabeticalLess(source[ri].key, source[li].key) then
+        else if _sortLess(source[ri], source[li]) then
           destination[target] = source[ri]
           ri = ri + 1
         else
@@ -118,30 +144,36 @@ function _sortDiagnostics(values)
   return _sortWithKeys(values, keys)
 end function
 
-/// Performs the '_entityName' step in MiniDoc's deterministic ordering pipeline.
+/// Builds a transient id-to-name index for relation sort keys.
 /// @internal
-function _entityName(project, id)
+function _entityNames(project)
+  index = tools.fastmap_new(2048)
   if len(project.symbols) > 0 then
     for i = 0 to len(project.symbols) - 1
-      if project.symbols[i].id == id then return project.symbols[i].qualified_name end if
+      sym = project.symbols[i]
+      index = tools.fastmap_set(index, sym.id, sym.qualified_name)
     end for
   end if
   if len(project.files) > 0 then
     for i = 0 to len(project.files) - 1
-      if project.files[i].id == id then return project.files[i].relative_path end if
+      file = project.files[i]
+      index = tools.fastmap_set(index, file.id, file.relative_path)
     end for
   end if
-  return id
+  return index
 end function
 
 /// Performs the '_sortRelations' step in MiniDoc's deterministic ordering pipeline.
 /// @internal
 function _sortRelations(project, values)
   if len(values) < 2 then return values end if
+  names = _entityNames(project)
   keys = array(len(values), "")
   for i = 0 to len(values) - 1
     item = values[i]
-    keys[i] = item.kind + "\n" + _entityName(project, item.from_id) + "\n" + _entityName(project, item.to_id) + "\n" + item.label
+    from_name = tools.fastmap_get(names, item.from_id, item.from_id)
+    to_name = tools.fastmap_get(names, item.to_id, item.to_id)
+    keys[i] = item.kind + "\n" + from_name + "\n" + to_name + "\n" + item.label
   end for
   return _sortWithKeys(values, keys)
 end function

@@ -526,27 +526,49 @@ end function
 /// Performs the 'sortedStrings' step in MiniDoc's shared utility layer.
 /// @internal
 function sortedStrings(values)
-  result = []
-  if typeof(values) == "array" and len(values) > 0 then
-    for i = 0 to len(values) - 1
-      result = result + [values[i]]
-    end for
-  end if
-  // Keep sorting local and deterministic. The standard-library quicksort
-  // currently computes its middle pivot with `/`, which yields a non-integer
-  // index on sufficiently large arrays.
-  index = 1
-  while index < len(result)
-    value = result[index]
-    before = index - 1
-    while before >= 0 and alphabeticalLess(value, result[before])
-      result[before + 1] = result[before]
-      before = before - 1
+  if typeof(values) != "array" or len(values) == 0 then return [] end if
+  count = len(values)
+  source = array(count, "")
+  destination = array(count, "")
+  for i = 0 to count - 1
+    source[i] = values[i]
+  end for
+  // Stable merge sort keeps large output manifests from taking quadratic time.
+  width = 1
+  while width < count
+    left = 0
+    while left < count
+      middle = left + width
+      if middle > count then middle = count end if
+      right = left + width * 2
+      if right > count then right = count end if
+      li = left
+      ri = middle
+      target = left
+      while target < right
+        if li >= middle then
+          destination[target] = source[ri]
+          ri = ri + 1
+        else if ri >= right then
+          destination[target] = source[li]
+          li = li + 1
+        else if alphabeticalLess(source[ri], source[li]) then
+          destination[target] = source[ri]
+          ri = ri + 1
+        else
+          destination[target] = source[li]
+          li = li + 1
+        end if
+        target = target + 1
+      end while
+      left = left + width * 2
     end while
-    result[before + 1] = value
-    index = index + 1
+    swap = source
+    source = destination
+    destination = swap
+    width = width * 2
   end while
-  return result
+  return source
 end function
 
 /// Performs the 'containsString' step in MiniDoc's shared utility layer.
