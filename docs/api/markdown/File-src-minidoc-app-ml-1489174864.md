@@ -187,11 +187,11 @@ Executes the command-line workflow and returns a process exit code.
 
 [View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/app.ml#L184)
 
-<a id="constant-constant-minidoc-app-version-const-version-0-4-6-src-minidoc-app-ml-1953011102"></a>
+<a id="constant-constant-minidoc-app-version-const-version-0-4-7-src-minidoc-app-ml-1925163877"></a>
 ### VERSION
 
 ```ml
-const VERSION = "0.4.6"
+const VERSION = "0.4.7"
 ```
 
 Semantic version embedded in generated output and CLI messages.

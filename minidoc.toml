@@ -34,4 +34,4 @@ hide_empty = true
 [links]
 repository = "https://github.com/MiniLangProject/MiniDoc"
 ref = "main"
-revision = "MiniDoc-0.4.6"
+revision = "MiniDoc-0.4.7"

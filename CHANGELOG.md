@@ -2,6 +2,12 @@
 
 All notable changes to MiniDoc are documented in this file.
 
+## 0.4.7 — 2026-11-23
+
+- Build and test with MiniLang compiler 1.3.10 on Windows and Linux.
+- Refresh the compiler and standard-library references for MiniLang 1.3.10.
+- Regenerate MiniDoc's own HTML and Markdown API reference.
+
 ## 0.4.6 — 2026-11-14
 
 - Build and test with MiniLang compiler 1.3.8 on Windows and Linux.
