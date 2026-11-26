@@ -379,6 +379,10 @@ function _walkComplexity(body, accumulator, nesting)
     if kind == "Print" or kind == "ExprStmt" or kind == "Return" or kind == "Yield" or
        kind == "Assign" or kind == "ConstDecl" or kind == "SynchronizedDecl" or kind == "Defer" then
       asm_branches = _asmBranches(statement.expr)
+    else if kind == "SetMember" then
+      asm_branches = _asmBranches(statement.obj) + _asmBranches(statement.expr)
+    else if kind == "SetIndex" then
+      asm_branches = _asmBranches(statement.target) + _asmBranches(statement.index) + _asmBranches(statement.expr)
     else if kind == "If" or kind == "While" or kind == "DoWhile" then
       asm_branches = _asmBranches(statement.cond)
     else if kind == "For" then

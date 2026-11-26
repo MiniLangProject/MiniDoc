@@ -16,4 +16,4 @@
 | [src/minidoc/ordering.ml](File-src-minidoc-ordering-ml-677118389.md) | `minidoc.ordering` | yes | 19 |
 | [src/minidoc/render_html.ml](File-src-minidoc-render-html-ml-1870373141.md) | `minidoc.render_html` | yes | 40 |
 | [src/minidoc/render_markdown.ml](File-src-minidoc-render-markdown-ml-212465045.md) | `minidoc.render_markdown` | yes | 38 |
-| [src/minidoc/util.ml](File-src-minidoc-util-ml-1632979029.md) | `minidoc.util` | yes | 38 |
+| [src/minidoc/util.ml](File-src-minidoc-util-ml-1632979029.md) | `minidoc.util` | yes | 39 |

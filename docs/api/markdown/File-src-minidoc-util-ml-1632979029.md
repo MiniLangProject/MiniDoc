@@ -82,7 +82,7 @@ Performs the '_stringLess' step in MiniDoc's shared utility layer.
 | `right` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L499)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L530)
 
 <a id="function-function-minidoc-util-absolutepath-function-absolutepath-path-base-src-minidoc-util-ml-514406695"></a>
 ### absolutePath
@@ -116,7 +116,7 @@ Performs the 'addUnique' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L586)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L617)
 
 <a id="function-function-minidoc-util-alphabeticalless-function-alphabeticalless-left-right-src-minidoc-util-ml-727255026"></a>
 ### alphabeticalLess
@@ -133,7 +133,7 @@ Case-insensitive alphabetical comparison with the original spelling as a determi
 | `right` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L517)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L548)
 
 <a id="function-function-minidoc-util-containsstring-function-containsstring-values-value-src-minidoc-util-ml-566265228"></a>
 ### containsString
@@ -150,7 +150,7 @@ Performs the 'containsString' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L576)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L607)
 
 <a id="function-function-minidoc-util-currentdirectory-function-currentdirectory-src-minidoc-util-ml-113802665"></a>
 ### currentDirectory
@@ -310,7 +310,7 @@ Performs the 'isSafeUrl' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L593)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L624)
 
 <a id="function-function-minidoc-util-iswhitespacechar-function-iswhitespacechar-ch-src-minidoc-util-ml-1629633848"></a>
 ### isWhitespaceChar
@@ -359,7 +359,7 @@ Performs the 'jsonEscape' step in MiniDoc's shared utility layer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L470)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L501)
 
 <a id="function-function-minidoc-util-lineandcolumn-function-lineandcolumn-source-position-src-minidoc-util-ml-592355921"></a>
 ### lineAndColumn
@@ -377,6 +377,22 @@ Performs the 'lineAndColumn' step in MiniDoc's shared utility layer.
 
 
 [View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L381)
+
+<a id="function-function-minidoc-util-markdowntablecode-function-markdowntablecode-value-src-minidoc-util-ml-285341886"></a>
+### markdownTableCode
+
+```ml
+function markdownTableCode(value)
+```
+
+Preserves literal source text inside a GitHub-compatible table code cell.
+
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `value` | `dynamic` | — | Source signature or default expression to display. |
+
+
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L471)
 
 <a id="function-function-minidoc-util-markdowntableescape-function-markdowntableescape-value-src-minidoc-util-ml-1230576038"></a>
 ### markdownTableEscape
@@ -575,7 +591,7 @@ Performs the 'sortedStrings' step in MiniDoc's shared utility layer.
 | `values` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L528)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L559)
 
 <a id="function-function-minidoc-util-sourceurl-function-sourceurl-repository-ref-name-relative-path-line-src-minidoc-util-ml-306910688"></a>
 ### sourceUrl
@@ -594,7 +610,7 @@ Performs the 'sourceUrl' step in MiniDoc's shared utility layer.
 | `line` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L482)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/util.ml#L513)
 
 <a id="function-function-minidoc-util-stableslug-function-stableslug-value-src-minidoc-util-ml-855303090"></a>
 ### stableSlug

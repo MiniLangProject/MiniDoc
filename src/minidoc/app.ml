@@ -25,7 +25,7 @@ import std.time as time
 
 /// Semantic version embedded in generated output and CLI messages.
 /// @internal
-const VERSION = "0.4.7"
+const VERSION = "0.4.8"
 
 /// Prints the current MiniDoc version.
 /// @since 0.1.0
@@ -48,7 +48,7 @@ function printHelp()
   print "  --config <file>           Read MiniDoc configuration"
   print "  -I, --import-path <dir>   Add an import root"
   print "  -DNAME[=VALUE]            Set a compile-time definition"
-  print "  --target <target>         windows-x64 or linux-x64"
+  print "  --target <target>         windows-x64, linux-x64 or minux-x64"
   print "  --name <name>             Override the displayed project name"
   print "  --description <text>      Override the project introduction"
   print ""

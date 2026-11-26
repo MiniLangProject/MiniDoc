@@ -251,7 +251,7 @@ function _appendSymbol(writer, project, doc_symbol, heading_level)
       type_name = parameter.type_name
       if type_name == "" then type_name = "dynamic" end if
       writer.appendString("| `" + util.markdownTableEscape(name) + "` | `" + util.markdownTableEscape(type_name) + "` | ")
-      if parameter.default_value == "" then writer.appendString("—") else writer.appendString("`" + util.markdownTableEscape(parameter.default_value) + "`") end if
+      if parameter.default_value == "" then writer.appendString("—") else writer.appendString(util.markdownTableCode(parameter.default_value)) end if
       writer.appendString(" | " + util.markdownTableEscape(parameter.description) + " |\n")
     end for
     writer.appendString("\n")
@@ -365,7 +365,7 @@ function _renderSymbols(project)
     for i = 0 to len(project.symbols) - 1
       listed_sym = project.symbols[i]
       if _visible(project, listed_sym) == false then continue end if
-      writer.appendString("| [" + util.markdownTableEscape(listed_sym.qualified_name) + "](" + _symbolLink(project, listed_sym) + ") | `" + listed_sym.kind + "` | `" + util.markdownTableEscape(listed_sym.signature) + "` |\n")
+      writer.appendString("| [" + util.markdownTableEscape(listed_sym.qualified_name) + "](" + _symbolLink(project, listed_sym) + ") | `" + listed_sym.kind + "` | " + util.markdownTableCode(listed_sym.signature) + " |\n")
     end for
   end if
   return writer.toString()

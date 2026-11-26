@@ -30,6 +30,7 @@
 - [`minidoc.util.joinPath`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-joinpath-function-joinpath-left-right-src-minidoc-util-ml-984722546) — function
 - [`minidoc.util.jsonEscape`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-jsonescape-function-jsonescape-value-src-minidoc-util-ml-1752083326) — function
 - [`minidoc.util.lineAndColumn`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-lineandcolumn-function-lineandcolumn-source-position-src-minidoc-util-ml-592355921) — function
+- [`minidoc.util.markdownTableCode`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-markdowntablecode-function-markdowntablecode-value-src-minidoc-util-ml-285341886) — function
 - [`minidoc.util.markdownTableEscape`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-markdowntableescape-function-markdowntableescape-value-src-minidoc-util-ml-1230576038) — function
 - [`minidoc.util.normalizePath`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-normalizepath-function-normalizepath-path-src-minidoc-util-ml-912855504) — function
 - [`minidoc.util.onlyWhitespace`](File-src-minidoc-util-ml-1632979029.md#function-function-minidoc-util-onlywhitespace-function-onlywhitespace-source-start-pos-end-pos-src-minidoc-util-ml-1891259271) — function

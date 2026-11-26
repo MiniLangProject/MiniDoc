@@ -2,6 +2,20 @@
 
 All notable changes to MiniDoc are documented in this file.
 
+## 0.4.8 — 2026-11-26
+
+- Build and test with the MiniLang 1.3.11 frontend and runtime.
+- Preserve fixed `var` binding contracts in global and namespace signatures,
+  including optional types, without changing legacy one-write annotations.
+- Preserve Unicode and escape control characters in string constants and
+  parameter defaults. Render Markdown table code cells without doubling
+  backslashes or breaking on backticks, pipes, or HTML characters.
+- Count conditional inline-assembly branches inside struct-field and array
+  assignments, including array-index expressions.
+- Document and test the Windows, Linux, and MinUX preprocessing targets.
+- Regenerate the HTML and Markdown API references from current repository
+  sources with reproducible, timestamp-free output.
+
 ## 0.4.7 — 2026-11-23
 
 - Build and test with MiniLang compiler 1.3.10 on Windows and Linux.

@@ -1,0 +1,14 @@
+[project]
+name = "Current language fixture"
+entry = "main.ml"
+source_roots = ["."]
+
+[documentation]
+strict = true
+
+[output]
+formats = ["html", "markdown"]
+include_timestamp = false
+
+[graphs]
+hide_empty = true

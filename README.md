@@ -5,7 +5,7 @@
 
 MiniDoc is a documentation generator for MiniLang projects, written entirely in MiniLang. It reads the same project structure and source syntax as the self-hosted MiniLang compiler and produces either an offline HTML documentation site, a linked Markdown documentation tree, or both.
 
-> Project status: working preview (`0.4.7`). The end-to-end generator, HTML and Markdown renderers, source metrics, dependency views, scalable graphs, configuration loader, and MiniLang test suite are implemented. See [Current limitations](#current-limitations) before treating the output as a complete semantic API reference.
+> Project status: working preview (`0.4.8`). The end-to-end generator, HTML and Markdown renderers, source metrics, dependency views, scalable graphs, configuration loader, and MiniLang test suite are implemented. See [Current limitations](#current-limitations) before treating the output as a complete semantic API reference.
 
 The repository dogfoods MiniDoc. Browse the committed [GitHub-friendly API documentation](docs/api/markdown/README.md), or download the repository and open [the offline HTML start page](docs/api/html/index.html). Both trees are regenerated from the documented MiniDoc source with [`minidoc.toml`](minidoc.toml).
 
@@ -17,8 +17,9 @@ The repository dogfoods MiniDoc. Browse the committed [GitHub-friendly API docum
 - Understands compile-time definitions and the selected MiniLang target.
 - Documents packages, namespaces, functions, nested functions, parameters, structs, classes, fields, methods, user-defined operators and overloads, interfaces, enums, constants, globals, and extern functions.
 - Preserves signatures, parameter types, optional markers, defaults, variadic parameters, return types, and function modifiers.
+- Preserves fixed `var` binding contracts and escaped Unicode string defaults in both output formats.
 - Shows class and interface inheritance, implemented interfaces, member visibility, abstract/final declarations, and method overrides.
-- Recognizes the MiniLang 1.3.8 standard library's file, TLS, TCP, and UDP
+- Recognizes the MiniLang 1.3.11 standard library's file, TLS, TCP, and UDP
   object methods, with a regression test against the shared library sources.
 - Generates an offline HTML site with navigation and client-side symbol search.
 - Generates a project-specific introduction, an at-a-glance metrics dashboard, and responsive navigation cards on the home page.
@@ -42,7 +43,7 @@ GitHub releases provide separate archives for Windows x64 and Linux x64. Each ar
 
 ### Prerequisites
 
-MiniDoc 0.4.7 builds and is tested with the self-hosted [MiniLang compiler](https://github.com/MiniLangProject/MiniLangCompilerML) **1.3.10**. The default build scripts expect sibling checkouts:
+MiniDoc 0.4.8 builds and is tested with the self-hosted [MiniLang compiler](https://github.com/MiniLangProject/MiniLangCompilerML) **1.3.11**. The default build scripts expect sibling checkouts:
 
 ```text
 workspace/
@@ -50,7 +51,7 @@ workspace/
 └── MiniLangCompilerML/
 ```
 
-On Windows, a compiler at another location can be selected with `-Compiler`. On Linux, set `MINILANG_COMPILER`; the compiler source checkout must still be available as an import root beside MiniDoc. Build the current compiler first or select its 1.3.10 release executable if the default `build` executable is older.
+On Windows, a compiler at another location can be selected with `-Compiler`. On Linux, set `MINILANG_COMPILER`; the compiler source checkout must still be available as an import root beside MiniDoc. Build the current compiler first or select its 1.3.11 release executable if the default `build` executable is older.
 
 ### Windows
 
@@ -292,7 +293,7 @@ minidoc --config <minidoc.toml> [options]
 | `--config <file>` | Read a MiniDoc configuration. |
 | `-I`, `--import-path <dir>` | Add an import root. Repeatable. |
 | `-DNAME[=VALUE]` | Set a compile-time definition. Repeatable. |
-| `--target <target>` | Select `windows-x64` or `linux-x64`. |
+| `--target <target>` | Select `windows-x64`, `linux-x64`, or `minux-x64`. |
 | `--name <name>` | Override the displayed project name. |
 | `--description <text>` | Override the project introduction shown on the home page. |
 | `--format <value>` | Generate `html`, `markdown`, `md`, `all`, or a comma-separated selection. |
@@ -487,8 +488,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development conventions and self-docu
 - Graph layout is deterministic and dependency-free, but intentionally simple. Symbol-level graphs for very large projects should be capped.
 - Directory-link and junction behavior depends on the filesystem implementation exposed by the MiniLang standard library; linked source trees should be excluded explicitly when necessary.
 - Duplicate detection currently finds exact token-normalized line windows; it does not identify renamed or structurally similar clones.
-- Metric thresholds and the six-line clone window are not configurable in `0.4.7`.
-- Incremental model caching, API compatibility reports, theme selection, and plugin APIs are not implemented in `0.4.7`.
+- Metric thresholds and the six-line clone window are not configurable in `0.4.8`.
+- Incremental model caching, API compatibility reports, theme selection, and plugin APIs are not implemented in `0.4.8`.
 
 ## Roadmap
 

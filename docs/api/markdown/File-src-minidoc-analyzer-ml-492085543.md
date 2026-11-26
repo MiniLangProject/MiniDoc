@@ -36,7 +36,7 @@ Performs the '_addEnum' step in MiniDoc's symbol-analysis pipeline.
 | `namespace_name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L761)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L765)
 
 <a id="function-function-minidoc-analyzer-addexternfunction-function-addexternfunction-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-1344035985"></a>
 ### _addExternFunction
@@ -56,7 +56,7 @@ Performs the '_addExternFunction' step in MiniDoc's symbol-analysis pipeline.
 | `namespace_name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L627)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L631)
 
 <a id="function-function-minidoc-analyzer-addfunction-function-addfunction-project-file-node-kind-prefix-namespace-name-container-id-src-minidoc-analyzer-ml-1636501440"></a>
 ### _addFunction
@@ -78,7 +78,7 @@ Performs the '_addFunction' step in MiniDoc's symbol-analysis pipeline.
 | `container_id` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L563)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L567)
 
 <a id="function-function-minidoc-analyzer-addinterface-function-addinterface-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-466710023"></a>
 ### _addInterface
@@ -98,7 +98,7 @@ Performs the '_addInterface' step in MiniDoc's symbol-analysis pipeline.
 | `namespace_name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L733)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L737)
 
 <a id="function-function-minidoc-analyzer-addstruct-function-addstruct-project-file-node-prefix-namespace-name-src-minidoc-analyzer-ml-2123710885"></a>
 ### _addStruct
@@ -118,7 +118,7 @@ Performs the '_addStruct' step in MiniDoc's symbol-analysis pipeline.
 | `namespace_name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L652)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L656)
 
 <a id="function-function-minidoc-analyzer-addsymbol-function-addsymbol-project-file-kind-name-qualified-name-container-id-namespace-name-position-signature-type-name-modifiers-parameters-return-type-doc-src-minidoc-analyzer-ml-624033249"></a>
 ### _addSymbol
@@ -147,7 +147,7 @@ Performs the '_addSymbol' step in MiniDoc's symbol-analysis pipeline.
 | `doc` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L178)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L182)
 
 <a id="function-function-minidoc-analyzer-aliastargetpackage-function-aliastargetpackage-project-file-id-alias-src-minidoc-analyzer-ml-1437372212"></a>
 ### _aliasTargetPackage
@@ -165,7 +165,7 @@ Performs the '_aliasTargetPackage' step in MiniDoc's symbol-analysis pipeline.
 | `alias` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L875)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L884)
 
 <a id="function-function-minidoc-analyzer-calleename-function-calleename-expr-src-minidoc-analyzer-ml-1597510084"></a>
 ### _calleeName
@@ -181,7 +181,7 @@ Performs the '_calleeName' step in MiniDoc's symbol-analysis pipeline.
 | `expr` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L449)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L453)
 
 <a id="function-function-minidoc-analyzer-diagnostic-function-diagnostic-project-severity-code-file-position-message-src-minidoc-analyzer-ml-1923704018"></a>
 ### _diagnostic
@@ -202,7 +202,7 @@ Performs the '_diagnostic' step in MiniDoc's symbol-analysis pipeline.
 | `message` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L141)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L145)
 
 <a id="function-function-minidoc-analyzer-filebyid-function-filebyid-project-id-src-minidoc-analyzer-ml-1558966907"></a>
 ### _fileById
@@ -219,7 +219,7 @@ Performs the '_fileById' step in MiniDoc's symbol-analysis pipeline.
 | `id` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L148)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L152)
 
 <a id="function-function-minidoc-analyzer-findword-function-findword-source-name-start-pos-docs-src-minidoc-analyzer-ml-633312485"></a>
 ### _findWord
@@ -238,7 +238,7 @@ Finds a declaration word while ignoring identical words inside its comments.
 | `docs` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L116)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L120)
 
 <a id="function-function-minidoc-analyzer-functionparameters-function-functionparameters-node-doc-src-minidoc-analyzer-ml-706939433"></a>
 ### _functionParameters
@@ -255,7 +255,7 @@ Performs the '_functionParameters' step in MiniDoc's symbol-analysis pipeline.
 | `doc` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L334)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L338)
 
 <a id="function-function-minidoc-analyzer-functionsignature-function-functionsignature-node-parameters-name-kind-src-minidoc-analyzer-ml-620797374"></a>
 ### _functionSignature
@@ -274,7 +274,7 @@ Performs the '_functionSignature' step in MiniDoc's symbol-analysis pipeline.
 | `kind` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L373)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L377)
 
 <a id="function-function-minidoc-analyzer-insidedocumentation-function-insidedocumentation-docs-position-src-minidoc-analyzer-ml-1609564489"></a>
 ### _insideDocumentation
@@ -291,7 +291,7 @@ Reports whether a source position belongs to a scanned documentation block.
 | `position` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L106)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L110)
 
 <a id="function-function-minidoc-analyzer-ispositivedecimal-function-ispositivedecimal-value-src-minidoc-analyzer-ml-1471197426"></a>
 ### _isPositiveDecimal
@@ -307,7 +307,7 @@ Return whether a string contains a positive decimal integer.
 | `value` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L240)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L244)
 
 <a id="function-function-minidoc-analyzer-istestroletag-function-istestroletag-name-src-minidoc-analyzer-ml-356267668"></a>
 ### _isTestRoleTag
@@ -323,7 +323,7 @@ Return whether a tag participates in std.test discovery.
 | `name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L234)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L238)
 
 <a id="function-function-minidoc-analyzer-nameindex-function-nameindex-symbols-src-minidoc-analyzer-ml-1183906814"></a>
 ### _nameIndex
@@ -339,7 +339,7 @@ Indexes qualified symbol names by kind for call and inheritance resolution.
 | `symbols` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L837)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L846)
 
 <a id="function-function-minidoc-analyzer-operatorqualifiedname-function-operatorqualifiedname-prefix-operator-symbol-parameters-src-minidoc-analyzer-ml-236381626"></a>
 ### _operatorQualifiedName
@@ -357,7 +357,7 @@ Builds an overload-safe qualified name without exposing compiler internals.
 | `parameters` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L435)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L439)
 
 <a id="function-function-minidoc-analyzer-operatorsignature-function-operatorsignature-node-parameters-operator-symbol-src-minidoc-analyzer-ml-673644030"></a>
 ### _operatorSignature
@@ -375,7 +375,7 @@ Builds a source-level signature for a user-defined operator declaration.
 | `operator_symbol` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L424)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L428)
 
 <a id="function-function-minidoc-analyzer-operatorsourcesymbol-function-operatorsourcesymbol-name-src-minidoc-analyzer-ml-502499404"></a>
 ### _operatorSourceSymbol
@@ -391,7 +391,7 @@ Recovers the source operator from the compiler's reserved lowered method name.
 | `name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L393)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L397)
 
 <a id="function-function-minidoc-analyzer-parametersignaturepieces-function-parametersignaturepieces-parameters-src-minidoc-analyzer-ml-990591243"></a>
 ### _parameterSignaturePieces
@@ -407,7 +407,7 @@ Converts callable parameters into their source-level signature fragments.
 | `parameters` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L357)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L361)
 
 <a id="function-function-minidoc-analyzer-qualified-function-qualified-prefix-name-src-minidoc-analyzer-ml-1309113056"></a>
 ### _qualified
@@ -441,7 +441,7 @@ Performs the '_resolveCalls' step in MiniDoc's symbol-analysis pipeline.
 | `name_index` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L891)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L900)
 
 <a id="function-function-minidoc-analyzer-resolvetyperelations-function-resolvetyperelations-project-name-index-src-minidoc-analyzer-ml-1031848722"></a>
 ### _resolveTypeRelations
@@ -458,7 +458,7 @@ Performs the '_resolveTypeRelations' step in MiniDoc's symbol-analysis pipeline.
 | `name_index` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L927)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L936)
 
 <a id="function-function-minidoc-analyzer-resolveunique-function-resolveunique-index-candidates-allowed-kinds-src-minidoc-analyzer-ml-528192827"></a>
 ### _resolveUnique
@@ -476,7 +476,7 @@ Resolves one unambiguous candidate using the indexed symbol names.
 | `allowed_kinds` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L855)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L864)
 
 <a id="function-function-minidoc-analyzer-scope-function-scope-package-name-namespace-name-src-minidoc-analyzer-ml-1593120142"></a>
 ### _scope
@@ -510,7 +510,7 @@ Returns whether a declaration belongs to the configured summary-quality scope.
 | `doc_symbol` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L990)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L999)
 
 <a id="function-function-minidoc-analyzer-symbolbyid-function-symbolbyid-project-id-src-minidoc-analyzer-ml-201427511"></a>
 ### _symbolById
@@ -527,7 +527,7 @@ Performs the '_symbolById' step in MiniDoc's symbol-analysis pipeline.
 | `id` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L158)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L162)
 
 <a id="function-function-minidoc-analyzer-symbolid-function-symbolid-kind-qualified-name-signature-file-path-src-minidoc-analyzer-ml-736578529"></a>
 ### _symbolId
@@ -546,7 +546,7 @@ Performs the '_symbolId' step in MiniDoc's symbol-analysis pipeline.
 | `file_path` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L171)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L175)
 
 <a id="function-function-minidoc-analyzer-typename-function-typename-value-optional-src-minidoc-analyzer-ml-231327762"></a>
 ### _typeName
@@ -579,7 +579,7 @@ Performs the '_validateCoverage' step in MiniDoc's symbol-analysis pipeline.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L944)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L953)
 
 <a id="function-function-minidoc-analyzer-validatefunctiondoc-function-validatefunctiondoc-project-file-node-doc-parameters-return-type-internal-kind-src-minidoc-analyzer-ml-850600874"></a>
 ### _validateFunctionDoc
@@ -602,7 +602,7 @@ Performs the '_validateFunctionDoc' step in MiniDoc's symbol-analysis pipeline.
 | `kind` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L290)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L294)
 
 <a id="function-function-minidoc-analyzer-validatesummaryquality-function-validatesummaryquality-project-src-minidoc-analyzer-ml-1396789550"></a>
 ### _validateSummaryQuality
@@ -618,7 +618,7 @@ Reports generic and excessively reused documentation summaries.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L1000)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L1009)
 
 <a id="function-function-minidoc-analyzer-validatetestfixtureuniqueness-function-validatetestfixtureuniqueness-project-src-minidoc-analyzer-ml-640306438"></a>
 ### _validateTestFixtureUniqueness
@@ -634,7 +634,7 @@ Report duplicate lifecycle hooks within one source-file suite.
 | `project` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L959)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L968)
 
 <a id="function-function-minidoc-analyzer-validatetesttags-function-validatetesttags-project-file-node-doc-parameters-return-type-kind-src-minidoc-analyzer-ml-866121661"></a>
 ### _validateTestTags
@@ -656,7 +656,7 @@ Validate std.test discovery tags attached to one callable declaration.
 | `kind` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L253)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L257)
 
 <a id="function-function-minidoc-analyzer-walkdeclarations-function-walkdeclarations-project-file-body-namespace-name-src-minidoc-analyzer-ml-1227878639"></a>
 ### _walkDeclarations
@@ -675,7 +675,7 @@ Performs the '_walkDeclarations' step in MiniDoc's symbol-analysis pipeline.
 | `namespace_name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L788)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L792)
 
 <a id="function-function-minidoc-analyzer-walkexpression-function-walkexpression-project-file-caller-expr-namespace-name-src-minidoc-analyzer-ml-2008412265"></a>
 ### _walkExpression
@@ -695,7 +695,7 @@ Performs the '_walkExpression' step in MiniDoc's symbol-analysis pipeline.
 | `namespace_name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L462)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L466)
 
 <a id="function-function-minidoc-analyzer-walknested-function-walknested-project-file-body-parent-namespace-name-src-minidoc-analyzer-ml-888770987"></a>
 ### _walkNested
@@ -715,7 +715,7 @@ Performs the '_walkNested' step in MiniDoc's symbol-analysis pipeline.
 | `namespace_name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L597)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L601)
 
 <a id="function-function-minidoc-analyzer-walkstatementsforcalls-function-walkstatementsforcalls-project-file-caller-body-namespace-name-src-minidoc-analyzer-ml-1230640592"></a>
 ### _walkStatementsForCalls
@@ -735,7 +735,7 @@ Performs the '_walkStatementsForCalls' step in MiniDoc's symbol-analysis pipelin
 | `namespace_name` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L500)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L504)
 
 <a id="function-function-minidoc-analyzer-warningscopeincludes-function-warningscopeincludes-scope-internal-src-minidoc-analyzer-ml-130785450"></a>
 ### _warningScopeIncludes
@@ -752,7 +752,7 @@ Returns whether a configured validation scope includes a declaration.
 | `internal` | `dynamic` | — |  |
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L226)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L230)
 
 <a id="function-function-minidoc-analyzer-analyze-function-analyze-project-src-minidoc-analyzer-ml-448369014"></a>
 ### analyze
@@ -770,7 +770,7 @@ Enriches a loaded project with declarations, calls, type relations, and document
 
 **Since:** `0.1.0`
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L1030)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/analyzer.ml#L1039)
 
 <a id="function-function-minidoc-analyzer-expressiontext-function-expressiontext-expr-src-minidoc-analyzer-ml-2077794936"></a>
 ### expressionText

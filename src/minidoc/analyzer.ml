@@ -61,6 +61,10 @@ function expressionText(expr)
     value = "" + scalar_text
     value = strings.replaceAll(value, "\\", "\\\\")
     value = strings.replaceAll(value, "\"", "\\\"")
+    value = strings.replaceAll(value, "\n", "\\n")
+    value = strings.replaceAll(value, "\r", "\\r")
+    value = strings.replaceAll(value, "\t", "\\t")
+    value = strings.replaceAll(value, "\0", "\\0")
     return "\"" + value + "\""
   end if
   if kind == "VoidLit" then return "void" end if
@@ -822,12 +826,17 @@ function _walkDeclarations(project, file, body, namespace_name)
       global_name = node.name
       signature_global = global_name
       declared_type = ""
+      global_modifiers = []
       if kind == "SynchronizedDecl" then signature_global = "synchronized " + global_name
       else
+        if tools.ast_kind(node.expr) == "TypeGuard" and node.expr.binding_write == 1 then
+          signature_global = "var " + global_name
+          global_modifiers = ["var"]
+        end if
         declared_type = _typeName(node.declared_type, node.declared_optional)
         if declared_type != "" then signature_global = signature_global + " as " + declared_type end if
       end if
-      _addSymbol(project, file, "global", global_name, _qualified(prefix, global_name), "", namespace_name, node._pos, signature_global, declared_type, [], [], "", doc_global)
+      _addSymbol(project, file, "global", global_name, _qualified(prefix, global_name), "", namespace_name, node._pos, signature_global, declared_type, global_modifiers, [], "", doc_global)
     end if
   end for
 end function

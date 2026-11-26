@@ -465,6 +465,37 @@ function markdownTableEscape(value)
   return value
 end function
 
+/// Preserves literal source text inside a GitHub-compatible table code cell.
+/// @param value Source signature or default expression to display.
+/// @internal
+function markdownTableCode(value)
+  source = "" + value
+  raw = bytes(source)
+  writer = builders.StringBuilder.withCapacity(len(raw) + 16)
+  writer.appendString("<code>")
+  start = 0
+  i = 0
+  while i < len(raw)
+    ch = raw[i]
+    punctuation = (ch >= 33 and ch <= 47) or (ch >= 58 and ch <= 64) or (ch >= 91 and ch <= 96) or (ch >= 123 and ch <= 126)
+    if punctuation or ch == 10 or ch == 13 then
+      writer.appendSlice(source, start, i - start)
+      if ch == 10 or ch == 13 then
+        writer.appendString(" ")
+        if ch == 13 and i + 1 < len(raw) and raw[i + 1] == 10 then i = i + 1 end if
+      else
+        // Entity-decoded punctuation stays literal during GFM inline parsing.
+        writer.appendString("&#" + ch + ";")
+      end if
+      start = i + 1
+    end if
+    i = i + 1
+  end while
+  writer.appendSlice(source, start, len(raw) - start)
+  writer.appendString("</code>")
+  return writer.toString()
+end function
+
 /// Performs the 'jsonEscape' step in MiniDoc's shared utility layer.
 /// @internal
 function jsonEscape(value)
