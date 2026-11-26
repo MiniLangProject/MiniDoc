@@ -2,6 +2,15 @@
 
 All notable changes to MiniDoc are documented in this file.
 
+## 0.4.9 — 2026-11-26
+
+- Index graph entities, ownership, nodes, and edges while rendering relation
+  graphs, avoiding repeated full-symbol scans in large projects such as MiniQuake3.
+- Preserve graph ordering, dependency visibility, unresolved relations, and node
+  limits; compare SVG output with reference results from the previous renderer.
+- Add a large-symbol-table regression and regenerate the HTML and Markdown API
+  reference with the updated generator.
+
 ## 0.4.8 — 2026-11-26
 
 - Build and test with the MiniLang 1.3.11 frontend and runtime.

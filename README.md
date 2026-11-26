@@ -5,7 +5,7 @@
 
 MiniDoc is a documentation generator for MiniLang projects, written entirely in MiniLang. It reads the same project structure and source syntax as the self-hosted MiniLang compiler and produces either an offline HTML documentation site, a linked Markdown documentation tree, or both.
 
-> Project status: working preview (`0.4.8`). The end-to-end generator, HTML and Markdown renderers, source metrics, dependency views, scalable graphs, configuration loader, and MiniLang test suite are implemented. See [Current limitations](#current-limitations) before treating the output as a complete semantic API reference.
+> Project status: working preview (`0.4.9`). The end-to-end generator, HTML and Markdown renderers, source metrics, dependency views, scalable graphs, configuration loader, and MiniLang test suite are implemented. See [Current limitations](#current-limitations) before treating the output as a complete semantic API reference.
 
 The repository dogfoods MiniDoc. Browse the committed [GitHub-friendly API documentation](docs/api/markdown/README.md), or download the repository and open [the offline HTML start page](docs/api/html/index.html). Both trees are regenerated from the documented MiniDoc source with [`minidoc.toml`](minidoc.toml).
 
@@ -43,7 +43,7 @@ GitHub releases provide separate archives for Windows x64 and Linux x64. Each ar
 
 ### Prerequisites
 
-MiniDoc 0.4.8 builds and is tested with the self-hosted [MiniLang compiler](https://github.com/MiniLangProject/MiniLangCompilerML) **1.3.11**. The default build scripts expect sibling checkouts:
+MiniDoc 0.4.9 builds and is tested with the self-hosted [MiniLang compiler](https://github.com/MiniLangProject/MiniLangCompilerML) **1.3.11**. The default build scripts expect sibling checkouts:
 
 ```text
 workspace/
@@ -488,8 +488,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for development conventions and self-docu
 - Graph layout is deterministic and dependency-free, but intentionally simple. Symbol-level graphs for very large projects should be capped.
 - Directory-link and junction behavior depends on the filesystem implementation exposed by the MiniLang standard library; linked source trees should be excluded explicitly when necessary.
 - Duplicate detection currently finds exact token-normalized line windows; it does not identify renamed or structurally similar clones.
-- Metric thresholds and the six-line clone window are not configurable in `0.4.8`.
-- Incremental model caching, API compatibility reports, theme selection, and plugin APIs are not implemented in `0.4.8`.
+- Metric thresholds and the six-line clone window are not configurable in `0.4.9`.
+- Incremental model caching, API compatibility reports, theme selection, and plugin APIs are not implemented in `0.4.9`.
 
 ## Roadmap
 

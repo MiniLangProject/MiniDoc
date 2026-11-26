@@ -14,6 +14,7 @@ package minidoc.graph
 
 import std.string as strings
 import std.string_builder as builders
+import mlc.tools as tools
 import minidoc.util as util
 
 /// Internal display model for a relation-graph node.
@@ -24,69 +25,81 @@ struct GraphNode
   kind,
 end struct
 
-/// Performs the '_symbolLabel' step in MiniDoc's graph renderer.
+/// Transient entity indexes shared by every lookup within one graph operation.
 /// @internal
-function _symbolLabel(project, id)
+struct GraphIndex
+  symbols,
+  files,
+  owned_files,
+end struct
+
+/// First-seen graph nodes and their membership index.
+/// @internal
+struct GraphNodes
+  items,
+  ids,
+end struct
+
+/// Indexes each entity once while retaining the original first-match semantics.
+/// @internal
+function _entityIndex(project)
+  symbols = tools.fastmap_new(len(project.symbols) * 2 + 16)
+  files = tools.fastmap_new(len(project.files) * 2 + 16)
+  owned_files = tools.fastmap_new(len(project.files) * 2 + 16)
   if len(project.symbols) > 0 then
     for i = 0 to len(project.symbols) - 1
-      if project.symbols[i].id == id then return project.symbols[i].qualified_name end if
+      sym = project.symbols[i]
+      if tools.fastmap_has(symbols, sym.id) == false then symbols = tools.fastmap_set(symbols, sym.id, sym) end if
     end for
   end if
   if len(project.files) > 0 then
     for i = 0 to len(project.files) - 1
-      if project.files[i].id == id then return project.files[i].relative_path end if
+      file = project.files[i]
+      if tools.fastmap_has(files, file.id) then continue end if
+      files = tools.fastmap_set(files, file.id, file)
+      owned_files = tools.fastmap_set(owned_files, file.id, util.isProjectSource(file.path, project.config.entry, project.config.source_roots))
     end for
   end if
+  return GraphIndex(symbols, files, owned_files)
+end function
+
+/// Returns a symbol label before considering a file label or the literal id.
+/// @internal
+function _symbolLabel(index, id)
+  sym = tools.fastmap_get(index.symbols, id, 0)
+  if typeof(sym) == "struct" then return sym.qualified_name end if
+  file = tools.fastmap_get(index.files, id, 0)
+  if typeof(file) == "struct" then return file.relative_path end if
   return id
 end function
 
 /// Returns the package represented by a file or symbol identifier.
 /// @internal
-function _entityPackage(project, id)
-  if len(project.symbols) > 0 then
-    for i = 0 to len(project.symbols) - 1
-      if project.symbols[i].id == id then
-        if project.symbols[i].package_name == "" then return "(global)" end if
-        return project.symbols[i].package_name
-      end if
-    end for
-  end if
-  if len(project.files) > 0 then
-    for i = 0 to len(project.files) - 1
-      if project.files[i].id == id then
-        if project.files[i].package_name == "" then return "(global)" end if
-        return project.files[i].package_name
-      end if
-    end for
+function _entityPackage(index, id)
+  entity = tools.fastmap_get(index.symbols, id, 0)
+  if typeof(entity) != "struct" then entity = tools.fastmap_get(index.files, id, 0) end if
+  if typeof(entity) == "struct" then
+    if entity.package_name == "" then return "(global)" end if
+    return entity.package_name
   end if
   return "Unresolved"
 end function
 
 /// Returns whether a graph entity belongs to the documented project.
 /// @internal
-function _entityOwned(project, id)
+function _entityOwned(index, id)
   if id == "" then return true end if
-  if len(project.symbols) > 0 then
-    for i = 0 to len(project.symbols) - 1
-      if project.symbols[i].id == id then return _entityOwned(project, project.symbols[i].file_id) end if
-    end for
-  end if
-  if len(project.files) > 0 then
-    for i = 0 to len(project.files) - 1
-      if project.files[i].id == id then
-        return util.isProjectSource(project.files[i].path, project.config.entry, project.config.source_roots)
-      end if
-    end for
-  end if
-  return true
+  sym = tools.fastmap_get(index.symbols, id, 0)
+  if typeof(sym) == "struct" then return _entityOwned(index, sym.file_id) end if
+  return tools.fastmap_get(index.owned_files, id, true)
 end function
 
 /// Returns whether a relation is visible at the configured dependency boundary.
 /// @internal
-function _relationVisible(project, relation)
+function _relationVisible(project, index, relation)
   if project.config.dependency_mode == "full" then return true end if
-  from_owned = _entityOwned(project, relation.from_id)
-  to_owned = _entityOwned(project, relation.to_id)
+  from_owned = _entityOwned(index, relation.from_id)
+  to_owned = _entityOwned(index, relation.to_id)
   if project.config.dependency_mode == "none" then return from_owned and to_owned end if
   if project.config.graph_granularity == "package" then return from_owned end if
   return from_owned and to_owned
@@ -98,42 +111,31 @@ end function
 /// @since 0.4.0
 function hasRelations(project, relation_kind)
   if len(project.relations) == 0 then return false end if
+  index = _entityIndex(project)
   for i = 0 to len(project.relations) - 1
     relation = project.relations[i]
     if relation.kind != relation_kind and not (relation_kind == "implements" and relation.kind == "extends") then continue end if
-    if _relationVisible(project, relation) == false then continue end if
-    if project.config.graph_granularity == "package" and relation.to_id != "" and _entityPackage(project, relation.from_id) == _entityPackage(project, relation.to_id) then continue end if
+    if _relationVisible(project, index, relation) == false then continue end if
+    if project.config.graph_granularity == "package" and relation.to_id != "" and _entityPackage(index, relation.from_id) == _entityPackage(index, relation.to_id) then continue end if
     return true
   end for
   return false
 end function
 
-/// Performs the '_nodeIndex' step in MiniDoc's graph renderer.
-/// @internal
-function _nodeIndex(nodes, id)
-  if len(nodes) == 0 then return -1 end if
-  for i = 0 to len(nodes) - 1
-    if nodes[i].id == id then return i end if
-  end for
-  return -1
-end function
-
-/// Performs the '_addNode' step in MiniDoc's graph renderer.
+/// Adds a first-seen node without changing its original label, kind, or cap order.
 /// @internal
 function _addNode(nodes, id, label, kind, maximum)
-  if id == "" or _nodeIndex(nodes, id) >= 0 then return nodes end if
-  if len(nodes) >= maximum then return nodes end if
-  return nodes + [GraphNode(id, label, kind)]
+  if id == "" or tools.fastmap_has(nodes.ids, id) then return nodes end if
+  if len(nodes.items) >= maximum then return nodes end if
+  nodes.ids = tools.fastmap_set(nodes.ids, id, len(nodes.items))
+  nodes.items = nodes.items + [GraphNode(id, label, kind)]
+  return nodes
 end function
 
-/// Returns whether an edge has already been added to an aggregated graph.
+/// Encodes a directed edge without delimiter collisions in arbitrary entity ids.
 /// @internal
-function _hasEdge(relations, from_id, to_id)
-  if len(relations) == 0 then return false end if
-  for i = 0 to len(relations) - 1
-    if relations[i][0] == from_id and relations[i][1] == to_id then return true end if
-  end for
-  return false
+function _edgeKey(from_id, to_id)
+  return "" + len(from_id) + ":" + from_id + to_id
 end function
 
 /// Performs the '_shortLabel' step in MiniDoc's graph renderer.
@@ -168,26 +170,28 @@ end function
 /// @param title Human-readable graph title.
 /// @since 0.1.0
 function renderSvg(project, relation_kind, title)
-  nodes = []
-  relations = []
+  entities = _entityIndex(project)
+  node_set = GraphNodes([], tools.fastmap_new(64))
+  edge_ids = tools.fastmap_new(256)
+  edge_items = tools.arr_vec_new(64)
   maximum = project.config.graph_max_nodes
   package_level = project.config.graph_granularity == "package"
   if len(project.relations) > 0 then
     for i = 0 to len(project.relations) - 1
       relation = project.relations[i]
       if relation.kind != relation_kind and not (relation_kind == "implements" and relation.kind == "extends") then continue end if
-      if _relationVisible(project, relation) == false then continue end if
+      if _relationVisible(project, entities, relation) == false then continue end if
       from_id = relation.from_id
-      from_label = _symbolLabel(project, relation.from_id)
+      from_label = _symbolLabel(entities, relation.from_id)
       target_id = relation.to_id
-      target_label = _symbolLabel(project, target_id)
+      target_label = _symbolLabel(entities, target_id)
       if package_level then
-        from_label = _entityPackage(project, relation.from_id)
+        from_label = _entityPackage(entities, relation.from_id)
         from_id = "package-" + util.stableSlug(from_label)
         if relation.to_id == "" then
           target_label = "Unresolved"
         else
-          target_label = _entityPackage(project, relation.to_id)
+          target_label = _entityPackage(entities, relation.to_id)
         end if
         target_id = "package-" + util.stableSlug(target_label)
         if from_id == target_id then continue end if
@@ -196,12 +200,16 @@ function renderSvg(project, relation_kind, title)
         target_label = relation.label + " (unresolved)"
       end if
       from_kind = "source"
-      if _entityOwned(project, relation.from_id) == false then from_kind = "external" end if
+      if _entityOwned(entities, relation.from_id) == false then from_kind = "external" end if
       target_kind = relation.certainty
-      if relation.to_id != "" and _entityOwned(project, relation.to_id) == false then target_kind = "external" end if
-      nodes = _addNode(nodes, from_id, from_label, from_kind, maximum)
-      nodes = _addNode(nodes, target_id, target_label, target_kind, maximum)
-      if _hasEdge(relations, from_id, target_id) == false then relations = relations + [[from_id, target_id, relation.certainty]] end if
+      if relation.to_id != "" and _entityOwned(entities, relation.to_id) == false then target_kind = "external" end if
+      node_set = _addNode(node_set, from_id, from_label, from_kind, maximum)
+      node_set = _addNode(node_set, target_id, target_label, target_kind, maximum)
+      edge_key = _edgeKey(from_id, target_id)
+      if tools.fastmap_has(edge_ids, edge_key) == false then
+        edge_ids = tools.fastmap_set(edge_ids, edge_key, true)
+        edge_items = tools.arr_vec_push(edge_items, [from_id, target_id, relation.certainty])
+      end if
     end for
   end if
 
@@ -209,11 +217,18 @@ function renderSvg(project, relation_kind, title)
     for fi = 0 to len(project.files) - 1
       file = project.files[fi]
       if project.config.dependency_mode != "full" and util.isProjectSource(file.path, project.config.entry, project.config.source_roots) == false then continue end if
-      nodes = _addNode(nodes, file.id, file.relative_path, "file", maximum)
+      node_set = _addNode(node_set, file.id, file.relative_path, "file", maximum)
     end for
   end if
 
-  nodes = _sortNodes(nodes)
+  nodes = _sortNodes(node_set.items)
+  node_positions = tools.fastmap_new(len(nodes) * 2 + 16)
+  if len(nodes) > 0 then
+    for ni = 0 to len(nodes) - 1
+      node_positions = tools.fastmap_set(node_positions, nodes[ni].id, ni)
+    end for
+  end if
+  relations = tools.arr_vec_finish(edge_items)
 
   columns = 3
   column_step = 340
@@ -253,8 +268,8 @@ function renderSvg(project, relation_kind, title)
   if len(relations) > 0 then
     for ri = 0 to len(relations) - 1
       relation = relations[ri]
-      from_index = _nodeIndex(nodes, relation[0])
-      to_index = _nodeIndex(nodes, relation[1])
+      from_index = tools.fastmap_get(node_positions, relation[0], -1)
+      to_index = tools.fastmap_get(node_positions, relation[1], -1)
       if from_index < 0 or to_index < 0 then continue end if
       fx = 20 + (from_index % columns) * column_step + node_width / 2
       fy = 65 + (from_index / columns) * row_step + 30

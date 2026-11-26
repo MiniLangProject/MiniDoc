@@ -12,7 +12,7 @@ struct GraphNode
 Internal display model for a relation-graph node.
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L21)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L22)
 
 ## Members
 
@@ -24,7 +24,7 @@ id
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L22)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L23)
 
 <a id="field-field-minidoc-graph-graphnode-kind-kind-src-minidoc-graph-ml-791091524"></a>
 ### kind
@@ -34,7 +34,7 @@ kind
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L24)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L25)
 
 <a id="field-field-minidoc-graph-graphnode-label-label-src-minidoc-graph-ml-1661788004"></a>
 ### label
@@ -44,4 +44,4 @@ label
 ```
 
 
-[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L23)
+[View source](https://github.com/MiniLangProject/MiniDoc/blob/main/src/minidoc/graph.ml#L24)

@@ -9,7 +9,7 @@
 | [src/minidoc/app.ml](File-src-minidoc-app-ml-1489174864.md) | `minidoc.app` | yes | 11 |
 | [src/minidoc/config.ml](File-src-minidoc-config-ml-2001755147.md) | `minidoc.config` | yes | 23 |
 | [src/minidoc/doc_comments.ml](File-src-minidoc-doc-comments-ml-1995285450.md) | `minidoc.doc_comments` | yes | 11 |
-| [src/minidoc/graph.ml](File-src-minidoc-graph-ml-29661697.md) | `minidoc.graph` | yes | 15 |
+| [src/minidoc/graph.ml](File-src-minidoc-graph-ml-29661697.md) | `minidoc.graph` | yes | 22 |
 | [src/minidoc/loader.ml](File-src-minidoc-loader-ml-952553188.md) | `minidoc.loader` | yes | 14 |
 | [src/minidoc/metrics.ml](File-src-minidoc-metrics-ml-1301618694.md) | `minidoc.metrics` | yes | 64 |
 | [src/minidoc/model.ml](File-src-minidoc-model-ml-438170230.md) | `minidoc.model` | yes | 233 |

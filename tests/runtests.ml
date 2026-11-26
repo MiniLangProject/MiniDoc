@@ -15,7 +15,10 @@ import minidoc.app as app
 import minidoc.config as configuration
 import minidoc.doc_comments as comments
 import minidoc.metrics as metrics
+import minidoc.graph as graph
+import minidoc.model as model
 import minidoc.util as util
+import mlc.tools as tools
 
 _failures = 0
 
@@ -129,6 +132,84 @@ function operatorMappingsAreComplete()
   return analyzer._operatorSourceSymbol("__operator_unknown__overload_0") == ""
 end function
 
+// Graph fixtures intentionally contain only fields consumed by the renderer.
+// Their goldens were captured from MiniDoc 0.4.8 before indexed graph lookup.
+struct GraphTestFile
+  id, path, relative_path, package_name
+end struct
+
+struct GraphTestSymbol
+  id, qualified_name, package_name, file_id
+end struct
+
+struct GraphTestProject
+  config, files, symbols, relations
+end struct
+
+function graphFixture(dependencies, granularity, maximum)
+  cfg = model.defaultConfig()
+  cfg.entry = "/graph-fixture/src/main.ml"
+  cfg.source_roots = ["/graph-fixture/src"]
+  cfg.dependency_mode = dependencies
+  cfg.graph_granularity = granularity
+  cfg.graph_max_nodes = maximum
+  files = [GraphTestFile("main", cfg.entry, "src/main.ml", "app.main"), GraphTestFile("worker", "/graph-fixture/src/worker.ml", "src/worker.ml", "app.worker"), GraphTestFile("global", "/graph-fixture/src/global.ml", "src/global.ml", ""), GraphTestFile("external", "/dependency/helper.ml", "../dependency/helper.ml", "dep.helper"), GraphTestFile("shadow", "/dependency/shadow.ml", "../dependency/shadow.ml", "dep.shadow"), GraphTestFile("external", "/graph-fixture/src/duplicate.ml", "src/duplicate.ml", "wrong.file")]
+  symbols = [GraphTestSymbol("a", "app.main.Alpha", "app.main", "main"), GraphTestSymbol("b", "app.worker.beta", "app.worker", "worker"), GraphTestSymbol("c", "app.main.same", "app.main", "main"), GraphTestSymbol("e", "dep.helper.use", "dep.helper", "external"), GraphTestSymbol("g", "globalFunction", "", "global"), GraphTestSymbol("shadow", "app.main.shadow", "app.main", "main"), GraphTestSymbol("a", "wrong.duplicate", "wrong.package", "external")]
+  relations = [model.RelationDoc("a", "b", "calls", "dynamic", "beta"), model.RelationDoc("a", "b", "calls", "exact", "duplicate"), model.RelationDoc("b", "a", "calls", "exact", "reverse"), model.RelationDoc("a", "c", "calls", "exact", "same"), model.RelationDoc("a", "e", "calls", "exact", "dependency"), model.RelationDoc("e", "a", "calls", "exact", "external caller"), model.RelationDoc("a", "", "calls", "unresolved", "callback<&>"), model.RelationDoc("g", "a", "calls", "exact", "global"), model.RelationDoc("a", "unknown", "calls", "inferred", "unknown id"), model.RelationDoc("shadow", "b", "calls", "inferred", "symbol shadows file"), model.RelationDoc("ab", "cd", "calls", "exact", "edge key one"), model.RelationDoc("abc", "d", "calls", "dynamic", "edge key two"), model.RelationDoc("main", "external", "imports", "exact", "dependency import"), model.RelationDoc("external", "main", "imports", "exact", "external import"), model.RelationDoc("main", "worker", "imports", "exact", "local import"), model.RelationDoc("a", "b", "implements", "exact", "interface"), model.RelationDoc("b", "e", "extends", "exact", "base class")]
+  return GraphTestProject(cfg, files, symbols, relations)
+end function
+
+function graphCases()
+  cases = []
+  for each mode in ["full", "summary", "none"]
+    for each level in ["symbol", "package"]
+      cases = cases + [["calls-" + level + "-" + mode, graphFixture(mode, level, 100), "calls", true]]
+    end for
+  end for
+  cases = cases + [["calls-capped", graphFixture("full", "symbol", 3), "calls", true]]
+  cases = cases + [["calls-zero-cap", graphFixture("summary", "package", 0), "calls", true]]
+  cases = cases + [["imports-symbol-full", graphFixture("full", "symbol", 100), "imports", true]]
+  cases = cases + [["imports-symbol-summary", graphFixture("summary", "symbol", 100), "imports", true]]
+  cases = cases + [["imports-package-summary", graphFixture("summary", "package", 100), "imports", true]]
+  cases = cases + [["types-symbol-full", graphFixture("full", "symbol", 100), "implements", true]]
+  cases = cases + [["types-package-none", graphFixture("none", "package", 100), "implements", true]]
+  cases = cases + [["empty-relation-kind", graphFixture("full", "symbol", 100), "absent", false]]
+  same_package = graphFixture("summary", "package", 100)
+  same_package.relations = [model.RelationDoc("a", "c", "calls", "exact", "same package")]
+  cases = cases + [["same-package-only", same_package, "calls", false]]
+  return cases
+end function
+
+function checkGraphRendering(root)
+  for each item in graphCases()
+    actual = graph.renderSvg(item[1], item[2], "Graph <&> regression")
+    expected = readRequired(util.joinPath(root, "tests/fixtures/graphs/" + item[0] + ".svg"))
+    expect(expected != "" and actual == expected, "graph compatibility " + item[0], "SVG differs from the MiniDoc 0.4.8 fixture")
+    expect(graph.hasRelations(item[1], item[2]) == item[3], "graph visibility " + item[0], "empty graph detection disagrees with dependency or package filtering")
+  end for
+
+  // Many unreferenced entities and duplicate relations must not change output.
+  // This also exercises map growth and lookup near the end of a large index.
+  large = graphFixture("summary", "symbol", 100)
+  symbol_items = tools.arr_vec_new(35002)
+  for i = 0 to 34999
+    symbol_items = tools.arr_vec_push(symbol_items, GraphTestSymbol("unused-" + i, "unused.symbol" + i, "unused", "worker"))
+  end for
+  symbol_items = tools.arr_vec_push(symbol_items, GraphTestSymbol("scale-a", "app.Alpha", "app.main", "main"))
+  symbol_items = tools.arr_vec_push(symbol_items, GraphTestSymbol("scale-b", "app.Beta", "app.worker", "worker"))
+  large.symbols = tools.arr_vec_finish(symbol_items)
+  repeated = model.RelationDoc("scale-a", "scale-b", "calls", "dynamic", "duplicate")
+  relation_items = tools.arr_vec_new(12000)
+  for i = 0 to 11999
+    relation_items = tools.arr_vec_push(relation_items, repeated)
+  end for
+  large.relations = tools.arr_vec_finish(relation_items)
+  small = graphFixture("summary", "symbol", 100)
+  small.symbols = [large.symbols[35000], large.symbols[35001]]
+  small.relations = [repeated]
+  expect(graph.renderSvg(large, "calls", "Scale") == graph.renderSvg(small, "calls", "Scale") and graph.hasRelations(large, "calls"), "large graph lookup and edge deduplication", "35,002 symbols and 12,000 repeated calls changed the rendered graph")
+end function
+
 function main(args)
   if len(args) < 1 then
     print "usage: minidoc_tests <MiniDoc root>"
@@ -142,6 +223,8 @@ function main(args)
   markdown_root = util.joinPath(output_root, "markdown")
   full_root = util.joinPath(output_root, "full")
   wiki_root = util.joinPath(output_root, "wiki")
+
+  checkGraphRendering(root)
 
   expect(util.htmlEscape("<tag a=\"b\">&") == "&lt;tag a=&quot;b&quot;&gt;&amp;", "HTML escaping", "unsafe characters were not escaped")
   expect(util.jsonEscape("a\n\"b") == "a\\n\\\"b", "JSON escaping", "control characters were not escaped")
@@ -198,7 +281,7 @@ function main(args)
     expect(false, "project analysis", project.message)
     return 1
   end if
-  expect(project.generator_version == "0.4.8" and project.generated_at == "" and project.source_revision == "fixture-revision-1234567890", "generation metadata", "MiniDoc version, source revision, or timestamp suppression is incorrect")
+  expect(project.generator_version == "0.4.9" and project.generated_at == "" and project.source_revision == "fixture-revision-1234567890", "generation metadata", "MiniDoc version, source revision, or timestamp suppression is incorrect")
   expect(util.revisionLabel("fixture-revision-1234567890") == "fixture-revision-1234567890" and util.revisionLabel("0123456789abcdef0123456789abcdef01234567") == "0123456789ab", "revision labels", "explicit revision labels were truncated or Git IDs were not abbreviated")
   invalid_epoch = try(app._sourceDateEpochTimestamp("invalid"))
   expect(app._sourceDateEpochTimestamp("0") == "1970-01-01 00:00:00.000 UTC" and typeof(invalid_epoch) == "error", "reproducible timestamp", "SOURCE_DATE_EPOCH conversion or validation is incorrect")
@@ -269,7 +352,7 @@ function main(args)
   markdown_score = readRequired(util.joinPath(markdown_root, "Type-" + util.stableSlug("sample.models.Score") + ".md"))
   search_index = readRequired(util.joinPath(html_root, "search-index.json"))
   expect(strings.contains(html_index, "MiniDoc Fixture") and strings.contains(markdown_home, "MiniDoc Fixture API"), "home pages", "HTML or Markdown home page is missing")
-  expect(strings.contains(html_index, "Generated by <strong>MiniDoc 0.4.8</strong> from source revision <code>fixture-revision-1234567890</code>") and not strings.contains(html_index, "<time>") and strings.contains(markdown_home, "Generated by MiniDoc 0.4.8 from MiniLang source at revision `fixture-revision-1234567890`"), "rendered generation metadata", "timestamp-free HTML or Markdown metadata is incorrect")
+  expect(strings.contains(html_index, "Generated by <strong>MiniDoc 0.4.9</strong> from source revision <code>fixture-revision-1234567890</code>") and not strings.contains(html_index, "<time>") and strings.contains(markdown_home, "Generated by MiniDoc 0.4.9 from MiniLang source at revision `fixture-revision-1234567890`"), "rendered generation metadata", "timestamp-free HTML or Markdown metadata is incorrect")
   expect(strings.contains(html_index, "class=\"lede\">A compact MiniLang project used to verify MiniDoc output.") and strings.contains(markdown_home, "A compact MiniLang project used to verify MiniDoc output."), "project introduction", "configured project description is missing from the home page")
   expect(strings.contains(html_index, "<h2 id=\"overview-title\">Project at a glance</h2>") and strings.contains(html_index, "Documentation coverage") and strings.contains(markdown_home, "## Project at a glance"), "home page metrics", "project overview metrics are missing")
   expect(strings.contains(html_index, "<h2 id=\"explore-title\">Explore the documentation</h2>") and strings.contains(html_index, "<div class=\"cards\"><a href=\"graph-calls.html\">") and strings.contains(html_index, "href=\"diagnostics.html\"><strong>Diagnostics"), "home navigation cards", "Browse links are not contained in the card grid")
