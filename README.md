@@ -56,10 +56,13 @@ workspace/
 
 On Windows, a compiler at another location can be selected with `-Compiler`. On Linux, set `MINILANG_COMPILER`; the compiler source checkout must still be available as an import root beside MiniDoc. Build the current compiler first or select its 1.3.11 release executable if the default `build` executable is older.
 
-The 0.4.9 graph change was built and validated on Linux with the Python reference
-compiler 1.3.10 and the pinned 1.3.11 frontend/library sources. The
+MiniDoc 0.4.9 was built and validated on Linux with both the Python reference
+compiler 1.3.10 and the official self-hosted compiler 1.3.11, using the pinned
+1.3.11 frontend/library sources. Both builds passed all 145 checks. The native
+build also regenerated MiniDoc's complete HTML and Markdown reference with
+strict checking and byte-identical output. The
 [verification report](docs/verification/GRAPH_INDEXING_2026-11-26.md) records the
-exact revisions, 145 passing checks, and byte-identical graph comparisons.
+release hashes, source revisions, graph comparisons, and validation scope.
 
 ### Windows
 

@@ -41,7 +41,7 @@ is included. All three outputs have the same SHA-256:
 
 `778e3f35d5fe1bff33d48734697f20cd602bcf17a23a72a87029baf21ca3f0df`
 
-## Build pins
+## Reference-compiler build pins
 
 | Component | Revision or digest |
 | --- | --- |
@@ -138,3 +138,53 @@ manifests, **4,922 local links**, **3,281 fragment references**, one JSON file,
 and four SVG files with **zero defects**. The manifests themselves are excluded
 from the generated-file count. No game behavior or gameplay performance was
 tested in this generator change.
+
+## Self-hosted compiler 1.3.11 validation
+
+The official Linux x64 compiler release was independently verified against its
+archive checksum and `BUILD_INFO.json`. It built the same MiniDoc 0.4.9 sources
+using the complete pinned frontend/library checkout. The native build passed
+all **145 checks**, including the original SVG goldens and the large-graph
+regression.
+
+| Component | Revision or SHA-256 |
+| --- | --- |
+| Release archive | `MiniLangCompilerML-1.3.11-linux-x64.tar.gz` |
+| Archive SHA-256 | `fd4c90b16237c6c159457ceae59e93e0d29615c6ac38c4500b48c6cc36edb626` |
+| Compiler source revision in `BUILD_INFO.json` | `a8777b1e0d975c4b238e1df914ddcfb3db3bd994` |
+| Released `mlc` executable SHA-256 | `7a61fe5447d0e81d700c834c7f02dce2259c0bd2418050b056653bea742b8c67` |
+| Frontend/library import checkout | `c1f402d66e7021bd2137e68b5d919569f10f3959` |
+| Native-built MiniDoc executable SHA-256 | `c93e4a45e65e06f8096bf146a3c4f9b360523c6816216a783af122b53f81c55a` |
+
+| Native validation stage | Elapsed time | Exit code |
+| --- | ---: | ---: |
+| Build MiniDoc executable | 24.423 s | 0 |
+| Build test executable | 25.723 s | 0 |
+| Run 145-check suite | 5.776 s | 0 |
+| Regenerate MiniDoc's HTML and Markdown | 9.9077 s | 0 |
+
+From the repository root, with the extracted release in the location shown
+and the complete import checkout beside MiniDoc:
+
+```sh
+../toolchain-release/linux/MiniLangCompilerML-1.3.11-linux-x64/mlc \
+  src/main.ml build/minidoc-native --target linux-x64 \
+  -I src -I ../MiniLangCompilerML \
+  --heap-reserve 16g --heap-commit 32m --heap-shrink
+../toolchain-release/linux/MiniLangCompilerML-1.3.11-linux-x64/mlc \
+  tests/runtests.ml build/minidoc_tests-native --target linux-x64 \
+  -I src -I ../MiniLangCompilerML
+build/minidoc_tests-native "$PWD"
+build/minidoc-native --config minidoc.toml --strict --revision MiniDoc-0.4.9
+```
+
+The native generator reported **37 loaded files, 2,536 symbols, and zero
+warnings**. All **135 files**, including both output manifests, were byte for
+byte identical to the committed reference produced with the Python-built
+generator. Repeating the output verifier again checked 133 generated files,
+4,922 local links, 3,281 fragment references, one JSON file, and four SVG files
+with **zero defects**.
+
+This establishes the native build, regression suite, and MiniDoc's own
+reference. It does not identify the cause of the separate interrupted
+MiniQuake3 output write or measure a whole-project generation speedup.
