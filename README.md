@@ -43,7 +43,10 @@ GitHub releases provide separate archives for Windows x64 and Linux x64. Each ar
 
 ### Prerequisites
 
-MiniDoc 0.4.9 builds and is tested with the self-hosted [MiniLang compiler](https://github.com/MiniLangProject/MiniLangCompilerML) **1.3.11**. The default build scripts expect sibling checkouts:
+MiniDoc 0.4.9 uses the **1.3.11** frontend and standard library from the
+[MiniLang compiler](https://github.com/MiniLangProject/MiniLangCompilerML).
+The default build scripts use the self-hosted compiler and expect sibling
+checkouts:
 
 ```text
 workspace/
@@ -52,6 +55,11 @@ workspace/
 ```
 
 On Windows, a compiler at another location can be selected with `-Compiler`. On Linux, set `MINILANG_COMPILER`; the compiler source checkout must still be available as an import root beside MiniDoc. Build the current compiler first or select its 1.3.11 release executable if the default `build` executable is older.
+
+The 0.4.9 graph change was built and validated on Linux with the Python reference
+compiler 1.3.10 and the pinned 1.3.11 frontend/library sources. The
+[verification report](docs/verification/GRAPH_INDEXING_2026-11-26.md) records the
+exact revisions, 145 passing checks, and byte-identical graph comparisons.
 
 ### Windows
 
